@@ -1,0 +1,1 @@
+// this file will configure the redux's store
