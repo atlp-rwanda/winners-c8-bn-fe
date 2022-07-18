@@ -10,7 +10,7 @@ const Navbar = () => {
         <Link to="/">Home</Link>
         <Link to="login" style={{ 
           color: 'white', 
-          backgroundColor: '#f1356d',
+          backgroundColor: '#3498DB',
           borderRadius: '8px' 
         }}>Login</Link>
       </div>
