@@ -9,12 +9,13 @@ module.exports = {
     filename: "bundle.js", // the name of the bundle
   },
   plugins: [
-    new HtmlWebpackPlugin({
-      template: "public/index.html", // to import index.html file inside index.js
+    new HtmlWebpackPlugin({ 
+      template: "public/index.html",  // to import index.html file inside index.js
     }),
   ],
   devServer: {
     port: process.env.PORT, // you can change the port
+    historyApiFallback: true
   },
   module: {
     rules: [
