@@ -1,11 +1,15 @@
 const authActions ={};
-authActions.login = token => ({
-    type: "LOGIN",
-    token
-});
+authActions.login = (token) => {
+    return ({
+        type: "LOGIN",
+        token
+    });
+}
   
-authActions.logout = () => ({
-    type: "LOGOUT"
-});
+authActions.logout = () => {
+return ({
+        type: "LOGOUT"
+    });
+}
 
 export default authActions;

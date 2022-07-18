@@ -2,7 +2,9 @@
 import { createStore } from "redux";
 import rootReducer from "./reducers";
 
-const initialState = {};
+const initialState = {
+    token: "",
+};
 const store = createStore(
     rootReducer,
     initialState // sets initial state

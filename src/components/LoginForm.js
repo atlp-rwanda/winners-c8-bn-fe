@@ -1,20 +1,41 @@
 import React from "react";
 import "../../public/styles/LoginForm/index.css"
+import authActions from "../redux/actions/authActions";
+import { connect } from "react-redux";
 
-const LoginForm = () => {
-  return (
-    <div class="container">
-			<h1>Login</h1>
-      <form action="#" method="POST">
-        <input type="text" placeholder="email" class="field"></input>
-        <input type="password" placeholder="password" class="field"></input>
-        <input type="submit" value="login" class="btn"></input>
-      </form>
-      <div class="pass-link">
-        <a href="#" >Lost your password?</a>
-      </div>	
-	  </div>
-  );
+class LoginForm extends React.Component {
+  loginSubmit = (event) => {
+    event.preventDefault();
+    const fakeToken = event.target["email"].value + " : "+ event.target["password"].value;
+    // console.log("my fake token is here : ",fakeToken);
+    this.props.LOGIN(fakeToken);
+  }
+  componentDidMount() {
+    this.props.LOGOUT();
+  }
+  render(){
+    return (
+      <div className="container">
+        <h1>Login </h1>
+        <form id="login-form" onSubmit={(event) => this.loginSubmit(event)} >
+          <input type="text" name="email" placeholder="email" className="field"></input>
+          <input type="password" name="password" placeholder="password" className="field"></input>
+          <input type="submit" value="login" className="btn"></input>
+        </form>
+        <div className="pass-link">
+          <a href="#" >Lost your password?</a>
+        </div>	
+      </div>
+    );
+  } 
 }
- 
-export default LoginForm;
+
+const mapStateToProps = state => ({
+  token: state.token
+});
+const {login: LOGIN, logout: LOGOUT} = authActions;
+export default connect(
+  mapStateToProps,
+  { LOGIN, LOGOUT }
+)(LoginForm);
+// export default LoginForm;
