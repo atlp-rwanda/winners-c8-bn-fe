@@ -6,7 +6,7 @@ const LoginForm = () => {
     <div class="container">
 			<h1>Login</h1>
       <form action="#" method="POST">
-        <input type="text" placeholder="username" class="field"></input>
+        <input type="text" placeholder="email" class="field"></input>
         <input type="password" placeholder="password" class="field"></input>
         <input type="submit" value="login" class="btn"></input>
       </form>
