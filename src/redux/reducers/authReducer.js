@@ -4,7 +4,7 @@ const authReducer = (
     },
     action
   ) => {
-    // console.log(`before ${action.type}, this is the state: `,JSON.stringify(state));
+    // console.log(`before ${action.type} action, this is the AUTH state: `,JSON.stringify(state));
     switch (action.type) {
       case "LOGIN":
         return {

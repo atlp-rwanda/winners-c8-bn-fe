@@ -3,7 +3,8 @@ import { createStore } from "redux";
 import rootReducer from "./reducers";
 
 const initialState = {
-    token: "",
+    auth: {token: ""},
+    navbar: {currentPage: "HOME"},
 };
 const store = createStore(
     rootReducer,
