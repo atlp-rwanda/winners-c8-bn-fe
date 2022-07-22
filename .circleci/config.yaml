@@ -1,0 +1,53 @@
+version: 2.1
+
+orbs:
+  # See the orb documentation here: https://circleci.com/developer/orbs/orb/circleci/node
+  node: circleci/node@4.7
+  coveralls: coveralls/coveralls@1.0.6
+
+jobs:
+  build-and-test:
+    docker:
+      - image: cimg/node:17.2.0
+      - image: cimg/postgres:14.0
+        auth:
+          username: postgres
+          password: $POSTGRES_PASSWORD # context / project UI env-var reference
+        environment:
+          POSTGRES_USER: postgres
+          POSTGRES_DB: circle-test_test
+
+    steps:
+      # Checkout the code as the first step.
+      - checkout
+      - node/install-packages:
+          pkg-manager: npm
+      - run:
+          name: Run tests
+          command: npm test
+      - run:
+          name: coverage
+          command: npm run coverage
+      - coveralls/upload:
+          path_to_lcov: ./coverage/lcov.info
+
+      - store_artifacts:
+          path: test-results
+
+      - store_artifacts:
+          path: coverage
+
+      - store_test_results:
+          path: test-result
+      - run:
+          name: Set environment variables
+          command: echo ${TEST_DB_USERNAME}
+
+workflows:
+  sample:
+    jobs:
+      - build-and-test
+
+notify:
+  webhooks:
+    - url: https://coveralls.io/webhook?repo_token=${COVERALLS_REPO_TOKEN}
