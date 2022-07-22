@@ -9,13 +9,6 @@ jobs:
   build-and-test:
     docker:
       - image: cimg/node:17.2.0
-      - image: cimg/postgres:14.0
-        auth:
-          username: postgres
-          password: $POSTGRES_PASSWORD # context / project UI env-var reference
-        environment:
-          POSTGRES_USER: postgres
-          POSTGRES_DB: circle-test_test
 
     steps:
       # Checkout the code as the first step.
