@@ -17,7 +17,7 @@ jobs:
           pkg-manager: npm
       - run:
           name: Run tests
-          command: npm test
+          command: npm run coverage
       - run:
           name: coverage
           command: npm run coverage
@@ -32,9 +32,6 @@ jobs:
 
       - store_test_results:
           path: test-result
-      - run:
-          name: Set environment variables
-          command: echo ${TEST_DB_USERNAME}
 
 workflows:
   sample:
