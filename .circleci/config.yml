@@ -16,11 +16,23 @@ jobs:
       - node/install-packages:
           pkg-manager: npm
       - run:
+          name: Install Test Reporter
+          command: |
+            wget -O ./cc-test-reporter https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64
+            chmod +x ./cc-test-reporter
+      - run:
+          name: Report Before Build
+          command: ./cc-test-reporter before-build
+      - run:
           name: Run tests
-          command: npm run coverage
+          command: npm run test
       - run:
           name: coverage
           command: npm run coverage
+      - run:
+          name: Report After Build
+          command: ./cc-test-reporter after-build -t lcov
+
       - coveralls/upload:
           path_to_lcov: ./coverage/lcov.info
 
