@@ -1,5 +1,7 @@
 # winners-c8-bn-fe
 
+[![Coverage Status](https://coveralls.io/repos/github/atlp-rwanda/winners-c8-bn-fe/badge.svg?branch=develop)](https://coveralls.io/github/atlp-rwanda/winners-c8-bn-fe?branch=develop)
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), Then re-configured with [Webpack](https://www.educative.io/answers/how-to-create-a-react-application-with-webpack)
 
 ## Available Scripts
@@ -25,5 +27,5 @@ It generates an index.html file along with needed javascript codes in bundle.js 
 
 ### `npm start`
 
-Serves the compiled static files from `./dist` folder at  [http://localhost:5000](http://localhost:5000).\
+Serves the compiled static files from `./dist` folder at [http://localhost:5000](http://localhost:5000).\
 That port number 5000 corresponds to the variable PORT declared in .env file.
