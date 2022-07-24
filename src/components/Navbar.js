@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import "../../public/styles/navbar/index.css";
 import { connect } from "react-redux";
 import navbarActions from "../redux/actions/navbarActions";
+import bnLogo from "../../public/images/navbar/logo.png"
 
 const Navbar = (props) => {
   const buttonSelectedCSS ={ 
@@ -13,7 +14,7 @@ const Navbar = (props) => {
   const buttonCSS ={};
   return (
     <nav className="navbar">
-      <h1>Barefoot Nomad</h1>
+      <img src={bnLogo}/>
       <div className="links">
         <Link to="/" style={(props.currentPage == "HOME")? buttonCSS : buttonSelectedCSS} onClick={(event) => props.SET_PAGE("HOME")}>Home</Link>
         <Link to="login" style={(props.currentPage == "LOGIN_FORM")? buttonCSS : buttonSelectedCSS} onClick={(event) => props.SET_PAGE("LOGIN_FORM")}>{(props.token=="")? "Login" : "Logout"}</Link>
