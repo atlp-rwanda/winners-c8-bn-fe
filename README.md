@@ -1,5 +1,11 @@
 # winners-c8-bn-fe
 
+## Badges
+
+[![CircleCI](https://dl.circleci.com/status-badge/img/gh/atlp-rwanda/winners-c8-bn-fe/tree/develop.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/atlp-rwanda/winners-c8-bn-fe/tree/develop)
+[![Maintainability](https://api.codeclimate.com/v1/badges/d02e604287934cad14c7/maintainability)](https://codeclimate.com/github/atlp-rwanda/winners-c8-bn-fe/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/d02e604287934cad14c7/test_coverage)](https://codeclimate.com/github/atlp-rwanda/winners-c8-bn-fe/test_coverage)
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), Then re-configured with [Webpack](https://www.educative.io/answers/how-to-create-a-react-application-with-webpack)
 
 ## Available Scripts
@@ -25,5 +31,5 @@ It generates an index.html file along with needed javascript codes in bundle.js 
 
 ### `npm start`
 
-Serves the compiled static files from `./dist` folder at  [http://localhost:5000](http://localhost:5000).\
+Serves the compiled static files from `./dist` folder at [http://localhost:5000](http://localhost:5000).\
 That port number 5000 corresponds to the variable PORT declared in .env file.
