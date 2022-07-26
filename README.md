@@ -8,6 +8,13 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), Then re-configured with [Webpack](https://www.educative.io/answers/how-to-create-a-react-application-with-webpack)
 
+## Link to hosted applications:
+1. staging:
+https://nomad-travelers-staging.herokuapp.com
+
+2. production:
+https://nomad-travelers-winners.herokuapp.com
+
 ## Available Scripts
 
 In the project directory, you can run:
