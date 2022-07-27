@@ -12,13 +12,18 @@ const Navbar = (props) => {
     borderRadius: '8px' 
   };
   const buttonCSS ={};
+  const logoStyle={
+    padding: "10px 50px 10px 50px",
+  }
   return (
     <nav className="navbar">
-      <img src={bnLogo}/>
-      <div className="links">
+      <a className="navbar-brand">
+        <img src={bnLogo} style={logoStyle}/>
+      </a>
+      <span className="links">
         <Link to="/" style={(props.currentPage == "HOME")? buttonCSS : buttonSelectedCSS} onClick={(event) => props.SET_PAGE("HOME")}>Home</Link>
         <Link to="login" style={(props.currentPage == "LOGIN_FORM")? buttonCSS : buttonSelectedCSS} onClick={(event) => props.SET_PAGE("LOGIN_FORM")}>{(props.token=="")? "Login" : "Logout"}</Link>
-      </div>
+      </span>
     </nav>
   );
 }
