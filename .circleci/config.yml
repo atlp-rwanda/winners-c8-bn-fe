@@ -1,0 +1,55 @@
+version: 2.1
+
+orbs:
+  # See the orb documentation here: https://circleci.com/developer/orbs/orb/circleci/node
+  node: circleci/node@4.7
+  coveralls: coveralls/coveralls@1.0.6
+
+jobs:
+  build-and-test:
+    docker:
+      - image: cimg/node:17.2.0
+
+    steps:
+      # Checkout the code as the first step.
+      - checkout
+      - node/install-packages:
+          pkg-manager: npm
+      - run:
+          name: Install Test Reporter
+          command: |
+            wget -O ./cc-test-reporter https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64
+            chmod +x ./cc-test-reporter
+      - run:
+          name: Report Before Build
+          command: ./cc-test-reporter before-build
+      - run:
+          name: Run tests
+          command: npm run test
+      - run:
+          name: coverage
+          command: npm run coverage
+      - run:
+          name: Report After Build
+          command: ./cc-test-reporter after-build -t lcov
+
+      - coveralls/upload:
+          path_to_lcov: ./coverage/lcov.info
+
+      - store_artifacts:
+          path: test-results
+
+      - store_artifacts:
+          path: coverage
+
+      - store_test_results:
+          path: test-result
+
+workflows:
+  sample:
+    jobs:
+      - build-and-test
+
+notify:
+  webhooks:
+    - url: https://coveralls.io/webhook?repo_token=${COVERALLS_REPO_TOKEN}
