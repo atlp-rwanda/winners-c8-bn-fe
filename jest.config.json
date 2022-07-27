@@ -1,0 +1,13 @@
+{
+  "verbose": true,
+  "collectCoverage": true,
+  "coverageReporters": ["lcov", "text"],
+  "coverageDirectory": "coverage",
+  "testTimeout": 100000,
+  "transform": {
+    "\\.[jt]sx?$": "babel-jest"
+  },
+  "moduleNameMapper": {
+    "\\.(scss|sass|css)$": "identity-obj-proxy"
+  }
+}
