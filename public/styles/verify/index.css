@@ -1,0 +1,26 @@
+.verify {
+    border:1px solid rgb(228, 228, 228);
+    width: 9cm;
+    margin-left: 3cm;
+    height: 7cm;
+    
+    
+}
+.image{
+    width: 2cm;
+    height: 2cm;
+    margin-top: 1cm;
+}
+.heading{
+    color:rgb(52, 152, 219);
+    margin-top: 0.2cm;
+}
+.battom{
+    border-radius: 4px;
+    height: 0.9cm;
+    color:#fff;
+    background-color: rgb(52, 152, 219);
+    width: 6cm;
+    border:1px solid rgb(228, 228, 228);
+    margin-top: 0.5cm;
+}

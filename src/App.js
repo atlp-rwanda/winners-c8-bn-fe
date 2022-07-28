@@ -3,6 +3,7 @@ import Navbar from './components/Navbar';
 import Home from './components/Home';
 import { BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import LoginForm from './components/LoginForm';
+import VerifyUser from "./components/VerifyUser";
 
 const App = () => {
   return (
@@ -14,6 +15,8 @@ const App = () => {
             <Route exact path="/" element={<Home />} />
               
             <Route exact path="login" element={<LoginForm />} />
+            <Route exact path="verifyUser" element={<VerifyUser />} />
+
               
           </Routes>
         </div>
