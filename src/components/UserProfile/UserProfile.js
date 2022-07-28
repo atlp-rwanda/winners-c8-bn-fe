@@ -1,0 +1,62 @@
+import "./userprofile.scss";
+import React from "react";
+import Navbar from "../Navbar/Navbar";
+import Sidebar from "../Sidebar/Sidebar";
+
+const UserProfile = () => {
+    return ( 
+      <div className="home">
+      <Sidebar />
+      <div className="homeContainer">
+        <Navbar />
+        <div className="titleDashboard">
+          <div className="text">
+           <h3>Dashboard>></h3>
+           <h4>Settings>></h4>
+           <p>Personal information</p>
+          </div>
+          <h4>Dashboard</h4>
+        </div>
+        <div className="mainContent">
+          <p>Personal information</p>
+          <div className="Content">
+            <p>Your photo</p>
+            <div className="profile_image">
+              <div className="image_info">
+                <img
+                src="https://images.pexels.com/photos/1680172/pexels-photo-1680172.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+                alt=""
+                className="avatar"
+                />
+                <div className="text_info">
+                  <h4>Elissa Design</h4>
+                  <p>elissadesigner@gmail.com</p>
+                </div>
+                
+              </div>
+              <button>Upload New</button>
+            </div>
+
+            <hr />
+
+            <form action="">
+              <div className="form_container">
+                <div className="form">
+                  <label htmlFor="">First Name</label><br />
+                  <input type="text" />
+                </div>
+                <div className="form">
+                  <label htmlFor="">Last Name</label><br />
+                  <input type="text" />
+                </div>
+              </div>
+            </form>
+
+          </div>
+        </div>
+      </div>
+    </div>
+     );
+}
+ 
+export default UserProfile;
