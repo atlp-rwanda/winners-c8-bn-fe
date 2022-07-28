@@ -11,11 +11,11 @@ const UserProfile = () => {
         <Navbar />
         <div className="titleDashboard">
           <div className="text">
-           <h3>Dashboard>></h3>
-           <h4>Settings>></h4>
+           <h3>Dashboard&gt;&gt;</h3>
+           <h4>Settings&gt;&gt;</h4>
            <p>Personal information</p>
           </div>
-          <h4>Dashboard</h4>
+          <h4>Dashboard&gt;&gt;</h4>
         </div>
         <div className="mainContent">
           <p>Personal information</p>
@@ -40,6 +40,7 @@ const UserProfile = () => {
             <hr />
 
             <form action="">
+
               <div className="form_container">
                 <div className="form">
                   <label htmlFor="">First Name</label><br />
@@ -50,6 +51,41 @@ const UserProfile = () => {
                   <input type="text" />
                 </div>
               </div>
+
+              <div className="form_container">
+                <div className="form">
+                  <label htmlFor="">Title</label><br />
+                  <input type="text" />
+                </div>
+                <div className="form">
+                  <label htmlFor="">Gender</label><br />
+                  <input type="text" />
+                </div>
+              </div>
+
+              <div className="form_container">
+                <div className="form">
+                  <label htmlFor="">Phone Number</label><br />
+                  <input type="text" />
+                </div>
+                <div className="form">
+                  <label htmlFor="">Currency</label><br />
+                  <input type="text" />
+                </div>
+              </div>
+
+              <div className="form_container">
+                <div className="form">
+                  <label htmlFor="">Language</label><br />
+                  <input type="text" />
+                </div>
+                <div className="form">
+                  <label htmlFor="">Department</label><br />
+                  <input type="text" />
+                </div>
+              </div>
+              <button type="submit">Update Profile</button>
+
             </form>
 
           </div>

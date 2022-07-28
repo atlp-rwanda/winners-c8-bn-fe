@@ -25,15 +25,22 @@
             color: #606060;
             font-style: normal;
             font-weight: 500;
-            font-size: 14px;
+            font-size: 13px;
             line-height: 21px;
           }
+        }
+
+        h4{
+          color: #606060;
+          font-style: normal;
+          font-weight: 500;
+          font-size: 14px;
         }
       }
       .mainContent{
         width: 95%;
         margin: 10px auto;
-        
+
         p{
           color: #606060;
           font-style: normal;
@@ -112,10 +119,33 @@
             .form_container{
               display: flex;
               align-items: center;
+              justify-content: space-between;
+              margin-top: 35px;
               
               .form{
-                display: inline-block;
+                flex-basis: 50%;
+
+                label{
+                  color: #606060;
+                  font-style: normal;
+                  font-weight: 400;
+                  font-size: 14px;
+                  line-height: 21px;
+                }
+
+                input{
+                  width: 95%;
+                  padding: 5px 2px;
+                }
               }
+            }
+            button{
+              border: none;
+              padding: 8px 8px;
+              background: #395B64;
+              border-radius: 5px;
+              color: #FFFFFF;
+              margin-top: 35px;
             }
           }
         }
