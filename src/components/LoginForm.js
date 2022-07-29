@@ -45,12 +45,14 @@ class LoginForm extends React.Component {
         redirect: 'follow'
       };
       this.setState({wait: true});
-      toast(this.state.responseMessage);
+      toast("Signing in . . .");
       let result =  await fetch("https://winners-c8-bn-be-staging.herokuapp.com/api/auth/signin", requestOptions)
       .then(response => response.json())
       this.setState({responseMessage: result.message});
+      toast.dismiss();
       if(result.status == 200) {
         toast.success("Logged in successfully!");
+        await new Promise(resolve => setTimeout(resolve, 1500));
         this.isFormSubmitted = true;
         this.setState({success : true});
         this.props.LOGIN(result.data);
@@ -91,6 +93,7 @@ class LoginForm extends React.Component {
     }
   }
   componentDidMount() {
+    this.props.SET_PAGE("LOGIN_FORM")
     this.props.LOGOUT();
     if(window.localStorage.getItem("auth-token")) {
       window.localStorage.removeItem("auth-token");
@@ -115,41 +118,37 @@ class LoginForm extends React.Component {
           <Navigate to="/" replace={true} />
         )}
         <div className="container d-flex justify-content-center">
-          {/* {(this.state.wait | this.state.success | this.state.error)
-            &&
-            <div className="col-md-8 formWhite">
-              <h5 className="header5">{this.state.responseMessage}</h5>
-            </div>
-          } */}
-          {/* {(!(this.state.wait | this.state.success | this.state.error))
-            && */
+          {
             <div className="col-md-8 formWhite">
               <ToastContainer />
               <div className="row d-flex justify-content-center">
                 <div className="col-xs-12 col-md-8">
-                  <h1 className="header1">Sign in </h1>
+                  <h2 className="header1">Sign in </h2>
                   <form id="login-form" className="form-login" onSubmit={(event) => this.loginSubmit(event)} >
-                    <input type="text" name="email" placeholder="email" className="field input-login" onBlur={async (event) => await this.validateEmail(event.target.value)} style={(this.state.isEmailValid==true)? this.inputSuccessStyle : (this.state.isEmailValid==false)? this.inputErrorStyle : {}}></input>
+                    <input type="text" name="email" placeholder="Email" className="field input-login" onBlur={async (event) => await this.validateEmail(event.target.value)} style={(this.state.isEmailValid==true)? this.inputSuccessStyle : (this.state.isEmailValid==false)? this.inputErrorStyle : {}}></input>
                     <div className="redErrorMessage">{this.state.emailValidationMessage}</div>
-                    <input type="password" name="password" placeholder="password" className="field input-login" onBlur={async (event) => await this.validatePassword(event.target.value)} style={(this.state.isPasswordValid==true)? this.inputSuccessStyle : (this.state.isPasswordValid==false)? this.inputErrorStyle : {}}></input>
+                    <input type="password" name="password" placeholder="Password" className="field input-login" onBlur={async (event) => await this.validatePassword(event.target.value)} style={(this.state.isPasswordValid==true)? this.inputSuccessStyle : (this.state.isPasswordValid==false)? this.inputErrorStyle : {}}></input>
                     <div className="redErrorMessage">{this.state.passwordValidationMessage}</div>
                     <button type={(this.state.isEmailValid==true && this.state.isPasswordValid==true)? "submit" : ""} value="login" className="btn" disabled={!(this.state.isEmailValid==true && this.state.isPasswordValid==true)}>Sign in</button>
                   </form>
                 </div>
               </div>
               <div className="row d-flex justify-content-center">
+                <div className="col-xs-12">
+                  <h5 className="header5">_________</h5>
+                </div>
                 <div className="col-xs-12 col-md-8">
-                  <h5 className="header5">Or Sign in with</h5>
+                  <h5 className="header5">Or Sign in with:</h5>
                 </div>
               </div>
               <div className="row d-flex justify-content-center">
                 <div className="col-2">
                   <a href=""><img src={googleLogo} style={this.socialImageStyle}/></a>
-                  <div className="pass-link"><a href="">Google</a></div>
+                  {/* <div className="pass-link"><a href="">Google</a></div> */}
                 </div>
                 <div className="col-2">
                   <a href=""><img src={fbLogo} style={this.socialImageStyle}/></a>
-                  <div className="pass-link"><a href="">Facebook</a></div>
+                  {/* <div className="pass-link"><a href="">Facebook</a></div> */}
                 </div>
               </div>
               <div className="row d-flex justify-content-center">

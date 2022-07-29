@@ -13,16 +13,20 @@ const Navbar = (props) => {
   };
   const buttonCSS ={};
   const logoStyle={
-    padding: "10px 50px 10px 50px",
+    padding: "0.5ex 50px 0.5ex 50px",
+    width: "18ex"
+  }
+  const hideMenuStyle = {
+    display: "none"
   }
   return (
     <nav className="navbar">
       <a className="navbar-brand">
         <img src={bnLogo} style={logoStyle}/>
       </a>
-      <span className="links">
-        <Link to="/" style={(props.currentPage == "HOME")? buttonCSS : buttonSelectedCSS} onClick={(event) => props.SET_PAGE("HOME")}>Home</Link>
-        <Link to="login" style={(props.currentPage == "LOGIN_FORM")? buttonCSS : buttonSelectedCSS} onClick={(event) => props.SET_PAGE("LOGIN_FORM")}>{(props.token=="")? "Login" : "Logout"}</Link>
+      <span className="links" style={(props.currentPage=="LOGIN_FORM")? hideMenuStyle : {}}>
+        <Link to="/" style={buttonCSS} onClick={(event) => props.SET_PAGE("HOME")}>Home</Link>
+        <Link to="login" style={buttonSelectedCSS} onClick={(event) => props.SET_PAGE("LOGIN_FORM")}>{(props.token=="")? "Login" : "Logout"}</Link>
       </span>
     </nav>
   );
