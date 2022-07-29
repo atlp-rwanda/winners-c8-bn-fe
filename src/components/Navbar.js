@@ -26,7 +26,7 @@ const Navbar = (props) => {
       </a>
       <span className="links" style={(props.currentPage=="LOGIN_FORM")? hideMenuStyle : {}}>
         <Link to="/" style={buttonCSS} onClick={(event) => props.SET_PAGE("HOME")}>Home</Link>
-        <Link to="login" style={buttonSelectedCSS} onClick={(event) => props.SET_PAGE("LOGIN_FORM")}>{(props.token=="")? "Login" : "Logout"}</Link>
+        <Link to="login" data-testid="login-btn-1" style={buttonSelectedCSS} onClick={(event) => props.SET_PAGE("LOGIN_FORM")}>{(props.token=="")? "Login" : "Logout"}</Link>
       </span>
     </nav>
   );

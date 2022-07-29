@@ -8,7 +8,7 @@ import fbLogo from "../../public/images/login/facebook_icon.png"
 import googleLogo from "../../public/images/login/google_icon.png";
 import Joi, { disallow } from "joi";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "bootstrap/dist/js/bootstrap.bundle.min";
+// import "bootstrap/dist/js/bootstrap.bundle.min";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 class LoginForm extends React.Component {
