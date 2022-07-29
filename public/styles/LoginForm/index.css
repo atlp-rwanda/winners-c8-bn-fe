@@ -8,7 +8,7 @@
 .formWhite{
     margin: 6ex 0ex 0 0ex;
     background-color: white;
-    height: 60hv;
+    height: 80hv;
     width: 100%;
     border-radius: 5px;
     padding: 3ex
@@ -35,7 +35,8 @@
     background-color: white;
     border: 2px solid gray;
     border-radius: 3px;
-    margin: 3px
+    margin: 3px;
+    padding-left: 2ex ;
 }
 .form-login .field:focus {
     border: 2px solid #395B64;

@@ -9,6 +9,8 @@ import googleLogo from "../../public/images/login/google_icon.png";
 import Joi, { disallow } from "joi";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 class LoginForm extends React.Component {
   constructor(props) {
     super(props);
@@ -43,10 +45,12 @@ class LoginForm extends React.Component {
         redirect: 'follow'
       };
       this.setState({wait: true});
+      toast(this.state.responseMessage);
       let result =  await fetch("https://winners-c8-bn-be-staging.herokuapp.com/api/auth/signin", requestOptions)
       .then(response => response.json())
       this.setState({responseMessage: result.message});
       if(result.status == 200) {
+        toast.success("Logged in successfully!");
         this.isFormSubmitted = true;
         this.setState({success : true});
         this.props.LOGIN(result.data);
@@ -55,10 +59,11 @@ class LoginForm extends React.Component {
       }
       else{
         this.setState({error : true});
+        toast.error(this.state.responseMessage);
       }
     }
     catch(error) {
-      alert(error);
+      toast.error(`Error: ${error}`);
     }
   }
   validateEmail = async (emailAddress)=>{
@@ -110,15 +115,16 @@ class LoginForm extends React.Component {
           <Navigate to="/" replace={true} />
         )}
         <div className="container d-flex justify-content-center">
-          {(this.state.wait | this.state.success | this.state.error)
+          {/* {(this.state.wait | this.state.success | this.state.error)
             &&
             <div className="col-md-8 formWhite">
               <h5 className="header5">{this.state.responseMessage}</h5>
             </div>
-          }
-          {(!(this.state.wait | this.state.success | this.state.error))
-            &&
+          } */}
+          {/* {(!(this.state.wait | this.state.success | this.state.error))
+            && */
             <div className="col-md-8 formWhite">
+              <ToastContainer />
               <div className="row d-flex justify-content-center">
                 <div className="col-xs-12 col-md-8">
                   <h1 className="header1">Sign in </h1>
