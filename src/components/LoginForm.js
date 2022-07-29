@@ -45,13 +45,13 @@ class LoginForm extends React.Component {
         redirect: 'follow'
       };
       this.setState({wait: true});
-      toast("Signing in . . .");
+      toast("Signing in . . .", { position: toast.POSITION.TOP_CENTER });
       let result =  await fetch("https://winners-c8-bn-be-staging.herokuapp.com/api/auth/signin", requestOptions)
       .then(response => response.json())
       this.setState({responseMessage: result.message});
       toast.dismiss();
       if(result.status == 200) {
-        toast.success("Logged in successfully!");
+        toast.success("Logged in successfully!", { position: toast.POSITION.TOP_CENTER });
         await new Promise(resolve => setTimeout(resolve, 1500));
         this.isFormSubmitted = true;
         this.setState({success : true});
@@ -61,11 +61,11 @@ class LoginForm extends React.Component {
       }
       else{
         this.setState({error : true});
-        toast.error(this.state.responseMessage);
+        toast.error(this.state.responseMessage, { position: toast.POSITION.TOP_CENTER });
       }
     }
     catch(error) {
-      toast.error(`Error: ${error}`);
+      toast.error(`Error: ${error}`, { position: toast.POSITION.TOP_CENTER });
     }
   }
   validateEmail = async (emailAddress)=>{
