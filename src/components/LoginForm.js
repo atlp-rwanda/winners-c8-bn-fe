@@ -52,7 +52,7 @@ class LoginForm extends React.Component {
       toast.dismiss();
       if(result.status == 200) {
         toast.success("Logged in successfully!", { position: toast.POSITION.TOP_CENTER });
-        await new Promise(resolve => setTimeout(resolve, 1500));
+        // await new Promise(resolve => setTimeout(resolve, 1500));
         this.isFormSubmitted = true;
         this.setState({success : true});
         this.props.LOGIN(result.data);
