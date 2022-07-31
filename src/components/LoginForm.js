@@ -11,6 +11,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 // import "bootstrap/dist/js/bootstrap.bundle.min";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { FcGoogle } from 'react-icons/fc';
+import { ImFacebook } from 'react-icons/im';
 class LoginForm extends React.Component {
   constructor(props) {
     super(props);
@@ -141,15 +143,30 @@ class LoginForm extends React.Component {
                   <h5 className="header5">Or Sign in with:</h5>
                 </div>
               </div>
-              <div className="row d-flex justify-content-center">
-                <div className="col-2">
-                  <a href=""><img src={googleLogo} style={this.socialImageStyle}/></a>
-                  {/* <div className="pass-link"><a href="">Google</a></div> */}
-                </div>
-                <div className="col-2">
-                  <a href=""><img src={fbLogo} style={this.socialImageStyle}/></a>
-                  {/* <div className="pass-link"><a href="">Facebook</a></div> */}
-                </div>
+              <div
+                  style={{
+                      display: 'flex',
+                      flexDirection: 'row',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      marginTop: '10px',
+                  }}
+                >
+                  <div style={{ paddingRight: '20px' }}>
+                      <a href='https://winners-c8-bn-be-staging.herokuapp.com/api/oauth/google'>
+                          <FcGoogle style={{ fontSize: '40px', cursor: 'pointer' }} />
+                      </a>
+                  </div>
+                  <div style={{ paddingLeft: '20px' }}>
+                      <a href='https://winners-c8-bn-be-staging.herokuapp.com/api/oauth/facebook'>
+                          <ImFacebook
+                              style={{
+                                  fontSize: '35px',
+                                  cursor: 'pointer',
+                              }}
+                          />
+                      </a>
+                  </div>
               </div>
               <div className="row d-flex justify-content-center">
                 <div className="col-xs-12 col-md-8">
