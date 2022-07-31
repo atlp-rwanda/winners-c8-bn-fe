@@ -124,7 +124,7 @@ class LoginForm extends React.Component {
               <div className="row d-flex justify-content-center">
                 <div className="col-xs-12 col-md-8">
                   <h2 className="header1">Sign in </h2>
-                  <form id="login-form" className="form-login" onSubmit={async(event) => await this.loginSubmit(event)} >
+                  <form data-testid="login-form" id="login-form" className="form-login" onSubmit={async(event) => await this.loginSubmit(event)} >
                     <input data-testid="login-email" type="text" name="email" placeholder="Email" className="field input-login" onBlur={async (event) => await this.validateEmail(event.target.value)} style={(this.state.isEmailValid==true)? this.inputSuccessStyle : (this.state.isEmailValid==false)? this.inputErrorStyle : {}}></input>
                     <div className="redErrorMessage">{this.state.emailValidationMessage}</div>
                     <input data-testid="login-password" type="password" name="password" placeholder="Password" className="field input-login" onBlur={async (event) => await this.validatePassword(event.target.value)} style={(this.state.isPasswordValid==true)? this.inputSuccessStyle : (this.state.isPasswordValid==false)? this.inputErrorStyle : {}}></input>

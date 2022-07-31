@@ -2,20 +2,29 @@
  * @jest-environment jsdom
  */
 import React from "react";
-import { render, screen, cleanup, fireEvent } from "@testing-library/react";
+import { render, screen, cleanup, fireEvent, waitFor } from "@testing-library/react";
 import { act } from 'react-dom/test-utils';
-import Home from "../components/Home";
-import LoginForm from "../components/LoginForm";
-import Navbar from "../components/Navbar";
 import store from "../redux/store";
 import { Provider } from "react-redux";
 import App from "../App";
 import { BrowserRouter as Router } from 'react-router-dom';
 
-// afterEach(cleanup);
+afterEach(cleanup);
 
 describe("Testing the Home and LoginForm components", () => {
-    
+
+        global.fetch = jest.fn(()=>
+            Promise.resolve({
+                json: () =>
+                    Promise.resolve({
+                        status: 200,
+                        success: true,
+                        message: "User loggedIn",
+                        data: "thisShouldBeAToken"
+                    })
+            })
+        );
+
         render(<Provider store={store}>
             <Router>
                 <App />
@@ -24,7 +33,7 @@ describe("Testing the Home and LoginForm components", () => {
     it("should navigate to login when login navbar btn is clicked", ()=>{
         fireEvent.click(screen.getByTestId("login-btn-1"));
     });
-    it("should invalidate bad email", ()=>{
+    it("should invalidate bad email", async ()=>{
         render(<Provider store={store}>
             <Router>
                 <App />
@@ -33,8 +42,11 @@ describe("Testing the Home and LoginForm components", () => {
         fireEvent.click(screen.getByTestId("login-btn-1"));
         fireEvent.change(screen.getByTestId("login-email"), {target: {value: 'pacome.bad_email.com'}});
         fireEvent.blur(screen.getByTestId("login-email"));
+        await waitFor(() => {
+            // assertions can be put here
+        });
     });
-    it("should validate good email", ()=>{
+    it("should validate good email", async ()=>{
         render(<Provider store={store}>
             <Router>
                 <App />
@@ -43,8 +55,11 @@ describe("Testing the Home and LoginForm components", () => {
         fireEvent.click(screen.getByTestId("login-btn-1"));
         fireEvent.change(screen.getByTestId("login-email"), {target: {value: 'pacome@goodemail.com'}});
         fireEvent.blur(screen.getByTestId("login-email"));
+        await waitFor(() => {
+            // assertions can be put here
+        });
     });
-    it("should invalidate password with empty string", ()=>{
+    it("should invalidate password with empty string", async ()=>{
         render(<Provider store={store}>
             <Router>
                 <App />
@@ -53,8 +68,11 @@ describe("Testing the Home and LoginForm components", () => {
         fireEvent.click(screen.getByTestId("login-btn-1"));
         fireEvent.change(screen.getByTestId("login-password"), {target: {value: ''}});
         fireEvent.blur(screen.getByTestId("login-password"));
+        await waitFor(() => {
+            // assertions can be put here
+        });
     });
-    it("should validate password without an empty string", ()=>{
+    it("should validate password without an empty string", async ()=>{
         render(<Provider store={store}>
             <Router>
                 <App />
@@ -63,24 +81,31 @@ describe("Testing the Home and LoginForm components", () => {
         fireEvent.click(screen.getByTestId("login-btn-1"));
         fireEvent.change(screen.getByTestId("login-password"), {target: {value: 'pacome#password250'}});
         fireEvent.blur(screen.getByTestId("login-password"));
+        await waitFor(() => {
+            // assertions can be put here
+        });
     });
     it("should login", async ()=>{
+        await act(async ()=>{
             render(<Provider store={store}>
                 <Router>
                     <App />
                 </Router>
             </Provider>);
+        })
         
         fireEvent.click(screen.getByTestId("login-btn-1"));
-        fireEvent.change(screen.getByTestId("login-email"), {target: {value: 'spaziltonx@soccerfit.com'}});
-        fireEvent.change(screen.getByTestId("login-password"), {target: {value: 'Simon@2022'}});
-        act(async()=>{
-            await fireEvent.click(screen.getByTestId("login-submit"));
+        await act(async ()=>{
+            await fireEvent.submit(screen.getByTestId("login-form"), {
+                target: {
+                    email: {value: 'spaziltonx@soccerfit.com.bees'},
+                    password: {value: "Simon@2022"}
+                }
+            });
         });
+        await waitFor(() => {
+            // assertions can be put here
+        });
+        
     });
-    // it("should render LoginForm component", ()=>{
-    //     render(<Provider store={store}>
-    //         <LoginForm/>
-    //     </Provider>);
-    // });
 });
