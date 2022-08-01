@@ -8,9 +8,11 @@
   }
   .navbar h1 {
     color: #3498DB;
+    visibility: hidden;
   }
   .navbar .links {
     margin-left: auto;
+    visibility: hidden;
   }
   .navbar a {
     margin-left: 16px;
@@ -24,4 +26,13 @@
     max-width: 600px;
     margin: 5px auto;
     padding: 5px;
+  }
+  .link-logo{
+    margin: 0 -600px;
+  }
+  .logo-img{
+    padding: "0.5ex 50px 0.5ex 90px";
+    width: "10ex";
+    margin-top: 2px;
+    height:60px
   }

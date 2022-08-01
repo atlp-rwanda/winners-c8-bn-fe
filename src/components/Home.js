@@ -6,7 +6,7 @@ const Home = (props) => {
     <div>
       <h2>Welcome to Barefoot Nomad App!</h2>
       <br></br>
-      <h3>{(props.token=="")? "You are not logged in" : "You are logged in with this token:"}</h3>
+      <h5>{(props.token=="")? "You are not logged in" : "You are logged in with this token:"}</h5>
       <pre>{props.token}</pre>
     </div>
   );

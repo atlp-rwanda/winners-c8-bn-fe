@@ -2,8 +2,13 @@
 import { combineReducers } from "redux";
 import authReducer from "./authReducer";
 import navbarReducer from "./navbarReducer";
+import { registration } from "./userReducers";
+import {alert} from "./alertReducers"
 
 export default combineReducers({
   auth: authReducer,
   navbar: navbarReducer,
+  registration,
+  alert
 });
+

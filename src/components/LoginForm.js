@@ -3,7 +3,7 @@ import "../../public/styles/LoginForm/index.css"
 import authActions from "../redux/actions/authActions";
 import navbarActions from "../redux/actions/navbarActions";
 import { connect } from "react-redux";
-import { Navigate } from "react-router-dom";
+import { Navigate, Link } from "react-router-dom";
 
 class LoginForm extends React.Component {
   isFormSubmitted = false;
@@ -31,7 +31,8 @@ class LoginForm extends React.Component {
           <input type="submit" value="login" className="btn"></input>
         </form>
         <div className="pass-link">
-          <a href="#" >Lost your password?</a>
+          <Link to="#" >Forgot your password?</Link>
+          <div className="users">Don't have an account? <Link to="/register" className="blue-text">Sign up</Link></div>
         </div>	
       </div>
     );

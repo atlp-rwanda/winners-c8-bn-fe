@@ -1,0 +1,137 @@
+  .content {
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  .register-box{
+    background-color: #fff;
+    width: 450px;
+    margin: 20px 40px;
+    border-radius: 6px;
+  }
+  .register-box .title{
+    padding-top: 30px;
+    padding-bottom: 10px;
+    font-weight: 500;
+    border-bottom: 1px solid #eee;
+    color: #000;
+  }
+
+  .styled-form {
+    margin: 15px;
+    padding: 10px;
+  }
+
+  #register-form input{
+    padding-left: 0px;
+    text-align: left;
+    padding-left: 8px;
+  }
+ 
+#register-form input .field:focus {
+    border: 2px solid #3498DB;
+}
+
+#register-form input[type="submit"]{
+    margin-top: 30px;
+    text-align: center;
+    background-color: #395B64;
+}
+#register-form input[type="submit"]:hover{
+    background-color: #3498DB;
+    border: none;
+}
+
+
+/* media queries */
+@media screen and (max-width:1048px){
+  /* navbar*/
+  .link-logo{
+    margin: 0 -400px;
+  }
+}
+
+@media screen and (max-width:907px){
+  /* navbar*/
+  .link-logo{
+    margin: 0 -300px;
+  }
+}
+@media screen and (max-width:696px){
+  /* navbar*/
+  .link-logo{
+    margin: 0 -280px;
+  }
+}
+@media screen and (max-width:667px){
+  .register-box{
+    width: 380px;
+    margin: 20px 100px;
+  }
+}
+@media screen and (max-width:647px){
+  /* navbar*/
+  .link-logo{
+    margin: 0 -240px;
+  }
+}
+@media screen and (max-width:567px){
+  /* navbar*/
+  .link-logo{
+    margin: 0 -160px;
+  }
+  .register-box{
+    margin: 20px 80px;
+  }
+}
+
+@media screen and (max-width:530px){
+  /* navbar*/
+  .link-logo{
+    margin: 0 -140px;
+  }
+}
+
+
+
+@media screen and (max-width:512px){
+  /* navbar*/
+  .link-logo{
+    margin: 0 -160px;
+  }
+  .register-box{
+    margin: 20px 45px;
+  }
+}
+
+@media screen and (max-width:470px){
+  /* navbar*/
+  /* .link-logo{
+    margin: 0 -160px;
+  } */
+  .register-box{
+    max-width: 380px;
+    margin: 20px 27px;
+  }
+}
+@media screen and (max-width:414px){
+  /* navbar*/
+  .link-logo{
+    margin: 0 -130px;
+  }
+  .register-box{
+    max-width: 330px;
+    margin: 20px 27px;
+  }
+}
+
+@media screen and (max-width:393px){
+  /* navbar*/
+  .link-logo{
+    margin: 0 -105px;
+  }
+  .register-box{
+    max-width: 280px;
+    margin: 20px 45px;
+  }
+}
