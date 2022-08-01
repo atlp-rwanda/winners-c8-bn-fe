@@ -1,14 +1,10 @@
 import React from "react";
 import "../../public/styles/LoginForm/index.css"
 import authActions from "../redux/actions/authActions";
-import navbarActions from "../redux/actions/navbarActions";
 import { connect } from "react-redux";
 import { Navigate } from "react-router-dom";
-import fbLogo from "../../public/images/login/facebook_icon.png"
-import googleLogo from "../../public/images/login/google_icon.png";
 import Joi, { disallow } from "joi";
 import "bootstrap/dist/css/bootstrap.min.css";
-// import "bootstrap/dist/js/bootstrap.bundle.min";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { FcGoogle } from 'react-icons/fc';
@@ -30,7 +26,6 @@ class LoginForm extends React.Component {
   isFormSubmitted = false;
   loginSubmit = async (event) => {
     event.preventDefault();
-    // const fakeToken = event.target["email"].value + " : "+ event.target["password"].value;
     try{
       let myHeaders = new Headers();
       myHeaders.append("Content-Type", "application/json");
@@ -59,7 +54,6 @@ class LoginForm extends React.Component {
         this.setState({success : true});
         this.props.LOGIN(result.data);
         window.localStorage.setItem("auth-token", result.data);
-        this.props.SET_PAGE("HOME")
       }
       else{
         this.setState({error : true});
@@ -95,7 +89,6 @@ class LoginForm extends React.Component {
     }
   }
   componentDidMount() {
-    this.props.SET_PAGE("LOGIN_FORM")
     this.props.LOGOUT();
     if(window.localStorage.getItem("auth-token")) {
       window.localStorage.removeItem("auth-token");
@@ -117,7 +110,7 @@ class LoginForm extends React.Component {
     return (
       <div className="formBody">
         {this.isFormSubmitted && (
-          <Navigate to="/" replace={true} />
+          <Navigate to="/dashboard" replace={true} />
         )}
         <div className="container d-flex justify-content-center">
           {
@@ -187,9 +180,8 @@ const mapStateToProps = state => ({
   token: state.auth.token
 });
 const {login: LOGIN, logout: LOGOUT} = authActions;
-const {setPage: SET_PAGE} = navbarActions;
 export default connect(
   mapStateToProps,
-  { LOGIN, LOGOUT, SET_PAGE }
+  { LOGIN, LOGOUT }
 )(LoginForm);
 // export default LoginForm;
