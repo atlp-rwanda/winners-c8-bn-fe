@@ -1,16 +1,14 @@
 import React from "react";
 import "../../public/styles/LoginForm/index.css";
 import authActions from "../redux/actions/authActions";
-import navbarActions from "../redux/actions/navbarActions";
 import { connect } from "react-redux";
-import { Navigate, Link } from "react-router-dom";
-import fbLogo from "../../public/images/login/facebook_icon.png";
-import googleLogo from "../../public/images/login/google_icon.png";
+import { Navigate } from "react-router-dom";
 import Joi, { disallow } from "joi";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "bootstrap/dist/js/bootstrap.bundle.min";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { FcGoogle } from "react-icons/fc";
+import { ImFacebook } from "react-icons/im";
 class LoginForm extends React.Component {
   constructor(props) {
     super(props);
@@ -28,7 +26,6 @@ class LoginForm extends React.Component {
   isFormSubmitted = false;
   loginSubmit = async (event) => {
     event.preventDefault();
-    // const fakeToken = event.target["email"].value + " : "+ event.target["password"].value;
     try {
       let myHeaders = new Headers();
       myHeaders.append("Content-Type", "application/json");
@@ -45,25 +42,30 @@ class LoginForm extends React.Component {
         redirect: "follow",
       };
       this.setState({ wait: true });
-      toast(this.state.responseMessage);
+      toast("Signing in . . .", { position: toast.POSITION.TOP_CENTER });
       let result = await fetch(
         "https://winners-c8-bn-be-staging.herokuapp.com/api/auth/signin",
         requestOptions
       ).then((response) => response.json());
       this.setState({ responseMessage: result.message });
+      toast.dismiss();
       if (result.status == 200) {
-        toast.success("Logged in successfully!");
+        toast.success("Logged in successfully!", {
+          position: toast.POSITION.TOP_CENTER,
+        });
+        // await new Promise(resolve => setTimeout(resolve, 1500));
         this.isFormSubmitted = true;
         this.setState({ success: true });
         this.props.LOGIN(result.data);
         window.localStorage.setItem("auth-token", result.data);
-        this.props.SET_PAGE("HOME");
       } else {
         this.setState({ error: true });
-        toast.error(this.state.responseMessage);
+        toast.error(this.state.responseMessage, {
+          position: toast.POSITION.TOP_CENTER,
+        });
       }
     } catch (error) {
-      toast.error(`Error: ${error}`);
+      toast.error(`Error: ${error}`, { position: toast.POSITION.TOP_CENTER });
     }
   };
   validateEmail = async (emailAddress) => {
@@ -119,31 +121,25 @@ class LoginForm extends React.Component {
   render() {
     return (
       <div className="formBody">
-        {this.isFormSubmitted && <Navigate to="/" replace={true} />}
+        {this.isFormSubmitted && <Navigate to="/dashboard" replace={true} />}
         <div className="container d-flex justify-content-center">
-          {/* {(this.state.wait | this.state.success | this.state.error)
-            &&
-            <div className="col-md-8 formWhite">
-              <h5 className="header5">{this.state.responseMessage}</h5>
-            </div>
-          } */}
           {
-            /* {(!(this.state.wait | this.state.success | this.state.error))
-            && */
             <div className="col-md-8 formWhite">
               <ToastContainer />
               <div className="row d-flex justify-content-center">
                 <div className="col-xs-12 col-md-8">
-                  <h1 className="header1">Sign in </h1>
+                  <h2 className="header1">Sign in </h2>
                   <form
+                    data-testid="login-form"
                     id="login-form"
                     className="form-login"
-                    onSubmit={(event) => this.loginSubmit(event)}
+                    onSubmit={async (event) => await this.loginSubmit(event)}
                   >
                     <input
+                      data-testid="login-email"
                       type="text"
                       name="email"
-                      placeholder="email"
+                      placeholder="Email"
                       className="field input-login"
                       onBlur={async (event) =>
                         await this.validateEmail(event.target.value)
@@ -160,9 +156,10 @@ class LoginForm extends React.Component {
                       {this.state.emailValidationMessage}
                     </div>
                     <input
+                      data-testid="login-password"
                       type="password"
                       name="password"
-                      placeholder="password"
+                      placeholder="Password"
                       className="field input-login"
                       onBlur={async (event) =>
                         await this.validatePassword(event.target.value)
@@ -179,6 +176,7 @@ class LoginForm extends React.Component {
                       {this.state.passwordValidationMessage}
                     </div>
                     <button
+                      data-testid="login-submit"
                       type={
                         this.state.isEmailValid == true &&
                         this.state.isPasswordValid == true
@@ -200,26 +198,36 @@ class LoginForm extends React.Component {
                 </div>
               </div>
               <div className="row d-flex justify-content-center">
+                <div className="col-xs-12">
+                  <h5 className="header5">_________</h5>
+                </div>
                 <div className="col-xs-12 col-md-8">
-                  <h5 className="header5">Or Sign in with</h5>
+                  <h5 className="header5">Or Sign in with:</h5>
                 </div>
               </div>
-              <div className="row d-flex justify-content-center">
-                <div className="col-2">
-                  <a href="">
-                    <img src={googleLogo} style={this.socialImageStyle} />
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "row",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  marginTop: "10px",
+                }}
+              >
+                <div style={{ paddingRight: "20px" }}>
+                  <a href="https://winners-c8-bn-be-staging.herokuapp.com/api/oauth/google">
+                    <FcGoogle style={{ fontSize: "40px", cursor: "pointer" }} />
                   </a>
-                  <div className="pass-link">
-                    <a href="">Google</a>
-                  </div>
                 </div>
-                <div className="col-2">
-                  <a href="">
-                    <img src={fbLogo} style={this.socialImageStyle} />
+                <div style={{ paddingLeft: "20px" }}>
+                  <a href="https://winners-c8-bn-be-staging.herokuapp.com/api/oauth/facebook">
+                    <ImFacebook
+                      style={{
+                        fontSize: "35px",
+                        cursor: "pointer",
+                      }}
+                    />
                   </a>
-                  <div className="pass-link">
-                    <a href="">Facebook</a>
-                  </div>
                 </div>
               </div>
               <div className="row d-flex justify-content-center">
@@ -241,6 +249,5 @@ const mapStateToProps = (state) => ({
   token: state.auth.token,
 });
 const { login: LOGIN, logout: LOGOUT } = authActions;
-const { setPage: SET_PAGE } = navbarActions;
-export default connect(mapStateToProps, { LOGIN, LOGOUT, SET_PAGE })(LoginForm);
+export default connect(mapStateToProps, { LOGIN, LOGOUT })(LoginForm);
 // export default LoginForm;
