@@ -49,7 +49,7 @@ class RecoverForm extends Component {
             </div>
             {!formik.isSubmitting ? (
               <button type="submit" className="button btn-form">
-                Reset Password
+                Recover Password
               </button>
             ) : (
               <div class="loader"></div>
