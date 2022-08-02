@@ -2,7 +2,7 @@ import React from "react";
 import "../../public/styles/LoginForm/index.css";
 import authActions from "../redux/actions/authActions";
 import { connect } from "react-redux";
-import { Navigate } from "react-router-dom";
+import { Navigate, Link } from "react-router-dom";
 import Joi, { disallow } from "joi";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { ToastContainer, toast } from "react-toastify";

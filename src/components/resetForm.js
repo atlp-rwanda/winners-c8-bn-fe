@@ -114,7 +114,7 @@ class ResetForm extends Component {
                 Reset Password
               </button>
             ) : (
-              <div class="loader"></div>
+              <div className="loader"></div>
             )}
           </form>
         )}
@@ -135,9 +135,7 @@ class ResetForm extends Component {
 
   handleSubmit = async (values, { setSubmitting }) => {
     // In Token remove first "/"
-    console.log(this.props.token);
     let token = this.props.token.slice(1);
-    console.log(token);
 
     const { password, confirmPassword } = values;
     const url = `https://winners-c8-bn-be-staging.herokuapp.com/api/auth/resetPassword/${token}`;

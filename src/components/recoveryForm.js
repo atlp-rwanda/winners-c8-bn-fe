@@ -52,7 +52,7 @@ class RecoverForm extends Component {
                 Recover Password
               </button>
             ) : (
-              <div class="loader"></div>
+              <div className="loader"></div>
             )}
           </form>
         )}
