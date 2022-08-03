@@ -57,21 +57,22 @@ const Navbar = (props) => {
     borderRadius: '8px' 
   };
   const buttonCSS ={};
-  //   const logoStyle={
-  //   padding: "0.5ex 50px 0.5ex 90px",
-  //   width: "13ex"
-  // }
-
+  const logoStyle={
+    padding: "0.5ex 50px 0.5ex 50px",
+    width: "18ex"
+  }
+  const hideMenuStyle = {
+    display: "none"
+  }
   return (
-
-      <nav style={{backgroundColor:"#395B64"}}>
-      <div className="nav-wrapper">
-        {/* <img src="{bnLogo}" alt="" className="brand-logo " /> */}
-        {/* <img src={bnLogo} style={logoStyle}/> */}
-        <a href="#" className="brand-logo link-logo"> 
-          <img src={bnLogo} alt="" className="logo-img" />
-        </a>
-      </div>
+    <nav className="navbar">
+      <a className="navbar-brand">
+        <img src={bnLogo} style={logoStyle}/>
+      </a>
+      <span className="links" style={(props.currentPage=="LOGIN_FORM")? hideMenuStyle : {}}>
+        <Link to="/" style={buttonCSS} onClick={(event) => props.SET_PAGE("HOME")}>Home</Link>
+        <Link to="login" data-testid="login-btn-1" style={buttonSelectedCSS} onClick={(event) => props.SET_PAGE("LOGIN_FORM")}>{(props.token=="")? "Login" : "Logout"}</Link>
+      </span>
     </nav>
       
     // <nav className="navbar grey darken-4">

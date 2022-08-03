@@ -13,11 +13,10 @@
   .navbar .links {
     margin-left: auto;
     visibility: hidden;
+    background-color: #395B64;
   }
   .navbar a {
-    margin-left: 16px;
     text-decoration: none;
-    padding: 6px;
   }
   .navbar a:hover {
     color: #3498DB;
