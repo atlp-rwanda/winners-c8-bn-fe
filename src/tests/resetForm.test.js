@@ -6,16 +6,15 @@ import {
   fireEvent,
   waitFor,
 } from "@testing-library/react";
+import store from "../redux/store";
+import { Provider } from "react-redux";
+import App from "../App";
 import { act } from "react-dom/test-utils";
 import {
   BrowserRouter as Router,
   MemoryRouter as MemoryRouter,
 } from "react-router-dom";
 import ResetForm from "../components/resetForm";
-
-beforeEach(() => {
-  fetch.mockClear();
-});
 
 afterEach(cleanup);
 
@@ -30,12 +29,13 @@ describe("Testing rendering resetForm components", () => {
         }),
     })
   );
-
   it("should invalidate bad password", async () => {
     render(
-      <Router>
-        <ResetForm />
-      </Router>
+      <Provider store={store}>
+        <Router>
+          <ResetForm />
+        </Router>
+      </Provider>
     );
     const passwordField = screen.getByPlaceholderText(/New password/i);
 
@@ -51,9 +51,11 @@ describe("Testing rendering resetForm components", () => {
 
   it("should invalidate empty password", async () => {
     render(
-      <Router>
-        <ResetForm />
-      </Router>
+      <Provider store={store}>
+        <Router>
+          <ResetForm />
+        </Router>
+      </Provider>
     );
     const passwordField = screen.getByPlaceholderText(/New password/i);
 
@@ -68,9 +70,11 @@ describe("Testing rendering resetForm components", () => {
 
   it("should validate good password", async () => {
     render(
-      <Router>
-        <ResetForm />
-      </Router>
+      <Provider store={store}>
+        <Router>
+          <ResetForm />
+        </Router>
+      </Provider>
     );
     const passwordField = screen.getByPlaceholderText(/New password/i);
 
@@ -86,9 +90,11 @@ describe("Testing rendering resetForm components", () => {
 
   it("should invalidate confirm password not matching password", async () => {
     render(
-      <Router>
-        <ResetForm />
-      </Router>
+      <Provider store={store}>
+        <Router>
+          <ResetForm />
+        </Router>
+      </Provider>
     );
     const passwordField = screen.getByPlaceholderText(/New password/i);
 
@@ -110,9 +116,11 @@ describe("Testing rendering resetForm components", () => {
 
   it("should validate good confirm password", async () => {
     render(
-      <Router>
-        <ResetForm />
-      </Router>
+      <Provider store={store}>
+        <Router>
+          <ResetForm />
+        </Router>
+      </Provider>
     );
     const passwordField = screen.getByPlaceholderText(/New password/i);
 
@@ -138,9 +146,11 @@ describe("Testing rendering resetForm components", () => {
   it("should reset password", async () => {
     await act(async () => {
       render(
-        <MemoryRouter initialEntries={["/resetForm?t=/MyToken"]}>
-          <ResetForm />
-        </MemoryRouter>
+        <Provider store={store}>
+          <MemoryRouter initialEntries={["/resetForm?t=/MyToken"]}>
+            <ResetForm />
+          </MemoryRouter>
+        </Provider>
       );
     });
     const passwordField = screen.getByPlaceholderText(/New password/i);
@@ -168,45 +178,29 @@ describe("Testing rendering resetForm components", () => {
         .toBeInTheDocument;
     });
   });
+});
+
+describe("Testing rendering return button", () => {
+  global.fetch = jest.fn(() =>
+    Promise.resolve({
+      json: () =>
+        Promise.resolve({
+          status: 200,
+          success: false,
+          message: "Failure to reset password",
+        }),
+    })
+  );
 
   it("should return to form when return button clicked", async () => {
-    fetch.mockImplementationOnce(() =>
-      Promise.resolve({
-        json: () =>
-          Promise.resolve({
-            status: 200,
-            success: false,
-            message: "Failure to reset password",
-          }),
-      })
-    );
     await act(async () => {
       render(
-        <MemoryRouter initialEntries={["/resetForm?t=/MyToken"]}>
-          <ResetForm />
-        </MemoryRouter>
+        <Provider store={store}>
+          <MemoryRouter initialEntries={["/resetForm?t=/MyToken"]}>
+            <ResetForm />
+          </MemoryRouter>
+        </Provider>
       );
-    });
-
-    const passwordField = screen.getByPlaceholderText(/New password/i);
-
-    const confirmPasswordField =
-      screen.getByPlaceholderText(/Confirm password/i);
-
-    fireEvent.change(passwordField, {
-      target: { value: "Password@123" },
-    });
-
-    fireEvent.change(confirmPasswordField, {
-      target: { value: "Password@123" },
-    });
-
-    await act(async () => {
-      const submitButton = screen.getByRole("button", {
-        name: /Reset Password/i,
-      });
-
-      fireEvent.click(submitButton);
     });
 
     await act(async () => {
@@ -223,40 +217,6 @@ describe("Testing rendering resetForm components", () => {
           name: /Reset Password/i,
         })
       ).toBeInTheDocument;
-    });
-  });
-
-  it("should return error when fetch fails", async () => {
-    fetch.mockImplementationOnce(() => Promise.reject("API is down"));
-    await act(async () => {
-      render(
-        <MemoryRouter initialEntries={["/resetForm?t=/MyToken"]}>
-          <ResetForm />
-        </MemoryRouter>
-      );
-    });
-    const passwordField = screen.getByPlaceholderText(/New password/i);
-
-    const confirmPasswordField =
-      screen.getByPlaceholderText(/Confirm password/i);
-
-    fireEvent.change(passwordField, {
-      target: { value: "Password@123" },
-    });
-
-    fireEvent.change(confirmPasswordField, {
-      target: { value: "Password@123" },
-    });
-
-    await act(async () => {
-      const submitButton = screen.getByRole("button", {
-        name: /Reset Password/i,
-      });
-      fireEvent.click(submitButton);
-    });
-
-    await waitFor(() => {
-      expect(screen.queryByText(/API is down/i)).toBeInTheDocument;
     });
   });
 });

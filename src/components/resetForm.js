@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
+import resetActions from "../redux/actions/resetFormActions";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import { useSearchParams } from "react-router-dom";
@@ -6,12 +8,13 @@ import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import ErrorIcon from "@mui/icons-material/Error";
 import "../../public/styles/recoverForm/index.scss";
 
-export default function App() {
+function App(props) {
   let [searchParams, setSearchParams] = useSearchParams();
   let token = searchParams.get("t");
+
   return (
     <div className="App">
-      <ResetForm token={token}></ResetForm>
+      <ResetForm token={token} redux={props}></ResetForm>
     </div>
   );
 }
@@ -19,25 +22,18 @@ export default function App() {
 class ResetForm extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      requestSent: false,
-      responseData: {
-        isSuccess: undefined,
-        message: undefined,
-      },
-    };
   }
 
   renderResultMessage = () => {
     return (
       <div className="result_message">
-        {this.state.responseData.isSuccess ? (
+        {this.props.redux.state.responseData.isSuccess ? (
           <CheckCircleIcon className="success_logo" sx={{ fontSize: 70 }} />
         ) : (
           <ErrorIcon className="error_logo" sx={{ fontSize: 70 }} />
         )}
-        <h2>{this.state.responseData.message}</h2>
-        {this.state.responseData.isSuccess ? null : (
+        <h2>{this.props.redux.state.responseData.message}</h2>
+        {this.props.redux.state.responseData.isSuccess ? null : (
           <button
             onClick={this.handleReturn}
             className="button btn-form"
@@ -123,14 +119,7 @@ class ResetForm extends Component {
   };
 
   handleReturn = () => {
-    const state = {
-      requestSent: false,
-      responseData: {
-        isSuccess: undefined,
-        message: undefined,
-      },
-    };
-    this.setState(state);
+    this.props.redux.RETURN();
   };
 
   handleSubmit = async (values, { setSubmitting }) => {
@@ -156,14 +145,14 @@ class ResetForm extends Component {
         isSuccess: resultData.success,
         message: resultData.message,
       };
-      this.setState({ responseData, requestSent: true });
+      this.props.redux.SUBMIT({ responseData, requestSent: true });
       setSubmitting(false);
     } catch (err) {
       const responseData = {
         isSuccess: false,
         message: err.message,
       };
-      this.setState({ responseData, requestSent: true });
+      this.props.redux.SUBMIT({ responseData, requestSent: true });
       setSubmitting(false);
     }
   };
@@ -173,7 +162,7 @@ class ResetForm extends Component {
       <div className="form-body">
         <div className="form-container">
           <h2 className="form-header">Reset your password</h2>
-          {this.state.requestSent
+          {this.props.redux.state.requestSent
             ? this.renderResultMessage()
             : this.renderForm()}
         </div>
@@ -181,3 +170,15 @@ class ResetForm extends Component {
     );
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    state: {
+      requestSent: state.reset.requestSent,
+      responseData: state.reset.responseData,
+    },
+  };
+};
+
+const { submit: SUBMIT, return: RETURN } = resetActions;
+export default connect(mapStateToProps, { SUBMIT, RETURN })(App);

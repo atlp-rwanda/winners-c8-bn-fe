@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { Formik } from "formik";
 import * as Yup from "yup";
+import { connect } from "react-redux";
+import recoverActions from "../redux/actions/recoverFormActions";
 import "../../public/styles/recoverForm/index.scss";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import ErrorIcon from "@mui/icons-material/Error";
@@ -8,13 +10,6 @@ import ErrorIcon from "@mui/icons-material/Error";
 class RecoverForm extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      emailSent: false,
-      responseData: {
-        isSuccess: undefined,
-        message: undefined,
-      },
-    };
   }
 
   renderForm = () => {
@@ -63,7 +58,7 @@ class RecoverForm extends Component {
   renderResultMessage = () => {
     return (
       <div className="result_message">
-        {this.state.responseData.isSuccess ? (
+        {this.props.responseData.isSuccess ? (
           <CheckCircleIcon className="success_logo" sx={{ fontSize: 70 }} />
         ) : (
           <div>
@@ -74,8 +69,8 @@ class RecoverForm extends Component {
           </div>
         )}
 
-        <h2>{this.state.responseData.message}</h2>
-        {this.state.responseData.isSuccess ? null : (
+        <h2>{this.props.responseData.message}</h2>
+        {this.props.responseData.isSuccess ? null : (
           <button
             onClick={this.handleReturn}
             className="button btn-form"
@@ -108,14 +103,14 @@ class RecoverForm extends Component {
         message: resultData.message,
       };
 
-      this.setState({ responseData, emailSent: true });
+      this.props.SUBMIT({ responseData, emailSent: true });
       setSubmitting(false);
     } catch (err) {
       const responseData = {
         isSuccess: false,
         message: err.message,
       };
-      this.setState({ responseData, emailSent: true });
+      this.props.SUBMIT({ responseData, emailSent: true });
       setSubmitting(false);
     }
   };
@@ -128,7 +123,7 @@ class RecoverForm extends Component {
         message: undefined,
       },
     };
-    this.setState(state);
+    this.props.RETURN(state);
   };
 
   render() {
@@ -137,7 +132,7 @@ class RecoverForm extends Component {
         <div className="form-container">
           <h2 className="form-header">Forgot Password</h2>
 
-          {this.state.emailSent
+          {this.props.emailSent
             ? this.renderResultMessage()
             : this.renderForm()}
         </div>
@@ -146,4 +141,13 @@ class RecoverForm extends Component {
   }
 }
 
-export default RecoverForm;
+const mapStateToProps = (state) => {
+  return {
+    emailSent: state.recover.emailSent,
+    responseData: state.recover.responseData,
+  };
+};
+
+const { submit: SUBMIT, return: RETURN } = recoverActions;
+
+export default connect(mapStateToProps, { SUBMIT, RETURN })(RecoverForm);

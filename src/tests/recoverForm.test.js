@@ -6,13 +6,13 @@ import {
   fireEvent,
   waitFor,
 } from "@testing-library/react";
+
+import store from "../redux/store";
+import { Provider } from "react-redux";
+import App from "../App";
 import { act } from "react-dom/test-utils";
 import { BrowserRouter as Router } from "react-router-dom";
 import RecoverForm from "../components/recoveryForm";
-
-beforeEach(() => {
-  fetch.mockClear();
-});
 
 afterEach(cleanup);
 
@@ -30,9 +30,11 @@ describe("Testing rendering resetForm components", () => {
 
   it("should invalidate bad email", async () => {
     render(
-      <Router>
-        <RecoverForm />
-      </Router>
+      <Provider store={store}>
+        <Router>
+          <RecoverForm />
+        </Router>
+      </Provider>
     );
     const emailField = screen.getByPlaceholderText(/Enter your email/i);
 
@@ -49,9 +51,11 @@ describe("Testing rendering resetForm components", () => {
 
   it("should invalidate empty email", async () => {
     render(
-      <Router>
-        <RecoverForm />
-      </Router>
+      <Provider store={store}>
+        <Router>
+          <RecoverForm />
+        </Router>
+      </Provider>
     );
     const emailField = screen.getByPlaceholderText(/Enter your email/i);
 
@@ -66,9 +70,11 @@ describe("Testing rendering resetForm components", () => {
 
   it("should validate good email", async () => {
     render(
-      <Router>
-        <RecoverForm />
-      </Router>
+      <Provider store={store}>
+        <Router>
+          <RecoverForm />
+        </Router>
+      </Provider>
     );
     const emailField = screen.getByPlaceholderText(/Enter your email/i);
 
@@ -87,9 +93,11 @@ describe("Testing rendering resetForm components", () => {
   it("should recover email", async () => {
     await act(async () => {
       render(
-        <Router>
-          <RecoverForm />
-        </Router>
+        <Provider store={store}>
+          <Router>
+            <RecoverForm />
+          </Router>
+        </Provider>
       );
     });
     const emailField = screen.getByPlaceholderText(/Enter your email/i);
@@ -109,36 +117,29 @@ describe("Testing rendering resetForm components", () => {
       expect(screen.queryByText(/link sent successfully/i)).toBeInTheDocument;
     });
   });
+});
+
+describe("Testing failure in fetch", () => {
+  global.fetch = jest.fn(() =>
+    Promise.resolve({
+      json: () =>
+        Promise.resolve({
+          status: 200,
+          success: false,
+          message: "Failure to send link",
+        }),
+    })
+  );
 
   it("should return to form when return button clicked", async () => {
-    fetch.mockImplementationOnce(() =>
-      Promise.resolve({
-        json: () =>
-          Promise.resolve({
-            status: 200,
-            success: false,
-            message: "Failure to send link",
-          }),
-      })
-    );
     await act(async () => {
       render(
-        <Router>
-          <RecoverForm />
-        </Router>
+        <Provider store={store}>
+          <Router>
+            <RecoverForm />
+          </Router>
+        </Provider>
       );
-    });
-    const emailField = screen.getByPlaceholderText(/Enter your email/i);
-
-    fireEvent.change(emailField, {
-      target: { value: "tester@admin.com" },
-    });
-
-    await act(async () => {
-      const submitButton = screen.getByRole("button", {
-        name: /Recover Password/i,
-      });
-      fireEvent.click(submitButton);
     });
 
     await act(async () => {
@@ -155,33 +156,6 @@ describe("Testing rendering resetForm components", () => {
           name: /Recover Password/i,
         })
       ).toBeInTheDocument;
-    });
-  });
-
-  it("should return error when fetch fails", async () => {
-    fetch.mockImplementationOnce(() => Promise.reject("API is down"));
-    await act(async () => {
-      render(
-        <Router>
-          <RecoverForm />
-        </Router>
-      );
-    });
-    const emailField = screen.getByPlaceholderText(/Enter your email/i);
-
-    fireEvent.change(emailField, {
-      target: { value: "tester@admin.com" },
-    });
-
-    await act(async () => {
-      const submitButton = screen.getByRole("button", {
-        name: /Recover Password/i,
-      });
-      fireEvent.click(submitButton);
-    });
-
-    await waitFor(() => {
-      expect(screen.queryByText(/API is down/i)).toBeInTheDocument;
     });
   });
 });
