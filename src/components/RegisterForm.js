@@ -50,16 +50,16 @@ class UserRegisterForm extends React.Component {
             if(user.confPassword === user.password){
                 this.props.register(user);
 
-                this.setState ({
-                    user: {
-                        firstName: '',
-                        lastName: '',
-                        email: '',
-                        password: '',
-                        confPassword: ''
-                    },
-                    submitted: false
-                });
+                // this.setState ({
+                //     user: {
+                //         firstName: '',
+                //         lastName: '',
+                //         email: '',
+                //         password: '',
+                //         confPassword: ''
+                //     },
+                //     submitted: false
+                // });
             }else{
                 errorToast('Passwords need to be the same!')
             }
@@ -69,7 +69,20 @@ class UserRegisterForm extends React.Component {
             errorToast('All fields are required!')
         }
        
-            
+        console.log(this.props.alert.message_success)
+
+        // if(this.props.alert.message_success === 'Registration successful'){
+        //     this.setState ({
+        //             user: {
+        //                 firstName: '',
+        //                 lastName: '',
+        //                 email: '',
+        //                 password: '',
+        //                 confPassword: ''
+        //             },
+        //             submitted: false
+        //         });
+        // }
 
         
         
@@ -149,7 +162,9 @@ class UserRegisterForm extends React.Component {
                 <div className="sec-title text-center mb-30">
                     <h5 className="title 200 mb-10">Create New Account.</h5>
                 </div>
-                {message_error && <p>{errorToast(message_error)}</p> || message_success && <p>{successToast(message_success)}</p>}
+                {message_error && <p>{errorToast(message_error)}</p> || 
+                 message_success && <p>{successToast(message_success)}</p>
+                }
                 <div className="styled-form">
                     <div id="form-messages"></div>
                     <form id="register-form" method="post" onSubmit={this.handleSubmit}>
@@ -173,6 +188,7 @@ class UserRegisterForm extends React.Component {
                                 {registering && 
                                 <div>
                                    <input type="submit" value='Registering...' className="btn" disabled></input>
+                                   <img src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
                                 </div>
                                 } 
                                 {!registering && 
@@ -180,11 +196,11 @@ class UserRegisterForm extends React.Component {
                                    <input type="submit" value='Sign Up' className="btn"></input>
                                 </div>
                                 } 
-                                {/* <input type="submit" value="Sign Up" className="btn"></input> */}
+                               
                             </div>
                             
                             <div className="form-group col-lg-12 col-md-12 col-sm-12">
-                                <div className="users">Already have an account? <Link to="/login">Sign In</Link></div>
+                                <div className="notify">Already have an account? <Link to="/login">Sign In</Link></div>
                             </div>
                             
                         </div>

@@ -1,4 +1,14 @@
-  .navbar {
+.navbar {
+  background-color: #395B64;
+}
+.navbar a {
+  text-decoration: none;
+}
+.navbar a:hover {
+  color: #3498DB;
+}
+
+/* .navbar {
     padding: 20px;
     display: flex;
     align-items: center;
@@ -34,4 +44,4 @@
     width: "10ex";
     margin-top: 2px;
     height:60px
-  }
+  } */

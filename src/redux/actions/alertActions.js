@@ -13,7 +13,4 @@ export const failureAlert = (message) => {
         type: 'failure-alert',
         payload: message
     }
-    // return toast.error(`${message}`, {
-    //     position: toast.POSITION.TOP_RIGHT
-    // })
 };

@@ -166,6 +166,9 @@ class LoginForm extends React.Component {
                   <div className="pass-link">
                     <a href="#" >Lost your password?</a>
                   </div>
+                  <div className="pass-link">
+                    <p>Don't have an account? <Link to="/register">Register</Link></p>
+                  </div>
                 </div>
               </div>
             </div>

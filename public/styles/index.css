@@ -4,9 +4,9 @@
 /* base styles */
 * {
   margin: 0;
-  font-family: "Quicksand";
-  color: #777;
-  text-align: center;
   font-family: 'Inter';
   font-style: normal;
+}
+.notify{
+ margin-left: 75px;
 }
