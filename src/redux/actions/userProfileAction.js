@@ -1,4 +1,4 @@
-import { FETCH_USER_PROFILE_SUCCESS, FETCH_USER_PROFILE_FAILED } from "../types/userProfileTypes";
+import { FETCH_USER_PROFILE_SUCCESS, FETCH_USER_PROFILE_FAILED, UPDATE_USER_PROFILE_SUCCESS, UPDATE_USER_PROFILE_FAILED, UPDATE_USER_PROFILE_LOADING } from "../types/userProfileTypes";
 import axios from "axios";
 import {authHeader} from '../utils/dataSession';
 
@@ -18,4 +18,29 @@ export const fetchUserProfile = () => async dispatch => {
               payload: "User Profile not found"
           });
       })
+}
+
+
+
+export const updateUserProfile = (body) => async dispatch => {
+    
+        dispatch({
+            type: UPDATE_USER_PROFILE_LOADING
+        })
+
+        return axios.patch(`https://winners-c8-bn-be-staging.herokuapp.com/api/user/update`, body, { headers: authHeader() })
+            .then(async res => {
+                await dispatch({
+                    type: UPDATE_USER_PROFILE_SUCCESS,
+                    payload: res.data.data
+                });
+                dispatch(fetchUserProfile())
+            })
+            .catch(err => {
+                dispatch({
+                    type: UPDATE_USER_PROFILE_FAILED,
+                    payload: "Updating user failed"
+                });
+            })
+
 }

@@ -3,12 +3,12 @@ import React, { useEffect, useState } from "react";
 import Navbar from "../Navbar/Navbar";
 import Sidebar from "../Sidebar/Sidebar";
 import { useDispatch, useSelector } from "react-redux";
-import {fetchUserProfile} from "../../redux/actions/userProfileAction"
+import {fetchUserProfile, updateUserProfile} from "../../redux/actions/userProfileAction"
 import { Skeleton } from "@mui/material";
 const UserProfile = () => {
 
   const userData= useSelector((state) => state.userProfile?.user?.user)
-  console.log("here is the data",userData)
+  // console.log("here is the data",userData)
 
   const [formData, setFormData] = useState();
   const [isLoading, setIsLoading] = useState(false);
@@ -20,21 +20,26 @@ const UserProfile = () => {
 
   useEffect(() => {
     setFormData({
-      firstName: userData && userData?.firstName,
-      lastName: userData && userData?.lastName,
-      email: userData && userData?.email,
-      department: userData && userData?.department,
-      gender: userData && userData?.gender,
-      image: userData && userData?.image,
-      phone: userData && userData?.phoneNumber,
-      currency: userData && userData?.preferredCurrency,
-      language: userData && userData?.preferredLanguage,
-      username: userData && userData?.username,
+      firstName: userData?.firstName,
+      lastName: userData?.lastName,
+      email: userData?.email,
+      department: userData?.department,
+      gender: userData?.gender,
+      image: userData?.image,
+      phoneNumber: userData?.phoneNumber,
+      currency: userData?.preferredCurrency,
+      language: userData?.preferredLanguage,
+      username: userData?.username,
     })
     setIsLoading(true)
 
   }, [userData]);
-console.log(formData?.firstName)
+
+  const handleUpdate = async (event) => {
+    event.preventDefault();
+    updateUserProfile(formData)(dispatch)
+    console.log(formData)
+  };
   
     return ( 
       <div className="home">
@@ -61,7 +66,7 @@ console.log(formData?.firstName)
             <div className="profile_image">
               <div className="image_info">
                 <img
-                src="https://images.pexels.com/photos/1680172/pexels-photo-1680172.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+                src={formData?.image ? formData?.image :`https://images.pexels.com/photos/1680172/pexels-photo-1680172.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"`}
                 alt=""
                 className="avatar"
                 />
@@ -69,13 +74,28 @@ console.log(formData?.firstName)
                   <input
                     type="text"
                     defaultValue={formData?.username}
+                    onChange={(event) =>
+                      setFormData({
+                        ...formData,
+                        username: event.target.value,
+                      })
+                    }
                     className="Text_input"
                   />
                   <p>{formData?.email}</p>
                 </div>
                 
               </div>
-              <button>Upload New</button>
+              <input
+              type="file"
+              
+              onChange={(event) =>
+                setFormData({
+                  ...formData,
+                  image: event.target.files[0],
+                })
+              }
+              />
             </div>
 
             <hr />
@@ -86,6 +106,12 @@ console.log(formData?.firstName)
                   <input 
                   type="text" 
                   defaultValue={formData?.firstName}
+                  onChange={(event) =>
+                    setFormData({
+                      ...formData,
+                      firstName: event.target.value,
+                    })
+                  }
                   />
                 </div>
                 <div className="form">
@@ -93,6 +119,12 @@ console.log(formData?.firstName)
                   <input
                    type="text" 
                    defaultValue={formData?.lastName}
+                   onChange={(event) =>
+                    setFormData({
+                      ...formData,
+                      lastName: event.target.value,
+                    })
+                  }
                   />
                 </div>
               </div>
@@ -103,6 +135,12 @@ console.log(formData?.firstName)
                   <input 
                   type="text" 
                   defaultValue={formData?.firstName}
+                  onChange={(event) =>
+                    setFormData({
+                      ...formData,
+                      firstName: event.target.value,
+                    })
+                  }
                   />
                 </div>
                 <div className="form">
@@ -110,6 +148,12 @@ console.log(formData?.firstName)
                   <input 
                   type="text" 
                   defaultValue={formData?.gender}
+                  onChange={(event) =>
+                    setFormData({
+                      ...formData,
+                      gender: event.target.value,
+                    })
+                  }
                   />
                 </div>
               </div>
@@ -119,7 +163,13 @@ console.log(formData?.firstName)
                   <label htmlFor="">Phone Number</label><br />
                   <input 
                   type="text" 
-                  defaultValue={formData?.phone}
+                  defaultValue={formData?.phoneNumber}
+                  onChange={(event) =>
+                    setFormData({
+                      ...formData,
+                      phoneNumber: event.target.value,
+                    })
+                  }
                   />
                 </div>
                 <div className="form">
@@ -127,6 +177,12 @@ console.log(formData?.firstName)
                   <input 
                   type="text" 
                   defaultValue={formData?.currency}
+                  onChange={(event) =>
+                    setFormData({
+                      ...formData,
+                      currency: event.target.value,
+                    })
+                  }
                   />
                 </div>
               </div>
@@ -137,6 +193,12 @@ console.log(formData?.firstName)
                   <input 
                   type="text" 
                   defaultValue={formData?.language}
+                  onChange={(event) =>
+                    setFormData({
+                      ...formData,
+                      language: event.target.value,
+                    })
+                  }
                   />
                 </div>
                 <div className="form">
@@ -144,10 +206,19 @@ console.log(formData?.firstName)
                   <input 
                   type="text" 
                   defaultValue={formData?.department}
+                  onChange={(event) =>
+                    setFormData({
+                      ...formData,
+                      department: event.target.value,
+                    })
+                  }
                   />
                 </div>
               </div>
-              <button type="submit">Update Profile</button>
+              <button 
+              type="submit"
+              onClick={handleUpdate}x
+              >Update Profile</button>
 
             </form>
 

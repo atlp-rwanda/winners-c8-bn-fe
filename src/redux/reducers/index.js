@@ -2,10 +2,11 @@
 import { combineReducers } from "redux";
 import authReducer from "./authReducer";
 import navbarReducer from "./navbarReducer";
-import { fetchUserProfileReducer } from "./userProfileReducer";
+import { fetchUserProfileReducer, updateUserProfileReducer } from "./userProfileReducer";
 
 export default combineReducers({
   auth: authReducer,
   navbar: navbarReducer,
   userProfile: fetchUserProfileReducer,
+  updateUserProfile: updateUserProfileReducer,
 });
