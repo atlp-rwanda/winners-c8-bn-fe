@@ -3,15 +3,19 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@emotion/react": "^11.10.0",
+    "@emotion/styled": "^11.10.0",
     "@fortawesome/fontawesome-svg-core": "^6.1.2",
     "@fortawesome/free-solid-svg-icons": "^6.1.2",
     "@fortawesome/react-fontawesome": "^0.2.0",
+    "@mui/icons-material": "^5.8.4",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/user-event": "^13.5.0",
     "axios": "^0.27.2",
     "bootstrap": "^5.2.0",
     "dotenv": "^16.0.1",
     "express": "^4.18.1",
+    "formik": "^2.2.9",
     "joi": "^17.6.0",
     "node-sass": "^7.0.1",
     "path": "^0.12.7",
@@ -23,6 +27,8 @@
     "react-scripts": "5.0.1",
     "react-toastify": "^9.0.7",
     "redux": "^4.2.0",
+    "redux-mock-store": "^1.5.4",
+    "redux-thunk": "^2.4.1",
     "sass": "^1.53.0",
     "sass-loader": "^13.0.2",
     "style-loader": "^3.3.1",
@@ -30,7 +36,8 @@
     "web-vitals": "^2.1.4",
     "webpack": "^5.73.0",
     "webpack-cli": "^4.10.0",
-    "webpack-dev-server": "^4.9.3"
+    "webpack-dev-server": "^4.9.3",
+    "yup": "^0.32.11"
   },
   "scripts": {
     "dev": "webpack serve --mode development",
