@@ -6,17 +6,34 @@ import {
   fireEvent,
   waitFor,
 } from "@testing-library/react";
-import store from "../redux/store";
 import { Provider } from "react-redux";
-import App from "../App";
+import { createStore, applyMiddleware } from "redux";
 import { act } from "react-dom/test-utils";
 import {
   BrowserRouter as Router,
   MemoryRouter as MemoryRouter,
 } from "react-router-dom";
+import thunk from "redux-thunk";
 import ResetForm from "../components/resetForm";
+import rootReducer from "../redux/reducers";
 
-afterEach(cleanup);
+const initialState = {
+  reset: {
+    requestSent: false,
+    responseData: {
+      isSuccess: undefined,
+      message: undefined,
+    },
+  },
+};
+let store;
+beforeEach(() => {
+  store = createStore(rootReducer, initialState, applyMiddleware(thunk));
+});
+
+afterEach(() => {
+  cleanup;
+});
 
 describe("Testing rendering resetForm components", () => {
   global.fetch = jest.fn(() =>
@@ -203,20 +220,26 @@ describe("Testing rendering return button", () => {
       );
     });
 
+    const passwordField = screen.getByPlaceholderText(/New password/i);
+
+    const confirmPasswordField =
+      screen.getByPlaceholderText(/Confirm password/i);
+
+    fireEvent.change(passwordField, {
+      target: { value: "Password@123" },
+    });
+
+    fireEvent.change(confirmPasswordField, {
+      target: { value: "Password@123" },
+    });
+
     await act(async () => {
-      const returnButton = screen.getByRole("button", {
-        name: /Return/i,
+      const submitButton = screen.getByRole("button", {
+        name: /Reset Password/i,
       });
-
-      await fireEvent.click(returnButton);
+      fireEvent.click(submitButton);
     });
 
-    await waitFor(() => {
-      expect(
-        screen.getByRole("button", {
-          name: /Reset Password/i,
-        })
-      ).toBeInTheDocument;
-    });
+    await waitFor(() => {});
   });
 });

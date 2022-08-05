@@ -6,13 +6,29 @@ import {
   fireEvent,
   waitFor,
 } from "@testing-library/react";
-
-import store from "../redux/store";
 import { Provider } from "react-redux";
-import App from "../App";
 import { act } from "react-dom/test-utils";
 import { BrowserRouter as Router } from "react-router-dom";
+import { createStore, applyMiddleware } from "redux";
 import RecoverForm from "../components/recoveryForm";
+import thunk from "redux-thunk";
+import configureMockStore from "redux-mock-store";
+const middleware = [thunk];
+const mockStore = configureMockStore(middleware);
+const initialState = {
+  recover: {
+    emailSent: false,
+    responseData: {
+      isSuccess: undefined,
+      message: undefined,
+    },
+  },
+};
+
+let store;
+beforeEach(() => {
+  store = mockStore(initialState);
+});
 
 afterEach(cleanup);
 
@@ -141,21 +157,19 @@ describe("Testing failure in fetch", () => {
         </Provider>
       );
     });
+    const emailField = screen.getByPlaceholderText(/Enter your email/i);
+
+    fireEvent.change(emailField, {
+      target: { value: "tester@admin.com" },
+    });
 
     await act(async () => {
-      const returnButton = screen.getByRole("button", {
-        name: /Return/i,
+      const submitButton = screen.getByRole("button", {
+        name: /Recover Password/i,
       });
-
-      await fireEvent.click(returnButton);
+      fireEvent.click(submitButton);
     });
 
-    await waitFor(() => {
-      expect(
-        screen.getByRole("button", {
-          name: /Recover Password/i,
-        })
-      ).toBeInTheDocument;
-    });
+    await waitFor(() => {});
   });
 });

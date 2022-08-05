@@ -35,7 +35,7 @@ class ResetForm extends Component {
         <h2>{this.props.redux.state.responseData.message}</h2>
         {this.props.redux.state.responseData.isSuccess ? null : (
           <button
-            onClick={this.handleReturn}
+            onClick={this.props.redux.RETURN()}
             className="button btn-form"
             type="button"
           >
@@ -118,43 +118,10 @@ class ResetForm extends Component {
     );
   };
 
-  handleReturn = () => {
-    this.props.redux.RETURN();
-  };
-
-  handleSubmit = async (values, { setSubmitting }) => {
+  handleSubmit = (values, { setSubmitting }) => {
     // In Token remove first "/"
     let token = this.props.token.slice(1);
-
-    const { password, confirmPassword } = values;
-    const url = `https://winners-c8-bn-be-staging.herokuapp.com/api/auth/resetPassword/${token}`;
-    const data = JSON.stringify({
-      newPassword: password,
-      confirmPassword: confirmPassword,
-    });
-    try {
-      const result = await fetch(url, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: data,
-      });
-      const resultData = await result.json();
-      const responseData = {
-        isSuccess: resultData.success,
-        message: resultData.message,
-      };
-      this.props.redux.SUBMIT({ responseData, requestSent: true });
-      setSubmitting(false);
-    } catch (err) {
-      const responseData = {
-        isSuccess: false,
-        message: err.message,
-      };
-      this.props.redux.SUBMIT({ responseData, requestSent: true });
-      setSubmitting(false);
-    }
+    this.props.redux.SUBMIT(values, setSubmitting, token);
   };
 
   render() {
