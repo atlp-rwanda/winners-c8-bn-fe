@@ -1,6 +1,5 @@
 .navbar {
     height: 50px;
-    border-bottom: 0.5px solid rgb(231, 228, 228);
     display: flex;
     align-items: center;
     font-size: 14px;
@@ -13,6 +12,10 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
+      margin-bottom: 20px;
+      background: #FFF;
+      border-bottom: 0.5px solid rgb(231, 228, 228);
+
   
       .search {
         display: flex;

@@ -1,6 +1,6 @@
 import React from "react";
 import "./sidebar.scss";
-import logo from "../../../public/images/logo.png";
+import logo from "../../../public/images/navbar/logo.png"
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 import LocalShippingIcon from "@mui/icons-material/LocalShipping";
