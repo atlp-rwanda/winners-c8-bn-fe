@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import { Navigate, Link } from "react-router-dom";
 import "../../public/styles/RegisterForm/index.css"
 import { connect } from "react-redux";
-import { userActions } from '../redux/actions/userActions';
-import {errorToast, successToast, existToast} from "../helpers/generateToast";
-import { ToastContainer, toast } from 'react-toastify';
+import { userActions } from '../redux/actions/registerActions';
+import {errorToast, successToast} from "../helpers/generateToast";
+import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 class UserRegisterForm extends React.Component {
@@ -25,7 +25,7 @@ class UserRegisterForm extends React.Component {
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
-
+    registering = this.props.registration;
     handleChange(event) {
         this.props.alert.message_error= '';
         this.props.alert.message_success= '';
@@ -43,7 +43,7 @@ class UserRegisterForm extends React.Component {
     handleSubmit(event) {
         event.preventDefault();
 
-        this.setState({ submitted: true});
+        // this.setState({ submitted: true});
         const { user } = this.state;
         console.log(user)
         if (user.firstName && user.lastName && user.email && user.password && user.confPassword) {
@@ -68,88 +68,20 @@ class UserRegisterForm extends React.Component {
         }else{
             errorToast('All fields are required!')
         }
-       
-        console.log(this.props.alert.message_success)
 
-        // if(this.props.alert.message_success === 'Registration successful'){
-        //     this.setState ({
-        //             user: {
-        //                 firstName: '',
-        //                 lastName: '',
-        //                 email: '',
-        //                 password: '',
-        //                 confPassword: ''
-        //             },
-        //             submitted: false
-        //         });
-        // }
-
-        
-        
-        // this.props.register(user);
-        // if (user.firstName && user.lastName && user.username && user.password) {
-        //     this.props.register(user);
-        // }
     }
+   
 
-
-
-// //    state = this.props.user
-
-//    state ={
-//         firstName:'',
-//         lastName:'',
-//         email:"",
-//         password:"",
-//         confPassword:""
-//    }
-
-//     handleTextChange= event =>{
-//         const {target: {name, value}} = event;
-//         this.setState({ [name]: value })
-//         console.log(this.state)
-//     }
-
-//     // handleFirstName = (event)=>{
-//     //     const firstName = event.target.value
-//     //     console.log(
-            
-//     //         firstName
-//     //     )
-//     //     // console.log(event.target.value)
-//     //     // console.log(this.state.firstName)
-//     // }
-
-
-//    handleSubmit = event =>{
-//     event.preventDefault()
-
-//     this.props.addNewUser({
-        
-//     })
-
-//     // console.log(this.state)
-
-//    }
-//     // // handleSubmit = event =>{
-//     //     event.preventDefault()
-//     //     this.props.addUser(this.state)
-//     //     this.setState({
-//     //         firstName:'',
-//     //         lastName:'',
-//     //         email:"",
-//     //         password:"",
-//     //         confPassword:""
-//     //     })
-
-//     // }
   render(){
-    const { registering, error } = this.props.registration;
+    const { registering } = this.props.registration;
     const { user, submitted } = this.state;
     let {message_error, message_success} = this.props.alert;
 
     return (
         <div className="register-section pt-100 pb-100 md-pt-80 md-pb-80">
+            {this.submitted && (
+                 <Navigate to="/login" replace={true} message='Registration ok'/>
+            )}
        
             <div>
                 <>
@@ -162,8 +94,9 @@ class UserRegisterForm extends React.Component {
                 <div className="sec-title text-center mb-30">
                     <h5 className="title 200 mb-10">Create New Account.</h5>
                 </div>
-                {message_error && <p>{errorToast(message_error)}</p> || 
-                 message_success && <p>{successToast(message_success)}</p>
+                {message_error && <p>{errorToast(message_error)}</p> } 
+                {message_success && <p>{successToast(message_success)}
+                 {this.submitted = true}</p>
                 }
                 <div className="styled-form">
                     <div id="form-messages"></div>
@@ -187,7 +120,7 @@ class UserRegisterForm extends React.Component {
                             <div className="form-group col-lg-12 col-md-12 col-sm-12 text-center">
                                 {registering && 
                                 <div>
-                                   <input type="submit" value='Registering...' className="btn" disabled></input>
+                                   <input value='Registering...' className="btn" disabled></input>
                                    <img src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
                                 </div>
                                 } 
@@ -213,27 +146,11 @@ class UserRegisterForm extends React.Component {
   } 
 }
 
-// const mapStateToProps=(state)=>{
-//     return {
-//         user: state.user
-//     }
-// }
-
-// const mapDispatchToProps=(dispatch)=>{
-//     return {
-//         addNewUser: (userObj) => dispatch({
-//             type:'ADD_NEW_USER',
-//             payload: userObj
-//         })
-//     }
-// }
-
 function mapState(state) {
     const {registration, error} = state.registration
 
     return { registration: state.registration , alert:state.alert};
 }
-
 
 
 const actionCreators = {

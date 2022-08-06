@@ -14,11 +14,9 @@ export function registration(state={}, action){
         };
 
         case 'USER_EXIST':
-        return { 
+        return {
             ...state,
-            registering: false,
-            error: 'userExist'
-
+            registering: false
         };
 
         case 'SUCCESS':
