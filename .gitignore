@@ -10,6 +10,7 @@
 
 # production
 /build
+/dist
 
 
 # misc
@@ -25,3 +26,5 @@ yarn-debug.log*
 yarn-error.log*
 
 __snapshots__
+#vscode
+.vscode

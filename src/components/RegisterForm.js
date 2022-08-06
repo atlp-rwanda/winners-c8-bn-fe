@@ -1,6 +1,6 @@
 import React from "react";
 import { Navigate, Link } from "react-router-dom";
-import "../../public/styles/RegisterForm/index.css"
+import "../../public/styles/RegisterForm/index.css";
 import { connect } from "react-redux";
 import { userActions } from '../redux/actions/registerActions';
 import {errorToast, successToast} from "../helpers/generateToast";

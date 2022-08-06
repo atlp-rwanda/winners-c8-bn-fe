@@ -1,5 +1,5 @@
 import React from "react";
-import "../../public/styles/LoginForm/index.css"
+import "../../public/styles/LoginForm/index.css";
 import authActions from "../redux/actions/authActions";
 import { connect } from "react-redux";
 import { Navigate, Link } from "react-router-dom";
@@ -29,71 +29,83 @@ class LoginForm extends React.Component {
   isFormSubmitted = false;
   loginSubmit = async (event) => {
     event.preventDefault();
-    try{
+    try {
       let myHeaders = new Headers();
       myHeaders.append("Content-Type", "application/json");
-      
+
       let raw = JSON.stringify({
-        "email": event.target["email"].value,
-        "password": event.target["password"].value
+        email: event.target["email"].value,
+        password: event.target["password"].value,
       });
-      
+
       let requestOptions = {
-        method: 'POST',
+        method: "POST",
         headers: myHeaders,
         body: raw,
-        redirect: 'follow'
+        redirect: "follow",
       };
-      this.setState({wait: true});
+      this.setState({ wait: true });
       toast("Signing in . . .", { position: toast.POSITION.TOP_CENTER });
-      let result =  await fetch("https://winners-c8-bn-be-staging.herokuapp.com/api/auth/signin", requestOptions)
-      .then(response => response.json())
-      this.setState({responseMessage: result.message});
+      let result = await fetch(
+        "https://winners-c8-bn-be-staging.herokuapp.com/api/auth/signin",
+        requestOptions
+      ).then((response) => response.json());
+      this.setState({ responseMessage: result.message });
       toast.dismiss();
-      if(result.status == 200) {
-        toast.success("Logged in successfully!", { position: toast.POSITION.TOP_CENTER });
+      if (result.status == 200) {
+        toast.success("Logged in successfully!", {
+          position: toast.POSITION.TOP_CENTER,
+        });
         // await new Promise(resolve => setTimeout(resolve, 1500));
         this.isFormSubmitted = true;
-        this.setState({success : true});
+        this.setState({ success: true });
         this.props.LOGIN(result.data);
         window.localStorage.setItem("auth-token", result.data);
+      } else {
+        this.setState({ error: true });
+        toast.error(this.state.responseMessage, {
+          position: toast.POSITION.TOP_CENTER,
+        });
       }
-      else{
-        this.setState({error : true});
-        toast.error(this.state.responseMessage, { position: toast.POSITION.TOP_CENTER });
-      }
-    }
-    catch(error) {
+    } catch (error) {
       toast.error(`Error: ${error}`, { position: toast.POSITION.TOP_CENTER });
     }
-  }
-  validateEmail = async (emailAddress)=>{
-    const validator = Joi.string().required().email({ tlds: { allow: false } });
-    const {error} = await validator.validate(emailAddress);
-    if(error){
-      this.setState({isEmailValid: false});
-      this.setState({emailValidationMessage: error.details[0].message.replace(/[/"'`]+/g, "").replace("value", "Input")});
+  };
+  validateEmail = async (emailAddress) => {
+    const validator = Joi.string()
+      .required()
+      .email({ tlds: { allow: false } });
+    const { error } = await validator.validate(emailAddress);
+    if (error) {
+      this.setState({ isEmailValid: false });
+      this.setState({
+        emailValidationMessage: error.details[0].message
+          .replace(/[/"'`]+/g, "")
+          .replace("value", "Input"),
+      });
+    } else {
+      this.setState({ isEmailValid: true });
+      this.setState({ emailValidationMessage: "" });
     }
-    else{
-      this.setState({isEmailValid: true});
-      this.setState({emailValidationMessage: ""});
-    }
-  }
-  validatePassword = async (password)=>{
+  };
+  validatePassword = async (password) => {
     const validator = Joi.string().required();
-    const {error} = await validator.validate(password);
-    if(error){
-      this.setState({isPasswordValid: false});
-      this.setState({passwordValidationMessage: error.details[0].message.replace(/[/"'`]+/g, "").replace("value", "Input")});
+    const { error } = await validator.validate(password);
+    if (error) {
+      this.setState({ isPasswordValid: false });
+      this.setState({
+        passwordValidationMessage: error.details[0].message
+          .replace(/[/"'`]+/g, "")
+          .replace("value", "Input"),
+      });
+    } else {
+      this.setState({ isPasswordValid: true });
+      this.setState({ passwordValidationMessage: "" });
     }
-    else{
-      this.setState({isPasswordValid: true});
-      this.setState({passwordValidationMessage: ""});
-    }
-  }
+  };
   componentDidMount() {
     this.props.LOGOUT();
-    if(window.localStorage.getItem("auth-token")) {
+    if (window.localStorage.getItem("auth-token")) {
       window.localStorage.removeItem("auth-token");
     }
   }
@@ -102,10 +114,10 @@ class LoginForm extends React.Component {
     marginLeft: "auto",
     marginRight: "auto",
     width: "auto",
-  }
+  };
   inputSuccessStyle = {
     border: "3px solid lightgreen",
-  }
+  };
   inputErrorStyle = {
     border: "2px solid red",
   }
@@ -129,12 +141,71 @@ class LoginForm extends React.Component {
               <div className="row d-flex justify-content-center">
                 <div className="col-xs-12 col-md-8">
                   <h2 className="header1">Sign in </h2>
-                  <form data-testid="login-form" id="login-form" className="form-login" onSubmit={async(event) => await this.loginSubmit(event)} >
-                    <input data-testid="login-email" type="text" name="email" placeholder="Email" className="field input-login" onBlur={async (event) => await this.validateEmail(event.target.value)} style={(this.state.isEmailValid==true)? this.inputSuccessStyle : (this.state.isEmailValid==false)? this.inputErrorStyle : {}}></input>
-                    <div className="redErrorMessage">{this.state.emailValidationMessage}</div>
-                    <input data-testid="login-password" type="password" name="password" placeholder="Password" className="field input-login" onBlur={async (event) => await this.validatePassword(event.target.value)} style={(this.state.isPasswordValid==true)? this.inputSuccessStyle : (this.state.isPasswordValid==false)? this.inputErrorStyle : {}}></input>
-                    <div className="redErrorMessage">{this.state.passwordValidationMessage}</div>
-                    <button data-testid="login-submit" type={(this.state.isEmailValid==true && this.state.isPasswordValid==true)? "submit" : ""} value="login" className="btn" disabled={!(this.state.isEmailValid==true && this.state.isPasswordValid==true)}>Sign in</button>
+                  <form
+                    data-testid="login-form"
+                    id="login-form"
+                    className="form-login"
+                    onSubmit={async (event) => await this.loginSubmit(event)}
+                  >
+                    <input
+                      data-testid="login-email"
+                      type="text"
+                      name="email"
+                      placeholder="Email"
+                      className="field input-login"
+                      onBlur={async (event) =>
+                        await this.validateEmail(event.target.value)
+                      }
+                      style={
+                        this.state.isEmailValid == true
+                          ? this.inputSuccessStyle
+                          : this.state.isEmailValid == false
+                          ? this.inputErrorStyle
+                          : {}
+                      }
+                    ></input>
+                    <div className="redErrorMessage">
+                      {this.state.emailValidationMessage}
+                    </div>
+                    <input
+                      data-testid="login-password"
+                      type="password"
+                      name="password"
+                      placeholder="Password"
+                      className="field input-login"
+                      onBlur={async (event) =>
+                        await this.validatePassword(event.target.value)
+                      }
+                      style={
+                        this.state.isPasswordValid == true
+                          ? this.inputSuccessStyle
+                          : this.state.isPasswordValid == false
+                          ? this.inputErrorStyle
+                          : {}
+                      }
+                    ></input>
+                    <div className="redErrorMessage">
+                      {this.state.passwordValidationMessage}
+                    </div>
+                    <button
+                      data-testid="login-submit"
+                      type={
+                        this.state.isEmailValid == true &&
+                        this.state.isPasswordValid == true
+                          ? "submit"
+                          : ""
+                      }
+                      value="login"
+                      className="btn"
+                      disabled={
+                        !(
+                          this.state.isEmailValid == true &&
+                          this.state.isPasswordValid == true
+                        )
+                      }
+                    >
+                      Sign in
+                    </button>
                   </form>
                 </div>
               </div>
@@ -147,34 +218,34 @@ class LoginForm extends React.Component {
                 </div>
               </div>
               <div
-                  style={{
-                      display: 'flex',
-                      flexDirection: 'row',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      marginTop: '10px',
-                  }}
-                >
-                  <div style={{ paddingRight: '20px' }}>
-                      <a href='https://winners-c8-bn-be-staging.herokuapp.com/api/oauth/google'>
-                          <FcGoogle style={{ fontSize: '40px', cursor: 'pointer' }} />
-                      </a>
-                  </div>
-                  <div style={{ paddingLeft: '20px' }}>
-                      <a href='https://winners-c8-bn-be-staging.herokuapp.com/api/oauth/facebook'>
-                          <ImFacebook
-                              style={{
-                                  fontSize: '35px',
-                                  cursor: 'pointer',
-                              }}
-                          />
-                      </a>
-                  </div>
+                style={{
+                  display: "flex",
+                  flexDirection: "row",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  marginTop: "10px",
+                }}
+              >
+                <div style={{ paddingRight: "20px" }}>
+                  <a href="https://winners-c8-bn-be-staging.herokuapp.com/api/oauth/google">
+                    <FcGoogle style={{ fontSize: "40px", cursor: "pointer" }} />
+                  </a>
+                </div>
+                <div style={{ paddingLeft: "20px" }}>
+                  <a href="https://winners-c8-bn-be-staging.herokuapp.com/api/oauth/facebook">
+                    <ImFacebook
+                      style={{
+                        fontSize: "35px",
+                        cursor: "pointer",
+                      }}
+                    />
+                  </a>
+                </div>
               </div>
               <div className="row d-flex justify-content-center">
                 <div className="col-xs-12 col-md-8">
                   <div className="pass-link">
-                    <a href="#" >Lost your password?</a>
+                    <Link to="/recover">Lost your password?</Link>
                   </div>
                   <div className="pass-link">
                     <p>Don't have an account? <Link to="/register">Register</Link></p>
@@ -186,16 +257,13 @@ class LoginForm extends React.Component {
         </div>
       </div>
     );
-  } 
+  }
 }
 
 const mapStateToProps = state => ({
   token: state.auth.token,
   alert:state.alert
 });
-const {login: LOGIN, logout: LOGOUT} = authActions;
-export default connect(
-  mapStateToProps,
-  { LOGIN, LOGOUT }
-)(LoginForm);
+const { login: LOGIN, logout: LOGOUT } = authActions;
+export default connect(mapStateToProps, { LOGIN, LOGOUT })(LoginForm);
 // export default LoginForm;
