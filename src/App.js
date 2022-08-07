@@ -6,11 +6,12 @@ import ResetForm from "./components/resetForm";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import LoginForm from "./components/LoginForm";
 import Userprofile from "./components/UserProfile/UserProfile"
+import Dashboard from "./components/Dashboard";
 
 const App = () => {
   return (
     <div className="App">
-      <Navbar />
+      {/* <Navbar /> */}
       <div className="content">
         <Routes>
           <Route exact path="/" element={<Home />} />
@@ -22,6 +23,8 @@ const App = () => {
           <Route exact path="reset" element={<ResetForm />} />
 
           <Route exact path="userprofile" element={<Userprofile />} />
+
+          <Route exact path="dashboard" element={<Dashboard />} />
         </Routes>
       </div>
     </div>

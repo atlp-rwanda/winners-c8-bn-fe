@@ -1,9 +1,11 @@
-import { FETCH_USER_PROFILE_SUCCESS, FETCH_USER_PROFILE_FAILED, UPDATE_USER_PROFILE_SUCCESS, UPDATE_USER_PROFILE_FAILED, UPDATE_USER_PROFILE_LOADING } from "../types/userProfileTypes";
+import { FETCH_USER_PROFILE_SUCCESS, FETCH_USER_PROFILE_FAILED,FETCH_USER_PROFILE_LOADING ,UPDATE_USER_PROFILE_SUCCESS, UPDATE_USER_PROFILE_FAILED, UPDATE_USER_PROFILE_LOADING } from "../types/userProfileTypes";
 import axios from "axios";
 import {authHeader} from '../utils/dataSession';
 
 export const fetchUserProfile = () => async dispatch => {
-
+    dispatch({
+        type: FETCH_USER_PROFILE_LOADING
+    });
 
   return await axios.get(`https://winners-c8-bn-be-staging.herokuapp.com/api/user/user`, { headers: authHeader() })
       .then(res => {

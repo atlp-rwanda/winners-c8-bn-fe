@@ -28,10 +28,12 @@ const Sidebar = () => {
       <div className="center">
         <ul>
           <p className="title">MAIN</p>
+          <Link to="/dashboard" style={{ textDecoration: "none" }}>
           <li>
             <DashboardIcon className="icon" />
             <span>Dashboard</span>
           </li>
+          </Link>
           <p className="title">PAGES</p>
           <Link to="/users" style={{ textDecoration: "none" }}>
             <li>
@@ -76,18 +78,17 @@ const Sidebar = () => {
             <span>Settings</span>
           </li>
           <p className="title">GENERAL</p>
+          <Link to="/userprofile" style={{ textDecoration: "none" }}>
           <li>
             <AccountCircleOutlinedIcon className="icon" />
             <span>Profile</span>
           </li>
+          </Link>
           <li>
             <ExitToAppIcon className="icon" />
             <span>Logout</span>
           </li>
         </ul>
-      </div>
-      <div className="bottom">
-        {/* color dark mode/ */}
       </div>
     </div>
   );

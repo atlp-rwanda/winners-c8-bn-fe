@@ -5,7 +5,6 @@ import Sidebar from "../Sidebar/Sidebar";
 import { useDispatch, useSelector } from "react-redux";
 import {fetchUserProfile, updateUserProfile} from "../../redux/actions/userProfileAction"
 import { Skeleton } from "@mui/material";
-import { Co2Sharp } from "@mui/icons-material";
 const UserProfile = () => {
 
   const userData= useSelector((state) => state.userProfile?.user?.user)
@@ -59,16 +58,22 @@ const UserProfile = () => {
 
   }, [userData]);
 
+ 
+  console.log(dataForm)
+
   //Preview image before upload
   const previewImage = (e) =>{
     e.preventDefault();
-    console.log("first")
-    if(dataForm?.image){
-      setPreview(URL.createObjectURL(dataForm?.image))
-    }
-    console.log("Second")
+    setFormData({
+      ...dataForm,
+      image: e.target.files[0],
+      
+    })
+    setPreview(URL.createObjectURL(e.target.files[0]))
 
-  } 
+  }
+
+
 
 
   const editUser = async (event) => {
@@ -127,11 +132,9 @@ const UserProfile = () => {
               type="file"
               name="file_upload"
               disabled={disable}
-              onChange={(event) =>
-                setFormData({
-                  ...dataForm,
-                  image: event.target.files[0],
-                })
+              onChange={(e) =>
+                previewImage(e)
+
               }
               
               />
@@ -275,7 +278,6 @@ const UserProfile = () => {
               >
                 Update
               </button>
-
             </form>
 
           </div>):
