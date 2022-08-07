@@ -38,7 +38,7 @@ const UserProfile = () => {
     formData.append("username",dataForm?.username)
 
     updateUserProfile(formData)(dispatch)
-    location.reload();
+    // location.reload();
   }
    
 
@@ -270,17 +270,11 @@ const UserProfile = () => {
               </button>
               <button 
               type="submit"
-              {...isLoading? `disabled`: onClick={updateUser}}
+              onClick={updateUser}
               className="update_btn"
               >
                 Update
               </button>
-              {/* <button 
-              type="submit"
-              onClick={previewImage}
-              >
-                Update
-              </button> */}
 
             </form>
 
