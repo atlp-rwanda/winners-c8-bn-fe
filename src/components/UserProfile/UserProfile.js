@@ -5,18 +5,42 @@ import Sidebar from "../Sidebar/Sidebar";
 import { useDispatch, useSelector } from "react-redux";
 import {fetchUserProfile, updateUserProfile} from "../../redux/actions/userProfileAction"
 import { Skeleton } from "@mui/material";
+import { Co2Sharp } from "@mui/icons-material";
 const UserProfile = () => {
 
   const userData= useSelector((state) => state.userProfile?.user?.user)
   // console.log("here is the data",userData)
 
-  const [formData, setFormData] = useState();
+  const [dataForm, setFormData] = useState();
   const [isLoading, setIsLoading] = useState(false);
+  const [disable, setDisable] = useState(true)
+  const [preview, setPreview] = useState("")
   const dispatch = useDispatch();
 
+  
   useEffect(() => {
     fetchUserProfile()(dispatch);
   }, []);
+
+  let formData = new FormData();
+
+  const updateUser = (e) =>{
+    e.preventDefault();
+
+    formData.append("firstName",dataForm?.firstName)
+    formData.append("lastName",dataForm?.lastName)
+    formData.append("department",dataForm?.department)
+    formData.append("gender",dataForm?.gender)
+    formData.append("image",dataForm?.image)
+    formData.append("phoneNumber",dataForm?.phoneNumber)
+    formData.append("preferredCurrency",dataForm?.preferredCurrency)
+    formData.append("preferredLanguage",dataForm?.preferredLanguage)
+    formData.append("username",dataForm?.username)
+
+    updateUserProfile(formData)(dispatch)
+    location.reload();
+  }
+   
 
   useEffect(() => {
     setFormData({
@@ -27,18 +51,29 @@ const UserProfile = () => {
       gender: userData?.gender,
       image: userData?.image,
       phoneNumber: userData?.phoneNumber,
-      currency: userData?.preferredCurrency,
-      language: userData?.preferredLanguage,
+      preferredCurrency: userData?.preferredCurrency,
+      preferredLanguage: userData?.preferredLanguage,
       username: userData?.username,
     })
     setIsLoading(true)
 
   }, [userData]);
 
-  const handleUpdate = async (event) => {
+  //Preview image before upload
+  const previewImage = (e) =>{
+    e.preventDefault();
+    console.log("first")
+    if(dataForm?.image){
+      setPreview(URL.createObjectURL(dataForm?.image))
+    }
+    console.log("Second")
+
+  } 
+
+
+  const editUser = async (event) => {
     event.preventDefault();
-    updateUserProfile(formData)(dispatch)
-    console.log(formData)
+    setDisable(false)
   };
   
     return ( 
@@ -66,35 +101,39 @@ const UserProfile = () => {
             <div className="profile_image">
               <div className="image_info">
                 <img
-                src={formData?.image ? formData?.image :`https://images.pexels.com/photos/1680172/pexels-photo-1680172.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"`}
+                src={preview ? (preview): dataForm?.image ?(dataForm?.image) : `https://st.depositphotos.com/2101611/3925/v/600/depositphotos_39258143-stock-illustration-businessman-avatar-profile-picture.jpg`}
                 alt=""
                 className="avatar"
                 />
+
                 <div className="text_info">
                   <input
                     type="text"
-                    defaultValue={formData?.username}
+                    disabled={disable}
+                    defaultValue={dataForm?.username}
                     onChange={(event) =>
                       setFormData({
-                        ...formData,
+                        ...dataForm,
                         username: event.target.value,
                       })
                     }
                     className="Text_input"
                   />
-                  <p>{formData?.email}</p>
+                  <p>{dataForm?.email}</p>
                 </div>
                 
               </div>
               <input
               type="file"
-              
+              name="file_upload"
+              disabled={disable}
               onChange={(event) =>
                 setFormData({
-                  ...formData,
+                  ...dataForm,
                   image: event.target.files[0],
                 })
               }
+              
               />
             </div>
 
@@ -105,10 +144,11 @@ const UserProfile = () => {
                   <label htmlFor="">First Name</label><br />
                   <input 
                   type="text" 
-                  defaultValue={formData?.firstName}
+                  defaultValue={dataForm?.firstName}
+                  disabled={disable}
                   onChange={(event) =>
                     setFormData({
-                      ...formData,
+                      ...dataForm,
                       firstName: event.target.value,
                     })
                   }
@@ -118,10 +158,11 @@ const UserProfile = () => {
                   <label htmlFor="">Last Name</label><br />
                   <input
                    type="text" 
-                   defaultValue={formData?.lastName}
+                   disabled={disable}
+                   defaultValue={dataForm?.lastName}
                    onChange={(event) =>
                     setFormData({
-                      ...formData,
+                      ...dataForm,
                       lastName: event.target.value,
                     })
                   }
@@ -134,10 +175,11 @@ const UserProfile = () => {
                   <label htmlFor="">Title</label><br />
                   <input 
                   type="text" 
-                  defaultValue={formData?.firstName}
+                  defaultValue={dataForm?.firstName}
+                  disabled={disable}
                   onChange={(event) =>
                     setFormData({
-                      ...formData,
+                      ...dataForm,
                       firstName: event.target.value,
                     })
                   }
@@ -147,10 +189,11 @@ const UserProfile = () => {
                   <label htmlFor="">Gender</label><br />
                   <input 
                   type="text" 
-                  defaultValue={formData?.gender}
+                  disabled={disable}
+                  defaultValue={dataForm?.gender}
                   onChange={(event) =>
                     setFormData({
-                      ...formData,
+                      ...dataForm,
                       gender: event.target.value,
                     })
                   }
@@ -163,10 +206,11 @@ const UserProfile = () => {
                   <label htmlFor="">Phone Number</label><br />
                   <input 
                   type="text" 
-                  defaultValue={formData?.phoneNumber}
+                  disabled={disable}
+                  defaultValue={dataForm?.phoneNumber}
                   onChange={(event) =>
                     setFormData({
-                      ...formData,
+                      ...dataForm,
                       phoneNumber: event.target.value,
                     })
                   }
@@ -176,11 +220,12 @@ const UserProfile = () => {
                   <label htmlFor="">Currency</label><br />
                   <input 
                   type="text" 
-                  defaultValue={formData?.currency}
+                  disabled={disable}
+                  defaultValue={dataForm?.preferredCurrency}
                   onChange={(event) =>
                     setFormData({
-                      ...formData,
-                      currency: event.target.value,
+                      ...dataForm,
+                      preferredCurrency: event.target.value,
                     })
                   }
                   />
@@ -192,11 +237,12 @@ const UserProfile = () => {
                   <label htmlFor="">Language</label><br />
                   <input 
                   type="text" 
-                  defaultValue={formData?.language}
+                  disabled={disable}
+                  defaultValue={dataForm?.preferredLanguage}
                   onChange={(event) =>
                     setFormData({
-                      ...formData,
-                      language: event.target.value,
+                      ...dataForm,
+                      preferredLanguage: event.target.value,
                     })
                   }
                   />
@@ -205,10 +251,11 @@ const UserProfile = () => {
                   <label htmlFor="">Department</label><br />
                   <input 
                   type="text" 
-                  defaultValue={formData?.department}
+                  disabled={disable}
+                  defaultValue={dataForm?.department}
                   onChange={(event) =>
                     setFormData({
-                      ...formData,
+                      ...dataForm,
                       department: event.target.value,
                     })
                   }
@@ -217,8 +264,23 @@ const UserProfile = () => {
               </div>
               <button 
               type="submit"
-              onClick={handleUpdate}x
-              >Update Profile</button>
+              onClick={editUser}
+              >
+                Edit
+              </button>
+              <button 
+              type="submit"
+              {...isLoading? `disabled`: onClick={updateUser}}
+              className="update_btn"
+              >
+                Update
+              </button>
+              {/* <button 
+              type="submit"
+              onClick={previewImage}
+              >
+                Update
+              </button> */}
 
             </form>
 

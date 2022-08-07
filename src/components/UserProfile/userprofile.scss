@@ -100,6 +100,16 @@
             }
             .Text_input{
               border: none;
+              background: #FFFFFF;
+              color: #395B64;
+              font-size: large;
+              font-weight: 500;
+            }
+            .Text_input:focus{
+              border: none;
+              border-color: inherit;
+              outline: 0;
+              box-shadow: none;
             }
             button{
               margin-left: 80px;
@@ -110,6 +120,15 @@
               color: #FFFFFF;
 
             }
+            // .file_upload{
+            //   color: #FFFFFF;
+            //   height: 60px;
+            //   width: 240px;
+            //   background-color: #395B64;
+            //   position: relative;
+            //   margin: auto;
+            //   right: 0;
+            // }
           }
           hr{
             margin-top: 15px;
@@ -151,6 +170,14 @@
               border-radius: 5px;
               color: #FFFFFF;
               margin-top: 10px;
+              width: 80px;
+            }
+            button:hover{
+              background-color: #508695;
+            }
+            .update_btn{
+              margin-left: 20px;
+
             }
           }
         }
