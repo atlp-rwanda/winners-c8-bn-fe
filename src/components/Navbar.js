@@ -54,4 +54,3 @@ const mapStateToProps = (state) => ({
 });
 const { setPage: SET_PAGE } = navbarActions;
 export default connect(mapStateToProps, { SET_PAGE })(Navbar);
-// export default Navbar;

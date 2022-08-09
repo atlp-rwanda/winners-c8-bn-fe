@@ -250,4 +250,3 @@ const mapStateToProps = (state) => ({
 });
 const { login: LOGIN, logout: LOGOUT } = authActions;
 export default connect(mapStateToProps, { LOGIN, LOGOUT })(LoginForm);
-// export default LoginForm;
