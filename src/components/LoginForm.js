@@ -2,7 +2,7 @@ import React from 'react';
 import '../../public/styles/LoginForm/index.css';
 import authActions from '../redux/actions/authActions';
 import { connect } from 'react-redux';
-import { Navigate } from 'react-router-dom';
+import { Navigate, Link } from 'react-router-dom';
 import Joi, { disallow } from 'joi';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { ToastContainer, toast } from 'react-toastify';
@@ -233,7 +233,7 @@ class LoginForm extends React.Component {
               <div className="row d-flex justify-content-center">
                 <div className="col-xs-12 col-md-8">
                   <div className="pass-link">
-                    <a href="#">Lost your password?</a>
+                    <Link to="/recover">Lost your password?</Link>
                   </div>
                 </div>
               </div>
