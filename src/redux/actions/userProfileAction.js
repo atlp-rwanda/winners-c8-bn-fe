@@ -1,5 +1,6 @@
 import { FETCH_USER_PROFILE_SUCCESS, FETCH_USER_PROFILE_FAILED,FETCH_USER_PROFILE_LOADING ,UPDATE_USER_PROFILE_SUCCESS, UPDATE_USER_PROFILE_FAILED, UPDATE_USER_PROFILE_LOADING } from "../types/userProfileTypes";
 import axios from "axios";
+import { successToast, errorToast } from '../../helpers/generateToast';
 import {authHeader} from '../utils/dataSession';
 
 export const fetchUserProfile = () => async dispatch => {
@@ -32,17 +33,32 @@ export const updateUserProfile = (body) => async dispatch => {
 
         return axios.patch(`https://winners-c8-bn-be-staging.herokuapp.com/api/user/update`, body, { headers: authHeader() })
             .then(async res => {
-                await dispatch({
-                    type: UPDATE_USER_PROFILE_SUCCESS,
-                    payload: res.data.data
-                });
+
+                if(res.data.error){
+                   await dispatch({
+                        type: UPDATE_USER_PROFILE_FAILED,
+                        payload: res.data.error
+                    })
+                    errorToast(res.data.error)
+                }
+
+                if(res.status == 200){
+                   await dispatch({
+                        type: UPDATE_USER_PROFILE_SUCCESS,
+                        payload: res.data.data
+                    })
+                    successToast(res.data.message)
+                }
+
                 dispatch(fetchUserProfile())
             })
             .catch(err => {
                 dispatch({
                     type: UPDATE_USER_PROFILE_FAILED,
-                    payload: "Updating user failed"
+                    payload: err
                 });
+                errorToast(err.response.data.error)
+
             })
 
 }

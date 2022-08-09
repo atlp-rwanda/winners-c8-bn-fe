@@ -5,17 +5,19 @@ import Sidebar from "../Sidebar/Sidebar";
 import { useDispatch, useSelector } from "react-redux";
 import {fetchUserProfile, updateUserProfile} from "../../redux/actions/userProfileAction"
 import { Skeleton } from "@mui/material";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const UserProfile = () => {
 
   const userData= useSelector((state) => state.userProfile?.user?.user)
-  // console.log("here is the data",userData)
+  const userDataHandle= useSelector((state) => state.userProfile)
 
+  console.log("here is the data",((userDataHandle.user==null) || (userDataHandle.user.firstName == undefined)))
   const [dataForm, setFormData] = useState();
   const [isLoading, setIsLoading] = useState(false);
   const [disable, setDisable] = useState(true)
   const [preview, setPreview] = useState("")
   const dispatch = useDispatch();
-
   
   useEffect(() => {
     fetchUserProfile()(dispatch);
@@ -53,13 +55,13 @@ const UserProfile = () => {
       preferredCurrency: userData?.preferredCurrency,
       preferredLanguage: userData?.preferredLanguage,
       username: userData?.username,
-    })
+    })    
+
     setIsLoading(true)
 
   }, [userData]);
 
- 
-  console.log(dataForm)
+
 
   //Preview image before upload
   const previewImage = (e) =>{
@@ -278,6 +280,8 @@ const UserProfile = () => {
               >
                 Update
               </button>
+
+              <ToastContainer/>
             </form>
 
           </div>):
