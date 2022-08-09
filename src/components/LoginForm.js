@@ -1,3 +1,5 @@
+/*eslint-disable*/
+
 import React from "react";
 import "../../public/styles/LoginForm/index.css"
 import authActions from "../redux/actions/authActions";
