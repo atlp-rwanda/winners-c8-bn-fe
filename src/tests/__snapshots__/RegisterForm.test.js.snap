@@ -1,0 +1,138 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Connected Register Form React-Redux Component should render with given state from Redux store 1`] = `
+<div
+  className="register-section pt-100 pb-100 md-pt-80 md-pb-80"
+>
+  <div>
+    <div
+      className="Toastify"
+    />
+  </div>
+  <div
+    className="registration"
+  >
+    <div
+      className="register-box"
+    >
+      <div
+        className="sec-title text-center mb-30"
+      >
+        <h5
+          className="title 200 mb-10"
+        >
+          Create New Account.
+        </h5>
+      </div>
+      <div
+        className="styled-form"
+      >
+        <div
+          id="form-messages"
+        />
+        <form
+          id="register-form"
+          method="post"
+          onSubmit={[Function]}
+        >
+          <div
+            className="row clearfix"
+          >
+            <div
+              className="form-group col-lg-12 mb-25"
+            >
+              <input
+                className="field"
+                id="Name"
+                name="firstName"
+                onChange={[Function]}
+                placeholder="First Name"
+                type="text"
+                value=""
+              />
+            </div>
+            <div
+              className="form-group col-lg-12"
+            >
+              <input
+                className="field"
+                id="last"
+                name="lastName"
+                onChange={[Function]}
+                placeholder="Last Name"
+                type="text"
+                value=""
+              />
+            </div>
+            <div
+              className="form-group col-lg-12"
+            >
+              <input
+                className="field"
+                id="email"
+                name="email"
+                onChange={[Function]}
+                placeholder="Email address"
+                type="email"
+                value=""
+              />
+            </div>
+            <div
+              className="form-group col-lg-12"
+            >
+              <input
+                className="field"
+                id="puser"
+                name="password"
+                onChange={[Function]}
+                placeholder="Password"
+                type="password"
+                value=""
+              />
+            </div>
+            <div
+              className="form-group col-lg-12"
+            >
+              <input
+                className="field"
+                id="Confirm"
+                name="confPassword"
+                onChange={[Function]}
+                placeholder="Confirm Password"
+                type="password"
+                value=""
+              />
+            </div>
+            <div
+              className="form-group col-lg-12 col-md-12 col-sm-12 text-center"
+            >
+              <div>
+                <input
+                  className="btn"
+                  type="submit"
+                  value="Sign Up"
+                />
+              </div>
+            </div>
+            <div
+              className="form-group col-lg-12 col-md-12 col-sm-12"
+            >
+              <div
+                className="notify"
+              >
+                Already have an account? 
+                <a
+                  href="/login"
+                  onClick={[Function]}
+                >
+                  Sign In
+                </a>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+`;

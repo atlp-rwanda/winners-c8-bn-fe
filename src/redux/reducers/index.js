@@ -2,12 +2,16 @@
 import { combineReducers } from "redux";
 import authReducer from "./authReducer";
 import navbarReducer from "./navbarReducer";
+import { registration } from "./userReducers";
+import {alert} from "./alertReducers"
 import resetReducer from "./resetReducer";
 import recoverReducer from "./recoverReducer";
 
 export default combineReducers({
   auth: authReducer,
   navbar: navbarReducer,
+  registration,
+  alert,
   reset: resetReducer,
   recover: recoverReducer,
 });

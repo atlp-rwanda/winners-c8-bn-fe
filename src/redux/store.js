@@ -12,6 +12,12 @@ const initialState = {
   auth: { token: authToken },
   navbar: { currentPage: "HOME" },
 };
-const store = createStore(rootReducer, applyMiddleware(thunk));
+const store = createStore(
+    rootReducer,
+    initialState, // sets initial state
+    applyMiddleware(
+      thunk
+    )
+  );
 
 export default store;
