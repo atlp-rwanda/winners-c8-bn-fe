@@ -3,7 +3,6 @@ import Home from './components/Home';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import ResetForm from './components/resetForm';
 import LoginForm from './components/LoginForm';
-import Dashboard from './components/Dashboard';
 import Request from './pages/Request';
 import RecoveryForm from './components/recoveryForm';
 import Userprofile from './components/UserProfile/UserProfile';

@@ -4,6 +4,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import Table from '../components/Table';
 import { Alert, Button, Typography, Modal } from '@mui/material';
 import { Box } from '@mui/system';
+import Sidebar from '../components/Sidebar/Sidebar';
+import Navbar from '../components/Navbar/Navbar';
+
 function Request() {
   const [open, setOpen] = React.useState(false);
   const handleClose = () => setOpen(false);
@@ -88,77 +91,83 @@ function Request() {
 
   return (
     <>
-      <Box sx={{ p: 2 }}>
-        <Table headers={headers} requests={requests} />;
-        <Modal
-          open={open}
-          onClose={handleClose}
-          aria-labelledby="modal-modal-title"
-          aria-describedby="modal-modal-description"
-        >
-          <Box sx={style}>
-            <Typography variant="h4" color="primary">
-              Trip request
-            </Typography>
-            <hr />
-            {currentTrip && (
-              <>
-                <Typography variant="h5">Trip Id</Typography>
-                <Typography>{currentTrip.id}</Typography>
-                <Typography variant="h5">Manager name</Typography>
-                <Typography>
-                  {currentTrip.manager.firstName +
-                    ' ' +
-                    currentTrip.manager.lastName}
+      <div className="home">
+        <Sidebar />
+        <div className="homeContainer">
+          <Navbar />
+          <Box sx={{ p: 2, mt: 5 }}>
+            <Table headers={headers} requests={requests} />;
+            <Modal
+              open={open}
+              onClose={handleClose}
+              aria-labelledby="modal-modal-title"
+              aria-describedby="modal-modal-description"
+            >
+              <Box sx={style}>
+                <Typography variant="h4" color="primary">
+                  Trip request
                 </Typography>
-                <Typography variant="h5">Owner Name</Typography>
-                <Typography>
-                  {currentTrip.owner.firstName +
-                    ' ' +
-                    currentTrip.owner.lastName}
-                </Typography>
-                <Typography variant="h5">Travel Reason</Typography>
-                <Typography>{currentTrip.travel_reason}</Typography>
-                <Typography variant="h5">Date of Departure</Typography>
-                <Typography>{currentTrip.dateOfDeparture}</Typography>
-                <Typography variant="h5">Status</Typography>
-                <Typography>{currentTrip.status}</Typography>
                 <hr />
-                <Typography variant="h5">Departure location</Typography>
-                <Typography>
-                  <strong>City:</strong> {currentTrip.departure.city}&nbsp;
-                  <strong>State: </strong>
-                  {currentTrip.departure.state || 'N/A'}&nbsp;
-                  <strong>Province: </strong>
-                  {currentTrip.departure.province || 'N/A'}&nbsp;
-                  <strong>Country: </strong>
-                  {currentTrip.departure.country || 'N/A'}
-                </Typography>
-                <Typography variant="h5">Destination location</Typography>
-                {currentTrip.destinations.map((destination, index) => (
+                {currentTrip && (
                   <>
-                    <Typography>Destionation {index + 1}</Typography>
+                    <Typography variant="h5">Trip Id</Typography>
+                    <Typography>{currentTrip.id}</Typography>
+                    <Typography variant="h5">Manager name</Typography>
                     <Typography>
-                      <strong>City:</strong> {destination.city}&nbsp;
-                      <strong>State: </strong>
-                      {destination.state || 'N/A'}&nbsp;
-                      <strong>Province: </strong>
-                      {destination.province || 'N/A'}&nbsp;
-                      <strong>Country: </strong>
-                      {destination.country || 'N/A'}
+                      {currentTrip.manager.firstName +
+                        ' ' +
+                        currentTrip.manager.lastName}
                     </Typography>
+                    <Typography variant="h5">Owner Name</Typography>
+                    <Typography>
+                      {currentTrip.owner.firstName +
+                        ' ' +
+                        currentTrip.owner.lastName}
+                    </Typography>
+                    <Typography variant="h5">Travel Reason</Typography>
+                    <Typography>{currentTrip.travel_reason}</Typography>
+                    <Typography variant="h5">Date of Departure</Typography>
+                    <Typography>{currentTrip.dateOfDeparture}</Typography>
+                    <Typography variant="h5">Status</Typography>
+                    <Typography>{currentTrip.status}</Typography>
+                    <hr />
+                    <Typography variant="h5">Departure location</Typography>
+                    <Typography>
+                      <strong>City:</strong> {currentTrip.departure.city}&nbsp;
+                      <strong>State: </strong>
+                      {currentTrip.departure.state || 'N/A'}&nbsp;
+                      <strong>Province: </strong>
+                      {currentTrip.departure.province || 'N/A'}&nbsp;
+                      <strong>Country: </strong>
+                      {currentTrip.departure.country || 'N/A'}
+                    </Typography>
+                    <Typography variant="h5">Destination location</Typography>
+                    {currentTrip.destinations.map((destination, index) => (
+                      <>
+                        <Typography>Destionation {index + 1}</Typography>
+                        <Typography>
+                          <strong>City:</strong> {destination.city}&nbsp;
+                          <strong>State: </strong>
+                          {destination.state || 'N/A'}&nbsp;
+                          <strong>Province: </strong>
+                          {destination.province || 'N/A'}&nbsp;
+                          <strong>Country: </strong>
+                          {destination.country || 'N/A'}
+                        </Typography>
+                      </>
+                    ))}
+                    <hr />
+                    <Button variant="outlined">Edit</Button>&nbsp;
+                    <Button variant="outlined" color="error">
+                      Delete
+                    </Button>
                   </>
-                ))}
-                <hr />
-                <Button variant="outlined">Edit</Button>&nbsp;
-                <Button variant="outlined" color="error">
-                  Delete
-                </Button>
-              </>
-            )}
+                )}
+              </Box>
+            </Modal>
           </Box>
-        </Modal>
-      </Box>
+        </div>
+      </div>
     </>
   );
 }

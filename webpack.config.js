@@ -1,4 +1,5 @@
 const path = require('path');
+const fs = require('fs');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const dotenv = require('dotenv');
 const { EnvironmentPlugin } = require('webpack');
@@ -13,7 +14,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: 'public/index.html', // to import index.html file inside index.js
     }),
-    new EnvironmentPlugin(['BASE_BACKEND_SERVER_URL']),
+    new EnvironmentPlugin(Object.keys(process.env)),
   ],
   devServer: {
     port: process.env.PORT, // you can change the port
