@@ -12,6 +12,8 @@ import NotFound from './components/NotFound';
 import { ToastContainer } from 'react-toastify';
 import DashboardLayout from './components/Layouts/Dashboard';
 import HomePageLayout from './components/Layouts/Home';
+import CreateAccomodation from './components/CreateAccomodation';
+import CreateLocation from './components/CreateLocation.js';
 
 const App = () => {
   return (
@@ -31,6 +33,12 @@ const App = () => {
             <Route path="trips" element={<Request />} />
             <Route exact path="userprofile" element={<Userprofile />} />
             <Route path="*" element={<NotFound />} />
+            <Route
+              exact
+              path="/createAccomodation"
+              element={<CreateAccomodation />}
+            />
+            <Route exact path="/createLocation" element={<CreateLocation />} />
           </Route>
           <Route exact path="*" element={<NotFound />} />
         </Routes>
