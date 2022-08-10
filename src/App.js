@@ -7,6 +7,7 @@ import Dashboard from "./components/Dashboard";
 import RecoveryForm from "./components/recoveryForm";
 import ResetForm from "./components/resetForm";
 import LoginForm from "./components/LoginForm";
+import SocialAuth from './components/SocialOAuth';
 
 const App = () => {
   return (
@@ -23,12 +24,14 @@ const App = () => {
           
           <Route exact path="/dashboard" element={<Dashboard />} />
 
-          <Route exact path="recover" element={<RecoveryForm />} />
+					<Route exact path='recover' element={<RecoveryForm />} />
 
-          <Route exact path="reset" element={<ResetForm />} />
-        </Routes>
-      </div>
-    </div>
+					<Route exact path='reset' element={<ResetForm />} />
+					{/* <Route exact path='dashboard' element={<Dashboard />} /> */}
+				</Routes>
+			</div>
+			<SocialAuth />
+		</div>
   );
 };
 

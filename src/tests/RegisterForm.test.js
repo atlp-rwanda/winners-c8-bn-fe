@@ -28,29 +28,26 @@ afterEach(()=>{
 describe('Connected Register Form React-Redux Component', () => {
 	let store;
 	let component;
-  
+
 	beforeEach(() => {
-	  store = mockStore({
-		registration: false,
-		alert: ''
-	  });
+		store = mockStore({
+			registration: false,
+			alert: '',
+		});
 
-	  store.dispatch = jest.fn();
-
-	  component = renderer.create(
-		<Provider store={store}>
-			<MemoryRouter>
-				<UserRegisterForm />
-			</MemoryRouter>
-		  
-		</Provider>
-	  );
+		component = renderer.create(
+			<Provider store={store}>
+				<MemoryRouter>
+					<UserRegisterForm />
+				</MemoryRouter>
+			</Provider>,
+		);
 	});
-  
+
 	it('should render with given state from Redux store', () => {
 		expect(component.toJSON()).toMatchSnapshot();
 	});
-  });
+});
 
 
 
@@ -69,7 +66,6 @@ describe('register(user) for actions', () => {
 
 	})
 	
-
     it('dispatches FAILURE after signup failure', async () => {
 		store.clearActions();
 		const userObj = {

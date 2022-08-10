@@ -6,6 +6,7 @@ import { registration } from "./userReducers";
 import {alert} from "./alertReducers"
 import resetReducer from "./resetReducer";
 import recoverReducer from "./recoverReducer";
+import userReducer from "./SocialReducers";
 
 export default combineReducers({
   auth: authReducer,
@@ -14,4 +15,7 @@ export default combineReducers({
   alert,
   reset: resetReducer,
   recover: recoverReducer,
+  user: userReducer,
 });
+  
+
