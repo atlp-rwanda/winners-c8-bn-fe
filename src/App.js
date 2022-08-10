@@ -4,6 +4,7 @@ import Home from './components/Home';
 import { BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import LoginForm from './components/LoginForm';
 import Dashboard from "./components/Dashboard";
+import CreateAccomodation from "./components/CreateAccomodation"
 
 const App = () => {
   return (
@@ -17,6 +18,7 @@ const App = () => {
             <Route exact path="/login" element={<LoginForm />} />
             
             <Route exact path="/dashboard" element={<Dashboard />} />
+            <Route exact path="/createAccomodation" element={<CreateAccomodation />} />
               
           </Routes>
         </div>
