@@ -1,9 +1,9 @@
-  .navbar {
-    background-color: #395B64;
-  }
-  .navbar a {
-    text-decoration: none;
-  }
-  .navbar a:hover {
-    color: #3498DB;
-  }
+.navbar {
+  background-color: #395B64;
+}
+.navbar a {
+  text-decoration: none;
+}
+.navbar a:hover {
+  color: #3498DB;
+}

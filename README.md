@@ -31,6 +31,9 @@ The page will reload when you make changes.
 
 N/A
 
+#### `npm test -- -u`
+This helps to update snapshots of the tests if any used snapshots
+
 ### `npm run build`
 
 Builds the app for production to the `./dist` folder.\

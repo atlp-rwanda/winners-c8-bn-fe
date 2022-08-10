@@ -10,6 +10,7 @@ export const errorToast =(msg)=>{
         transition:Zoom,
         position: toast.POSITION.TOP_RIGHT
     })
+   
 }
 
 export const existToast =(msg)=>{
@@ -23,13 +24,11 @@ export const existToast =(msg)=>{
 }
 
 export const successToast =(msg)=>{
-    toast.success(
-    <div>{msg}</div>, {
+    toast.success(<div>{msg}</div>, {
         draggable: true,
         autoClose:5000,
         transition:Zoom,
         position: toast.POSITION.TOP_RIGHT
-    }
-)
+    })
    
 }
