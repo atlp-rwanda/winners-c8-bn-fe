@@ -10,9 +10,6 @@ import "react-toastify/dist/ReactToastify.css";
 const UserProfile = () => {
 
   const userData= useSelector((state) => state.userProfile?.user?.user)
-  const userDataHandle= useSelector((state) => state.userProfile)
-
-  console.log("here is the data",((userDataHandle.user==null) || (userDataHandle.user.firstName == undefined)))
   const [dataForm, setFormData] = useState();
   const [isLoading, setIsLoading] = useState(false);
   const [disable, setDisable] = useState(true)
@@ -84,7 +81,7 @@ const UserProfile = () => {
   };
   
     return ( 
-      <div className="home">
+      <div className="home" data-testid='update-1'>
       <Sidebar />
       <div className="homeContainer">
         <Navbar />

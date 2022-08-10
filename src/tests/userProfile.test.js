@@ -1,6 +1,5 @@
 import React from "react";
-import { FETCH_USER_PROFILE_SUCCESS, FETCH_USER_PROFILE_FAILED, UPDATE_USER_PROFILE_SUCCESS, UPDATE_USER_PROFILE_LOADING, UPDATE_USER_PROFILE_FAILED } from "../redux/types/userProfileTypes";
-import { fetchUserProfile } from "../redux/actions/userProfileAction";
+import UserProfile from "../components/UserProfile/UserProfile";
 import {
   render,
   screen,
@@ -8,33 +7,43 @@ import {
   fireEvent,
   waitFor,
 } from "@testing-library/react";
+import '@testing-library/jest-dom';
 import { Provider } from "react-redux";
-import { createStore, applyMiddleware } from "redux";
-import { act } from "react-dom/test-utils";
-import configureStore from "redux-mock-store";
-import {
-  BrowserRouter as Router,
-  MemoryRouter as MemoryRouter,
-} from "react-router-dom";
+import { BrowserRouter as Router } from "react-router-dom";
 import thunk from "redux-thunk";
 import rootReducer from "../redux/reducers";
-
+import configureMockStore from "redux-mock-store";
+const middleware = [thunk];
+const mockStore = configureMockStore(middleware);
 
 const initialState = {
     userProfile: {
-  
+      requestSent: false,
+      responseData: {
+        isSuccess: undefined,
+        message: undefined,
+      },
     },
   };
+
   let store;
   beforeEach(() => {
-    store = createStore(rootReducer, initialState, applyMiddleware(thunk));
+    store = mockStore(initialState);
   });
-  
+
   afterEach(() => {
     cleanup;
   });
+test("should render user update component", ()=>{   
+  render(
+    <Provider store={store}>
+    <Router>
+      <UserProfile />
+    </Router>
+    </Provider>
+    );
   
-  describe("It should fetch the user information", () => {
-    const userData = fetchUserProfile()(dispatch);
-    console.log(userData)
-  });
+  const userUpdateElement = screen.getByTestId('update-1');
+  expect(userUpdateElement).toBeInTheDocument();
+  expect(userUpdateElement).toHaveTextContent('Personal information');
+})
