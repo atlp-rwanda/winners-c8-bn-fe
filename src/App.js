@@ -8,12 +8,12 @@ import LoginForm from './components/LoginForm';
 import Userprofile from './components/UserProfile/UserProfile';
 import Request from './pages/Request';
 import Dashboard from './components/Dashboard';
+import CreateAccomodation from './components/CreateAccomodation';
+import CreateLocation from './components/CreateLocation.js';
 import NotFound from './components/NotFound';
 import { ToastContainer } from 'react-toastify';
 import DashboardLayout from './components/Layouts/Dashboard';
 import HomePageLayout from './components/Layouts/Home';
-import CreateAccomodation from './components/CreateAccomodation';
-import CreateLocation from './components/CreateLocation.js';
 
 const App = () => {
   return (

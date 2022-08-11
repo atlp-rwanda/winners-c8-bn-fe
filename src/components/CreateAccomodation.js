@@ -1,217 +1,144 @@
-import React, { useState } from "react";
+import React, {Component } from "react";
 import { connect } from "react-redux";
 import { toast, ToastContainer } from "react-toastify";
-
-
-const CreateAccomodation =  (props) =>{
-  let [activeStep, setActiveStep] = useState(1);
-  const [location, setLocation] = useState({
-    country: "",
-    province: "",
-    city: "",
-  });
-
-
-  const [accomodation, setAccomodation] = useState({
-    hotelName: "",
-    accommodation_image: "",
-    longitude: "",
-    latitude: "",
-    description: "",
-  });
-
-  const [accomodationRoom, setAccomodationRoom]=useState({
-    bedType:"",
-    Pricing:"",
-    roomImage: "",
-  })
-
-  const next = () => {
-    setActiveStep(activeStep + 1);
-  };
-  const prev = () => {
-    setActiveStep(activeStep - 1);
-  };
-
-  const gotoStep = (step) => {
-    if (step <= activeStep) {
-      setActiveStep(step);
-    } else if (step - activeStep <= 1) {
-      setActiveStep(step);
+ 
+  class CreateAccommodation extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+          accomodation:{
+            hotelName: "",
+            accommodation_image: "",
+            location: "",
+            longitude: "",
+            latitude: "",
+            description: "",
+          },
+          accomodationRoom:{
+            bedType:"",
+            Pricing:"",
+            roomImage: "",
+          },
+          activeStep:1,
+          
+            locations: []
+        };
     }
-  };
-
-  const onSubmit = async () => {
-    console.log(props.token)
-    if (activeStep == 1) {
-      let myHeaders = new Headers();
-      myHeaders.append("Content-Type", "application/json");
-      myHeaders.append("Authorization", `Bearer ${props.token}`)
-
-      let raw = JSON.stringify(location);
-
-      let requestOptions = {
-        method: "POST",
-        headers: myHeaders,
-        body: raw,
-        redirect: "follow",
-      };
-     
-      let result = await fetch(
-        "https://winners-c8-bn-be-staging.herokuapp.com/api/locations",
-        requestOptions
-      ).then((response) => response.json());
-
-      if (result.status == 201) {
-        toast.success(result.message, {
-          position: toast.POSITION.TOP_CENTER,
-        });
-      }else{
-        console.log(result)
-        toast.error(result.message||result.error, {
-          position: toast.POSITION.TOP_CENTER,
-        });     
-       }
-    }
-    if (activeStep == 2) {
-        let myHeaders = new Headers();
-      myHeaders.append("Content-Type", "multipart/form-data");
-      myHeaders.append("Authorization", `Bearer ${props.token}`)
-      const form=new FormData()
-      for( let key in accomodation){
-        form.append(key, accomodation[key])
+     next = () => {
+      setActiveStep(activeStep + 1);
+    };
+     prev = () => {
+      setActiveStep(activeStep - 1);
+    };
+  
+   gotoStep = (step) => {
+      if (step <= activeStep) {
+        setActiveStep(step);
+      } else if (step - activeStep <= 1) {
+        setActiveStep(step);
       }
-
-      let requestOptions = {
-        method: "POST",
-        headers: myHeaders,
-        body: form,
-        redirect: "follow",
-      };
-     
-      let result = await fetch(
-        "https://winners-c8-bn-be-staging.herokuapp.com/api/accommodations",
-        requestOptions
-      ).then((response) => response.json());
-
-      if (result.status == 201) {
-        console.log(result);
-        toast.success("Accomodation Created!", {
-          position: toast.POSITION.TOP_CENTER,
-        });
-      }else{
-
-        toast.error(result.message||result.error, {
-          position: toast.POSITION.TOP_CENTER,
-        });      }
-    }
-    if (activeStep == 3) {
-        let myHeaders = new Headers();
-      myHeaders.append("Content-Type", "application/json");
-      myHeaders.append("Authorization", `Bearer ${props.token}`)
-
-      let raw = JSON.stringify(accomodationRoom);
-
-      let requestOptions = {
-        method: "POST",
-        headers: myHeaders,
-        body: raw,
-        redirect: "follow",
-      };
-     
-      let result = await fetch(
-        "https://winners-c8-bn-be-staging.herokuapp.com/api/accommodations/{accommodationID}/rooms/",
-        requestOptions
-      ).then((response) => response.json());
-
-      if (result.status == 201) {
-        console.log(result);
-        toast.success("Room is Created!", {
-          position: toast.POSITION.TOP_CENTER,
-        });
-      }else{
-        console.log(result);
+    };
+  
+   onSubmit = async () => {
+      console.log(props.token)
+      if (activeStep == 2) {
+          let myHeaders = new Headers();
+        myHeaders.append("Content-Type", "multipart/form-data");
+        myHeaders.append("Authorization", `Bearer ${props.token}`)
+        const form=new FormData()
+        for( let key in accomodation){
+          form.append(key, accomodation[key])
+        }
+  
+        let requestOptions = {
+          method: "POST",
+          headers: myHeaders,
+          body: form,
+          redirect: "follow",
+        };
+       
+        let result = await fetch(
+          "https://winners-c8-bn-be-staging.herokuapp.com/api/accommodations",
+          requestOptions
+        ).then((response) => response.json());
+  
+        if (result.status == 201) {
+          console.log(result);
+          toast.success("Accomodation Created!", {
+            position: toast.POSITION.TOP_CENTER,
+          });
+        }else{
+  
+          toast.error(result.message||result.error, {
+            position: toast.POSITION.TOP_CENTER,
+          });      }
       }
+      if (activeStep == 3) {
+          let myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+        myHeaders.append("Authorization", `Bearer ${props.token}`)
+  
+        let raw = JSON.stringify(accomodationRoom);
+  
+        let requestOptions = {
+          method: "POST",
+          headers: myHeaders,
+          body: raw,
+          redirect: "follow",
+        };
+       
+        let result = await fetch(
+          "https://winners-c8-bn-be-staging.herokuapp.com/api/accommodations/{accommodationID}/rooms/",
+          requestOptions
+        ).then((response) => response.json());
+  
+        if (result.status == 201) {
+          console.log(result);
+          toast.success("Room is Created!", {
+            position: toast.POSITION.TOP_CENTER,
+          });
+        }else{
+          console.log(result);
+        }
+      }
+    };
+    componentDidMount() {
+        const url = "https://winners-c8-bn-be-staging.herokuapp.com/api/locations"
+        fetch(url, {
+            method: "GET",
+            headers: {
+                'Content-Type': 'application/json',
+                "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNhMGE2Zjk2LWEyNTUtNGY3Zi04NmIwLTcwMmRjMWM0MmM1ZiIsImVtYWlsIjoia2FyZGF2MjAxOUBnbWFpbC5jb20iLCJ1c2VyX3JvbGUiOiI3YWRhZTJmMS00ZDM1LTQ3MGQtODUxMi0xYjk2MzQzMzBhOWUiLCJtYW5hZ2VySWQiOm51bGwsImlhdCI6MTY2MDIyODc0MywiZXhwIjoxNjYwMzE1MTQzfQ.gdxkICME5SIohRbWY4IzF8Ft-NqR3M-o_UO44aLXT-w"
+            },
+        }).then((response) => response.json())
+            .then(result => {
+                const data = result.data;
+                this.setState({ locations: data });
+            });
     }
-  };
+    render(){
 
   return (
     <div>
-
       <div className="progressbar">
         <ul id="progressbar">
           <ToastContainer/>
-          <li
-            className={activeStep == 1 ? "active" : ""}
-            onClick={(e) => gotoStep(1)}
-            id="location"
-          >
-            Create New Location
-          </li>
           <li
             className={activeStep == 2 ? "active" : ""}
             id="accomodation"
             onClick={(e) => gotoStep(2)}
           >
-            Creacte Accomodations
+            Create Accomodations
           </li>
           <li
             className={activeStep == 3 ? "active" : ""}
             id="rooms"
             onClick={(e) => gotoStep(3)}
           >
-            Create accomodation romms
+            Create accomodation rooms
           </li>
         </ul>
       </div>
-
-{/* Create new location */}
-      {activeStep == 1 && (
-        <div className="p-4 m-4">
-          <form>
-            <div>
-              <label htmlFor="country">Country</label>
-              <input
-                value={location.country}
-                onChange={(e) =>
-                  setLocation({ ...location, country: e.target.value })
-                }
-                type="text"
-                id="country"
-                name="country"
-                className="form-control"
-              />
-            </div>
-            <div>
-              <label htmlFor="province">Province</label>
-              <input
-                value={location.province}
-                onChange={(e) =>
-                  setLocation({ ...location, province: e.target.value })
-                }
-                type="text"
-                id="province"
-                name="province"
-                className="form-control"
-              />
-            </div>
-            <div>
-              <label htmlFor="city">City</label>
-              <input
-                value={location.city}
-                onChange={(e) =>
-                  setLocation({ ...location, city: e.target.value })
-                }
-                type="text"
-                id="city"
-                name="city"
-                className="form-control"
-              />
-            </div>
-          </form>
-        </div>
-      )}
-
       {activeStep == 2 && ( <div className="p-4 m-4">
           <form>
             <div>
@@ -226,6 +153,16 @@ const CreateAccomodation =  (props) =>{
                 name="hotelName"
                 className="form-control"
               />
+            </div>
+            <div>
+            
+            <input type="text" placeholder="Name"></input>
+                <label htmlFor="location">Location:</label>
+                <select name="location_id" id="location">
+                    {options}
+                </select>
+                <button type='submit'>Submit</button>
+
             </div>
             <div>
               <label htmlFor="image">Image</label>
@@ -282,8 +219,7 @@ const CreateAccomodation =  (props) =>{
         </div>
       
       )
-      }
-
+              }  
       {activeStep == 3 && (
        <div className="p-4 m-4">
        <form>
@@ -347,7 +283,9 @@ const CreateAccomodation =  (props) =>{
       </div>
     </div>
   );
-}
+        }
+        }
+    
 const mapStateToProps = state => ({
     token: state.auth.token
   });
