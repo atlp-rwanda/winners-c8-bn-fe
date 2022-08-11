@@ -4,7 +4,7 @@
   
     .ContentContainer {
       flex: 6;
-    }
+    
     .titleDashboard{
         width: 95%;
         margin: 5px auto;
@@ -28,12 +28,18 @@
     .contentBlock{
       width: 95%;
       margin: 0px auto;
-    }
+    form{
+      width: 100%;
+      
+    
     .labelClass{
         padding-left: 10px;
         position: absolute;
+        color: #606060;
         font-style: normal;
-        font-size: 15px;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 21px;
         left: 220px;
         top: 250px;
         justify-content: space-between;
@@ -49,8 +55,11 @@
     .role{ 
         padding-left: 10px;
         position: absolute;
+        color: #606060;
         font-style: normal;
-        font-size: 15px;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 21px;
         left: 220px;
         top: 400px;  
     }
@@ -64,22 +73,19 @@
     
     }
     .buttonClass{
-        position: absolute;
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        margin-left: 300px;
-        align-items: center;
-        padding: 10px 60px;
-        position: absolute;
-        bottom: 180px;
-        gap: 10px;
-        right: 800px;
-        background: #395B64;
+      border: none;
+      padding: 8px 8px;
+      background: #395B64;
+      border-radius: 5px;
+      color: #FFFFFF;
+      margin-top: 370px;
+      margin-left: 250px;
+      width: 120px;
         }
-        .buttonText{
-          color: white;
-          size:100px
+        .buttonClass:hover{
+          background-color: #508695;
+        }
       }
-
+    }
   }
+}

@@ -16,7 +16,6 @@ const UserRoleDash = () => {
         const roleData = useSelector((state) => state.roles?.roles)
       
         useEffect(() => {
-          // console.log("data", SelectedEmail)
           }, [SelectedEmail])
       
       
@@ -77,7 +76,7 @@ const UserRoleDash = () => {
            <h6>Assign Role</h6>
           </div>
         </div>
-  
+  <div className='contentBlock'>
 <form className='formClass'>
 <label className='labelClass'>Choose an Email</label>
 
@@ -85,7 +84,6 @@ const UserRoleDash = () => {
  className='inputData'
  data-testid="user-byEmail"
 defaultValue={users?.email}
-// disabled={disable}
   onChange={(event) =>
     setSelectedEmail(
        event.target.value,
@@ -105,7 +103,6 @@ defaultValue={users?.email}
  className='OptionSelect'
  data-testid="role-name-byId"
   defaultValue={roles?.role}
-// disabled={disable}
   onChange={(event) =>
 {setSelectedRole(event.target.value)}
   }
@@ -126,6 +123,7 @@ onClick={SubmitAssignRole}
 ><div className='buttonText'>assignRole</div></button> 
 <ToastContainer/>
 </form>
+</div>
       </div>
     </div>
     </>

@@ -1,4 +1,4 @@
-import { FETCH_ROLE_FAILED, FETCH_ROLE_SUCCESS,ASSIGN_ROLE_SUCCESS ,ASSIGN_ROLE_FAILED, ASSIGN_ROLE_LOADING} from '../actions/actionTypes';
+import { FETCH_ROLE_FAILED, FETCH_ROLE_SUCCESS,ASSIGN_ROLE_SUCCESS, FETCH_ROLE_LOADING ,ASSIGN_ROLE_FAILED, ASSIGN_ROLE_LOADING} from '../actions/actionTypes';
 const fetcRoleInitialState = {
   loading: false,
   error: null,
@@ -11,6 +11,12 @@ const assignRoleInitialState = {
 }
  export function rolesReducer(state = fetcRoleInitialState, action) {
     switch (action.type) {
+      case FETCH_ROLE_LOADING:
+        return {
+          ...state,
+          loading: true
+          
+        }
       
       case FETCH_ROLE_SUCCESS:
         return {
