@@ -5,9 +5,11 @@ import { BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import UserRegisterForm from "./components/RegisterForm";
 import Dashboard from "./components/Dashboard";
 import CreateAccomodation from "./components/CreateAccomodation"
+import CreateLocation from "./components/CreateLocation.js"
 import RecoveryForm from "./components/recoveryForm";
 import ResetForm from "./components/resetForm";
 import LoginForm from "./components/LoginForm";
+
 
 const App = () => {
   return (
@@ -26,7 +28,7 @@ const App = () => {
 
           <Route exact path="recover" element={<RecoveryForm />} />
           <Route exact path="/createAccomodation" element={<CreateAccomodation />} />
-
+          <Route exact path="/createLocation" element={<CreateLocation />} />
           <Route exact path="reset" element={<ResetForm />} />
         </Routes>
       </div>
