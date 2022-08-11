@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {fetchUserProfile, updateUserProfile} from "../../redux/actions/userProfileAction"
 import { Skeleton } from "@mui/material";
 import { ToastContainer, toast } from "react-toastify";
+import { successToast, errorToast } from '../../helpers/generateToast';
 import "react-toastify/dist/ReactToastify.css";
 const UserProfile = () => {
 
@@ -18,13 +19,15 @@ const UserProfile = () => {
   
   useEffect(() => {
     fetchUserProfile()(dispatch);
+    successToast("Your Profile is loading")
+
   }, []);
 
   let formData = new FormData();
 
   const updateUser = (e) =>{
     e.preventDefault();
-
+    successToast("Updating your profile")
     formData.append("firstName",dataForm?.firstName)
     formData.append("lastName",dataForm?.lastName)
     formData.append("department",dataForm?.department)
@@ -53,7 +56,6 @@ const UserProfile = () => {
       preferredLanguage: userData?.preferredLanguage,
       username: userData?.username,
     })    
-
     setIsLoading(true)
 
   }, [userData]);
@@ -272,6 +274,7 @@ const UserProfile = () => {
               </button>
               <button 
               type="submit"
+              disabled={disable}
               onClick={updateUser}
               className="update_btn"
               >
