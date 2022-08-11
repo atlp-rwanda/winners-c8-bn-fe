@@ -8,7 +8,6 @@ import RecoveryForm from "./components/recoveryForm";
 import ResetForm from "./components/resetForm";
 import LoginForm from "./components/LoginForm";
 import Userprofile from "./components/UserProfile/UserProfile"
-import Dashboard from "./components/Dashboard";
 import SocialAuth from './components/SocialOAuth';
 
 const App = () => {
