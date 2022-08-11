@@ -1,0 +1,85 @@
+.Content {
+    display: flex;
+    background: #F5F5F5;
+  
+    .ContentContainer {
+      flex: 6;
+    }
+    .titleDashboard{
+        width: 95%;
+        margin: 5px auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .text{
+          display: flex;
+          align-items: center;
+          padding: 20px;
+          margin-top: 10px;
+          gap: 20px;
+          h3, h4,h6{
+            color:#395B64;
+            font-size: medium
+            ;
+          }
+        }
+    }
+    .contentBlock{
+      width: 95%;
+      margin: 0px auto;
+    }
+    .labelClass{
+        padding-left: 10px;
+        position: absolute;
+        font-style: normal;
+        font-size: 15px;
+        left: 220px;
+        top: 250px;
+        justify-content: space-between;
+    }
+    .inputData{
+        position: absolute;
+        width: 450px;
+        border-color: #F9FAFB #F9FAFB #606060;
+        height: 40px;
+        left: 320px;
+        top: 300px; 
+    }
+    .role{ 
+        padding-left: 10px;
+        position: absolute;
+        font-style: normal;
+        font-size: 15px;
+        left: 220px;
+        top: 400px;  
+    }
+    .OptionSelect{
+        position: absolute;
+        width: 450px;
+        border-color: #F9FAFB #F9FAFB #606060;
+        height: 40px;
+        left: 320px;
+        top: 450px; 
+    
+    }
+    .buttonClass{
+        position: absolute;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        margin-left: 300px;
+        align-items: center;
+        padding: 10px 60px;
+        position: absolute;
+        bottom: 180px;
+        gap: 10px;
+        right: 800px;
+        background: #395B64;
+        }
+        .buttonText{
+          color: white;
+          size:100px
+      }
+
+  }

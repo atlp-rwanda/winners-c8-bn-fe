@@ -7,6 +7,8 @@ import {alert} from "./alertReducers"
 import resetReducer from "./resetReducer";
 import recoverReducer from "./recoverReducer";
 import userReducer from "./SocialReducers";
+import usersReducer from "./UserReducer";
+import { rolesReducer, assignRoleReducer } from "./RoleReducer";
 
 export default combineReducers({
   auth: authReducer,
@@ -16,6 +18,9 @@ export default combineReducers({
   reset: resetReducer,
   recover: recoverReducer,
   user: userReducer,
+  users: usersReducer,
+  roles: rolesReducer,
+  assignRole: assignRoleReducer
 });
   
 
