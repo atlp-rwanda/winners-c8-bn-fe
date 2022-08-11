@@ -1,13 +1,9 @@
 import React from "react";
 import UserProfile from "../components/UserProfile/UserProfile";
-import {
-  render,
-  screen,
-  cleanup,
-  fireEvent,
-  waitFor,
-} from "@testing-library/react";
+import renderer from 'react-test-renderer'
+import { render, screen, cleanup } from "@testing-library/react";
 import '@testing-library/jest-dom';
+import { MemoryRouter} from 'react-router-dom';
 import { Provider } from "react-redux";
 import { BrowserRouter as Router } from "react-router-dom";
 import thunk from "redux-thunk";
@@ -46,4 +42,18 @@ test("should render user update component", ()=>{
   const userUpdateElement = screen.getByTestId('update-1');
   expect(userUpdateElement).toBeInTheDocument();
   expect(userUpdateElement).toHaveTextContent('Personal information');
+});
+
+
+test("<UserUpdate /> matches snapshot", ()=>{   
+  const component = renderer
+		.create(
+			<Provider store={store}>
+				<MemoryRouter>
+          <UserProfile />
+				</MemoryRouter>
+			</Provider>,
+		)
+		.toJSON();
+    expect(component).toMatchSnapshot();
 })
