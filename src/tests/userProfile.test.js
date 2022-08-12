@@ -1,40 +1,58 @@
-import React from "react";
-import { FETCH_USER_PROFILE_SUCCESS, FETCH_USER_PROFILE_FAILED, UPDATE_USER_PROFILE_SUCCESS, UPDATE_USER_PROFILE_LOADING, UPDATE_USER_PROFILE_FAILED } from "../redux/types/userProfileTypes";
-import { fetchUserProfile } from "../redux/actions/userProfileAction";
-import {
-  render,
-  screen,
-  cleanup,
-  fireEvent,
-  waitFor,
-} from "@testing-library/react";
-import { Provider } from "react-redux";
-import { createStore, applyMiddleware } from "redux";
-import { act } from "react-dom/test-utils";
-import configureStore from "redux-mock-store";
-import {
-  BrowserRouter as Router,
-  MemoryRouter as MemoryRouter,
-} from "react-router-dom";
-import thunk from "redux-thunk";
-import rootReducer from "../redux/reducers";
-
+import React from 'react';
+import UserProfile from '../components/UserProfile/UserProfile';
+import renderer from 'react-test-renderer';
+import { render, screen, cleanup } from '@testing-library/react';
+import '@testing-library/jest-dom';
+import { MemoryRouter } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import { BrowserRouter as Router } from 'react-router-dom';
+import thunk from 'redux-thunk';
+import rootReducer from '../redux/reducers';
+import configureMockStore from 'redux-mock-store';
+const middleware = [thunk];
+const mockStore = configureMockStore(middleware);
 
 const initialState = {
-    userProfile: {
-  
+  userProfile: {
+    requestSent: false,
+    responseData: {
+      isSuccess: undefined,
+      message: undefined,
     },
-  };
-  let store;
-  beforeEach(() => {
-    store = createStore(rootReducer, initialState, applyMiddleware(thunk));
-  });
-  
-  afterEach(() => {
-    cleanup;
-  });
-  
-  describe("It should fetch the user information", () => {
-    const userData = fetchUserProfile()(dispatch);
-    console.log(userData)
-  });
+  },
+};
+
+let store;
+beforeEach(() => {
+  store = mockStore(initialState);
+});
+
+afterEach(() => {
+  cleanup;
+});
+test('should render user update component', () => {
+  render(
+    <Provider store={store}>
+      <Router>
+        <UserProfile />
+      </Router>
+    </Provider>
+  );
+
+  const userUpdateElement = screen.getByTestId('update-1');
+  expect(userUpdateElement).toBeInTheDocument();
+  expect(userUpdateElement).toHaveTextContent('Personal information');
+});
+
+test('<UserUpdate /> matches snapshot', () => {
+  const component = renderer
+    .create(
+      <Provider store={store}>
+        <MemoryRouter>
+          <UserProfile />
+        </MemoryRouter>
+      </Provider>
+    )
+    .toJSON();
+  expect(component).toMatchSnapshot();
+});

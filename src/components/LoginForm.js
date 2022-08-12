@@ -3,12 +3,14 @@ import '../../public/styles/LoginForm/index.css';
 import authActions from '../redux/actions/authActions';
 import { connect } from 'react-redux';
 import { Navigate, Link } from 'react-router-dom';
-import Joi, { disallow } from 'joi';
+import Joi, { disallow, version } from 'joi';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { FcGoogle } from 'react-icons/fc';
 import { ImFacebook } from 'react-icons/im';
+import { errorToast, successToast } from '../helpers/generateToast';
+
 class LoginForm extends React.Component {
   constructor(props) {
     super(props);
@@ -21,6 +23,7 @@ class LoginForm extends React.Component {
       success: false,
       error: false,
       responseMessage: 'Signing in . . .',
+      verify: '',
     };
   }
   isFormSubmitted = false;
@@ -118,7 +121,9 @@ class LoginForm extends React.Component {
   inputErrorStyle = {
     border: '2px solid red',
   };
+
   render() {
+    let { message_success } = this.props.alert;
     return (
       <div className="formBody">
         {this.isFormSubmitted && <Navigate to="/dashboard" replace={true} />}
@@ -126,6 +131,14 @@ class LoginForm extends React.Component {
           {
             <div className="col-md-8 formWhite">
               <ToastContainer />
+              <div>
+                {message_success ? (
+                  <p>{'Account created, Now verify email!'}</p>
+                ) : (
+                  ''
+                )}
+              </div>
+
               <div className="row d-flex justify-content-center">
                 <div className="col-xs-12 col-md-8">
                   <h2 className="header1">Sign in </h2>
@@ -215,12 +228,16 @@ class LoginForm extends React.Component {
                 }}
               >
                 <div style={{ paddingRight: '20px' }}>
-                  <a href="https://winners-c8-bn-be-staging.herokuapp.com/api/oauth/google">
+                  <a
+                    href={`${process.env.BASE_BACKEND_SERVER_URL}oauth/google`}
+                  >
                     <FcGoogle style={{ fontSize: '40px', cursor: 'pointer' }} />
                   </a>
                 </div>
                 <div style={{ paddingLeft: '20px' }}>
-                  <a href="https://winners-c8-bn-be-staging.herokuapp.com/api/oauth/facebook">
+                  <a
+                    href={`${process.env.BASE_BACKEND_SERVER_URL}/oauth/facebook`}
+                  >
                     <ImFacebook
                       style={{
                         fontSize: '35px',
@@ -235,6 +252,12 @@ class LoginForm extends React.Component {
                   <div className="pass-link">
                     <Link to="/recover">Lost your password?</Link>
                   </div>
+                  <div className="pass-link">
+                    <p>
+                      Don't have an account?{' '}
+                      <Link to="/register">Register</Link>
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -247,6 +270,7 @@ class LoginForm extends React.Component {
 
 const mapStateToProps = (state) => ({
   token: state.auth.token,
+  alert: state.alert,
 });
 const { login: LOGIN, logout: LOGOUT } = authActions;
 export default connect(mapStateToProps, { LOGIN, LOGOUT })(LoginForm);

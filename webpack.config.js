@@ -1,5 +1,4 @@
 const path = require('path');
-const fs = require('fs');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const dotenv = require('dotenv');
 const { EnvironmentPlugin } = require('webpack');
@@ -9,6 +8,7 @@ module.exports = {
   output: {
     path: path.join(__dirname, '/dist'), // the bundle output path
     filename: 'bundle.js', // the name of the bundle
+    publicPath: '/',
   },
   plugins: [
     new HtmlWebpackPlugin({
