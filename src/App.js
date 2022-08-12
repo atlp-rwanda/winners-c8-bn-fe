@@ -7,6 +7,7 @@ import Dashboard from "./components/Dashboard";
 import RecoveryForm from "./components/recoveryForm";
 import ResetForm from "./components/resetForm";
 import LoginForm from "./components/LoginForm";
+import Userprofile from "./components/UserProfile/UserProfile"
 import SocialAuth from './components/SocialOAuth';
 import UserRoleDash from "./components/AssignRole/UserRoleDash"
 
@@ -24,6 +25,8 @@ const App = () => {
           <Route exact path="/register" element={<UserRegisterForm />} />
           
           <Route exact path="/dashboard" element={<Dashboard />} />
+
+          <Route exact path="userprofile" element={<Userprofile />} />
 
 					<Route exact path='recover' element={<RecoveryForm />} />
 

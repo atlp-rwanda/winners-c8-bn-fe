@@ -28,26 +28,25 @@ const Sidebar = () => {
       <div className="center">
         <ul>
           <p className="title">MAIN</p>
-          <Link to="" style={{ textDecoration: "none" }}>
+          <Link to="/dashboard" style={{ textDecoration: "none" }}>
           <li>
             <DashboardIcon className="icon" />
             <span>Dashboard</span>
           </li>
           </Link>
           <p className="title">PAGES</p>
-          <Link to="" style={{ textDecoration: "none" }}>
+          <Link to="/users" style={{ textDecoration: "none" }}>
             <li>
               <PersonOutlineIcon className="icon" />
               <span>Create locat&accom</span>
             </li>
           </Link>
-          <Link to="" style={{ textDecoration: "none" }}>
+          <Link to="/products" style={{ textDecoration: "none" }}>
             <li>
               <StoreIcon className="icon" />
               <span>Assign Roles</span>
             </li>
           </Link>
-          <Link to="assignRole" style={{ textDecoration: "none" }}></Link>
           <li>
             <CreditCardIcon className="icon" />
             <span>Assign Managers</span>
@@ -79,7 +78,7 @@ const Sidebar = () => {
             <span>Settings</span>
           </li>
           <p className="title">GENERAL</p>
-          <Link to="" style={{ textDecoration: "none" }}>
+          <Link to="/userprofile" style={{ textDecoration: "none" }}>
           <li>
             <AccountCircleOutlinedIcon className="icon" />
             <span>Profile</span>
