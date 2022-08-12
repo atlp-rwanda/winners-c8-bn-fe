@@ -96,7 +96,7 @@ exports[`<UserUpdate /> matches snapshot 1`] = `
           </li>
         </a>
         <a
-          href="/products"
+          href="/assignRole"
           onClick={[Function]}
           style={
             Object {
