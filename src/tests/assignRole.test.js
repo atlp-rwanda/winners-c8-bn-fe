@@ -28,9 +28,6 @@ const roleInitialState = {
   afterEach(() => {
     cleanup;
   });
-test("should return the object and check the snapshot", ()=>{   
-  
-});
 test("<UserRoleDash /> matches snapshot", ()=>{   
   const component = renderer
 		.create(

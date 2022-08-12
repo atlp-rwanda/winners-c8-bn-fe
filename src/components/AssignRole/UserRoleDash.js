@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import "bootstrap/dist/css/bootstrap.min.css";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { Skeleton } from "@mui/material";
 import Select from '@mui/material/Select';
 import { fetchRoles, fetchUsers, assignRoles } from '../../redux/actions/roleActions';
 import { useDispatch, useSelector } from 'react-redux';
@@ -74,9 +75,13 @@ const UserRoleDash = () => {
           <div className="text">
            <h4>Dashboard&gt;&gt;</h4>
            <h6>Assign Role</h6>
+           </div>
+           <h4>Dashboard&gt;&gt;</h4>
           </div>
-        </div>
+        
   <div className='contentBlock'>
+  <p>Assign Role</p>  
+  {isLoading ? (<div className="Content">
 <form className='formClass'>
 <label className='labelClass'>Choose an Email</label>
 
@@ -123,6 +128,13 @@ onClick={SubmitAssignRole}
 ><div className='buttonText'>assignRole</div></button> 
 <ToastContainer/>
 </form>
+</div>):
+          <Skeleton
+          variant="rectangle"
+          animation="wave"
+          width={1100}
+          height={800}
+          />}
 </div>
       </div>
     </div>
