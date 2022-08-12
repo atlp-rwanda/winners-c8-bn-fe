@@ -17,7 +17,5 @@ test('<SocialAuth /> matches snapshot', () => {
 			</Provider>,
 		)
 		.toJSON();
-    expect(component).toMatchSnapshot();
+	expect(component).toMatchSnapshot();
 });
-
-

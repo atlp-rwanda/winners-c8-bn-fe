@@ -7,6 +7,7 @@ import Dashboard from "./components/Dashboard";
 import RecoveryForm from "./components/recoveryForm";
 import ResetForm from "./components/resetForm";
 import LoginForm from "./components/LoginForm";
+import Userprofile from "./components/UserProfile/UserProfile"
 import SocialAuth from './components/SocialOAuth';
 
 const App = () => {
@@ -24,10 +25,12 @@ const App = () => {
           
           <Route exact path="/dashboard" element={<Dashboard />} />
 
+          <Route exact path="userprofile" element={<Userprofile />} />
+
 					<Route exact path='recover' element={<RecoveryForm />} />
 
 					<Route exact path='reset' element={<ResetForm />} />
-					{/* <Route exact path='dashboard' element={<Dashboard />} /> */}
+          
 				</Routes>
 			</div>
 			<SocialAuth />

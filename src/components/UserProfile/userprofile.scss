@@ -1,0 +1,187 @@
+.home {
+    display: flex;
+    background: #F5F5F5;
+  
+    .homeContainer {
+      flex: 6;
+  
+      .titleDashboard{
+        width: 95%;
+        margin: 5px auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .text{
+          display: flex;
+          align-items: center;
+          padding: 20px;
+          margin-top: 10px;
+          gap: 20px;
+          h3, h4,h6{
+            color:#395B64;
+            font-size: medium
+            ;
+          }
+          p{
+            color: #606060;
+            font-style: normal;
+            font-weight: 500;
+            font-size: 13px;
+            line-height: 21px;
+          }
+        }
+
+        h4{
+          color: #606060;
+          font-style: normal;
+          font-weight: 500;
+          font-size: 14px;
+        }
+      }
+      .mainContent{
+        width: 95%;
+        margin: 0px auto;
+
+        p{
+          color: #606060;
+          font-style: normal;
+          font-weight: 500;
+          font-size: 16px;
+          line-height: 30px;
+        }
+        .Content{
+          background: #FFFFFF;
+          border-radius: 9px;
+          padding: 10px 60px;
+
+          p{
+            color: #606060;
+            font-style: normal;
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 30px;
+          }
+
+          .profile_image{
+            display: flex;
+            align-items: center;
+            margin-top: 5px;
+
+            .image_info{
+              display: flex;
+              align-items: center;
+
+              .avatar{
+                width: 91px;
+                height: 91px;
+                border-radius: 50%;
+              }
+              .text_info{
+                margin-left: 20px;
+                h4{
+                  font-style: normal;
+                  font-weight: 400;
+                  font-size: 14px;
+                  line-height: 21px;
+                }
+                p{
+                  margin-top: 4px;
+                  color: #395B64;
+                  font-style: normal;
+                  font-weight: 400;
+                  font-size: 14px;
+                  line-height: 21px;
+                  text-decoration: underline;
+                }
+
+              }
+
+            }
+            .Text_input{
+              border: none;
+              background: #FFFFFF;
+              color: #395B64;
+              font-size: large;
+              font-weight: 500;
+            }
+            .Text_input:focus{
+              border: none;
+              border-color: inherit;
+              outline: 0;
+              box-shadow: none;
+            }
+            button{
+              margin-left: 80px;
+              border: none;
+              padding: 8px 8px;
+              background: #395B64;
+              border-radius: 5px;
+              color: #FFFFFF;
+
+            }
+            // .file_upload{
+            //   color: #FFFFFF;
+            //   height: 60px;
+            //   width: 240px;
+            //   background-color: #395B64;
+            //   position: relative;
+            //   margin: auto;
+            //   right: 0;
+            // }
+          }
+          hr{
+            margin-top: 15px;
+            margin-bottom: 15px;
+            color: #606060;
+            opacity: 30%;
+          }
+
+          form{
+            width: 100%;
+
+            .form_container{
+              display: flex;
+              align-items: center;
+              justify-content: space-between;
+              margin-top: 15px;
+              
+              .form{
+                flex-basis: 50%;
+
+                label{
+                  color: #606060;
+                  font-style: normal;
+                  font-weight: 400;
+                  font-size: 14px;
+                  line-height: 21px;
+                }
+
+                input{
+                  width: 95%;
+                  padding: 5px 2px;
+                }
+              }
+            }
+            button{
+              border: none;
+              padding: 8px 8px;
+              background: #395B64;
+              border-radius: 5px;
+              color: #FFFFFF;
+              margin-top: 10px;
+              width: 80px;
+            }
+            button:hover{
+              background-color: #508695;
+            }
+            .update_btn{
+              margin-left: 20px;
+
+            }
+          }
+        }
+
+      }
+    }
+  }
