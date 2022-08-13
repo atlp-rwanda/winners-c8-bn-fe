@@ -135,7 +135,7 @@ class LoginForm extends React.Component {
             <div className="col-md-8 formWhite">
               <ToastContainer/>
               <div>
-              {message_success ? <p>{'Account created, Now verify email!'}</p> : ''}
+              {message_success ? <p className="alert_success">{'Account created, Now verify email!'}</p> : ''}
               </div>  
              
               <div className="row d-flex justify-content-center">
