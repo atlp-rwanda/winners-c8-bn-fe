@@ -6,7 +6,7 @@ function NotFound() {
   return (
     <>
       <Box>
-        <Typography fontSize="50px">Page you looking is not found</Typography>
+        <Typography as="h1">Page you looking is not found</Typography>
         <Button>
           <Link to="/">Go back</Link>
         </Button>

@@ -80,7 +80,7 @@ const UserProfile = () => {
         <div className="text">
           <h3>Dashboard&gt;&gt;</h3>
           <h4>Settings&gt;&gt;</h4>
-          <h6>Personal information</h6>
+          <h6 data-testid="update-1">Personal information</h6>
         </div>
         <h4>Dashboard&gt;&gt;</h4>
       </div>

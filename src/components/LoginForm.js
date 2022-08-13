@@ -229,7 +229,7 @@ class LoginForm extends React.Component {
               >
                 <div style={{ paddingRight: '20px' }}>
                   <a
-                    href={`${process.env.BASE_BACKEND_SERVER_URL}oauth/google`}
+                    href={`${process.env.BASE_BACKEND_SERVER_URL}/oauth/google`}
                   >
                     <FcGoogle style={{ fontSize: '40px', cursor: 'pointer' }} />
                   </a>

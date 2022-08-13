@@ -55,7 +55,7 @@ function Request() {
         <>
           <Alert
             severity={
-              value == 'approved'
+              value == 'Approved'
                 ? 'success'
                 : value == 'pending'
                 ? 'warning'
@@ -80,6 +80,7 @@ function Request() {
               setCurrentTrip(row);
               setOpen(true);
             }}
+            data-testid="request_view_button"
           >
             view
           </Button>
@@ -89,6 +90,7 @@ function Request() {
               <Button
                 variant="outlined"
                 color="warning"
+                data-testid="request_approve_button"
                 onClick={() => {
                   //functionality to approve trip
                 }}
@@ -98,6 +100,7 @@ function Request() {
               <Button
                 variant="outlined"
                 color="error"
+                data-testid="request_approve_button"
                 onClick={() => {
                   //functionality to reject trip
                 }}
@@ -120,7 +123,10 @@ function Request() {
 
   return (
     <>
-      <Box sx={{ p: 2, mt: 5 }}>
+      <Box sx={{}}>
+        <Typography variant="h4" component="h1" gutterBottom>
+          Trip requests
+        </Typography>
         <Table headers={headers} requests={requests} />;
         <Modal
           open={open}

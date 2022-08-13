@@ -12,7 +12,7 @@ const mockStore = configureStore(middleware);
 const mock = new MockAdapter(axios);
 const store = mockStore({});
 import { registration } from '../../src/redux/reducers/userReducers';
-import { cleanup, act } from '@testing-library/react';
+import { cleanup } from '@testing-library/react';
 import UserRegisterForm from '../components/RegisterForm';
 import { Provider } from 'react-redux';
 import {
@@ -20,7 +20,7 @@ import {
   MemoryRouter as MemoryRouter,
 } from 'react-router-dom';
 import '@testing-library/jest-dom';
-import renderer from 'react-test-renderer';
+import renderer, { act } from 'react-test-renderer';
 
 const apiUrl = `${process.env.BASE_BACKEND_SERVER_URL}/auth/register`;
 

@@ -1,7 +1,7 @@
 {
   "verbose": true,
   "collectCoverage": true,
-  "coverageReporters": ["lcov", "text"],
+  "coverageReporters": ["lcov", "text", "html"],
   "coverageDirectory": "coverage",
   "testTimeout": 100000,
   "transform": {
@@ -11,5 +11,6 @@
     "\\.(scss|sass|css)$": "identity-obj-proxy",
     "\\.(jpg|ico|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/src/tests/mocks/fileMock.js"
   },
-  "testEnvironment": "jsdom"
+  "testEnvironment": "jsdom",
+  "setupFilesAfterEnv": ["<rootDir>/setup-test.js"]
 }
