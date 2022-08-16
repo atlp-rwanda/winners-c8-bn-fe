@@ -1,8 +1,10 @@
 import React from "react";
 import UserRoleDash from "../components/AssignRole/UserRoleDash";
 import renderer from 'react-test-renderer'
-import { cleanup } from "@testing-library/react";
+import { cleanup,render, act } from "@testing-library/react";
 import '@testing-library/jest-dom';
+import store from '../redux/store';
+import App from '../App';
 import { MemoryRouter} from 'react-router-dom';
 import { Provider } from "react-redux";
 import thunk from "redux-thunk";
@@ -20,14 +22,14 @@ const roleInitialState = {
     },
   };
 
-  let store;
-  beforeEach(() => {
-    store = mockStore(roleInitialState);
-  });
+
 
   afterEach(() => {
     cleanup;
   });
+
+
+ 
 test("<UserRoleDash /> matches snapshot", ()=>{   
   const component = renderer
 		.create(

@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { successToast, errorToast } from '../../helpers/generateToast';
 import { FETCH_ROLE_FAILED, FETCH_ROLE_SUCCESS, FETCH_ROLE_LOADING, FETCH_USER_SUCCESS, FETCH_USER_FAILED, FETCH_USER_LOADING, ASSIGN_ROLE_FAILED, ASSIGN_ROLE_LOADING, ASSIGN_ROLE_SUCCESS } from './actionTypes';
-import authHeader from './index';
+import { authHeader } from '../utils/dataSession';
 
 export const fetchUsers = () => async dispatch => {
   dispatch({
