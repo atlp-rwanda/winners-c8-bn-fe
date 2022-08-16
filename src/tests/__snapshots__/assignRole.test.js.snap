@@ -139,25 +139,33 @@ exports[`<UserRoleDash /> matches snapshot 1`] = `
         </li>
         <p
           className="title"
+        />
+        <a
+          href="/dashboard/trips"
+          onClick={[Function]}
+          style={
+            Object {
+              "textDecoration": "none",
+            }
+          }
         >
-          COMPONENTS
-        </p>
-        <li>
-          <svg
-            aria-hidden={true}
-            className="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium icon css-i4bv87-MuiSvgIcon-root"
-            data-testid="InsertChartIcon"
-            focusable="false"
-            viewBox="0 0 24 24"
-          >
-            <path
-              d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"
-            />
-          </svg>
-          <span>
-            Tables
-          </span>
-        </li>
+          <li>
+            <svg
+              aria-hidden={true}
+              className="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium icon css-i4bv87-MuiSvgIcon-root"
+              data-testid="InsertChartIcon"
+              focusable="false"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"
+              />
+            </svg>
+            <span>
+              Trips
+            </span>
+          </li>
+        </a>
         <li>
           <svg
             aria-hidden={true}
@@ -252,7 +260,7 @@ exports[`<UserRoleDash /> matches snapshot 1`] = `
           GENERAL
         </p>
         <a
-          href="/userprofile"
+          href="/dashboard/userprofile"
           onClick={[Function]}
           style={
             Object {

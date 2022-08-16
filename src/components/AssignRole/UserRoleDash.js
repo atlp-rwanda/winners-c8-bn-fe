@@ -9,10 +9,9 @@ import { fetchRoles, fetchUsers, assignRoles } from '../../redux/actions/roleAct
 import { useDispatch, useSelector } from 'react-redux';
 import "./UserRoleDash.scss"
 import Navbar from "../Navbar/Navbar";
-import Sidebar from "../Sidebar/Sidebar";
+import Sidebar from "../Sidebar/Sidebar";;
 const UserRoleDash = () => {
         const userInfos = useSelector((state) => state.users?.users?.data)
-      
       
         const roleData = useSelector((state) => state.roles?.roles)
       
@@ -42,7 +41,9 @@ const UserRoleDash = () => {
         fetchRoles()(dispatch)
         }, [])
       
-      
+      const placeholder = [
+        'this placeholer'
+      ]
       
         const SubmitAssignRole = (event) =>{
         event.preventDefault();
@@ -94,6 +95,7 @@ defaultValue={users?.email}
        event.target.value,
     )
   }
+
  >
      {userInfos?.map(value => {
     return (
@@ -105,6 +107,8 @@ defaultValue={users?.email}
  </Select>
 <div className='role'>Select Role name</div>
 <Select
+
+placeholder={placeholder}
  className='OptionSelect'
  data-testid="role-name-byId"
   defaultValue={roles?.role}

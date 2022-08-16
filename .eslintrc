@@ -1,11 +1,12 @@
 {
-    "parser": "@babel/eslint-parser",
-    "env": {
-        "browser": true,
-        "node": true
-    },
-    "extends": "airbnb",
-    "rules": {
-        "indent": [2, "tab"]
-    }
+  "parser": "@babel/eslint-parser",
+  "env": {
+    "browser": true,
+    "node": true
+  },
+  "extends": "airbnb",
+  "react/react-in-jsx-scope": "off",
+  "rules": {
+    "indent": [2, "tab"]
+  }
 }
