@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Dialogue  <ConfirmationDialog /> matches snapshot 1`] = `
+<div
+  className="container-dialog"
+>
+  <span
+    className="mb-5 capitalize"
+    data-testid="confirmDialogue_text"
+  >
+    Do you really want to undefined trip request?
+  </span>
+  <div
+    className="button-container"
+  >
+    <button
+      className="cancel-button"
+      onClick={[Function]}
+    >
+      NO
+    </button>
+    <button
+      className="confirmation-button"
+      onClick={[Function]}
+    >
+      Yes
+    </button>
+  </div>
+</div>
+`;

@@ -1,10 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import { fetchRequest, fetchRequestComments, postRequestComment, deleteRequestComment } from '../redux/actions/requestActions';
+import { fetchRequestComments, postRequestComment, deleteRequestComment } from '../redux/actions/requestActions';
+import {
+  fetchRequest,
+  approveRequestAction,
+} from '../redux/actions/requestActions';
+
 import { fetchUserProfile } from '../redux/actions/userProfileAction';
 import { useDispatch, useSelector } from 'react-redux';
 import Table from '../components/Table';
 import { Alert, Button, Typography, Modal } from '@mui/material';
-import { Box } from '@mui/system';
+// import { Box } from '@mui/system';
 import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 import SendIcon from '@mui/icons-material/Send';
@@ -14,8 +19,25 @@ import PersonIcon from '@mui/icons-material/Person';
 import { ToastContainer, toast } from 'react-toastify';
 import { successToast, errorToast } from '../helpers/generateToast';
 
+import { Box } from '@mui/system'
+import ConfirmationDialog from '../components/Reject-approve/ConfirmationDialog';
 function Request() {
+  const dispatch = useDispatch()
+  const [currentTrip, setCurrentTrip] = useState(null);
   const [open, setOpen] = React.useState(false);
+  const requestData = useSelector(state => state.requests)
+  console.log(requestData , '===')
+  const approveOrReject = async (reviewStatus) => {
+   
+    try {
+      const tripId = currentTrip.id;
+   dispatch(approveRequestAction(tripId, reviewStatus))
+      setManagerConfirmation(false);
+    } catch (error) {}
+  };
+  const [managerConfirmation, setManagerConfirmation] = useState(false);
+  const [dialogueStatus, setDialogueStatus] = useState('');
+  
   const { requests, user } = useSelector((state) => {
     return {
       requests: state.requests.requests,
@@ -57,9 +79,14 @@ const postComment = (e) => {
 
 
 
+  const handleRequest = (reqStatus) => {
+    setDialogueStatus(reqStatus);
+    return setManagerConfirmation(true);
+  };
 
   const handleClose = () => setOpen(false);
-  const [currentTrip, setCurrentTrip] = useState(null);
+  //
+
   const style = {
     position: 'absolute',
     top: '50%',
@@ -74,6 +101,7 @@ const postComment = (e) => {
     overflowY: 'auto',
     p: 4,
   };
+  const [stat, setStat] = useState(status);
   const headers = [
     { field: 'id', headerName: 'Trip Id' },
     {
@@ -92,6 +120,8 @@ const postComment = (e) => {
     },
     { field: 'dateOfDeparture', headerName: 'Date of Departure', flex: 1 },
     {
+
+
       field: 'status',
       headerName: 'Status',
       flex: 1,
@@ -129,6 +159,7 @@ const postComment = (e) => {
           >
             view
           </Button>
+
           {user?.user_role == '6927442b-84fb-4fc3-b799-11449fa62f52' && (
             <>
               {' '}
@@ -137,7 +168,8 @@ const postComment = (e) => {
                 color="warning"
                 data-testid="request_approve_button"
                 onClick={() => {
-                  //functionality to approve trip
+                  handleRequest('Approved');
+                  setCurrentTrip(row);
                 }}
               >
                 Approve
@@ -147,7 +179,8 @@ const postComment = (e) => {
                 color="error"
                 data-testid="request_approve_button"
                 onClick={() => {
-                  //functionality to reject trip
+                  handleRequest('Rejected');
+                  setCurrentTrip(row);
                 }}
               >
                 Reject
@@ -158,9 +191,6 @@ const postComment = (e) => {
       ),
     },
   ];
-
-  const dispatch = useDispatch();
-
   useEffect(() => {
     fetchRequest(dispatch);
     fetchUserProfile()(dispatch);
@@ -319,6 +349,15 @@ const postComment = (e) => {
             )}
           </Box>
         </Modal>
+        {managerConfirmation ? (
+          <ConfirmationDialog
+            dialogueStatus={dialogueStatus}
+            handleConfirm={approveOrReject}
+            handleCancel={setManagerConfirmation}
+          />
+        ) : (
+          ''
+        )}
       </Box>
       <ToastContainer/>
     </>

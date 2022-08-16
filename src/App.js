@@ -13,7 +13,9 @@ import NotFound from './components/NotFound';
 import UserRoleDash from './components/AssignRole/UserRoleDash';
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
+// import 'react-toastify/dist/ReactToastify.css';
 import DashboardLayout from './components/Layouts/Dashboard';
+import SocialAuth from './components/SocialOAuth';
 import HomePageLayout from './components/Layouts/Home';
 
 const App = () => {
@@ -40,7 +42,7 @@ const App = () => {
             <Route exact path='/dashboard/accommodations' element={<Accommodation />} />
 				</Routes>
 			</div>
-			{/* <SocialAuth /> */}
+			<SocialAuth />
 		</div>
 
 
