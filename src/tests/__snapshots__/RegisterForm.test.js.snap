@@ -155,7 +155,7 @@ exports[`Connected Register Form React-Redux Component should render with given 
                 }
               >
                 <a
-                  href="https://winners-c8-bn-be-staging.herokuapp.com/api/oauth/google"
+                  href="undefined/oauth/google"
                 >
                   <svg
                     enableBackground="new 0 0 48 48"
@@ -209,7 +209,7 @@ exports[`Connected Register Form React-Redux Component should render with given 
                 }
               >
                 <a
-                  href="https://winners-c8-bn-be-staging.herokuapp.com/api/oauth/facebook"
+                  href="undefined/oauth/facebook"
                 >
                   <svg
                     fill="currentColor"
@@ -241,8 +241,7 @@ exports[`Connected Register Form React-Redux Component should render with given 
               <div
                 className="notify"
               >
-                Already have an account?
-                 
+                Already have an account? 
                 <a
                   href="/login"
                   onClick={[Function]}

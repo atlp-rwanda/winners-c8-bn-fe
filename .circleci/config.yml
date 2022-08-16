@@ -13,8 +13,9 @@ jobs:
     steps:
       # Checkout the code as the first step.
       - checkout
-      - node/install-packages:
-          pkg-manager: npm
+      - run:
+          name: Installing the dependencies
+          command: npm i &&  npm ci
       - run:
           name: Install Test Reporter
           command: |

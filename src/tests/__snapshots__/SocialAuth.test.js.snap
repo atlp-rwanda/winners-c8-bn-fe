@@ -20,7 +20,7 @@ exports[`<SocialAuth /> matches snapshot 1`] = `
     }
   >
     <a
-      href="https://winners-c8-bn-be-staging.herokuapp.com/api/oauth/google"
+      href="undefined/oauth/google"
     >
       <svg
         enableBackground="new 0 0 48 48"
@@ -74,7 +74,7 @@ exports[`<SocialAuth /> matches snapshot 1`] = `
     }
   >
     <a
-      href="https://winners-c8-bn-be-staging.herokuapp.com/api/oauth/facebook"
+      href="undefined/oauth/facebook"
     >
       <svg
         fill="currentColor"
