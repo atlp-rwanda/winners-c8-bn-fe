@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<UserRoleDash /> matches snapshot 1`] = `
+exports[`User role Dashboard  <UserRoleDash /> matches snapshot 1`] = `
 <div
   className="Content"
   data-testid="assign-role"
