@@ -20,7 +20,6 @@ class CreateLocation extends Component {
   }
   handleSubmit = async (e) => {
     e.preventDefault();
-    // console.log(this.state);
     let myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
     myHeaders.append("Authorization", `Bearer ${this.props.token}`);
@@ -35,7 +34,6 @@ class CreateLocation extends Component {
     };
     this.setState({ wait: true });
     toast("Creating location . . .", { position: toast.POSITION.TOP_CENTER });
-    console.log(location);
     let result = await fetch(
       "https://winners-c8-bn-be-staging.herokuapp.com/api/locations",
       {

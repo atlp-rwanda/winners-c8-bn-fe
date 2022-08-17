@@ -100,7 +100,6 @@ class CreateAccommodation extends Component {
         requestOptions
       ).then((response) => response.json());
       if (result.status == 201) {
-        console.log(result);
         toast.success("Room is Created!", {
           position: toast.POSITION.TOP_CENTER,
         });
