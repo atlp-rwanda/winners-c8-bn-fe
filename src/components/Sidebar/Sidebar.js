@@ -41,7 +41,7 @@ const Sidebar = () => {
               <span>Create locat&accom</span>
             </li>
           </Link>
-          <Link to="/assignRole" style={{ textDecoration: "none" }}>
+          <Link to="/dashboard/assignRole" style={{ textDecoration: "none" }}>
             <li>
               <StoreIcon className="icon" />
               <span>Assign Roles</span>

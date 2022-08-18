@@ -69,9 +69,7 @@ const UserRoleDash = () => {
     return ( 
         <>
       <div className="Content" data-testid='assign-role'>
-      <Sidebar />
       <div className="ContentContainer">
-        <Navbar />
         <div className="titleDashboard">
           <div className="text">
            <h4>Dashboard&gt;&gt;</h4>
