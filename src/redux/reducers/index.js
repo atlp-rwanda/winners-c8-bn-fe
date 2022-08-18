@@ -8,6 +8,8 @@ import requestReducer from './requestReducer';
 import resetReducer from './resetReducer';
 import recoverReducer from './recoverReducer';
 import userReducer from './SocialReducers';
+import usersReducer from "./UserReducer";
+import { rolesReducer, assignRoleReducer } from "./RoleReducer";
 import {
   fetchUserProfileReducer,
   updateUserProfileReducer,
@@ -24,4 +26,9 @@ export default combineReducers({
   reset: resetReducer,
   recover: recoverReducer,
   user: userReducer,
+  users: usersReducer,
+  roles: rolesReducer,
+  assignRole: assignRoleReducer
 });
+
+

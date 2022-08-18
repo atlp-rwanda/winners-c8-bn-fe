@@ -1,0 +1,116 @@
+.Content {
+    display: flex;
+    background: #F5F5F5;
+  
+    .ContentContainer {
+      flex: 6;
+    
+    .titleDashboard{
+        width: 95%;
+        margin: 5px auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .text{
+          display: flex;
+          align-items: center;
+          padding: 20px;
+          margin-top: 10px;
+          gap: 20px;
+          h3, h4,h6{
+            color:#395B64;
+            font-size: medium
+            ;
+          }
+        }
+        h4{
+          color: #606060;
+          font-style: normal;
+          font-weight: 500;
+          font-size: 14px;
+        }
+    }
+    .contentBlock{
+      width: 50%;
+      height: 50%;
+      margin-top: 60%;
+      margin: 40px;
+      p{
+        color: #606060;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 30px;
+      }
+      .Content{
+        background: #FFFFFF;
+        border-radius: 9px;
+        padding: 10px 40px;
+              p{
+            color: #606060;
+            font-style: normal;
+            font-weight: 400;
+            font-size: 10px;
+            line-height: 40px;
+          }
+    .labelClass{
+        padding-left: 10px;
+        position: absolute;
+        color: #606060;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 21px;
+        left: 300px;
+        top: 300px;
+        justify-content: space-between;
+    }
+    .inputData{
+        position: absolute;
+        width: 450px;
+        border-color: #F9FAFB #F9FAFB #606060;
+        height: 40px;
+        left: 300px;
+        top: 350px; 
+    }
+    .role{ 
+        padding-left: 10px;
+        position: absolute;
+        color: #606060;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 21px;
+        left: 300px;
+        top: 450px;  
+    }
+    .OptionSelect{
+        position: absolute;
+        width: 450px;
+        border-color: #F9FAFB #F9FAFB #606060;
+        height: 40px;
+        left: 300px;
+        top: 500px; 
+    
+    }
+  }
+    .buttonClass{
+      border: none;
+      padding: 8px 8px;
+      background: #395B64;
+      border-radius: 5px;
+      color: #FFFFFF;
+      margin-top: 340px;
+      margin-bottom: 25px;
+      margin-left: 170px;
+      top: 450px;
+      width: 120px;
+        }
+        .buttonClass:hover{
+          background-color: #508695;
+        }
+    
+    }
+  }
+}
