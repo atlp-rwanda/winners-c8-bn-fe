@@ -454,7 +454,9 @@ exports[`User role Dashboard  <UserRoleDash /> matches snapshot 1`] = `
         <h4>
           Dashboard&gt;&gt;
         </h4>
-        <h6>
+        <h6
+          data-testid="assign-roles"
+        >
           Assign Role
         </h6>
       </div>

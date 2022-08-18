@@ -1,7 +1,8 @@
 import React from "react";
 import UserRoleDash from "../components/AssignRole/UserRoleDash";
 import renderer from 'react-test-renderer'
-import { cleanup,render,screen, act } from "@testing-library/react";
+import { assignRoles } from '../../src/redux/actions/roleActions';
+import { cleanup,render,screen, act, fireEvent } from "@testing-library/react";
 import '@testing-library/jest-dom';
 import store from '../redux/store';
 import App from '../App';
@@ -14,6 +15,8 @@ import MockAxiosAdapter from 'axios-mock-adapter';
 import axios from "axios";
 const middleware = [thunk];
  const mock = new MockAxiosAdapter(axios)
+
+ 
  describe('User role Dashboard ', () => {
 beforeEach(() =>{
   mock.onGet(/user/gi).reply(200, userResponse);
@@ -24,6 +27,22 @@ beforeEach(() =>{
     window.localStorage.clear();
     mock.reset();
   });
+
+
+
+
+  it('dispatches SUCCESS after assignrole', async () => {
+    const userObj = {
+      email: 'honore@gmail.com',
+      role: 'Manager',
+    };
+
+    await store.dispatch(assignRoles(userObj));
+  });
+
+
+
+
   test('should render assign role component', () => {
     render(
       <Provider store={store}>
@@ -33,8 +52,8 @@ beforeEach(() =>{
       </Provider>
     );
   const userRoleElement = screen.queryByTestId('assign-roles');
-  expect(userRoleElement).not.toBeInTheDocument()
-  expect(userRoleElement).not.toEqual('Assigning Role');
+  expect(userRoleElement).toBeInTheDocument()
+  expect(userRoleElement).toHaveTextContent('Assign Role');
     })
 
   it('The page should render  the page and show all users', async () => {

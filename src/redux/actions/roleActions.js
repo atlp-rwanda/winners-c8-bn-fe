@@ -58,7 +58,6 @@ return axios.patch(`https://winners-c8-bn-be-staging.herokuapp.com/api/users/ass
          })
          errorToast(err.response.data.message)
      }
-      // console.log("data", res.status)
       if(res.status == 200){
      await dispatch({
       type: ASSIGN_ROLE_SUCCESS,
@@ -69,12 +68,11 @@ return axios.patch(`https://winners-c8-bn-be-staging.herokuapp.com/api/users/ass
     dispatch(fetchUsers())
   })
   .catch(err =>{
-    console.log(err.response.data.message)
     dispatch({
       type: ASSIGN_ROLE_FAILED,
       payload: err,
     });
-    errorToast(err.response.data.message)
+    // errorToast(err.response.data.err)
   })
 
 }

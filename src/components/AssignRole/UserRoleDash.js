@@ -42,7 +42,7 @@ const UserRoleDash = () => {
         }, [])
       
       const placeholder = [
-        'this placeholer'
+        'select an email'
       ]
       
         const SubmitAssignRole = (event) =>{
@@ -75,7 +75,7 @@ const UserRoleDash = () => {
         <div className="titleDashboard">
           <div className="text">
            <h4>Dashboard&gt;&gt;</h4>
-           <h6>Assign Role</h6>
+           <h6 data-testid='assign-roles'>Assign Role</h6>
            </div>
            <h4>Dashboard&gt;&gt;</h4>
           </div>
