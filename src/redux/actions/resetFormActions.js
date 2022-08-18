@@ -3,7 +3,7 @@ const resetActions = {};
 resetActions.submit = (values, setSubmitting, token) => {
   return async (dispatch) => {
     const { password, confirmPassword } = values;
-    const url = `{process.env.}/auth/resetPassword/${token}`;
+    const url = `${process.env.BASE_BACKEND_SERVER_URL}/auth/resetPassword/${token}`;
     const data = JSON.stringify({
       newPassword: password,
       confirmPassword: confirmPassword,
