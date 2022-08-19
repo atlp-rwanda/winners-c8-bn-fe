@@ -8,6 +8,7 @@ import resetReducer from "./resetReducer";
 import {fetchUserProfileReducer, updateUserProfileReducer} from "./userProfileReducer"
 import recoverReducer from "./recoverReducer";
 import userReducer from "./SocialReducers";
+import {accommodationsReducer, detailsAccommodationReducer} from "./accommodationReducers"
 
 export default combineReducers({
   auth: authReducer,
@@ -19,6 +20,8 @@ export default combineReducers({
   reset: resetReducer,
   recover: recoverReducer,
   user: userReducer,
+  accommodations:accommodationsReducer,
+  singleAccommodation: detailsAccommodationReducer,
 });
   
 

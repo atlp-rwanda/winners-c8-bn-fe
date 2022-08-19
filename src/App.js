@@ -9,7 +9,8 @@ import ResetForm from "./components/resetForm";
 import LoginForm from "./components/LoginForm";
 import Userprofile from "./components/UserProfile/UserProfile"
 import SocialAuth from './components/SocialOAuth';
-
+import Accommodation from "./components/ListAccomodations/Accomodations"
+import DetailAccommodation from "./components/ListAccomodations/DetailsAccommodations";
 const App = () => {
   return (
     <div className="App">
@@ -30,10 +31,14 @@ const App = () => {
 					<Route exact path='recover' element={<RecoveryForm />} />
 
 					<Route exact path='reset' element={<ResetForm />} />
+
+          <Route exact path='/accommodations' element={<Accommodation />} />
+
+          {/* <Route exact path='/accommodations/:accommodationId' element={<DetailAccommodation />} /> */}
           
 				</Routes>
 			</div>
-			<SocialAuth />
+			{/* <SocialAuth /> */}
 		</div>
   );
 };

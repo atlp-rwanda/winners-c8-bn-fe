@@ -1,0 +1,1 @@
+export const accommodationsUrl ='https://winners-c8-bn-be-staging.herokuapp.com/api/accommodations/'

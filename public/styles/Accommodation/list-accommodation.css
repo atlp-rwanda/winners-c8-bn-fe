@@ -1,0 +1,86 @@
+.accommodation-wrapper{
+align-content: center;
+top: 50%;
+left: 50%;
+margin-top:40px;
+/* background-image: url('/public/images/mountain-ice.jpg'); */
+background-size: cover;
+/* background-color: red; */
+}
+.accommodations{
+    /* background-image: url('/public/images/mountain-ice.jpg'); */
+}
+.accommodation{
+    display: flex;
+    margin-bottom: 10px;
+    /* border: 1px solid cadetblue; */
+    border-top: 1px solid rgb(145, 140, 140);
+    /* border-bottom: 1px solid #000; */
+    border-radius: 4px;
+    padding: 5px;
+    align-items: center;
+    /* height: 150px; */
+}
+.accomodation__thumbnail{
+    width: 200px;
+}
+.accomodation__thumbnail img{
+    height: 140px;
+    width: 200px;
+    padding-right: 30px;
+}
+.accommodations .accomodation__desc{
+    width: 250px;
+}
+.accommodations .accomodation__btn{
+    background-color: deepskyblue;
+    color: #fff;
+    margin-left: 450px;
+    font-size: 15px;
+    padding: 7px;
+    border: none;
+    border-radius: 10%;
+}
+.accomodation__new{
+    background-color: deepskyblue;
+    color: #fff;
+    /* margin-left: 500px; */
+    margin: 10px;
+    /* font-size: 15px; */
+    padding: 7px;
+    border: none;
+    border-radius: 4px;
+}
+.pagination{
+    float: right;
+    /* margin-bottom: 50px; */
+}
+.pagination div > input{
+    font-size: 15px;
+    margin-left: 10px;
+}
+
+/* single accommodation styling */
+.single-accommodation{
+    display: flex;
+    margin-top:40px;
+}
+.single-accommodation .rate__btn{
+    font-size: 15px;
+    padding: 7px;
+    border: 1px solid #c4c4c4;
+    border-radius: 10%;
+}
+.single-accommodation .add__btn{
+    background-color: deepskyblue;
+    color: #fff;
+    margin-right: 5px;
+    font-size: 15px;
+    padding: 7px;
+    border: none;
+    border-radius: 10%;
+}
+.single-accommodation .add__btn:hover{
+color:deepskyblue;
+background-color: #fff;
+}
