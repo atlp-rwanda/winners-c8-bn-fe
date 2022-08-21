@@ -47,7 +47,7 @@ const Sidebar = () => {
               <span>Create accommodation</span>
             </li>
           </Link>
-          <Link to="/products" style={{ textDecoration: 'none' }}>
+          <Link to="/dashboard/assignRole" style={{ textDecoration: "none" }}>
             <li>
               <StoreIcon className="icon" />
               <span>Assign Roles</span>

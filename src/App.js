@@ -11,6 +11,7 @@ import Dashboard from './components/Dashboard';
 import CreateAccomodation from './components/CreateAccomodation';
 import CreateLocation from './components/CreateLocation.js';
 import NotFound from './components/NotFound';
+import UserRoleDash from "./components/AssignRole/UserRoleDash"
 import { ToastContainer } from 'react-toastify';
 import DashboardLayout from './components/Layouts/Dashboard';
 import HomePageLayout from './components/Layouts/Home';
@@ -31,6 +32,7 @@ const App = () => {
           <Route path="/dashboard" element={<DashboardLayout />}>
             <Route exact index element={<Dashboard />} />
             <Route path="trips" element={<Request />} />
+          <Route exact path='assignRole' element={<UserRoleDash />} />
             <Route exact path="userprofile" element={<Userprofile />} />
             <Route path="*" element={<NotFound />} />
             <Route

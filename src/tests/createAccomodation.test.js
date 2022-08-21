@@ -14,7 +14,7 @@ import {
   MemoryRouter as MemoryRouter,
 } from 'react-router-dom';
 import thunk from 'redux-thunk';
-import CreateAccomodation from '../components/createAccomodation';
+import CreateAccomodation from '../components/CreateAccomodation';
 import configureMockStore from 'redux-mock-store';
 
 // import rootReducer from '../redux/reducers';
@@ -49,13 +49,6 @@ describe('Testing rendering createAccomodation component', () => {
     })
   );
   it('should validate invalid hotel', async () => {
-    // const component = renderer.create(
-    //   <Provider store={store}>
-    //     <Router>
-    //       <CreateAccomodation />
-    //     </Router>
-    //   </Provider>
-    // );
     await act(() =>
       render(
         <Provider store={store}>
@@ -65,53 +58,39 @@ describe('Testing rendering createAccomodation component', () => {
         </Provider>
       )
     );
-
+    const hotelNameInput = screen.getByRole('textbox', { name: 'Hotel Name' });
+    await act(async () => {
+      fireEvent.change(hotelNameInput, { value: 'Hotel Name' });
+    });
+    const longitudeInput = screen.getByRole('textbox', { name: 'Longitude' });
+    await act(async () => {
+      fireEvent.change(longitudeInput, { target: { value: '1223' } });
+      fireEvent.blur(longitudeInput);
+    });
+    const latitudeInput = screen.getByRole('textbox', { name: 'Latitude' });
+    await act(async () => {
+      fireEvent.change(latitudeInput, { target: { value: '5335' } });
+    });
+    const imageInput = screen.getByRole('img', { name: 'image' });
+    await act(async () => {
+      fireEvent.change(imageInput, { target: { files: [{}] } });
+      fireEvent.blur(imageInput);
+    });
+    const descriptionInput = screen.getByRole('textbox', {
+      name: 'Description',
+    });
+    await act(async () => {
+      fireEvent.change(descriptionInput, {
+        target: { value: 'Welcome to 5 stars hotel' },
+      });
+    });
+    const locationInput = screen.getByRole('combobox', { name: 'Location:' });
+    await act(async () => {
+      fireEvent.change(locationInput, { value: '1' });
+    });
     const saveButton = screen.getByRole('button', { name: 'Save' });
     await act(async () => {
       fireEvent.click(saveButton);
     });
-
-    // const hotel = screen.getVy(/Enter the hotel name/i);
-
-    // fireEvent.change(hotel, {
-    //   target: { value: 'Ubumwe Grand hotel' },
-    // });
-    // fireEvent.blur(hotel);
-    // await waitFor(() => {
-    //   // assertions can be put here
-    //   expect(screen.getByText(/Hotel name must contain/i)).toBeInTheDocument;
-    // });
   });
-
-  // it('should invalidate description', async () => {
-  //   const descriptionField = screen.getByTestId(/Description/i);
-
-  //   fireEvent.change(descriptionField, {
-  //     target: { value: 'Welcome to us' },
-  //   });
-  //   fireEvent.blur(descriptionField);
-  //   await waitFor(() => {
-  //     expect(screen.getByText(/Required/i)).toBeInTheDocument;
-  //   });
-  // });
-
-  // it('should validate good description', async () => {
-  //   render(
-  //     <Provider store={store}>
-  //       <Router>
-  //         <CreateAccomodation />
-  //       </Router>
-  //     </Provider>
-  //   );
-  //   const descriptionField = screen.getByTestId(/New description/i);
-
-  //   fireEvent.change(descriptionField, {
-  //     target: { value: 'Welcome to us' },
-  //   });
-  //   fireEvent.blur(descriptionField);
-  //   await waitFor(() => {
-  //     expect(screen.queryByText(/descrption must contain/i)).toBeNull;
-  //     expect(screen.queryByText(/Required/i)).toBeNull;
-  //   });
-  // });
 });

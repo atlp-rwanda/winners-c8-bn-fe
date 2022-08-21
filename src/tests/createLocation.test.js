@@ -15,7 +15,7 @@ import {
   MemoryRouter as MemoryRouter,
 } from 'react-router-dom';
 import thunk from 'redux-thunk';
-import CreateLocation from '../components/createLocation';
+import CreateLocation from '../components/CreateLocation';
 import configureMockStore from 'redux-mock-store';
 import renderer from 'react-test-renderer';
 import { createRenderer } from 'react-dom/test-utils';
@@ -52,6 +52,16 @@ describe('Testing rendering createLocation component', () => {
     })
   );
   it('should validate invalid city', async () => {
+    global.fetch = jest.fn(() =>
+      Promise.resolve({
+        json: () =>
+          Promise.resolve({
+            status: 404,
+            success: true,
+            message: 'Location is created successfully',
+          }),
+      })
+    );
     await act(() =>
       render(
         <Provider store={store}>
@@ -61,8 +71,11 @@ describe('Testing rendering createLocation component', () => {
         </Provider>
       )
     );
+    const countryInput = screen.getByRole('textbox', { name: 'Country' });
+    await act(async () => {
+      fireEvent.change(countryInput, { value: '5335' });
+    });
     const saveButton = screen.getByRole('button', { name: 'Save' });
-
     await act(async () => {
       fireEvent.click(saveButton);
     });
