@@ -6,7 +6,6 @@ import {
   cleanup,
   fireEvent,
   act,
-  waitFor,
 } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
@@ -17,8 +16,6 @@ import {
 import thunk from 'redux-thunk';
 import CreateAccomodation from '../components/createAccomodation';
 import configureMockStore from 'redux-mock-store';
-import renderer from 'react-test-renderer';
-import { createRenderer } from 'react-dom/test-utils';
 
 // import rootReducer from '../redux/reducers';
 let store;
@@ -68,17 +65,6 @@ describe('Testing rendering createAccomodation component', () => {
         </Provider>
       )
     );
-    const nextButton = screen.getByRole('button', { name: 'Next' });
-
-    await act(async () => {
-      fireEvent.click(nextButton);
-    });
-
-    const previousButton = screen.getByRole('button', { name: 'Prev' });
-    await act(async () => {
-      fireEvent.click(nextButton);
-      fireEvent.click(previousButton);
-    });
 
     const saveButton = screen.getByRole('button', { name: 'Save' });
     await act(async () => {

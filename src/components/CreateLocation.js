@@ -25,24 +25,17 @@ class CreateLocation extends Component {
     myHeaders.append('Authorization', `Bearer ${this.props.token}`);
 
     const { country, city, province } = this.state.location;
-    let raw = JSON.stringify({ country, city, province });
-    let requestOptions = {
-      method: 'POST',
-      headers: myHeaders,
-      body: raw,
-      redirect: 'follow',
-    };
     this.setState({ wait: true });
     toast('Creating location . . .', {
-       position: toast.POSITION.TOP_CENTER,
-       });
+      position: toast.POSITION.TOP_CENTER,
+    });
     let result = await fetch(
-      'https://winners-c8-bn-be-staging.herokuapp.com/api/locations',
+      `${process.env.BASE_BACKEND_SERVER_URL}/locations`,
       {
         headers: {
           Accept: 'application/json',
-          'Content-Type': 'application/json',
           Authorization: `Bearer ${this.props.token}`,
+          'Content-Type': 'application/json',
         },
         method: 'POST',
         body: JSON.stringify({ country, province, city }),
@@ -52,7 +45,7 @@ class CreateLocation extends Component {
     this.setState({ responseMessage: result.message });
     toast.dismiss();
 
-    if (result.status == 200) {
+    if (result.status == 201) {
       toast.success('	The Location is successfully created.', {
         position: toast.POSITION.TOP_CENTER,
       });
