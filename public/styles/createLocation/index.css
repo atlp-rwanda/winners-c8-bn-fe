@@ -1,0 +1,40 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
+@import url('https://rsms.me/inter/inter.css');
+
+/* base styles */
+* {
+  margin: 0;
+  font-family: 'Inter';
+  font-style: normal;
+}
+.form-location {
+  width: 35%;
+  font-size: 12px;
+  border-radius: 3px;
+  width: 30%;
+  padding: 20px;
+  margin: 15px 0;
+  box-sizing: border-box;
+  background-color: white;
+  display: inline-block;
+}
+input {
+  text-align: left;
+}
+
+.buttons-wrapper {
+  display: flex;
+  width: 100%;
+}
+.save_location {
+  background: #395b64;
+  border-radius: 4px;
+  color: #fff;
+  border: none;
+  margin-left: auto;
+  padding: 2px 30px;
+  font-size: 16px;
+}
+.mb-32{
+  margin-bottom: 32px;
+}

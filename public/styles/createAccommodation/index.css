@@ -1,0 +1,152 @@
+/* Create accommodation styles */
+
+.formContainer {
+  max-width: 800px;
+  margin: 2rem auto;
+}
+
+#progressbar {
+  color: #606060;
+  display: flex;
+  padding-left: 0 !important;
+}
+.oneStep {
+  display: flex;
+  justify-content: space-between;
+  gap: 80px;
+}
+.flex-item,
+.imagePreview {
+  width: 100%;
+  margin-top: 6rem;
+}
+.imagePreview {
+  width: 70%;
+}
+.imagePreview img {
+  width: 100%;
+  height: 100%;
+}
+
+.previewImage {
+  border: 2px solid gray;
+  background-color: 'gray';
+  height: 298px;
+  width: 301px;
+}
+
+.buttons-wrapper {
+  width: 100%;
+  margin-left: auto;
+  max-width: 200px;
+}
+.btn-multSteps {
+  margin: 20px 0 20px 40px;
+  background: #395b64;
+  border-radius: 4px;
+  color: #fff;
+  border: none;
+  padding: 5px 20px;
+}
+
+.flex-item-input {
+  width: 100%;
+}
+.cordinates {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+}
+.input-wrapper {
+  position: relative;
+  text-align: left;
+}
+.icon {
+  position: absolute;
+  left: 0;
+  top: 10px;
+}
+.form-control-accomodation {
+  border: none;
+  padding: 10px 10px 2px 40px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid black;
+  width: 100%;
+  background: transparent;
+}
+.form-control-accomodation:focus {
+  outline: none;
+}
+
+#progressbar .active {
+  color: #000000;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+#progressbar li {
+  list-style-type: none;
+  font-size: 12px;
+  width: 50%;
+  text-align: center;
+  position: relative;
+  padding-top: 50px;
+}
+
+#progressbar li:before {
+  position: absolute;
+  top: 5px;
+  left: 50%;
+  width: 40px;
+  height: 40px;
+  line-height: 35px;
+  display: block;
+  font-size: 20 px;
+  color: white;
+  background-color: #d9d9d9;
+  border-radius: 50%;
+  /* margin: 0 auto 10px auto; */
+  padding: 2px;
+  z-index: 2;
+}
+
+#progressbar li::after {
+  content: '';
+  width: 100%;
+  height: 1px;
+  background-color: #d9d9d9 !important;
+  position: absolute;
+  left: 0;
+  top: 25px;
+  z-index: 0;
+}
+
+#progressbar li.active:after,
+#progressbar li.active:before {
+  background-color: #395b64;
+}
+
+#progressbar #location:before {
+  /* content: "1"; */
+  font-size: 25px;
+  text-align: center;
+  line-height: 38px;
+  font-weight: 700;
+}
+#progressbar #accomodation:before {
+  content: '1';
+  font-size: 25px;
+  text-align: center;
+  line-height: 38px;
+  font-weight: 700;
+  z-index: 2;
+}
+#progressbar #rooms:before {
+  content: '2';
+  font-size: 25px;
+  text-align: center;
+  line-height: 38px;
+  font-weight: 700;
+  z-index: 2;
+}

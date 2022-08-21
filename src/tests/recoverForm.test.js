@@ -1,18 +1,18 @@
-import React from "react";
+import React from 'react';
 import {
   render,
   screen,
   cleanup,
   fireEvent,
   waitFor,
-} from "@testing-library/react";
-import { Provider } from "react-redux";
-import { act } from "react-dom/test-utils";
-import { BrowserRouter as Router } from "react-router-dom";
-import { createStore, applyMiddleware } from "redux";
-import RecoverForm from "../components/recoveryForm";
-import thunk from "redux-thunk";
-import configureMockStore from "redux-mock-store";
+} from '@testing-library/react';
+import { Provider } from 'react-redux';
+import { act } from 'react-dom/test-utils';
+import { BrowserRouter as Router } from 'react-router-dom';
+import { createStore, applyMiddleware } from 'redux';
+import RecoverForm from '../components/recoveryForm';
+import thunk from 'redux-thunk';
+import configureMockStore from 'redux-mock-store';
 const middleware = [thunk];
 const mockStore = configureMockStore(middleware);
 const initialState = {
@@ -32,19 +32,19 @@ beforeEach(() => {
 
 afterEach(cleanup);
 
-describe("Testing rendering resetForm components", () => {
+describe('Testing rendering resetForm components', () => {
   global.fetch = jest.fn(() =>
     Promise.resolve({
       json: () =>
         Promise.resolve({
           status: 200,
           success: true,
-          message: "Link sent successfully",
+          message: 'Link sent successfully',
         }),
     })
   );
 
-  it("should invalidate bad email", async () => {
+  it('should invalidate bad email', async () => {
     render(
       <Provider store={store}>
         <Router>
@@ -54,10 +54,12 @@ describe("Testing rendering resetForm components", () => {
     );
     const emailField = screen.getByPlaceholderText(/Enter your email/i);
 
-    fireEvent.change(emailField, {
-      target: { value: "12345" },
-    });
-    fireEvent.blur(emailField);
+    await act(async () =>
+      fireEvent.change(emailField, {
+        target: { value: '12345' },
+      })
+    );
+    act(() => fireEvent.blur(emailField));
     await waitFor(() => {
       // assertions can be put here
       expect(screen.getByText(/email must be a valid email/i))
@@ -65,7 +67,7 @@ describe("Testing rendering resetForm components", () => {
     });
   });
 
-  it("should invalidate empty email", async () => {
+  it('should invalidate empty email', async () => {
     render(
       <Provider store={store}>
         <Router>
@@ -75,16 +77,18 @@ describe("Testing rendering resetForm components", () => {
     );
     const emailField = screen.getByPlaceholderText(/Enter your email/i);
 
-    fireEvent.change(emailField, {
-      target: { value: "" },
-    });
-    fireEvent.blur(emailField);
+    await act(async () =>
+      fireEvent.change(emailField, {
+        target: { value: '' },
+      })
+    );
+    await act(async () => fireEvent.blur(emailField));
     await waitFor(() => {
       expect(screen.getByText(/Required/i)).toBeInTheDocument;
     });
   });
 
-  it("should validate good email", async () => {
+  it('should validate good email', async () => {
     render(
       <Provider store={store}>
         <Router>
@@ -94,11 +98,13 @@ describe("Testing rendering resetForm components", () => {
     );
     const emailField = screen.getByPlaceholderText(/Enter your email/i);
 
-    fireEvent.change(emailField, {
-      target: { value: "tester@admin.com" },
-    });
+    await act(async () =>
+      fireEvent.change(emailField, {
+        target: { value: 'tester@admin.com' },
+      })
+    );
 
-    fireEvent.blur(emailField);
+    await act(async () => fireEvent.blur(emailField));
 
     await waitFor(() => {
       expect(screen.queryByText(/email must be a valid email/i)).toBeNull;
@@ -106,7 +112,7 @@ describe("Testing rendering resetForm components", () => {
     });
   });
 
-  it("should recover email", async () => {
+  it('should recover email', async () => {
     await act(async () => {
       render(
         <Provider store={store}>
@@ -118,12 +124,14 @@ describe("Testing rendering resetForm components", () => {
     });
     const emailField = screen.getByPlaceholderText(/Enter your email/i);
 
-    fireEvent.change(emailField, {
-      target: { value: "tester@admin.com" },
-    });
+    await act(async () =>
+      fireEvent.change(emailField, {
+        target: { value: 'tester@admin.com' },
+      })
+    );
 
     await act(async () => {
-      const submitButton = screen.getByRole("button", {
+      const submitButton = screen.getByRole('button', {
         name: /Recover Password/i,
       });
       fireEvent.click(submitButton);
@@ -135,19 +143,19 @@ describe("Testing rendering resetForm components", () => {
   });
 });
 
-describe("Testing failure in fetch", () => {
+describe('Testing failure in fetch', () => {
   global.fetch = jest.fn(() =>
     Promise.resolve({
       json: () =>
         Promise.resolve({
           status: 200,
           success: false,
-          message: "Failure to send link",
+          message: 'Failure to send link',
         }),
     })
   );
 
-  it("should return to form when return button clicked", async () => {
+  it('should return to form when return button clicked', async () => {
     await act(async () => {
       render(
         <Provider store={store}>
@@ -159,12 +167,14 @@ describe("Testing failure in fetch", () => {
     });
     const emailField = screen.getByPlaceholderText(/Enter your email/i);
 
-    fireEvent.change(emailField, {
-      target: { value: "tester@admin.com" },
-    });
+    await act(() =>
+      fireEvent.change(emailField, {
+        target: { value: 'tester@admin.com' },
+      })
+    );
 
     await act(async () => {
-      const submitButton = screen.getByRole("button", {
+      const submitButton = screen.getByRole('button', {
         name: /Recover Password/i,
       });
       fireEvent.click(submitButton);

@@ -8,6 +8,8 @@ import LoginForm from './components/LoginForm';
 import Userprofile from './components/UserProfile/UserProfile';
 import Request from './pages/Request';
 import Dashboard from './components/Dashboard';
+import CreateAccomodation from './components/CreateAccomodation';
+import CreateLocation from './components/CreateLocation.js';
 import NotFound from './components/NotFound';
 import UserRoleDash from "./components/AssignRole/UserRoleDash"
 import { ToastContainer } from 'react-toastify';
@@ -33,7 +35,18 @@ const App = () => {
           <Route exact path='assignRole' element={<UserRoleDash />} />
             <Route exact path="userprofile" element={<Userprofile />} />
             <Route path="*" element={<NotFound />} />
+            <Route
+              path="createAccomodation"
+              element={<CreateAccomodation />}
+            />
+            <Route exact path="createLocation" element={<CreateLocation />} />
           </Route>
+          <Route
+            exact
+            path="/createAccomodation"
+            element={<CreateAccomodation />}
+          />
+          <Route exact path="/createLocation" element={<CreateLocation />} />
           <Route exact path="*" element={<NotFound />} />
         </Routes>
       </div>
