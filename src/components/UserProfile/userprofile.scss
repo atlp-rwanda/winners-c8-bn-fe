@@ -172,12 +172,29 @@
               margin-top: 10px;
               width: 80px;
             }
+            .remember{
+              position: absolute;
+              background:#395B64;
+              border-radius: 5px 0px 5px 0px;
+              text-align: center;
+              width: 80px;
+              height: 4%;
+              left:41%;
+              bottom: 3.5%;
+              p{
+                color: white;
+                font-size: 10px;
+              }
+            }
             button:hover{
               background-color: #508695;
             }
             .update_btn{
               margin-left: 20px;
 
+            }
+            .checkbox{
+              margin-left: 10px;
             }
           }
         }

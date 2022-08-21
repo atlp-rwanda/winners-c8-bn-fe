@@ -9,6 +9,7 @@ import resetReducer from './resetReducer';
 import recoverReducer from './recoverReducer';
 import userReducer from './SocialReducers';
 import usersReducer from "./UserReducer";
+import { rememberInfoReducer } from './rememberInfoReducer';
 import { rolesReducer, assignRoleReducer } from "./RoleReducer";
 import {
   fetchUserProfileReducer,
@@ -27,6 +28,7 @@ export default combineReducers({
   recover: recoverReducer,
   user: userReducer,
   users: usersReducer,
+  rememberInfo: rememberInfoReducer,
   roles: rolesReducer,
   assignRole: assignRoleReducer
 });
