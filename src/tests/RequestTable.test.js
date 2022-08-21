@@ -27,7 +27,7 @@ describe('Request table', () => {
   });
 
   it('Clicking the Trips link on the dashboard should go the trip request tables', async () => {
-    window.localStorage.setItem('auth-token', 'testing');
+  window.localStorage.setItem('auth-token', 'testing');
     act(() =>
       render(
         <Provider store={store}>

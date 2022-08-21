@@ -1,39 +1,58 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import { toast, ToastContainer } from "react-toastify";
-import BedIcon from "../../public/images/icons/bed.svg";
-import pricing from "../../public/images/icons/cash.svg";
-import Cloud from "../../public/images/icons/cloud.svg";
-import hotelIcon from "../../public/images/icons/hotel.svg";
-import imageIcon from "../../public/images/icons/image.svg";
-import longitudeIcon from "../../public/images/icons/longitude.svg";
-import latitudeIcon from "../../public/images/icons/latitude.svg";
-import descriptionIcon from "../../public/images/icons/description.svg";
-import locationIcon from "../../public/images/icons/locationIcon.svg";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { toast, ToastContainer } from 'react-toastify';
+import BedIcon from '../../public/images/icons/bed.svg';
+import pricing from '../../public/images/icons/cash.svg';
+import hotelIcon from '../../public/images/icons/hotel.svg';
+import imageIcon from '../../public/images/icons/image.svg';
+import longitudeIcon from '../../public/images/icons/longitude.svg';
+import latitudeIcon from '../../public/images/icons/latitude.svg';
+import descriptionIcon from '../../public/images/icons/description.svg';
+import locationIcon from '../../public/images/icons/locationIcon.svg';
 
 class CreateAccommodation extends Component {
   constructor(props) {
     super(props);
     this.state = {
       accomodation: {
-        name: "",
-        accommodation_image: "",
-        location_id: "",
-        longitude: "",
-        latitude: "",
-        description: "",
+        name: '',
+        accommodation_image: '',
+        location_id: '',
+        longitude: '',
+        latitude: '',
+        description: '',
       },
       accomodationRoom: {
-        accommodation_id: "",
-        bedType: "",
-        pricing: "",
-        roomImage: "",
+        accommodation_id: '',
+        bedType: '',
+        pricing: '',
+        roomImage: '',
       },
       activeStep: 1,
       locations: [],
       accommodations: [],
+      imagePreview: '',
+      imageToSend: '',
     };
   }
+
+  handleChange = (e) => {
+    this.setState({
+      ...this.state,
+      accomodation: {
+        ...this.state.accomodation,
+        accommodation_image: e.target.files[0],
+        accomodationRoom: {
+          ...this.state.accomodationRooom,
+          roomImage: e.target.files[0],
+        },
+      },
+      imagePreview: URL.createObjectURL(e.target.files[0]),
+      imageToSend: e.target.files[0],
+    });
+    console.log('MMMMM', URL.createObjectURL(e.target.files[0]));
+  };
+
   handleNext = () => {
     this.setState({ ...this.state, activeStep: this.state.activeStep + 1 });
   };
@@ -53,31 +72,52 @@ class CreateAccommodation extends Component {
     const { activeStep, accomodation, accomodationRoom } = this.state;
     if (activeStep == 1) {
       let myHeaders = new Headers();
-      myHeaders.append("Content-Type", "multipart/form-data");
-      myHeaders.append("Authorization", `Bearer ${this.props.token}`);
+      myHeaders.append('Content-Type', 'multipart/form-data');
+      myHeaders.append('Authorization', `Bearer ${this.props.token}`);
       const form = new FormData();
       for (let key in accomodation) {
         form.append(key, accomodation[key]);
+        console.log(key, accomodation[key]);
       }
       let requestOptions = {
-        method: "POST",
+        method: 'POST',
         headers: myHeaders,
         body: form,
-        redirect: "follow",
+        redirect: 'follow',
       };
       this.setState({ wait: true });
-      toast("Creating accommodation . . .", { position: toast.POSITION.TOP_CENTER });
+      toast('Creating accommodation . . .', {
+        position: toast.POSITION.TOP_CENTER,
+      });
 
       let result = await fetch(
-        "https://winners-c8-bn-be-staging.herokuapp.com/api/accommodations/ ",
-        requestOptions
+        'https://winners-c8-bn-be-staging.herokuapp.com/api/accommodations/ ',
+        {
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${this.props.token}`,
+        },
+        method: 'POST',
+        body: JSON.stringify({ 
+        name,
+        accommodation_image,
+        location_id,
+        longitude,
+        latitude,
+        description}),
+      }
       ).then((response) => response.json());
+
+
       if (result.status == 201) {
         console.log(result);
-        toast.success("Accommodation facility created successfully", {
+        toast.success('Accommodation facility created successfully', {
           position: toast.POSITION.TOP_CENTER,
         });
-      } else {
+      }
+       else
+        {
         toast.error(result.message || result.error, {
           position: toast.POSITION.TOP_CENTER,
         });
@@ -85,22 +125,22 @@ class CreateAccommodation extends Component {
     }
     if (activeStep == 2) {
       let myHeaders = new Headers();
-      myHeaders.append("Content-Type", "application/json");
-      myHeaders.append("Authorization", `Bearer ${this.props.token}`);
+      myHeaders.append('Content-Type', 'application/json');
+      myHeaders.append('Authorization', `Bearer ${this.props.token}`);
       let raw = JSON.stringify(accomodationRoom);
       let requestOptions = {
-        method: "POST",
+        method: 'POST',
         headers: myHeaders,
         body: raw,
-        redirect: "follow",
+        redirect: 'follow',
       };
-      
+
       let result = await fetch(
         `https://winners-c8-bn-be-staging.herokuapp.com/api/accommodations/${this.state.accomodationRoom.accommodation_id}/rooms/`,
         requestOptions
       ).then((response) => response.json());
       if (result.status == 201) {
-        toast.success("Room is Created!", {
+        toast.success('Room is Created!', {
           position: toast.POSITION.TOP_CENTER,
         });
       } else {
@@ -109,17 +149,15 @@ class CreateAccommodation extends Component {
     }
   };
 
-  handle;
-
   componentDidMount() {
-    const token = window.localStorage.getItem("auth-token");
+    const token = window.localStorage.getItem('auth-token');
 
-    const url = "https://winners-c8-bn-be-staging.herokuapp.com/api/locations";
+    const url = 'https://winners-c8-bn-be-staging.herokuapp.com/api/locations';
     fetch(url, {
-      method: "GET",
+      method: 'GET',
       headers: {
-        "Content-Type": "application/json",
-        Authorization: "Bearer " + token,
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + token,
       },
     })
       .then((response) => response.json())
@@ -131,12 +169,12 @@ class CreateAccommodation extends Component {
         console.error(error);
       });
     const url_accommodation =
-      "https://winners-c8-bn-be-staging.herokuapp.com/api/accommodations/";
+      'https://winners-c8-bn-be-staging.herokuapp.com/api/accommodations/';
     fetch(url_accommodation, {
-      method: "GET",
+      method: 'GET',
       headers: {
-        "Content-Type": "application/json",
-        Authorization: "Bearer " + token,
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + token,
       },
     })
       .then((response) => response.json())
@@ -156,7 +194,7 @@ class CreateAccommodation extends Component {
       locations,
       accommodations,
     } = this.state;
-    const options = locations.map((location) => {
+    const options = locations?.map((location) => {
       const name = `${location.city}, ${location.country}`;
       return (
         <option key={location.id} value={location.id}>
@@ -164,7 +202,7 @@ class CreateAccommodation extends Component {
         </option>
       );
     });
-    const accommodation_dropdown = accommodations.map((accommodation) => {
+    const accommodation_dropdown = accommodations?.map((accommodation) => {
       const accommodation_name = `${accommodation.name}`;
       return (
         <option key={accommodation.id} value={accommodation.id}>
@@ -180,14 +218,14 @@ class CreateAccommodation extends Component {
             <ul id="progressbar">
               <ToastContainer />
               <li
-                className={activeStep == 1 ? "active" : ""}
+                className={activeStep == 1 ? 'active' : ''}
                 id="accomodation"
                 onClick={(e) => this.handleJumpToStep(1)}
               >
                 Create Accomodations
               </li>
               <li
-                className={activeStep == 2 ? "active" : ""}
+                className={activeStep == 2 ? 'active' : ''}
                 id="rooms"
                 onClick={(e) => this.handleJumpToStep(2)}
               >
@@ -220,6 +258,7 @@ class CreateAccommodation extends Component {
                         id="hotelName"
                         name="name"
                         className="form-control-accomodation"
+                        data-testid="create-hotel-name"
                       />
                     </div>
                   </div>
@@ -254,15 +293,9 @@ class CreateAccommodation extends Component {
                         <img src={imageIcon} />
                       </div>
                       <input
-                        onChange={(e) =>
-                          this.setState({
-                            ...this.state,
-                            accomodation: {
-                              ...accomodation,
-                              accommodation_image: e.target.files[0],
-                            },
-                          })
-                        }
+                        onChange={(e) => {
+                          this.handleChange(e);
+                        }}
                         type="file"
                         id="accomo"
                         name="accomodationImages"
@@ -341,13 +374,16 @@ class CreateAccommodation extends Component {
                         id="description"
                         name="description"
                         className="form-control-accomodation"
+                        data-testid="create-description"
                       />
                     </div>
                   </div>
                 </form>
                 <div className="imagePreview">
                   <p>Image preview</p>
-                  <div className="previewImage"></div>
+                  <div className="previewImage">
+                    <img src={this.state.imagePreview} alt="image" />
+                  </div>
                 </div>
               </div>
             )}
@@ -399,6 +435,7 @@ class CreateAccommodation extends Component {
                         id="bedType"
                         name="bedType"
                         className="form-control-accomodation"
+                        data-testid="create-room"
                       />
                     </div>
                   </div>
@@ -434,15 +471,9 @@ class CreateAccommodation extends Component {
                         <img src={imageIcon} />
                       </div>
                       <input
-                        onChange={(e) =>
-                          this.setState({
-                            ...this.state,
-                            accomodationRoom: {
-                              ...accomodationRoom,
-                              roomImage: e.target.files[0],
-                            },
-                          })
-                        }
+                        onChange={(e) => {
+                          this.handleChange(e);
+                        }}
                         type="file"
                         id="roomImage"
                         name="roomImage"
@@ -453,7 +484,9 @@ class CreateAccommodation extends Component {
                 </form>
                 <div className="imagePreview">
                   <p>Image preview</p>
-                  <div className="previewImage"></div>
+                  <div className="previewImage">
+                    <img src={this.state.imagePreview} alt="image" />
+                  </div>
                 </div>
               </div>
             )}

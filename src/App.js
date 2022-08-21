@@ -34,12 +34,17 @@ const App = () => {
             <Route exact path="userprofile" element={<Userprofile />} />
             <Route path="*" element={<NotFound />} />
             <Route
-              exact
-              path="/createAccomodation"
+              path="createAccomodation"
               element={<CreateAccomodation />}
             />
-            <Route exact path="/createLocation" element={<CreateLocation />} />
+            <Route exact path="createLocation" element={<CreateLocation />} />
           </Route>
+          <Route
+            exact
+            path="/createAccomodation"
+            element={<CreateAccomodation />}
+          />
+          <Route exact path="/createLocation" element={<CreateLocation />} />
           <Route exact path="*" element={<NotFound />} />
         </Routes>
       </div>

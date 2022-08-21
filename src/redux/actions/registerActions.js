@@ -2,7 +2,7 @@ import axios from 'axios';
 import { successToast, errorToast } from '../../helpers/generateToast';
 import { successAlert } from './alertActions';
 
-const apiUrl = process.env.BASE_BACKEND_SERVER_URL;
+const apiUrl = 'https://winners-c8-bn-be-staging.herokuapp.com/api';
 
 export const register = ({ firstName, lastName, email, password }) => {
   let res;
