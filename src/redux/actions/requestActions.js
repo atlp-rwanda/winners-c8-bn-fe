@@ -2,9 +2,6 @@ import { FECTH_REQUESTS, FECTH_REQUESTS_COMMENTS, FECTH_REQUESTS_COMMENTS_FAILED
 import axios from 'axios';
 import { errorToast, successToast } from '../../helpers/generateToast';
 import { authHeader } from '../utils/dataSession';
-let tripId = localStorage.getItem('tripId');
-
-// let commentId = localStorage.getItem('commentId');
 
 export const fetchRequest = async (dispatch) => {
   const result = await axios.get(
@@ -13,7 +10,6 @@ export const fetchRequest = async (dispatch) => {
       headers: authHeader(),
     }
   );
-  // console.log(result);
   if (result.status == 200) {
     const requests = result.data;
     dispatch({
@@ -26,10 +22,9 @@ export const fetchRequest = async (dispatch) => {
 };
 
 
-export const fetchRequestComments = () => async (dispatch) => {
-
+export const fetchRequestComments = (tripid) => async (dispatch) => {
   return await axios
-    .get(`${process.env.BASE_BACKEND_SERVER_URL}/trips/${tripId}/comments`, {
+    .get(`${process.env.BASE_BACKEND_SERVER_URL}/trips/${tripid}/comments`, {
       headers: authHeader(),
     })
     .then((res) => {
@@ -37,7 +32,6 @@ export const fetchRequestComments = () => async (dispatch) => {
         type: FECTH_REQUESTS_COMMENTS,
         payload: res.data,
       });
-      // localStorage.removeItem('tripId')
 
     })
     .catch((err) => {
@@ -50,21 +44,25 @@ export const fetchRequestComments = () => async (dispatch) => {
 };
 
 
-export const postRequestComment = (body) => async (dispatch) => {
+export const postRequestComment = ({formData, tripid}) => async (dispatch) => {
 
   return axios
-    .post(`${process.env.BASE_BACKEND_SERVER_URL}/trips/${tripId}/comment`, body, {
+    .post(`${process.env.BASE_BACKEND_SERVER_URL}/trips/${tripid}/comment`, formData, {
       headers: authHeader(),
     })
     .then(async (res) => {
 
+       if(res.status == 201){
         await dispatch({
           type: POST_REQUESTS_COMMENT,
           payload: res.data.data,
         });
+        successToast(res.data.message)
+      }else{
+         errorToast("Posting Comment failed")
+       }
 
-
-      dispatch(fetchRequestComments());
+      dispatch(fetchRequestComments(tripid));
     })
     .catch((err) => {
       dispatch({
@@ -77,10 +75,9 @@ export const postRequestComment = (body) => async (dispatch) => {
 
 
 
-export const deleteRequestComment = (commentId) => async (dispatch) => {
- console.log(commentId)
+export const deleteRequestComment = ({commentId, tripid}) => async (dispatch) => {
   return axios
-    .delete(`${process.env.BASE_BACKEND_SERVER_URL}/trips/${tripId}/comments/${commentId}`, {
+    .delete(`${process.env.BASE_BACKEND_SERVER_URL}/trips/${tripid}/comments/${commentId}`, {
       headers: authHeader(),
     })
     .then(async (res) => {
@@ -96,7 +93,7 @@ export const deleteRequestComment = (commentId) => async (dispatch) => {
         }else{
           errorToast(res.data?.error || res.data?.message || result.data)
         }
-      dispatch(fetchRequestComments());
+      dispatch(fetchRequestComments(tripid));
     })
     .catch((err) => {
       dispatch({

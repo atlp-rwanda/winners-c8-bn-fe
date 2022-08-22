@@ -1,86 +1,55 @@
-.comments_container{
-    width: 95%;
-    height: 100%;
-    margin: 0 auto;
-    background-color: #FFF;
-    padding: 20px 30px;
-    h1{
-        margin-bottom: 10px;
+.comment_{
+    display: flex;
+    align-items: center;
+
+    p{
+        border: 1px solid #3BCAB3;
+        border-radius: 5px;
+        padding: 4px 6px;
+        // text-align: center;
+
+        ._icon{
+            color: #395B64;
+            margin-right: 5px;
+        }
+        ._time{
+            margin-left: 10px;
+            color: #395B64;
+            font-size: 8px;
+        }
+        ._date{
+            color: #395B64;
+            font-size: 8px;
+
+        }
+
+    }
+    .delete_icon:hover{
+        color: rgb(234, 1, 1);
+    }
+}
+
+
+
+._form_comments{
+    display: flex;
+    margin-top: 15px;
+
+    .comment_area{
+        width: 100%;
     }
 
-    .trip_info{
+    .publish_button{
+        background-color: #3BCAB3;
+        border: none;
+        border-radius: 2px;
+        padding: 2px 4px;
 
-        .owner_{
-            display: flex;
-            align-items: center;
-            line-height: 30px;
-
-            p{
-                font-size: 14px;
-            }
-            h4{
-                font-size: 16px;
-                margin-left: 40px;
-            }
-            .status_{
-                background-color: #E7F6F2;
-                color: #5DD0BD;
-                padding: 4px 6px;
-                border-radius: 4px;
-            }
+        ._send_icon{
+            color: #FFF;
         }
     }
-
-    .comments_section{
-        margin-top: 20px;
-        p{
-            color: #606060;
-            font-style: normal;
-            font-weight: 400;
-            font-size: 16px; 
-            margin-bottom: -7px;
-        }
-
-        .comment_{
-            margin-top: 30px;
-            width:80%;
-            background-color: #F9FAFB;
-            padding: 4px 6px;
-            border-radius: 4px;
-            display: flex;
-            align-items: center;
-            p{
-                color: #606060;
-                font-style: normal;
-                font-weight: 400;
-                font-size: 14px;
-                line-height: 21px;
-                padding: 4px 6px;
-            }
-            .delete_icon{
-                color: red;
-            }
-        }
-
-        form{
-            margin-top: 60px;
-
-            .comment_area{
-                width: 50%;
-                height: 100px;
-                border-radius: 10px;
-                padding: 10px;
-                font-size: 12px;
-            }
-            .publish_button{
-                background: #395B64;
-                padding: 8px 20px;
-                border: none;
-                font-size: 14px;
-                margin-left: 10px;
-                color: #FFF;
-                border-radius: 6px;
-            }
-        }
+    .publish_button:hover{
+        background-color: #2b9b88;
     }
 }

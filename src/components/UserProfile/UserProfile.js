@@ -110,6 +110,7 @@ const UserProfile = () => {
                       type="text"
                       disabled={disable}
                       defaultValue={dataForm?.username}
+                      placeholder='Username'
                       onChange={(event) =>
                         setFormData({
                           ...dataForm,

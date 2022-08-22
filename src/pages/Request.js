@@ -1,12 +1,17 @@
 import React, { useEffect, useState } from 'react';
-import { fetchRequest } from '../redux/actions/requestActions';
+import { fetchRequest, fetchRequestComments, postRequestComment, deleteRequestComment } from '../redux/actions/requestActions';
 import { fetchUserProfile } from '../redux/actions/userProfileAction';
 import { useDispatch, useSelector } from 'react-redux';
 import Table from '../components/Table';
 import { Alert, Button, Typography, Modal } from '@mui/material';
 import { Box } from '@mui/system';
-import { Link } from 'react-router-dom';
-
+import IconButton from '@mui/material/IconButton';
+import DeleteIcon from '@mui/icons-material/Delete';
+import SendIcon from '@mui/icons-material/Send';
+import CheckIcon from '@mui/icons-material/Check';
+import "./comments.scss"
+import { ToastContainer, toast } from 'react-toastify';
+import { successToast, errorToast } from '../helpers/generateToast';
 
 function Request() {
   const [open, setOpen] = React.useState(false);
@@ -16,6 +21,63 @@ function Request() {
       user: state.userProfile?.user.user,
     };
   });
+
+// My codes
+const [data, setData ] = useState("")
+const [tripid, setTripId] = useState(null)
+const comments= useSelector((state) => state.requestComments.requestComments?.comments);
+const handleCommentChange = event => {
+  // 👇️ update textarea value
+  setData(event.target.value);
+
+};
+
+let formData = new FormData();
+
+const postComment = (e) => {
+  e.preventDefault();
+  successToast('Posting Comment');
+  formData.append('comment', data);
+  postRequestComment({formData, tripid: currentTrip?.id})(dispatch);
+};
+
+
+const coments = (
+  <div>
+    {comments?.map((value) => 
+    <div className="comment_" key={value.id}>
+      <p >
+        <CheckIcon className='_icon'/>
+        {value.message} <br />
+        <span className='_date'>{value.createdAt.substr(0, 10)}</span>
+        <span className='_time'>{value.createdAt.substr(11, 5)}</span>
+      </p>
+
+    <IconButton aria-label="delete">
+      <DeleteIcon 
+      className="delete_icon"
+      onClick={()=>{
+
+        deleteRequestComment({commentId: value.id, tripid: currentTrip?.id})(dispatch);
+      }}
+      />
+    </IconButton>
+    </div>  
+      )}
+  </div>
+)
+
+  
+
+
+
+
+
+
+
+
+
+
   const handleClose = () => setOpen(false);
   const [currentTrip, setCurrentTrip] = useState(null);
   const style = {
@@ -80,6 +142,7 @@ function Request() {
             color="info"
             onClick={() => {
               setCurrentTrip(row);
+              fetchRequestComments(row?.id)(dispatch);
               setOpen(true);
             }}
             data-testid="request_view_button"
@@ -114,31 +177,6 @@ function Request() {
         </>
       ),
     },
-    {
-      field: 'comments',
-      headerName: 'comments',
-      flex: 1,
-      renderCell: ({ row }) => (
-        <>
-          <Button
-            variant="outlined"
-            color="info"
-            data-testid="request_comment_button"
-            onClick={() => {
-              setCurrentTrip(row?.id);
-              console.log(row?.id);
-              localStorage.setItem('tripId', JSON.stringify(row?.id));
-            }}
-          >
-            <Link to={`trip`}>
-            comments
-            </Link>
-          </Button>
-
-
-        </>
-      ),
-    },
   ];
 
   const dispatch = useDispatch();
@@ -146,6 +184,7 @@ function Request() {
   useEffect(() => {
     fetchRequest(dispatch);
     fetchUserProfile()(dispatch);
+
   }, []);
 
   return (
@@ -166,7 +205,7 @@ function Request() {
               Trip request
             </Typography>
             <hr />
-            {currentTrip && (
+            {currentTrip && ( 
               <>
                 <Typography variant="h5">Trip Id</Typography>
                 <Typography>{currentTrip.id}</Typography>
@@ -215,6 +254,27 @@ function Request() {
                   </>
                 ))}
                 <hr />
+            <h4>Comments</h4>
+            
+            {coments}  
+            
+            <form action="" className='_form_comments'>
+            <textarea 
+            className='comment_area'
+            required
+            onChange={handleCommentChange}
+            >
+
+
+            </textarea>
+            <button className='publish_button'
+            onClick={postComment}
+            >
+              <SendIcon className='_send_icon'/>
+            </button>
+          </form>
+
+                  <hr/>
                 {user.user_role != '6927442b-84fb-4fc3-b799-11449fa62f52' && (
                   <>
                     <Button variant="outlined">Edit</Button>
@@ -228,6 +288,7 @@ function Request() {
           </Box>
         </Modal>
       </Box>
+      <ToastContainer/>
     </>
   );
 }
