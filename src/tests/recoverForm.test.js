@@ -53,11 +53,13 @@ describe("Testing rendering resetForm components", () => {
       </Provider>
     );
     const emailField = screen.getByPlaceholderText(/Enter your email/i);
-
-    fireEvent.change(emailField, {
-      target: { value: "12345" },
+    act(() => {
+      fireEvent.change(emailField, {
+        target: { value: "12345" },
+      });
+      fireEvent.blur(emailField);
     });
-    fireEvent.blur(emailField);
+
     await waitFor(() => {
       // assertions can be put here
       expect(screen.getByText(/email must be a valid email/i))
@@ -75,10 +77,12 @@ describe("Testing rendering resetForm components", () => {
     );
     const emailField = screen.getByPlaceholderText(/Enter your email/i);
 
-    fireEvent.change(emailField, {
-      target: { value: "" },
+    act(() => {
+      fireEvent.change(emailField, {
+        target: { value: "" },
+      });
+      fireEvent.blur(emailField);
     });
-    fireEvent.blur(emailField);
     await waitFor(() => {
       expect(screen.getByText(/Required/i)).toBeInTheDocument;
     });
@@ -94,11 +98,12 @@ describe("Testing rendering resetForm components", () => {
     );
     const emailField = screen.getByPlaceholderText(/Enter your email/i);
 
-    fireEvent.change(emailField, {
-      target: { value: "tester@admin.com" },
+    act(() => {
+      fireEvent.change(emailField, {
+        target: { value: "tester@admin.com" },
+      });
+      fireEvent.blur(emailField);
     });
-
-    fireEvent.blur(emailField);
 
     await waitFor(() => {
       expect(screen.queryByText(/email must be a valid email/i)).toBeNull;
@@ -118,10 +123,11 @@ describe("Testing rendering resetForm components", () => {
     });
     const emailField = screen.getByPlaceholderText(/Enter your email/i);
 
-    fireEvent.change(emailField, {
-      target: { value: "tester@admin.com" },
+    act(() => {
+      fireEvent.change(emailField, {
+        target: { value: "tester@admin.com" },
+      });
     });
-
     await act(async () => {
       const submitButton = screen.getByRole("button", {
         name: /Recover Password/i,
@@ -159,8 +165,10 @@ describe("Testing failure in fetch", () => {
     });
     const emailField = screen.getByPlaceholderText(/Enter your email/i);
 
-    fireEvent.change(emailField, {
-      target: { value: "tester@admin.com" },
+    act(() => {
+      fireEvent.change(emailField, {
+        target: { value: "tester@admin.com" },
+      });
     });
 
     await act(async () => {

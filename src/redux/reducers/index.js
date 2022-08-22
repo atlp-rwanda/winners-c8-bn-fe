@@ -3,11 +3,15 @@ import { combineReducers } from "redux";
 import authReducer from "./authReducer";
 import navbarReducer from "./navbarReducer";
 import { registration } from "./userReducers";
-import {alert} from "./alertReducers"
+import { alert } from "./alertReducers";
 import resetReducer from "./resetReducer";
-import {fetchUserProfileReducer, updateUserProfileReducer} from "./userProfileReducer"
+import {
+  fetchUserProfileReducer,
+  updateUserProfileReducer,
+} from "./userProfileReducer";
 import recoverReducer from "./recoverReducer";
 import userReducer from "./SocialReducers";
+import { statsReducer, chartStatsReducer } from "./tripstatsReducers";
 
 export default combineReducers({
   auth: authReducer,
@@ -19,6 +23,6 @@ export default combineReducers({
   reset: resetReducer,
   recover: recoverReducer,
   user: userReducer,
+  tripStats: statsReducer,
+  chartTripStats: chartStatsReducer,
 });
-  
-

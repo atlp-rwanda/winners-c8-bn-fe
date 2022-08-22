@@ -6,6 +6,7 @@ import * as Yup from "yup";
 import { useSearchParams } from "react-router-dom";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import ErrorIcon from "@mui/icons-material/Error";
+import Loader from "./Loader";
 import "../../public/styles/recoverForm/index.scss";
 
 function App(props) {
@@ -110,7 +111,7 @@ class ResetForm extends Component {
                 Reset Password
               </button>
             ) : (
-              <div className="loader"></div>
+              <Loader />
             )}
           </form>
         )}

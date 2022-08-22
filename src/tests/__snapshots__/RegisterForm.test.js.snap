@@ -241,8 +241,7 @@ exports[`Connected Register Form React-Redux Component should render with given 
               <div
                 className="notify"
               >
-                Already have an account?
-                 
+                Already have an account? 
                 <a
                   href="/login"
                   onClick={[Function]}
