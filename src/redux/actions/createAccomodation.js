@@ -13,7 +13,6 @@ export const fetchLocations = () => async (dispatch) => {
       });
     })
     .catch((err) => {
-      console.log(err);
       errorToast(err);
     });
 };
