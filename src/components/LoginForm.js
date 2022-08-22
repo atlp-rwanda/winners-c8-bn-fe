@@ -1,17 +1,28 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import '../../public/styles/LoginForm/index.css';
 import authActions from '../redux/actions/authActions';
 import { connect } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { Navigate, Link } from 'react-router-dom';
 import Joi, { disallow, version } from 'joi';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { rememberInfo } from '../redux/actions/rememberInfoAction';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { FcGoogle } from 'react-icons/fc';
 import { ImFacebook } from 'react-icons/im';
 import { errorToast, successToast } from '../helpers/generateToast';
 
+const dispatch = useDispatch;
+
+const rememberMe = (e) => {
+  e.preventDefault()
+  successToast('remembered successfull');
+  
+  dispatch(rememberInfo())
+}
 class LoginForm extends React.Component {
+  
   constructor(props) {
     super(props);
     this.state = {
@@ -26,6 +37,7 @@ class LoginForm extends React.Component {
       verify: '',
     };
   }
+  
   isFormSubmitted = false;
   loginSubmit = async (event) => {
     event.preventDefault();
@@ -103,12 +115,14 @@ class LoginForm extends React.Component {
       this.setState({ passwordValidationMessage: '' });
     }
   };
+  
   componentDidMount() {
     this.props.LOGOUT();
     if (window.localStorage.getItem('auth-token')) {
       window.localStorage.removeItem('auth-token');
     }
   }
+  
   socialImageStyle = {
     display: 'block',
     marginLeft: 'auto',
@@ -121,7 +135,6 @@ class LoginForm extends React.Component {
   inputErrorStyle = {
     border: '2px solid red',
   };
-
   render() {
     let { message_success } = this.props.alert;
     return (
@@ -185,6 +198,22 @@ class LoginForm extends React.Component {
                           : {}
                       }
                     ></input>
+                    <br></br>
+
+
+
+                    <h4>
+                      <input 
+                      onChange={rememberMe}
+                      type='checkbox'
+                    
+                      className='checkbox'
+                      />&nbsp;
+                      remember me</h4>
+
+
+
+
                     <div className="redErrorMessage">
                       {this.state.passwordValidationMessage}
                     </div>

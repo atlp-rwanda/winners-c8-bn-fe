@@ -7,7 +7,6 @@ import {
   fetchUserProfile,
   updateUserProfile,
 } from '../../redux/actions/userProfileAction';
-import { rememberInfo } from '../../redux/actions/rememberInfoAction';
 import { Skeleton } from '@mui/material';
 import { ToastContainer, toast } from 'react-toastify';
 import { successToast, errorToast } from '../../helpers/generateToast';
@@ -18,7 +17,7 @@ const UserProfile = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [disable, setDisable] = useState(true);
   const [preview, setPreview] = useState('');
-  const [remember, setRemember ] = useState(null);
+  // const [remember, setRemember ] = useState(null);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -78,18 +77,6 @@ const UserProfile = () => {
     event.preventDefault();
     setDisable(false);
   };
-
-
-
-const rememberMe = (e) => {
-  e.preventDefault()
-  successToast('remembering your information');
-  
-  dispatch(rememberInfo())
-}
-
-
-
   return (
     <>
       <div className="titleDashboard">
@@ -289,15 +276,6 @@ const rememberMe = (e) => {
               >
                 Update
               </button>
-              <input 
-              type='checkbox'
-              disabled={disable}
-              onChange={rememberMe}
-              // onClick={rememberMe}
-              className='checkbox'
-              />
-              <div className='remember'> <p>Remember me</p> </div>
-
               <ToastContainer />
             </form>
           </div>

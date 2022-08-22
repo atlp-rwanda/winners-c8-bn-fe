@@ -72,3 +72,10 @@
     text-align: left;
     padding-left: 3ex;
 }
+.remember-me{
+    position: relative;
+    left: 35%;
+}
+h5{
+    font-size: 1000px;
+}

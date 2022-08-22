@@ -3,16 +3,20 @@ import { REMEMBER_INFO_LOADING, REMEMBER_INFO_SUCCESS, REMEMBER_INFO_FAILED } fr
   import { successToast, errorToast } from '../../helpers/generateToast';
   import { authHeader } from '../utils/dataSession';
 
-  export const rememberInfo = () => async (dispatch) => {
+export const rememberInfo = () => async (dispatch) => {
     dispatch({
       type: REMEMBER_INFO_LOADING,
+      payload: "remembering info is loading"
     });
   
     return axios
-      .put(`${process.env.BASE_BACKEND_SERVER_URL}/user/remember-info`, {
-        headers: authHeader(),
-      })
+      .put(`${process.env.BASE_BACKEND_SERVER_URL}/user/remember-info`, 
+      {
+         headers: authHeader(),
+        }
+      )
       .then(async (res) => {
+        console.log("honore", res.data)
         if (res.data.error) {
           await dispatch({
             type: REMEMBER_INFO_FAILED,
@@ -35,7 +39,8 @@ import { REMEMBER_INFO_LOADING, REMEMBER_INFO_SUCCESS, REMEMBER_INFO_FAILED } fr
           type: REMEMBER_INFO_FAILED,
           payload: err,
         });
-        errorToast(err.response.data.error);
+        errorToast(err.response.data.err);
       });
   };
+
   
