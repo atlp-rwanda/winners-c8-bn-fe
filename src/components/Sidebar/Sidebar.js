@@ -15,8 +15,9 @@ import PsychologyOutlinedIcon from '@mui/icons-material/PsychologyOutlined';
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 import { Link } from 'react-router-dom';
 import { useContext } from 'react';
+import { useSelector } from 'react-redux';
 
-const Sidebar = () => {
+const Sidebar = ({ user }) => {
   return (
     <div className="sidebar">
       <div className="top">
@@ -35,19 +36,29 @@ const Sidebar = () => {
             </li>
           </Link>
           <p className="title">PAGES</p>
-          <Link to="/dashboard/createLocation" style={{ textDecoration: 'none' }}>
-            <li>
-              <PersonOutlineIcon className="icon" />
-              <span>Create location</span>
-            </li>
-          </Link>
-          <Link to="/dashboard/createAccomodation" style={{ textDecoration: 'none' }}>
-            <li>
-              <PersonOutlineIcon className="icon" />
-              <span>Create accommodation</span>
-            </li>
-          </Link>
-          <Link to="/dashboard/assignRole" style={{ textDecoration: "none" }}>
+          {user && user.user_role == 'd01c0e35-b0ec-4724-85d5-48c2ecc995e7' && (
+            <>
+              <Link
+                to="/dashboard/createLocation"
+                style={{ textDecoration: 'none' }}
+              >
+                <li>
+                  <PersonOutlineIcon className="icon" />
+                  <span>Create location</span>
+                </li>
+              </Link>
+              <Link
+                to="/dashboard/createAccomodation"
+                style={{ textDecoration: 'none' }}
+              >
+                <li>
+                  <PersonOutlineIcon className="icon" />
+                  <span>Create accommodation</span>
+                </li>
+              </Link>
+            </>
+          )}
+          <Link to="/dashboard/assignRole" style={{ textDecoration: 'none' }}>
             <li>
               <StoreIcon className="icon" />
               <span>Assign Roles</span>
