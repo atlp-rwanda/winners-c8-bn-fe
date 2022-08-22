@@ -7,6 +7,7 @@ import ResetForm from './components/resetForm';
 import LoginForm from './components/LoginForm';
 import Userprofile from './components/UserProfile/UserProfile';
 import Request from './pages/Request';
+import Comments from './pages/Comments';
 import Dashboard from './components/Dashboard';
 import NotFound from './components/NotFound';
 import UserRoleDash from "./components/AssignRole/UserRoleDash"
@@ -30,6 +31,7 @@ const App = () => {
           <Route path="/dashboard" element={<DashboardLayout />}>
             <Route exact index element={<Dashboard />} />
             <Route path="trips" element={<Request />} />
+            <Route path="trips/trip" element={<Comments />} />
           <Route exact path='assignRole' element={<UserRoleDash />} />
             <Route exact path="userprofile" element={<Userprofile />} />
             <Route path="*" element={<NotFound />} />

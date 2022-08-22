@@ -5,6 +5,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import Table from '../components/Table';
 import { Alert, Button, Typography, Modal } from '@mui/material';
 import { Box } from '@mui/system';
+import { Link } from 'react-router-dom';
+
 
 function Request() {
   const [open, setOpen] = React.useState(false);
@@ -109,6 +111,31 @@ function Request() {
               </Button>
             </>
           )}
+        </>
+      ),
+    },
+    {
+      field: 'comments',
+      headerName: 'comments',
+      flex: 1,
+      renderCell: ({ row }) => (
+        <>
+          <Button
+            variant="outlined"
+            color="info"
+            data-testid="request_comment_button"
+            onClick={() => {
+              setCurrentTrip(row?.id);
+              console.log(row?.id);
+              localStorage.setItem('tripId', JSON.stringify(row?.id));
+            }}
+          >
+            <Link to={`trip`}>
+            comments
+            </Link>
+          </Button>
+
+
         </>
       ),
     },
