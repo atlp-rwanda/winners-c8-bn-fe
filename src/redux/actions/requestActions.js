@@ -1,22 +1,16 @@
 import { FECTH_REQUESTS } from './actionTypes';
-import axios from 'axios';
 import { errorToast } from '../../helpers/generateToast';
-import { authHeader } from '../utils/dataSession';
+import axiosInstance from '../../helpers/http';
+
 export const fetchRequest = async (dispatch) => {
-  const result = await axios.get(
-    `${process.env.BASE_BACKEND_SERVER_URL}/trips`,
-    {
-      headers: authHeader(),
-    }
-  );
-  console.log(result);
-  if (result.status == 200) {
+  const result = await axiosInstance.get('/trips');
+  if (!result?.error) {
     const requests = result.data;
     dispatch({
       type: FECTH_REQUESTS,
       payload: requests,
     });
   } else {
-    errorToast(result.data?.error || result.data?.message || result.data);
+    errorToast(result?.error || result?.message);
   }
 };

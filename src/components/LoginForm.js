@@ -3,14 +3,12 @@ import '../../public/styles/LoginForm/index.css';
 import authActions from '../redux/actions/authActions';
 import { connect } from 'react-redux';
 import { Navigate, Link } from 'react-router-dom';
-import Joi, { disallow, version } from 'joi';
+import Joi from 'joi';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { toast } from 'react-toastify';
 import { FcGoogle } from 'react-icons/fc';
 import { ImFacebook } from 'react-icons/im';
-import { errorToast, successToast } from '../helpers/generateToast';
-
+import axiosInstance from '../helpers/http';
 class LoginForm extends React.Component {
   constructor(props) {
     super(props);
@@ -30,28 +28,13 @@ class LoginForm extends React.Component {
   loginSubmit = async (event) => {
     event.preventDefault();
     try {
-      let myHeaders = new Headers();
-      myHeaders.append('Content-Type', 'application/json');
-
-      let raw = JSON.stringify({
+      this.setState({ wait: true });
+      toast('Signing in . . .', { position: toast.POSITION.TOP_RIGHT });
+      let result = await axiosInstance.post('/auth/signin', {
         email: event.target['email'].value,
         password: event.target['password'].value,
       });
-
-      let requestOptions = {
-        method: 'POST',
-        headers: myHeaders,
-        body: raw,
-        redirect: 'follow',
-      };
-      this.setState({ wait: true });
-      toast('Signing in . . .', { position: toast.POSITION.TOP_CENTER });
-      let result = await fetch(
-        `${process.env.BASE_BACKEND_SERVER_URL}/auth/signin`,
-        requestOptions
-      ).then((response) => response.json());
-      this.setState({ responseMessage: result.message });
-      toast.dismiss();
+      this.setState({ responseMessage: result?.data?.message || result.error });
       if (result.status == 200) {
         toast.success('Logged in successfully!', {
           position: toast.POSITION.TOP_CENTER,
@@ -59,8 +42,8 @@ class LoginForm extends React.Component {
         // await new Promise(resolve => setTimeout(resolve, 1500));
         this.isFormSubmitted = true;
         this.setState({ success: true });
-        this.props.LOGIN(result.data);
-        window.localStorage.setItem('auth-token', result.data);
+        this.props.LOGIN(result?.data?.data);
+        window.localStorage.setItem('auth-token', result.data.data);
       } else {
         this.setState({ error: true });
         toast.error(this.state.responseMessage, {
@@ -68,7 +51,7 @@ class LoginForm extends React.Component {
         });
       }
     } catch (error) {
-      toast.error(`Error: ${error}`, { position: toast.POSITION.TOP_CENTER });
+      toast.error(`Error: ${error}`, { position: toast.POSITION.TOP_RIGHT });
     }
   };
   validateEmail = async (emailAddress) => {
@@ -130,7 +113,6 @@ class LoginForm extends React.Component {
         <div className="container d-flex justify-content-center">
           {
             <div className="col-md-8 formWhite">
-              <ToastContainer />
               <div>
                 {message_success ? (
                   <p>{'Account created, Now verify email!'}</p>

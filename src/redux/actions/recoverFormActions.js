@@ -1,37 +1,27 @@
+import { errorToast, successToast } from '../../helpers/generateToast';
+import axiosInstance from '../../helpers/http';
+
 export const recoverEmail = (values, { setSubmitting }) => {
   return async (dispatch) => {
-    const url = `${process.env.BASE_BACKEND_SERVER_URL}/auth/requestPasswordReset`;
     const email = values.email;
-    const data = JSON.stringify({ email: email });
-
-    try {
-      const response = await fetch(url, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: data,
-      });
-      const resultData = await response.json();
-      const responseData = {
-        isSuccess: resultData.success,
-        message: resultData.message,
-      };
-
+    const response = await axiosInstance.post('/auth/requestPasswordReset', {
+      email,
+    });
+    const responseData = {
+      isSuccess: response?.data?.success || response?.success,
+      message: response?.data.message || response?.error,
+    };
+    if (responseData.isSuccess) {
       dispatch(Submit({ responseData, emailSent: true }));
-      setSubmitting(false);
-    } catch (err) {
-      const responseData = {
-        isSuccess: false,
-        message: err.message,
-      };
-      dispatch(Submit({ responseData, emailSent: true }));
-      setSubmitting(false);
+      successToast(responseData.message);
+    } else {
+      errorToast(responseData.message);
     }
+    setSubmitting(false);
   };
 };
 
-export const recoverReturn = () => {
+export const recoverReturn = () => (dispatch) => {
   return dispatch(Return());
 };
 
