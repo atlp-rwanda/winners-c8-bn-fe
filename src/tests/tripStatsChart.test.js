@@ -11,7 +11,7 @@ import { act } from "react-dom/test-utils";
 import { Provider } from "react-redux";
 import { BrowserRouter as Router } from "react-router-dom";
 import configureMockStore from "redux-mock-store";
-import StatsChart from "../components/Dashboard/StatsChart";
+import StatsChart from "../components/dashboard/StatsChart";
 
 const middleware = [thunk];
 const mockStore = configureMockStore(middleware);

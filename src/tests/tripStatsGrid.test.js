@@ -11,8 +11,8 @@ import { act } from "react-dom/test-utils";
 import { Provider } from "react-redux";
 import { BrowserRouter as Router } from "react-router-dom";
 import configureMockStore from "redux-mock-store";
-import StatsGrid from "../components/Dashboard/statsGrid";
-import TimeFrame from "../components/Dashboard/TimeFrame";
+import StatsGrid from "../components/dashboard/statsGrid";
+import TimeFrame from "../components/dashboard/TimeFrame";
 import getPeriod from "../redux/utils/getPeriod";
 
 const middleware = [thunk];
