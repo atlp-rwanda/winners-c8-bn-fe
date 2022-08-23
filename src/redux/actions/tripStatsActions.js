@@ -1,7 +1,7 @@
 import { authHeader } from "../utils/dataSession";
 import getPeriod, { getPeriodFromMonth } from "../utils/getPeriod";
 
-export const getTripStats = (option, timeFrame = null) => {
+export const getTripStats = (option, timeFrame) => {
   return async (dispatch) => {
     dispatch(fetchingStats());
     const period = timeFrame ? timeFrame : getPeriod(option);
@@ -43,7 +43,7 @@ export const changeOption = (option) => {
 
 export const changePeriod = (period) => {
   return async (dispatch) => {
-    dispatch(setPeriod(period));
+    return dispatch(setPeriod({ ...period }));
   };
 };
 
@@ -131,8 +131,8 @@ const setOption = (option) => {
 
 const setPeriod = (period) => {
   return {
-    type: "SET_STATS",
-    payload: { ...period },
+    type: "SET_PERIOD",
+    payload: { period: period },
   };
 };
 

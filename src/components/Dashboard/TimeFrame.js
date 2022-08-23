@@ -47,6 +47,12 @@ function TimeFrame(props) {
             id="from"
             className="input-date"
             defaultValue={period.from}
+            onChange={(e) => {
+              return changePeriod({
+                from: e.target.value,
+                to: period.to,
+              });
+            }}
           ></input>
         </div>
         <div className="input-group">
@@ -57,6 +63,12 @@ function TimeFrame(props) {
             id="to"
             className="input-date"
             defaultValue={period.to}
+            onChange={(e) => {
+              return changePeriod({
+                to: e.target.value,
+                from: period.from,
+              });
+            }}
           ></input>
         </div>
         <button

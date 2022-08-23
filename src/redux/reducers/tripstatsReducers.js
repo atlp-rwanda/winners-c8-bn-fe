@@ -35,7 +35,7 @@ export const statsReducer = (state = initialState, action) => {
     case "SET_PERIOD":
       return {
         ...state,
-        period: action.payload,
+        period: { ...action.payload.period },
       };
     default:
       return state;
