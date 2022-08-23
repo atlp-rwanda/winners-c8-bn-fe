@@ -3,8 +3,7 @@ import { connect } from "react-redux";
 import "../../public/styles/DashBoard/index.scss";
 import Navbar from "./Navbar/Navbar";
 import Sidebar from "./Sidebar/Sidebar";
-
-import StatsGrid from "./dashboard/statsGrid.js";
+import StatsGrid from "../components/dashboard/statsGrid.js";
 import TimeFrame from "./dashboard/TimeFrame.js";
 import StatsChart from "./dashboard/StatsChart";
 
