@@ -14,6 +14,20 @@ import { BrowserRouter as Router } from "react-router-dom";
 
 afterEach(cleanup);
 
+class ResizeObserver {
+  observe() {
+    // do nothing
+  }
+  unobserve() {
+    // do nothing
+  }
+  disconnect() {
+    // do nothing
+  }
+}
+
+window.ResizeObserver = ResizeObserver;
+
 describe("Testing the Home and LoginForm components", () => {
   global.fetch = jest.fn(() =>
     Promise.resolve({
