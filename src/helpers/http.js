@@ -28,7 +28,7 @@ axiosInstance.interceptors.response.use(
         )
           window.location.href = '/login';
       default:
-        return error.response.data;
+        return error?.response?.data;
     }
   }
 );

@@ -84,7 +84,7 @@ const UserRoleDash = () => {
                 <CardContent>
                   <form className="formClass">
                     <Stack spacing={3}>
-                      <FormControl fullWidth margin="2px 0px">
+                      <FormControl fullWidth>
                         <InputLabel>Email</InputLabel>
                         <Select
                           className="inputData"

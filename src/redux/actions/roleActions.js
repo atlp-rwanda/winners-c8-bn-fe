@@ -40,7 +40,7 @@ export const fetchRoles = () => async (dispatch) => {
     type: FETCH_ROLE_LOADING,
   });
 
-  return await aaxiosInstance
+  return await axiosInstance
     .get('/users/role')
     .then((res) => {
       dispatch({

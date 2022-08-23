@@ -34,7 +34,9 @@ class LoginForm extends React.Component {
         email: event.target['email'].value,
         password: event.target['password'].value,
       });
-      this.setState({ responseMessage: result?.data?.message || result.error });
+      this.setState({
+        responseMessage: result?.data?.message || result?.error,
+      });
       if (result.status == 200) {
         toast.success('Logged in successfully!', {
           position: toast.POSITION.TOP_CENTER,

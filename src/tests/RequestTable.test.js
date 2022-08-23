@@ -7,14 +7,14 @@ import {
   fireEvent,
   waitFor,
 } from '@testing-library/react';
-import axios from 'axios';
+import axiosInstance from '../helpers/http';
 import { MemoryRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import App from '../App';
 import store from '../redux/store';
 import { userResponse, tripRequestResponse } from './mocks/data';
 import MockAxiosAdapter from 'axios-mock-adapter';
-const mock = new MockAxiosAdapter(axios);
+const mock = new MockAxiosAdapter(axiosInstance);
 describe('Request table', () => {
   beforeEach(() => {
     mock.onGet(/trips/gi).reply(200, tripRequestResponse);

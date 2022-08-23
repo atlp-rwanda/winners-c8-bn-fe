@@ -13,7 +13,7 @@ resetActions.submit = (values, setSubmitting, token) => {
 
     const responseData = {
       isSuccess: result?.data?.success || result?.sucesss,
-      message: result?.data?.message || result.error,
+      message: result?.data?.message || result?.error,
     };
     if (responseData.isSuccess) {
       successToast(responseData.message);
