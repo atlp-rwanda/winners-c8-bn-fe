@@ -36,9 +36,9 @@ describe('Test trips stats chart', () => {
     status: 200,
     success: true,
     Tripstatistics: {
-      pending: 20,
-      approved: 15,
-      denied: 5,
+      Pending: '20',
+      Approved: '10',
+      Denied: '5',
     },
   });
 
@@ -64,11 +64,11 @@ describe('Test trips stats chart', () => {
 
     const pendingStatsCard = screen.queryByText('20');
     const approvedStatsCard = screen.queryByText('15');
-    const deniedStatsCard = screen.queryByText('5');
+    const rejectedStatsCard = screen.queryByText('5');
 
     expect(pendingStatsCard).toBeInTheDocument;
     expect(approvedStatsCard).toBeInTheDocument;
-    expect(deniedStatsCard).toBeInTheDocument;
+    expect(rejectedStatsCard).toBeInTheDocument;
   });
 
   it('should change the months in timeframe', () => {

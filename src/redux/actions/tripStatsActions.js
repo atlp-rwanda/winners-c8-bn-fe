@@ -11,12 +11,12 @@ export const getTripStats = (option, timeFrame) => {
         '/trips/tripstatistics',
         period
       );
-
+      console.log(response?.data.Tripstatistics);
       const responseData = {
         isSuccess: response?.data?.success || response?.success,
         message: response?.data.message || response?.error,
         stats: {
-          ...(response?.data.Tripstatistics || response?.Tripstatistics),
+          ...response?.data.Tripstatistics,
         },
       };
 
@@ -24,6 +24,7 @@ export const getTripStats = (option, timeFrame) => {
         errorToast(responseData.message);
         return;
       }
+      console.log('after', responseData);
       dispatch(setStats({ ...responseData, selected: option, period }));
     } catch (err) {
       const responseData = {
@@ -74,13 +75,15 @@ export const getChartStats = () => {
     )
       .then((data) => {
         const result = JSON.parse(JSON.stringify(data));
+        console.log('11111', data);
+
         const response = {
           isSuccess: true,
           chartStats: result.map((item) => {
             return item?.data.Tripstatistics || item.Tripstatistics;
           }),
         };
-
+        console.log('aaaaa', response);
         dispatch(setChartStats(response));
       })
       .catch((err) => {
