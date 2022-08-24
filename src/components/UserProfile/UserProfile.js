@@ -8,9 +8,8 @@ import {
   updateUserProfile,
 } from '../../redux/actions/userProfileAction';
 import { Skeleton } from '@mui/material';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import { successToast, errorToast } from '../../helpers/generateToast';
-import 'react-toastify/dist/ReactToastify.css';
 const UserProfile = () => {
   const userData = useSelector((state) => state.userProfile?.user?.user);
   const [dataForm, setFormData] = useState();
@@ -274,8 +273,6 @@ const UserProfile = () => {
               >
                 Update
               </button>
-
-              <ToastContainer />
             </form>
           </div>
         ) : (
