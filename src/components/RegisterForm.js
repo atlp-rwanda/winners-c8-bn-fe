@@ -4,8 +4,6 @@ import '../../public/styles/RegisterForm/index.css';
 import { connect } from 'react-redux';
 import { userActions } from '../redux/actions/registerActions';
 import { errorToast, successToast } from '../helpers/generateToast';
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import { FcGoogle } from 'react-icons/fc';
 import { ImFacebook } from 'react-icons/im';
 
@@ -87,13 +85,6 @@ class UserRegisterForm extends React.Component {
         {this.submitted && (
           <Navigate to="/login" replace={true} message="Registration ok" />
         )}
-
-        <div>
-          <>
-            <ToastContainer></ToastContainer>
-          </>
-        </div>
-
         <div className="registration">
           <div className="register-box">
             <div className="sec-title text-center mb-30">

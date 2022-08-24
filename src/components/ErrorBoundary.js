@@ -1,3 +1,5 @@
+import { NotAccessible } from '@mui/icons-material';
+import { Box, Button, Typography } from '@mui/material';
 import React from 'react';
 const logErrorToMyService = (error, errorInfo) => {
   console.log(errorInfo, error);
@@ -21,7 +23,25 @@ class ErrorBoundary extends React.Component {
   render() {
     if (this.state.hasError) {
       // You can render any custom fallback UI
-      return <h1>Something went wrong.</h1>;
+      return (
+        <Box
+          sx={{
+            display: 'flex',
+            minHeight: '100vh',
+            width: '100%',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}
+        >
+          <Box>
+            <NotAccessible />
+            <Typography as="h2">Page you looking is not found</Typography>
+            <Button>
+              <Link to="/">Go back</Link>
+            </Button>
+          </Box>
+        </Box>
+      );
     }
 
     return this.props.children;

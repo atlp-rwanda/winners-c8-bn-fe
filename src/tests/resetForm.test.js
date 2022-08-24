@@ -1,21 +1,24 @@
-import React from "react";
+import React from 'react';
 import {
   render,
   screen,
   cleanup,
   fireEvent,
   waitFor,
-} from "@testing-library/react";
-import { Provider } from "react-redux";
-import { createStore, applyMiddleware } from "redux";
-import { act } from "react-dom/test-utils";
+} from '@testing-library/react';
+import { Provider } from 'react-redux';
+import { createStore, applyMiddleware } from 'redux';
+import { act } from 'react-dom/test-utils';
 import {
   BrowserRouter as Router,
   MemoryRouter as MemoryRouter,
-} from "react-router-dom";
-import thunk from "redux-thunk";
-import ResetForm from "../components/resetForm";
-import rootReducer from "../redux/reducers";
+} from 'react-router-dom';
+import thunk from 'redux-thunk';
+import ResetForm from '../components/resetForm';
+import rootReducer from '../redux/reducers';
+import axiosInstance from '../helpers/http';
+import AxiosMockAdapter from 'axios-mock-adapter';
+const mock = new AxiosMockAdapter(axiosInstance);
 
 const initialState = {
   reset: {
@@ -35,18 +38,14 @@ afterEach(() => {
   cleanup;
 });
 
-describe("Testing rendering resetForm components", () => {
-  global.fetch = jest.fn(() =>
-    Promise.resolve({
-      json: () =>
-        Promise.resolve({
-          status: 200,
-          success: true,
-          message: "Password updated successfully",
-        }),
-    })
-  );
-  it("should invalidate bad password", async () => {
+describe('Testing rendering resetForm components', () => {
+  mock.onPost(/resetPassword/i).reply(200, {
+    status: 200,
+    success: true,
+    message: 'Password reset successfully',
+    data: 'Sent',
+  });
+  it('should invalidate bad password', async () => {
     render(
       <Provider store={store}>
         <Router>
@@ -57,7 +56,7 @@ describe("Testing rendering resetForm components", () => {
     const passwordField = screen.getByPlaceholderText(/New password/i);
 
     fireEvent.change(passwordField, {
-      target: { value: "12345" },
+      target: { value: '12345' },
     });
     fireEvent.blur(passwordField);
     await waitFor(() => {
@@ -66,7 +65,7 @@ describe("Testing rendering resetForm components", () => {
     });
   });
 
-  it("should invalidate empty password", async () => {
+  it('should invalidate empty password', async () => {
     render(
       <Provider store={store}>
         <Router>
@@ -77,7 +76,7 @@ describe("Testing rendering resetForm components", () => {
     const passwordField = screen.getByPlaceholderText(/New password/i);
 
     fireEvent.change(passwordField, {
-      target: { value: "" },
+      target: { value: '' },
     });
     fireEvent.blur(passwordField);
     await waitFor(() => {
@@ -85,7 +84,7 @@ describe("Testing rendering resetForm components", () => {
     });
   });
 
-  it("should validate good password", async () => {
+  it('should validate good password', async () => {
     render(
       <Provider store={store}>
         <Router>
@@ -96,7 +95,7 @@ describe("Testing rendering resetForm components", () => {
     const passwordField = screen.getByPlaceholderText(/New password/i);
 
     fireEvent.change(passwordField, {
-      target: { value: "Password@123" },
+      target: { value: 'Password@123' },
     });
     fireEvent.blur(passwordField);
     await waitFor(() => {
@@ -105,7 +104,7 @@ describe("Testing rendering resetForm components", () => {
     });
   });
 
-  it("should invalidate confirm password not matching password", async () => {
+  it('should invalidate confirm password not matching password', async () => {
     render(
       <Provider store={store}>
         <Router>
@@ -119,11 +118,11 @@ describe("Testing rendering resetForm components", () => {
       screen.getByPlaceholderText(/Confirm password/i);
 
     fireEvent.change(passwordField, {
-      target: { value: "Password@123" },
+      target: { value: 'Password@123' },
     });
 
     fireEvent.change(confirmPasswordField, {
-      target: { value: "Password" },
+      target: { value: 'Password' },
     });
     fireEvent.blur(confirmPasswordField);
     await waitFor(() => {
@@ -131,7 +130,7 @@ describe("Testing rendering resetForm components", () => {
     });
   });
 
-  it("should validate good confirm password", async () => {
+  it('should validate good confirm password', async () => {
     render(
       <Provider store={store}>
         <Router>
@@ -145,11 +144,11 @@ describe("Testing rendering resetForm components", () => {
       screen.getByPlaceholderText(/Confirm password/i);
 
     fireEvent.change(passwordField, {
-      target: { value: "Password@123" },
+      target: { value: 'Password@123' },
     });
 
     fireEvent.change(confirmPasswordField, {
-      target: { value: "Password@123" },
+      target: { value: 'Password@123' },
     });
 
     fireEvent.blur(confirmPasswordField);
@@ -160,11 +159,11 @@ describe("Testing rendering resetForm components", () => {
     });
   });
 
-  it("should reset password", async () => {
+  it('should reset password', async () => {
     await act(async () => {
       render(
         <Provider store={store}>
-          <MemoryRouter initialEntries={["/resetForm?t=/MyToken"]}>
+          <MemoryRouter initialEntries={['/resetForm?t=/MyToken']}>
             <ResetForm />
           </MemoryRouter>
         </Provider>
@@ -176,15 +175,15 @@ describe("Testing rendering resetForm components", () => {
       screen.getByPlaceholderText(/Confirm password/i);
 
     fireEvent.change(passwordField, {
-      target: { value: "Password@123" },
+      target: { value: 'Password@123' },
     });
 
     fireEvent.change(confirmPasswordField, {
-      target: { value: "Password@123" },
+      target: { value: 'Password@123' },
     });
 
     await act(async () => {
-      const submitButton = screen.getByRole("button", {
+      const submitButton = screen.getByRole('button', {
         name: /Reset Password/i,
       });
       fireEvent.click(submitButton);
@@ -197,23 +196,23 @@ describe("Testing rendering resetForm components", () => {
   });
 });
 
-describe("Testing rendering return button", () => {
+describe('Testing rendering return button', () => {
   global.fetch = jest.fn(() =>
     Promise.resolve({
       json: () =>
         Promise.resolve({
           status: 200,
           success: false,
-          message: "Failure to reset password",
+          message: 'Failure to reset password',
         }),
     })
   );
 
-  it("should return to form when return button clicked", async () => {
+  it('should return to form when return button clicked', async () => {
     await act(async () => {
       render(
         <Provider store={store}>
-          <MemoryRouter initialEntries={["/resetForm?t=/MyToken"]}>
+          <MemoryRouter initialEntries={['/resetForm?t=/MyToken']}>
             <ResetForm />
           </MemoryRouter>
         </Provider>
@@ -226,15 +225,15 @@ describe("Testing rendering return button", () => {
       screen.getByPlaceholderText(/Confirm password/i);
 
     fireEvent.change(passwordField, {
-      target: { value: "Password@123" },
+      target: { value: 'Password@123' },
     });
 
     fireEvent.change(confirmPasswordField, {
-      target: { value: "Password@123" },
+      target: { value: 'Password@123' },
     });
 
     await act(async () => {
-      const submitButton = screen.getByRole("button", {
+      const submitButton = screen.getByRole('button', {
         name: /Reset Password/i,
       });
       fireEvent.click(submitButton);
