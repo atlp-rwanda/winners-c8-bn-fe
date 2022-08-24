@@ -10,6 +10,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import SendIcon from '@mui/icons-material/Send';
 import CheckIcon from '@mui/icons-material/Check';
 import "./comments.scss"
+import PersonIcon from '@mui/icons-material/Person';
 import { ToastContainer, toast } from 'react-toastify';
 import { successToast, errorToast } from '../helpers/generateToast';
 
@@ -42,30 +43,9 @@ const postComment = (e) => {
 };
 
 
-const coments = (
-  <div>
-    {comments?.map((value) => 
-    <div className="comment_" key={value.id}>
-      <p >
-        <CheckIcon className='_icon'/>
-        {value.message} <br />
-        <span className='_date'>{value.createdAt.substr(0, 10)}</span>
-        <span className='_time'>{value.createdAt.substr(11, 5)}</span>
-      </p>
+// const coments = (
 
-    <IconButton aria-label="delete">
-      <DeleteIcon 
-      className="delete_icon"
-      onClick={()=>{
-
-        deleteRequestComment({commentId: value.id, tripid: currentTrip?.id})(dispatch);
-      }}
-      />
-    </IconButton>
-    </div>  
-      )}
-  </div>
-)
+// )
 
   
 
@@ -187,6 +167,9 @@ const coments = (
 
   }, []);
 
+  console.log("==========Current trip request==========")
+  console.log(currentTrip?.manager.id)
+
   return (
     <>
       <Box>
@@ -255,8 +238,58 @@ const coments = (
                 ))}
                 <hr />
             <h4>Comments</h4>
+
+            {/* Comments */}
+
+            <div>
+            {comments?.map((value) => 
+            <div className="comment_" key={value.id}>
+              {console.log(user.id)}
+              {value.userId == currentTrip?.manager.id ? 
+
+              <div className='_manager'>
+                <p><PersonIcon/>Manager</p>
+                <p >
+                  {value.message} <br />
+                  <span className='_date'>{value.createdAt.substr(0, 10)}</span>
+                  <span className='_time'>{value.createdAt.substr(11, 5)}</span>
+                </p>
+              </div> 
+              
+              : 
+              <div className='_traveler'>
+                <p className='_message_owner'>
+                  <PersonIcon className='_message_owner_icon'/>Traveller</p>
+                <p >
+                  {/* <CheckIcon className='_icon'/> */}
+                  {value.message} <br />
+                  <span className='_date'>{value.createdAt.substr(0, 10)}</span>
+                  <span className='_time'>{value.createdAt.substr(11, 5)}</span>
+                </p>
+              </div>
+              }  
+              {user.id == value.userId ? 
+            <IconButton aria-label="delete">
+            <DeleteIcon 
+            className="delete_icon"
+            onClick={()=>{
+
+              deleteRequestComment({commentId: value.id, tripid: currentTrip?.id})(dispatch);
+            }}
+            />
+          </IconButton> 
+          : "" 
+            }
             
-            {coments}  
+            </div>  
+              )}
+      </div>
+
+
+
+
+            {/* Comments end */}
+            
             
             <form action="" className='_form_comments'>
             <textarea 

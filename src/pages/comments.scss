@@ -2,11 +2,52 @@
     display: flex;
     align-items: center;
 
-    p{
-        border: 1px solid #3BCAB3;
+    ._manager{
+        width: 80%;
+        background-color: #d3d5d6e6;
         border-radius: 5px;
-        padding: 4px 6px;
-        // text-align: center;
+        padding: 2px 8px;
+        margin: 4px 0;
+
+
+        ._icon{
+            color: #395B64;
+            margin-right: 5px;
+        }
+        ._time{
+            margin-left: 10px;
+            color: #395B64;
+            font-size: 8px;
+        }
+        ._date{
+            color: #395B64;
+            font-size: 8px;
+
+        }
+
+    }
+
+    ._traveler{
+        width: 80%;
+        background-color: #93ecdd;
+        border-radius: 10px;
+        margin: 4px 0;
+        text-align: right;
+        padding: 2px 8px;
+
+
+
+        ._message_owner{
+            color: #395B64;
+            font-weight: bold;
+
+
+
+            ._message_owner_icon{
+                font-size: 20px;
+
+            }
+        }
 
         ._icon{
             color: #395B64;
@@ -27,6 +68,7 @@
     .delete_icon:hover{
         color: rgb(234, 1, 1);
     }
+    
 }
 
 
