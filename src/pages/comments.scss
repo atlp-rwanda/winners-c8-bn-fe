@@ -2,9 +2,13 @@
     display: flex;
     align-items: center;
 
+
+    ._message_owner{
+        font-weight: bold;
+    }
     ._manager{
-        width: 80%;
-        background-color: #d3d5d6e6;
+        width: 100%;
+        background-color: #dbdfe0e6;
         border-radius: 5px;
         padding: 2px 8px;
         margin: 4px 0;
@@ -28,8 +32,8 @@
     }
 
     ._traveler{
-        width: 80%;
-        background-color: #93ecdd;
+        width: 100%;
+        background-color: #c0f0e8;
         border-radius: 10px;
         margin: 4px 0;
         text-align: right;

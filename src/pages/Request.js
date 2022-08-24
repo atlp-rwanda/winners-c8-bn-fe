@@ -190,28 +190,28 @@ const postComment = (e) => {
             <hr />
             {currentTrip && ( 
               <>
-                <Typography variant="h5">Trip Id</Typography>
+                <Typography variant="h6">Trip Id</Typography>
                 <Typography>{currentTrip.id}</Typography>
-                <Typography variant="h5">Manager name</Typography>
+                <Typography variant="h6">Manager name</Typography>
                 <Typography>
                   {currentTrip.manager.firstName +
                     ' ' +
                     currentTrip.manager.lastName}
                 </Typography>
-                <Typography variant="h5">Owner Name</Typography>
+                <Typography variant="h6">Owner Name</Typography>
                 <Typography>
                   {currentTrip.owner.firstName +
                     ' ' +
                     currentTrip.owner.lastName}
                 </Typography>
-                <Typography variant="h5">Travel Reason</Typography>
+                <Typography variant="h6">Travel Reason</Typography>
                 <Typography>{currentTrip.travel_reason}</Typography>
-                <Typography variant="h5">Date of Departure</Typography>
+                <Typography variant="h6">Date of Departure</Typography>
                 <Typography>{currentTrip.dateOfDeparture}</Typography>
-                <Typography variant="h5">Status</Typography>
+                <Typography variant="h6">Status</Typography>
                 <Typography>{currentTrip.status}</Typography>
                 <hr />
-                <Typography variant="h5">Departure location</Typography>
+                <Typography variant="h6">Departure location</Typography>
                 <Typography>
                   <strong>City:</strong> {currentTrip.departure.city}&nbsp;
                   <strong>State: </strong>
@@ -221,7 +221,7 @@ const postComment = (e) => {
                   <strong>Country: </strong>
                   {currentTrip.departure.country || 'N/A'}
                 </Typography>
-                <Typography variant="h5">Destination location</Typography>
+                <Typography variant="h6">Destination location</Typography>
                 {currentTrip.destinations?.map((destination, index) => (
                   <>
                     <Typography>Destionation {index + 1}</Typography>
@@ -248,7 +248,7 @@ const postComment = (e) => {
               {value.userId == currentTrip?.manager.id ? 
 
               <div className='_manager'>
-                <p><PersonIcon/>Manager</p>
+                <p className='_message_owner'><PersonIcon/>Manager</p>
                 <p >
                   {value.message} <br />
                   <span className='_date'>{value.createdAt.substr(0, 10)}</span>
@@ -259,7 +259,7 @@ const postComment = (e) => {
               : 
               <div className='_traveler'>
                 <p className='_message_owner'>
-                  <PersonIcon className='_message_owner_icon'/>Traveller</p>
+                  <PersonIcon className='_message_owner_icon'/>Requester</p>
                 <p >
                   {/* <CheckIcon className='_icon'/> */}
                   {value.message} <br />
