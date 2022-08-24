@@ -1,11 +1,11 @@
-import React from "react";
-import { connect } from "react-redux";
-import "../../public/styles/DashBoard/index.scss";
-import Navbar from "./Navbar/Navbar";
-import Sidebar from "./Sidebar/Sidebar";
-import StatsGrid from "./dashboardElements/statsGrid.js";
-import TimeFrame from "./dashboardElements/TimeFrame.js";
-import StatsChart from "./dashboardElements/StatsChart";
+import React from 'react';
+import { connect } from 'react-redux';
+import '../../public/styles/DashBoard/index.scss';
+import Navbar from './Navbar/Navbar';
+import Sidebar from './Sidebar/Sidebar';
+import StatsGrid from './dashboardElements/statsGrid.js';
+import TimeFrame from './dashboardElements/TimeFrame.js';
+import StatsChart from './dashboardElements/StatsChart';
 
 const Dashboard = (props) => {
   return (

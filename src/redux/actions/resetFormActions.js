@@ -3,16 +3,16 @@ const resetActions = {};
 resetActions.submit = (values, setSubmitting, token) => {
   return async (dispatch) => {
     const { password, confirmPassword } = values;
-    const url = `https://winners-c8-bn-be-staging.herokuapp.com/api/auth/resetPassword/${token}`;
+    const url = `${process.env.BASE_BACKEND_SERVER_URL}/auth/resetPassword/${token}`;
     const data = JSON.stringify({
       newPassword: password,
       confirmPassword: confirmPassword,
     });
     try {
       const result = await fetch(url, {
-        method: "POST",
+        method: 'POST',
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
         },
         body: data,
       });
@@ -47,7 +47,7 @@ resetActions.return = () => {
 
 const resetSubmit = (state) => {
   return {
-    type: "RESET_SUBMIT",
+    type: 'RESET_SUBMIT',
     payload: {
       ...state,
     },
@@ -56,7 +56,7 @@ const resetSubmit = (state) => {
 
 const resetReturn = () => {
   return {
-    type: "RESET_RETURN",
+    type: 'RESET_RETURN',
   };
 };
 

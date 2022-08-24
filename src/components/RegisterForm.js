@@ -1,13 +1,13 @@
-import React from "react";
-import { Navigate, Link } from "react-router-dom";
-import "../../public/styles/RegisterForm/index.css";
-import { connect } from "react-redux";
-import { userActions } from "../redux/actions/registerActions";
-import { errorToast, successToast } from "../helpers/generateToast";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import { FcGoogle } from "react-icons/fc";
-import { ImFacebook } from "react-icons/im";
+import React from 'react';
+import { Navigate, Link } from 'react-router-dom';
+import '../../public/styles/RegisterForm/index.css';
+import { connect } from 'react-redux';
+import { userActions } from '../redux/actions/registerActions';
+import { errorToast, successToast } from '../helpers/generateToast';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { FcGoogle } from 'react-icons/fc';
+import { ImFacebook } from 'react-icons/im';
 
 class UserRegisterForm extends React.Component {
   constructor(props) {
@@ -15,11 +15,11 @@ class UserRegisterForm extends React.Component {
 
     this.state = {
       user: {
-        firstName: "",
-        lastName: "",
-        email: "",
-        password: "",
-        confPassword: "",
+        firstName: '',
+        lastName: '',
+        email: '',
+        password: '',
+        confPassword: '',
       },
       submitted: false,
     };
@@ -30,8 +30,8 @@ class UserRegisterForm extends React.Component {
   registering = this.props.registration;
   handleChange(event) {
     /* istanbul ignore next */
-    this.props.alert.message_error = "";
-    this.props.alert.message_success = "";
+    this.props.alert.message_error = '';
+    this.props.alert.message_success = '';
     const { name, value } = event.target;
     const { user } = this.state;
     this.setState({
@@ -70,10 +70,10 @@ class UserRegisterForm extends React.Component {
         //     submitted: false
         // });
       } else {
-        errorToast("Passwords need to be the same!");
+        errorToast('Passwords need to be the same!');
       }
     } else {
-      errorToast("All fields are required!");
+      errorToast('All fields are required!');
     }
   }
 
@@ -200,29 +200,29 @@ class UserRegisterForm extends React.Component {
                   </div>
                   <div
                     style={{
-                      display: "flex",
-                      flexDirection: "row",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      marginTop: "10px",
+                      display: 'flex',
+                      flexDirection: 'row',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      marginTop: '10px',
                     }}
                   >
-                    <div style={{ paddingRight: "20px" }}>
+                    <div style={{ paddingRight: '20px' }}>
                       <a href="https://winners-c8-bn-be-staging.herokuapp.com/api/oauth/google">
                         <FcGoogle
                           style={{
-                            fontSize: "40px",
-                            cursor: "pointer",
+                            fontSize: '40px',
+                            cursor: 'pointer',
                           }}
                         />
                       </a>
                     </div>
-                    <div style={{ paddingLeft: "20px" }}>
+                    <div style={{ paddingLeft: '20px' }}>
                       <a href="https://winners-c8-bn-be-staging.herokuapp.com/api/oauth/facebook">
                         <ImFacebook
                           style={{
-                            fontSize: "35px",
-                            cursor: "pointer",
+                            fontSize: '35px',
+                            cursor: 'pointer',
                           }}
                         />
                       </a>
