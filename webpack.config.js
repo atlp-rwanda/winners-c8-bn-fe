@@ -10,9 +10,9 @@ module.exports = {
     publicPath: '/',
     pathinfo: false,
   },
-  cache: { type: 'filesystem' },
+  cache: true,
   performance: {
-    hints: false,
+    hints: 'warning',
     maxEntrypointSize: 512000,
     maxAssetSize: 512000,
   },
@@ -20,7 +20,19 @@ module.exports = {
     removeAvailableModules: false,
     removeEmptyChunks: false,
     splitChunks: {
-      chunks: 'all',
+      cacheGroups: {
+        vendor: {
+          name: 'node_vendors', // part of the bundle name and
+          // can be used in chunks array of HtmlWebpackPlugin
+          test: /[\\/]node_modules[\\/]/,
+          chunks: 'all',
+        },
+        common: {
+          test: /[\\/]src[\\/]components[\\/]/,
+          chunks: 'all',
+          minSize: 0,
+        },
+      },
     },
   },
   plugins: [
@@ -39,7 +51,7 @@ module.exports = {
         test: /\.(js|jsx)$/, // .js and .jsx files
         exclude: /(node_modules|dist|coverage)/, // excluding the node_modules folder
         use: {
-          loader: 'babel-loader',
+          loader: 'babel-loader?cacheDirectory',
         },
       },
       {
