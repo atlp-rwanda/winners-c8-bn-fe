@@ -12,7 +12,7 @@ module.exports = {
   },
   cache: true,
   performance: {
-    hints: 'warning',
+    hints: false,
     maxEntrypointSize: 512000,
     maxAssetSize: 512000,
   },
