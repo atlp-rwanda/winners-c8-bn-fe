@@ -11,7 +11,7 @@ import { useContext } from 'react';
 
 const Navbar = () => {
   return (
-    <div className="navbar">
+    <div className="dashboard-navbar">
       <div className="wrapper">
         <div className="search">
           <input type="text" placeholder="Search..." />

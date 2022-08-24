@@ -8,17 +8,15 @@ import {
 } from '../types/userProfileTypes';
 import axios from 'axios';
 import { successToast, errorToast } from '../../helpers/generateToast';
-import { authHeader } from '../utils/dataSession';
+import axiosInstance from '../../helpers/http';
 
 export const fetchUserProfile = () => async (dispatch) => {
   dispatch({
     type: FETCH_USER_PROFILE_LOADING,
   });
 
-  return await axios
-    .get(`${process.env.BASE_BACKEND_SERVER_URL}/user/user`, {
-      headers: authHeader(),
-    })
+  return await axiosInstance
+    .get('/user/user')
     .then((res) => {
       dispatch({
         type: FETCH_USER_PROFILE_SUCCESS,
@@ -38,10 +36,8 @@ export const updateUserProfile = (body) => async (dispatch) => {
     type: UPDATE_USER_PROFILE_LOADING,
   });
 
-  return axios
-    .patch(`${process.env.BASE_BACKEND_SERVER_URL}/user/update`, body, {
-      headers: authHeader(),
-    })
+  return axiosInstance
+    .patch('/user/update', body)
     .then(async (res) => {
       if (res.data.error) {
         await dispatch({
@@ -54,7 +50,7 @@ export const updateUserProfile = (body) => async (dispatch) => {
       if (res.status == 200) {
         await dispatch({
           type: UPDATE_USER_PROFILE_SUCCESS,
-          payload: res.data.data,
+          payload: res.data,
         });
         successToast(res.data.message);
       }

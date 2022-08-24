@@ -1,31 +1,29 @@
-import React from "react";
+import React from 'react';
 import {
   render,
   screen,
   cleanup,
   fireEvent,
   waitFor,
-} from "@testing-library/react";
-import { act } from "react-dom/test-utils";
-import store from "../redux/store";
-import { Provider } from "react-redux";
-import App from "../App";
-import { BrowserRouter as Router } from "react-router-dom";
+} from '@testing-library/react';
+import { act } from 'react-dom/test-utils';
+import store from '../redux/store';
+import { Provider } from 'react-redux';
+import App from '../App';
+import { BrowserRouter as Router } from 'react-router-dom';
+import axiosInstance from '../helpers/http';
+import AxiosMockAdapter from 'axios-mock-adapter';
+const mock = new AxiosMockAdapter(axiosInstance);
 
 afterEach(cleanup);
 
-describe("Testing the Home and LoginForm components", () => {
-  global.fetch = jest.fn(() =>
-    Promise.resolve({
-      json: () =>
-        Promise.resolve({
-          status: 200,
-          success: true,
-          message: "User loggedIn",
-          data: "thisShouldBeAToken",
-        }),
-    })
-  );
+describe('Testing the Home and LoginForm components', () => {
+  mock.onPost(/signin/i).reply(200, {
+    status: 200,
+    success: true,
+    message: 'User loggedIn',
+    data: 'thisShouldBeAToken',
+  });
 
   render(
     <Provider store={store}>
@@ -34,10 +32,10 @@ describe("Testing the Home and LoginForm components", () => {
       </Router>
     </Provider>
   );
-  it("should navigate to login when login navbar btn is clicked", () => {
-    fireEvent.click(screen.getByTestId("login-btn-1"));
+  it('should navigate to login when login navbar btn is clicked', () => {
+    fireEvent.click(screen.getByTestId('login-btn-1'));
   });
-  it("should invalidate bad email", async () => {
+  it('should invalidate bad email', async () => {
     render(
       <Provider store={store}>
         <Router>
@@ -45,16 +43,16 @@ describe("Testing the Home and LoginForm components", () => {
         </Router>
       </Provider>
     );
-    fireEvent.click(screen.getByTestId("login-btn-1"));
-    fireEvent.change(screen.getByTestId("login-email"), {
-      target: { value: "pacome.bad_email.com" },
+    fireEvent.click(screen.getByTestId('login-btn-1'));
+    fireEvent.change(screen.getByTestId('login-email'), {
+      target: { value: 'pacome.bad_email.com' },
     });
-    fireEvent.blur(screen.getByTestId("login-email"));
+    fireEvent.blur(screen.getByTestId('login-email'));
     await waitFor(() => {
       // assertions can be put here
     });
   });
-  it("should validate good email", async () => {
+  it('should validate good email', async () => {
     render(
       <Provider store={store}>
         <Router>
@@ -62,16 +60,16 @@ describe("Testing the Home and LoginForm components", () => {
         </Router>
       </Provider>
     );
-    fireEvent.click(screen.getByTestId("login-btn-1"));
-    fireEvent.change(screen.getByTestId("login-email"), {
-      target: { value: "pacome@goodemail.com" },
+    fireEvent.click(screen.getByTestId('login-btn-1'));
+    fireEvent.change(screen.getByTestId('login-email'), {
+      target: { value: 'pacome@goodemail.com' },
     });
-    fireEvent.blur(screen.getByTestId("login-email"));
+    fireEvent.blur(screen.getByTestId('login-email'));
     await waitFor(() => {
       // assertions can be put here
     });
   });
-  it("should invalidate password with empty string", async () => {
+  it('should invalidate password with empty string', async () => {
     render(
       <Provider store={store}>
         <Router>
@@ -79,16 +77,16 @@ describe("Testing the Home and LoginForm components", () => {
         </Router>
       </Provider>
     );
-    fireEvent.click(screen.getByTestId("login-btn-1"));
-    fireEvent.change(screen.getByTestId("login-password"), {
-      target: { value: "" },
+    fireEvent.click(screen.getByTestId('login-btn-1'));
+    fireEvent.change(screen.getByTestId('login-password'), {
+      target: { value: '' },
     });
-    fireEvent.blur(screen.getByTestId("login-password"));
+    fireEvent.blur(screen.getByTestId('login-password'));
     await waitFor(() => {
       // assertions can be put here
     });
   });
-  it("should validate password without an empty string", async () => {
+  it('should validate password without an empty string', async () => {
     render(
       <Provider store={store}>
         <Router>
@@ -96,16 +94,16 @@ describe("Testing the Home and LoginForm components", () => {
         </Router>
       </Provider>
     );
-    fireEvent.click(screen.getByTestId("login-btn-1"));
-    fireEvent.change(screen.getByTestId("login-password"), {
-      target: { value: "pacome#password250" },
+    fireEvent.click(screen.getByTestId('login-btn-1'));
+    fireEvent.change(screen.getByTestId('login-password'), {
+      target: { value: 'pacome#password250' },
     });
-    fireEvent.blur(screen.getByTestId("login-password"));
+    fireEvent.blur(screen.getByTestId('login-password'));
     await waitFor(() => {
       // assertions can be put here
     });
   });
-  it("should login", async () => {
+  it('should login', async () => {
     await act(async () => {
       render(
         <Provider store={store}>
@@ -116,12 +114,12 @@ describe("Testing the Home and LoginForm components", () => {
       );
     });
 
-    fireEvent.click(screen.getByTestId("login-btn-1"));
+    fireEvent.click(screen.getByTestId('login-btn-1'));
     await act(async () => {
-      await fireEvent.submit(screen.getByTestId("login-form"), {
+      await fireEvent.submit(screen.getByTestId('login-form'), {
         target: {
-          email: { value: "spaziltonx@soccerfit.com.bees" },
-          password: { value: "Simon@2022" },
+          email: { value: 'spaziltonx@soccerfit.com.bees' },
+          password: { value: 'Simon@2022' },
         },
       });
     });
