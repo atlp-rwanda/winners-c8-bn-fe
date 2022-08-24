@@ -10,7 +10,7 @@ import thunk from "redux-thunk";
 import { act } from "react-dom/test-utils";
 import { Provider } from "react-redux";
 import { BrowserRouter as Router } from "react-router-dom";
-import StatsChart from "../components/dashboard/StatsChart";
+import StatsChart from "../components/dashboardElements/StatsChart";
 import configureMockStore from "redux-mock-store";
 
 const middleware = [thunk];

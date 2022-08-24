@@ -3,9 +3,9 @@ import { connect } from "react-redux";
 import "../../public/styles/DashBoard/index.scss";
 import Navbar from "./Navbar/Navbar";
 import Sidebar from "./Sidebar/Sidebar";
-import StatsGrid from "../components/dashboard/statsGrid.js";
-import TimeFrame from "./dashboard/TimeFrame.js";
-import StatsChart from "./dashboard/StatsChart";
+import StatsGrid from "./dashboardElements/statsGrid.js";
+import TimeFrame from "./dashboardElements/TimeFrame.js";
+import StatsChart from "./dashboardElements/StatsChart";
 
 const Dashboard = (props) => {
   return (
