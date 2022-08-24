@@ -7,10 +7,22 @@ dotenv.config();
 module.exports = {
   output: {
     path: path.join(__dirname, '/dist'), // the bundle output path
-    filename: 'bundle.js', // the name of the bundle
     publicPath: '/',
+    pathinfo: false,
   },
   cache: { type: 'filesystem' },
+  performance: {
+    hints: false,
+    maxEntrypointSize: 512000,
+    maxAssetSize: 512000,
+  },
+  optimization: {
+    removeAvailableModules: false,
+    removeEmptyChunks: false,
+    splitChunks: {
+      chunks: 'all',
+    },
+  },
   plugins: [
     new HtmlWebpackPlugin({
       template: 'public/index.html', // to import index.html file inside index.js
