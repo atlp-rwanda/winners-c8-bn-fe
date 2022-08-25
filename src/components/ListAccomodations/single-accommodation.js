@@ -11,7 +11,7 @@ import "react-toastify/dist/ReactToastify.css";
 import ListAccommodations from "./ListAccommodations";
 import { Link, useParams } from "react-router-dom";
 import {detailsAccommodation} from "../../redux/actions/accommodationActions";
-import MapSection from './map'
+import MapSection from '../Map/map'
 
 const SingleAccommodation = ({location}) => {
     return ( 

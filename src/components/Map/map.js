@@ -4,11 +4,21 @@ import './map.css'
 import { Icon } from '@iconify/react'
 import locationIcon from '@iconify/icons-mdi/map-marker'
 
-const GOOGLEMAP = ({ location, zoomLevel }) => {
+const GOOGLEMAP = ({ accommodation, zoomLevel }) => {
+  const location={
+    address: accommodation.name,
+    lat: accommodation.latitude, 
+    lng: accommodation.longitude,
+  }
+  // const location={
+  //   address: accommodation.name,
+  //   lat: -1.955648563380338, 
+  //   lng: 30.062816427143513,
+  // }
+  
     return ( 
     <div className="map">
-        <h2 className="map-h2">Come Visit Us</h2>
-
+        <h2 className="map-h2">Find Us</h2>
         <div className="google-map">
         <GoogleMapReact
             bootstrapURLKeys={{ key: '' }}

@@ -1,41 +1,43 @@
-import React from "react";
-import Navbar from './components/Navbar';
+import React from 'react';
 import Home from './components/Home';
-import { BrowserRouter as Router, Route, Routes} from 'react-router-dom';
-import UserRegisterForm from "./components/RegisterForm";
-import Dashboard from "./components/Dashboard";
-import RecoveryForm from "./components/recoveryForm";
-import ResetForm from "./components/resetForm";
-import LoginForm from "./components/LoginForm";
-import Userprofile from "./components/UserProfile/UserProfile"
-import SocialAuth from './components/SocialOAuth';
 import Accommodation from "./components/ListAccomodations/Accomodations"
-import DetailAccommodation from "./components/ListAccomodations/DetailsAccommodations";
+import { Route, Routes } from 'react-router-dom';
+import UserRegisterForm from './components/RegisterForm';
+import RecoveryForm from './components/recoveryForm';
+import ResetForm from './components/resetForm';
+import LoginForm from './components/LoginForm';
+import Userprofile from './components/UserProfile/UserProfile';
+import Request from './pages/Request';
+import Dashboard from './components/Dashboard';
+import NotFound from './components/NotFound';
+import UserRoleDash from "./components/AssignRole/UserRoleDash"
+import { ToastContainer } from 'react-toastify';
+import DashboardLayout from './components/Layouts/Dashboard';
+import HomePageLayout from './components/Layouts/Home';
+
 const App = () => {
   return (
     <div className="App">
-      <Navbar />
+      <ToastContainer />
       <div className="content">
         <Routes>
+            <Route path="/" element={<HomePageLayout />}>
+              <Route exact path="login" element={<LoginForm />} />
+              <Route index element={<Home />} />
+              <Route exact path="register" element={<UserRegisterForm />} />
+              <Route exact path="recover" element={<RecoveryForm />} />
+              <Route exact path="reset" element={<ResetForm />} />
+            </Route>
+            <Route path="/dashboard" element={<DashboardLayout />}>
+              <Route exact index element={<Dashboard />} />
+              <Route path="trips" element={<Request />} />
+              <Route exact path='assignRole' element={<UserRoleDash />} />
+              <Route exact path="userprofile" element={<Userprofile />} />
+              <Route path="*" element={<NotFound />} />
+            </Route>
+            <Route exact path="*" element={<NotFound />} />
 
-          <Route exact path="/" element={<Home />} />
-
-          <Route exact path="/login" element={<LoginForm />} />
-          
-          <Route exact path="/register" element={<UserRegisterForm />} />
-          
-          <Route exact path="/dashboard" element={<Dashboard />} />
-
-          <Route exact path="userprofile" element={<Userprofile />} />
-
-					<Route exact path='recover' element={<RecoveryForm />} />
-
-					<Route exact path='reset' element={<ResetForm />} />
-
-          <Route exact path='/accommodations' element={<Accommodation />} />
-
-          {/* <Route exact path='/accommodations/:accommodationId' element={<DetailAccommodation />} /> */}
-          
+            <Route exact path='/dashboard/accommodations' element={<Accommodation />} />
 				</Routes>
 			</div>
 			{/* <SocialAuth /> */}

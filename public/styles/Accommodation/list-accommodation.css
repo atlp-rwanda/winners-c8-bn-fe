@@ -1,3 +1,6 @@
+.homeContainer .mainContent .accommodation-wrapper .accomodation__desc p.accomodation__name{
+    font-size: 6px;
+}
 .accommodation-wrapper{
 align-content: center;
 top: 50%;
@@ -12,12 +15,10 @@ background-size: cover;
 }
 .accommodation{
     display: flex;
-    margin-bottom: 10px;
-    /* border: 1px solid cadetblue; */
-    border-top: 1px solid rgb(145, 140, 140);
-    /* border-bottom: 1px solid #000; */
+    margin-bottom: 50px;
+    border: 1px solid rgb(145, 140, 140);
     border-radius: 4px;
-    padding: 5px;
+    padding: 10px;
     align-items: center;
     /* height: 150px; */
 }
@@ -29,8 +30,15 @@ background-size: cover;
     width: 200px;
     padding-right: 30px;
 }
+.accommodation BUTTON{
+    margin-left: 450px;
+}
 .accommodations .accomodation__desc{
     width: 250px;
+}
+.accommodation div.accomodation__desc p{
+    /* background-color: red; */
+    color: red;
 }
 .accommodations .accomodation__btn{
     background-color: deepskyblue;
@@ -51,6 +59,7 @@ background-size: cover;
     border: none;
     border-radius: 4px;
 }
+
 .pagination{
     float: right;
     /* margin-bottom: 50px; */
@@ -64,6 +73,9 @@ background-size: cover;
 .single-accommodation{
     display: flex;
     margin-top:40px;
+}
+.single-accommodation p{
+    color: #000;
 }
 .single-accommodation .rate__btn{
     font-size: 15px;
@@ -84,3 +96,56 @@ background-size: cover;
 color:deepskyblue;
 background-color: #fff;
 }
+.single-accommodation .update__btn{
+    background-color: rgb(42, 94, 238);
+    color: #fff;
+    margin-left: 5px;
+    font-size: 15px;
+    padding: 7px;
+    border: none;
+    border-radius: 10%;
+}
+.single-accommodation .del__btn{
+    background-color: rgb(255, 0, 76);
+    color: #fff;
+    margin-left: 5px;
+    font-size: 15px;
+    padding: 7px;
+    border: none;
+    border-radius: 10%;
+}
+/* styling pagination */
+.paginationBttns {
+    width: 80%;
+    height: 40px;
+    list-style: none;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .paginationBttns a {
+    padding: 10px;
+    margin: 8px;
+    border-radius: 5px;
+    border: 1px solid deepskyblue;
+    color: #2b2eff;
+    cursor: pointer;
+  }
+  
+  .paginationBttns a:hover {
+    color: white;
+    background-color: grey;
+  }
+  
+  .paginationActive a {
+    color: rgb(248, 28, 28);
+    background-color: rgb(42, 94, 238);
+  }
+  
+  .paginationDisabled a {
+    color: grey;
+    background-color: #fff;
+  }
+
+
+  /* singl with map */

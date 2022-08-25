@@ -1,15 +1,14 @@
 export const recoverEmail = (values, { setSubmitting }) => {
   return async (dispatch) => {
-    const url =
-      "https://winners-c8-bn-be-staging.herokuapp.com/api/auth/requestPasswordReset";
+    const url = `${process.env.BASE_BACKEND_SERVER_URL}/auth/requestPasswordReset`;
     const email = values.email;
     const data = JSON.stringify({ email: email });
 
     try {
       const response = await fetch(url, {
-        method: "POST",
+        method: 'POST',
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
         },
         body: data,
       });
@@ -38,7 +37,7 @@ export const recoverReturn = () => {
 
 const Submit = (state) => {
   return {
-    type: "RECOVER_SUBMIT",
+    type: 'RECOVER_SUBMIT',
     payload: {
       ...state,
     },
@@ -47,6 +46,6 @@ const Submit = (state) => {
 
 const Return = () => {
   return {
-    type: "RECOVER_RETURN",
+    type: 'RECOVER_RETURN',
   };
 };

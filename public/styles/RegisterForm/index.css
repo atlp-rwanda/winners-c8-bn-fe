@@ -1,6 +1,6 @@
   .content {
     height: 100vh;
-    overflow: hidden;
+    overflow: auto;
   }
   .registration{
     max-width: 600px;

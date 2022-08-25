@@ -4,7 +4,13 @@ import {
     FETCH_ACCOMMODATIONS_FAILED,
     FETCH_SINGLE_ACCOMMODATION_FAILED,
     FETCH_SINGLE_ACCOMMODATION_LOADING,
-    FETCH_SINGLE_ACCOMMODATION_SUCCESS
+    FETCH_SINGLE_ACCOMMODATION_SUCCESS,
+    ACCOMMODATION_UPDATE_LOADING,
+    ACCOMMODATION_UPDATE_SUCCESS,
+    ACCOMMODATION_UPDATE_FAILURE,
+    ACCOMMODATION_DELETE_SUCCESS,
+    ACCOMMODATION_DELETE_LOADING,
+    ACCOMMODATION_DELETE_FAILURE
 } from "../actions/actionTypes";
 
 
@@ -27,7 +33,7 @@ export function accommodationsReducer(state = initialState, action) {
           return {
             ...state,
               loading: false,
-              accommodations: action.payload.data.slice(0, 3)
+              accommodations: action.payload.data
           }
 
       case FETCH_ACCOMMODATIONS_FAILED:
@@ -68,4 +74,85 @@ export function detailsAccommodationReducer(state =initialState, action){
         default:
           return state
     }
+}
+
+// UPDATING REDUCER
+
+export const AccommodationUpdateReducer = (state = initialState, action) => {
+	switch (action.type) {
+		case ACCOMMODATION_UPDATE_LOADING:
+			return {
+				loading: true,
+				isUpdated: false
+			}
+	
+		case ACCOMMODATION_UPDATE_SUCCESS:
+			return {
+				loading:false,
+				data: action.payload,
+				isUpdated: true
+			}
+		
+		case ACCOMMODATION_UPDATE_FAILURE:
+			return{
+				loading: false,
+				error: action.payload,
+				isUpdated: false
+			}
+
+		default:
+			return state;
+	}
+}
+
+export const deleteAccommodationReducer=(state=initialState, action)=>{
+  switch (action.type) {
+		case ACCOMMODATION_DELETE_LOADING:
+			return {
+				loading: true,
+				isDeleted: false
+			}
+	
+		case ACCOMMODATION_DELETE_SUCCESS:
+			return {
+				loading:false,
+				isDeleted: true
+			}
+		
+		case ACCOMMODATION_DELETE_FAILURE:
+			return{
+				loading: false,
+				error: action.payload,
+				isDeleted: false
+			}
+
+		default:
+			return state;
+	}
+}
+
+export const viewAccommodationReducer=(state=initialState, action)=>{
+  switch (action.type) {
+		case ACCOMMODATION_DELETE_LOADING:
+			return {
+				loading: true,
+				isDeleted: false
+			}
+	
+		case ACCOMMODATION_DELETE_SUCCESS:
+			return {
+				loading:false,
+				isDeleted: true
+			}
+		
+		case ACCOMMODATION_DELETE_FAILURE:
+			return{
+				loading: false,
+				error: action.payload,
+				isDeleted: false
+			}
+
+		default:
+			return state;
+	}
 }
