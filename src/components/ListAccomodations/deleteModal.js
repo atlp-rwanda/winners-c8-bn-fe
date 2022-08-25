@@ -32,6 +32,7 @@ const AccommodationDeleteModal = ({
             modal: state.modal,
         };
       });
+      console.log('deleteaccomm', deletingAccommodation)
       
       const dispatch = useDispatch();
 

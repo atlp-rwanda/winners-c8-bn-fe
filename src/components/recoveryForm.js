@@ -1,11 +1,11 @@
-import React, { Component } from "react";
-import { Formik } from "formik";
-import * as Yup from "yup";
-import { connect } from "react-redux";
-import * as recoverActions from "../redux/actions/recoverFormActions";
-import "../../public/styles/recoverForm/index.scss";
-import CheckCircleIcon from "@mui/icons-material/CheckCircle";
-import ErrorIcon from "@mui/icons-material/Error";
+import React, { Component } from 'react';
+import { Formik } from 'formik';
+import * as Yup from 'yup';
+import { connect } from 'react-redux';
+import * as recoverActions from '../redux/actions/recoverFormActions';
+import '../../public/styles/recoverForm/index.scss';
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import ErrorIcon from '@mui/icons-material/Error';
 
 class RecoverForm extends Component {
   constructor(props) {
@@ -15,9 +15,9 @@ class RecoverForm extends Component {
   renderForm = () => {
     return (
       <Formik
-        initialValues={{ email: "" }}
+        initialValues={{ email: '' }}
         validationSchema={Yup.object({
-          email: Yup.string().email().required("Required"),
+          email: Yup.string().email().required('Required'),
         })}
         onSubmit={this.props.SUBMIT}
       >
@@ -26,8 +26,8 @@ class RecoverForm extends Component {
             <div
               className={
                 formik.touched.email && formik.errors.email
-                  ? "input_group errorInput"
-                  : "input_group"
+                  ? 'input_group errorInput'
+                  : 'input_group'
               }
             >
               <input
@@ -35,7 +35,7 @@ class RecoverForm extends Component {
                 type="text"
                 placeholder="Enter your email address"
                 className="input_field"
-                {...formik.getFieldProps("email")}
+                {...formik.getFieldProps('email')}
               />
 
               {formik.touched.email && formik.errors.email ? (
@@ -59,12 +59,12 @@ class RecoverForm extends Component {
     return (
       <div className="result_message">
         {this.props.responseData.isSuccess ? (
-          <CheckCircleIcon className="success_logo" sx={{ fontSize: 70 }} />
+          <CheckCircleIcon className="success_logo" sx={{ fontSize: 30 }} />
         ) : (
           <div>
             <ErrorIcon
               className="error_logo"
-              sx={{ fontSize: 70, color: "red" }}
+              sx={{ fontSize: 30, color: 'red' }}
             />
           </div>
         )}

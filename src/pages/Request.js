@@ -11,7 +11,7 @@ function Request() {
   const { requests, user } = useSelector((state) => {
     return {
       requests: state.requests.requests,
-      user: state.userProfile?.user.user,
+      user: state.userProfile?.user?.user,
     };
   });
   const handleClose = () => setOpen(false);
@@ -123,7 +123,7 @@ function Request() {
 
   return (
     <>
-      <Box sx={{}}>
+      <Box>
         <Typography variant="h4" component="h1" gutterBottom>
           Trip requests
         </Typography>

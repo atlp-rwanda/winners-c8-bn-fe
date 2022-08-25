@@ -6,11 +6,10 @@ $success-color: #00ff00;
 $warning-color: #ffa500;
 
 :root {
-  font-size: 62.5%;
+  font-size: 85%;
 }
 
 body {
-  height: 100vh;
   background-color: #aebcbf !important;
 }
 
@@ -18,7 +17,7 @@ body {
   background-color: $primary-color;
   color: #fff;
   width: 80%;
-  font-size: 1.5rem;
+  font-size: 1rem;
   margin: 0 auto;
   margin-top: 3rem;
   border-radius: 8px;
@@ -71,7 +70,7 @@ body {
 }
 
 .form-header {
-  font-size: 2rem;
+  font-size: 1.5rem;
   font-weight: 700;
   color: #000;
   text-align: center;
@@ -97,7 +96,7 @@ body {
     margin: 0 auto;
     margin-top: 3rem;
     width: 100%;
-    font-size: 1.5rem;
+    font-size: 1rem;
     color: #000;
   }
 
@@ -107,13 +106,13 @@ body {
   }
 
   .helper_text {
-    font-size: 1.2rem;
+    font-size: 0.9rem;
     margin-top: 0.5rem;
     padding-left: 1rem;
   }
 
   .error_text {
-    font-size: 1.2rem;
+    font-size: 1rem;
     margin-top: 0.5rem;
     padding-left: 1rem;
   }
@@ -161,17 +160,17 @@ body {
   }
 
   .form-header {
-    font-size: 2.5rem;
+    font-size: 1.8rem;
   }
 
   .form {
     .input_field {
-      font-size: 2rem;
+      font-size: 1.1rem;
     }
   }
 
   .btn-form {
     width: 65%;
-    font-size: 2rem;
+    font-size: 1.4rem;
   }
 }

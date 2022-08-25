@@ -6,7 +6,7 @@ const HomePageLayout = () => {
   return (
     <div>
       <Navbar />
-      <div className="homeContainer">
+      <div>
         <Outlet />
       </div>
     </div>

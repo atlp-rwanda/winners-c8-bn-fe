@@ -18,14 +18,14 @@ import { FETCH_ACCOMMODATIONS_LOADING,
          ACCOMMODATION_VIEW_FAILURE
         } from "./actionTypes";
 import {accommodationsUrl} from "../utils/apiUrls";
-import {authHeader} from '../utils/dataSession';
+import axiosInstance from '../../helpers/http';
 
 export const listAccommodations = () => async dispatch => {
     dispatch({
         type: FETCH_ACCOMMODATIONS_LOADING
     });
 
-  return await axios.get(accommodationsUrl, { headers: authHeader() })
+  return await axiosInstance.get(accommodationsUrl)
       .then(res => {
           dispatch({
               type: FETCH_ACCOMMODATIONS_SUCCESS,
@@ -47,7 +47,7 @@ export const detailsAccommodation = (accommodationId) => async dispatch => {
         type: FETCH_SINGLE_ACCOMMODATION_LOADING
     });
 
-  return await axios.get(accommodationsUrl+`${accommodationId}`, { headers: authHeader() })
+  return await axiosInstance.get(accommodationsUrl+`${accommodationId}`)
       .then(res => {
           dispatch({
               type: FETCH_SINGLE_ACCOMMODATION_SUCCESS,
@@ -60,6 +60,7 @@ export const detailsAccommodation = (accommodationId) => async dispatch => {
               payload: "failed to fetch",
               message: err
           });
+          errorToast(err.toString())
       })
 }
 
@@ -109,18 +110,15 @@ export const updateAccommodation = (id,accommodation) =>{
 	
 	return  async (dispatch) => {
 		dispatch(updateAccommodationRequest())
-		await axios.patch(apiUrl, formData,{
-            headers: authHeader() 
-		  }
-		).then(response=>{
+		await axiosInstance.patch(`/accommodations/${id}`, formData)
+        .then(response=>{
 			dispatch(updateAccommodationSuccess(response.data))
             successToast('updated successfully')
-            dispatch({type:'HIDE_MODAL'})
             dispatch(listAccommodations())
 
 		}).catch(error=>{
 			dispatch(updateAccommodationFailure(error))
-            console.log('error', error.message)
+            errorToast(error.toString())
 		})
         
 	}
@@ -148,28 +146,23 @@ export const deleteAccommodationFailure = (error) => {
 
 }
 
-
-
 export const deleteAccommodation = (id)=>{
     const apiUrl =`${process.env.BASE_BACKEND_SERVER_URL}/accommodations/${id}`
 
     return  async (dispatch) => {
 		dispatch(deleteAccommodationRequest())
-		await axios.delete(apiUrl, {
-            headers: authHeader() 
-		  }
-		).then(response=>{
+		await axiosInstance.delete(`/accommodations/${id}`)
+        .then(response=>{
 			dispatch(deleteAccommodationSuccess(response.data))
-            console.log('data', response.data)
             if (response.status == 200) {
                 successToast('accommodation Deleted successfully')
-                // dispatch(listAccommodations())
+                dispatch(listAccommodations())
             };
 		}).catch(error=>{
 			dispatch(deleteAccommodationFailure(error))
-            console.log('error', error.message)
+            errorToast(error.toString())
 		})
-        dispatch(listAccommodations())
+        // dispatch(listAccommodations())
 	}
 }
 

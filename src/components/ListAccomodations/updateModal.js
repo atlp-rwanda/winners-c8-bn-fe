@@ -16,8 +16,8 @@ import {
   import { connect, useDispatch, useSelector } from 'react-redux';
   import { Navigate } from 'react-router';
   import { updateAccommodation } from '../../redux/actions/accommodationActions';
-  import { authHeader } from '../../redux/utils/dataSession';
-
+  import axiosInstance from '../../helpers/http';
+  
   const style = {
     position: 'absolute',
     top: '50%',
@@ -71,12 +71,7 @@ import {
 
     useEffect(() => {
       const fetchLocations = async () => {
-        const result = await axios.get(
-          `${process.env.BASE_BACKEND_SERVER_URL}/locations`,
-          {
-            headers: authHeader(),
-          }
-        );
+        const result = await axiosInstance.get('/locations');
         setLocations(result.data.data);
       };
       fetchLocations();
