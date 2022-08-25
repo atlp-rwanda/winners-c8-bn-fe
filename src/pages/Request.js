@@ -244,7 +244,6 @@ const postComment = (e) => {
             <div>
             {comments?.map((value) => 
             <div className="comment_" key={value.id}>
-              {console.log(user.id)}
               {value.userId == currentTrip?.manager.id ? 
 
               <div className='_manager'>
