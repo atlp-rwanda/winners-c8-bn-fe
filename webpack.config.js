@@ -7,8 +7,33 @@ dotenv.config();
 module.exports = {
   output: {
     path: path.join(__dirname, '/dist'), // the bundle output path
-    filename: 'bundle.js', // the name of the bundle
     publicPath: '/',
+    pathinfo: false,
+  },
+  cache: true,
+  performance: {
+    hints: false,
+    maxEntrypointSize: 512000,
+    maxAssetSize: 512000,
+  },
+  optimization: {
+    removeAvailableModules: false,
+    removeEmptyChunks: false,
+    splitChunks: {
+      cacheGroups: {
+        vendor: {
+          name: 'node_vendors', // part of the bundle name and
+          // can be used in chunks array of HtmlWebpackPlugin
+          test: /[\\/]node_modules[\\/]/,
+          chunks: 'all',
+        },
+        common: {
+          test: /[\\/]src[\\/]components[\\/]/,
+          chunks: 'all',
+          minSize: 0,
+        },
+      },
+    },
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -24,9 +49,9 @@ module.exports = {
     rules: [
       {
         test: /\.(js|jsx)$/, // .js and .jsx files
-        exclude: /node_modules/, // excluding the node_modules folder
+        exclude: /(node_modules|dist|coverage)/, // excluding the node_modules folder
         use: {
-          loader: 'babel-loader',
+          loader: 'babel-loader?cacheDirectory',
         },
       },
       {

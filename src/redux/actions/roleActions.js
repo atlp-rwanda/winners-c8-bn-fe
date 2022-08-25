@@ -41,7 +41,7 @@ export const fetchRoles = () => async (dispatch) => {
   });
 
   return await axiosInstance
-    .get('/users/role')
+    .get('/users/roles')
     .then((res) => {
       dispatch({
         type: FETCH_ROLE_SUCCESS,
