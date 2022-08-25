@@ -238,6 +238,15 @@ describe('RUD accommodations Test', () => {
         }
 
       });
+      mockAxiosAdapter
+      .onGet(
+        '/accommodations/',
+        {},
+        expect.objectContaining({
+          Authorization: expect.stringMatching(/^Bearer/),
+        })
+      )
+      .reply(200);
   
       component = renderer.create(
         <Provider store={store}>

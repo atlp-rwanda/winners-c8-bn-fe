@@ -5,16 +5,16 @@ import { Icon } from '@iconify/react'
 import locationIcon from '@iconify/icons-mdi/map-marker'
 
 const GOOGLEMAP = ({ accommodation, zoomLevel }) => {
-  const location={
-    address: accommodation.name,
-    lat: accommodation.latitude, 
-    lng: accommodation.longitude,
-  }
   // const location={
   //   address: accommodation.name,
-  //   lat: -1.955648563380338, 
-  //   lng: 30.062816427143513,
+  //   lat: accommodation.latitude, 
+  //   lng: accommodation.longitude,
   // }
+  const location={
+    address: accommodation.name,
+    lat: -1.955648563380338, 
+    lng: 30.062816427143513,
+  }
   
     return ( 
     <div className="map">

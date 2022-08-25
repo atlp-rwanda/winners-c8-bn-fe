@@ -17,7 +17,7 @@ import { FETCH_ACCOMMODATIONS_LOADING,
          ACCOMMODATION_VIEW_SUCCESS,
          ACCOMMODATION_VIEW_FAILURE
         } from "./actionTypes";
-import {accommodationsUrl} from "../utils/apiUrls";
+
 import axiosInstance from '../../helpers/http';
 
 export const listAccommodations = () => async dispatch => {
@@ -25,7 +25,7 @@ export const listAccommodations = () => async dispatch => {
         type: FETCH_ACCOMMODATIONS_LOADING
     });
 
-  return await axiosInstance.get(accommodationsUrl)
+  return await axiosInstance.get('/accommodations')
       .then(res => {
           dispatch({
               type: FETCH_ACCOMMODATIONS_SUCCESS,
@@ -66,7 +66,6 @@ export const updateAccommodationFailure = (error) => {
 }
 
 export const updateAccommodation = (id,accommodation) =>{
-	const apiUrl =`${process.env.BASE_BACKEND_SERVER_URL}/accommodations/${id}`
 	const formData = new FormData()
 	if(accommodation.locationId){
 		formData.append('location_id', accommodation.locationId)
