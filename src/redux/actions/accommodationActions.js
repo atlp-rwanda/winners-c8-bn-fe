@@ -42,27 +42,6 @@ export const listAccommodations = () => async dispatch => {
       })
 }
 
-export const detailsAccommodation = (accommodationId) => async dispatch => {
-    dispatch({
-        type: FETCH_SINGLE_ACCOMMODATION_LOADING
-    });
-
-  return await axiosInstance.get(accommodationsUrl+`${accommodationId}`)
-      .then(res => {
-          dispatch({
-              type: FETCH_SINGLE_ACCOMMODATION_SUCCESS,
-              payload: res.data
-          });
-      })
-      .catch(err => {
-          dispatch({
-              type: FETCH_SINGLE_ACCOMMODATION_FAILED,
-              payload: "failed to fetch",
-              message: err
-          });
-          errorToast(err.toString())
-      })
-}
 
 // updating accommodation
 export const updateAccommodationRequest = () => {

@@ -55,7 +55,7 @@
     "build": "node --max_old_space_size=460 ./node_modules/webpack/bin/webpack.js --mode production",
     "lint": "eslint ./src",
     "start": "npm run build && node server.js",
-    "test": "jest",
+    "test": "jest src/tests/RUD-accommodations",
     "coverage": "jest --env=jsdom --coverage"
   },
   "browserslist": {

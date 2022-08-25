@@ -17,7 +17,6 @@ import {
 const initialState = {
     loading:false,
     accommodations: [],
-    // singleAccommodation: {},
     error: ''
 }
 
@@ -49,33 +48,6 @@ export function accommodationsReducer(state = initialState, action) {
   }
 }
 
-export function detailsAccommodationReducer(state =initialState, action){
-  switch(action.type){
-        case FETCH_SINGLE_ACCOMMODATION_LOADING:
-                console.log('loading', state)
-                  return {
-                      loading: true
-                  }
-
-        case FETCH_SINGLE_ACCOMMODATION_SUCCESS:
-          console.log('success', action.payload)
-            return {
-              ...state,
-                loading: false,
-                singleAccommodation: action.payload.data
-            }
-
-        case FETCH_SINGLE_ACCOMMODATION_FAILED:
-          console.log('failed', action.payload)
-            return {
-              ...state,
-                loading: false,
-            }
-        default:
-          return state
-    }
-}
-
 // UPDATING REDUCER
 
 export const AccommodationUpdateReducer = (state = initialState, action) => {
@@ -105,6 +77,7 @@ export const AccommodationUpdateReducer = (state = initialState, action) => {
 	}
 }
 
+// DELETE REDUCER
 export const deleteAccommodationReducer=(state=initialState, action)=>{
   switch (action.type) {
 		case ACCOMMODATION_DELETE_LOADING:

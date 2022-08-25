@@ -32,7 +32,6 @@ export default combineReducers({
   recover: recoverReducer,
   user: userReducer,
   accommodations:accommodationsReducer,
-  singleAccommodation: detailsAccommodationReducer,
   updatingAccomodation:AccommodationUpdateReducer,
   deletingAccommodation:deleteAccommodationReducer,
   viewAccommodation: viewAccommodationReducer,
