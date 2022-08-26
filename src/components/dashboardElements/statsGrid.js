@@ -15,7 +15,7 @@ class StatsGrid extends Component {
     if (isLoading) return <Loader />;
     if (!isLoaded || !data) return null;
 
-    const keys = ['Approved', 'Rejected', 'Pending'];
+    const keys = ['approved', 'rejected', 'pending'];
 
     keys.forEach((key) => {
       if (data[key] === undefined) {
