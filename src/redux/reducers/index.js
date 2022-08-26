@@ -12,6 +12,7 @@ import {
 import recoverReducer from "./recoverReducer";
 import userReducer from "./SocialReducers";
 import { statsReducer, chartStatsReducer } from "./tripstatsReducers";
+import PopularDestinationsReducer from "./popularDestinationsReducer";
 
 export default combineReducers({
   auth: authReducer,
@@ -25,4 +26,5 @@ export default combineReducers({
   user: userReducer,
   tripStats: statsReducer,
   chartTripStats: chartStatsReducer,
+  PopularDestinations: PopularDestinationsReducer,
 });
