@@ -1,25 +1,25 @@
-.content {
-  min-height: 100vh;
-  overflow: hidden;
-}
-.registration {
-  max-width: 600px;
-  margin: 5px auto;
-  padding: 5px;
-}
-.register-box {
-  background-color: #fff;
-  width: 450px;
-  margin: 20px 40px;
-  border-radius: 6px;
-}
-.register-box .title {
-  padding-top: 30px;
-  padding-bottom: 10px;
-  font-weight: 500;
-  border-bottom: 1px solid #eee;
-  color: #000;
-}
+  .content {
+    height: 100vh;
+    overflow: hidden;
+  }
+  .registration{
+    max-width: 600px;
+    margin: 5px auto;
+    padding: 5px;
+  }
+  .register-box{
+    background-color: #fff;
+    width: 450px;
+    margin: 20px 40px;
+    border-radius: 6px;
+  }
+  .register-box .title{
+    padding-top: 30px;
+    padding-bottom: 10px;
+    font-weight: 500;
+    border-bottom: 1px solid #eee;
+    color: #000;
+  }
 
 .styled-form {
   margin: 15px;

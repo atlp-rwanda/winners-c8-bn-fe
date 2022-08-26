@@ -1,4 +1,8 @@
 // this folder will contain redux's reducers
+import {accommodationsReducer, detailsAccommodationReducer, 
+  AccommodationUpdateReducer,deleteAccommodationReducer,
+  viewAccommodationReducer
+}from "./accommodationReducers"
 import { combineReducers } from 'redux';
 import authReducer from './authReducer';
 import navbarReducer from './navbarReducer';
@@ -15,6 +19,7 @@ import {
   updateUserProfileReducer,
 } from './userProfileReducer';
 
+
 export default combineReducers({
   auth: authReducer,
   navbar: navbarReducer,
@@ -26,9 +31,14 @@ export default combineReducers({
   reset: resetReducer,
   recover: recoverReducer,
   user: userReducer,
+  accommodations:accommodationsReducer,
+  updatingAccomodation:AccommodationUpdateReducer,
+  deletingAccommodation:deleteAccommodationReducer,
+  viewAccommodation: viewAccommodationReducer,
   users: usersReducer,
   roles: rolesReducer,
   assignRole: assignRoleReducer
+
 });
 
 

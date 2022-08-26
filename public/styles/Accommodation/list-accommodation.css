@@ -1,0 +1,185 @@
+.homeContainer .mainContent .accommodation-wrapper .accomodation__desc p.accomodation__name{
+    font-size: 6px;
+}
+.accommodation-wrapper{
+align-content: center;
+top: 50%;
+left: 50%;
+margin-top:40px;
+}
+.accommodation{
+    display: flex;
+    margin-bottom: 50px;
+    border: 1px solid rgb(145, 140, 140);
+    border-radius: 4px;
+    padding: 10px;
+    align-items: center;
+    /* height: 150px; */
+}
+.accomodation__thumbnail{
+    width: 200px;
+}
+.accomodation__thumbnail img{
+    height: 140px;
+    width: 200px;
+    padding-right: 30px;
+}
+.accommodation BUTTON{
+    margin-left: 450px;
+}
+.accommodations .accomodation__desc{
+    width: 250px;
+}
+.accommodations .accomodation__btn{
+    background-color: deepskyblue;
+    color: #fff;
+    margin-left: 450px;
+    font-size: 15px;
+    padding: 7px;
+    border: none;
+    border-radius: 10%;
+}
+.accomodation__new{
+    background-color: deepskyblue;
+    color: #fff;
+    /* margin-left: 500px; */
+    margin: 10px;
+    /* font-size: 15px; */
+    padding: 7px;
+    border: none;
+    border-radius: 4px;
+}
+
+.pagination{
+    float: right;
+    /* margin-bottom: 50px; */
+}
+.pagination div > input{
+    font-size: 15px;
+    margin-left: 10px;
+}
+
+/* single accommodation styling */
+.single-accommodation{
+    display: flex;
+    margin-top:40px;
+}
+.single-accommodation p{
+    color: #000;
+}
+.single-accommodation .rate__btn{
+    font-size: 15px;
+    padding: 7px;
+    border: 1px solid #c4c4c4;
+    border-radius: 10%;
+}
+.single-accommodation .add__btn{
+    background-color: deepskyblue;
+    color: #fff;
+    margin-right: 5px;
+    font-size: 15px;
+    padding: 7px;
+    border: none;
+    border-radius: 10%;
+}
+.single-accommodation .add__btn:hover{
+color:deepskyblue;
+background-color: #fff;
+}
+.single-accommodation .update__btn{
+    background-color: rgb(42, 94, 238);
+    color: #fff;
+    margin-left: 5px;
+    font-size: 15px;
+    padding: 7px;
+    border: none;
+    border-radius: 10%;
+}
+.single-accommodation .del__btn{
+    background-color: rgb(255, 0, 76);
+    color: #fff;
+    margin-left: 5px;
+    font-size: 15px;
+    padding: 7px;
+    border: none;
+    border-radius: 10%;
+}
+/* styling pagination */
+.paginationBttns {
+    width: 80%;
+    height: 40px;
+    list-style: none;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .paginationBttns a {
+    padding: 10px;
+    margin: 8px;
+    border-radius: 5px;
+    border: 1px solid deepskyblue;
+    color: #2b2eff;
+    cursor: pointer;
+  }
+  
+  .paginationBttns a:hover {
+    color: white;
+    background-color: grey;
+  }
+  
+  .paginationActive a {
+    color: rgb(248, 28, 28);
+    background-color: rgb(42, 94, 238);
+  }
+  
+  .paginationDisabled a {
+    color: grey;
+    background-color: #fff;
+  }
+
+
+  @media screen and (max-width: 760px) {
+    .accommodations{
+        width: 75%;
+        overflow-y: auto;
+        height: 100vh;
+    }
+    .accommodation{
+        display: block;
+        width: 40%;
+        margin-bottom: 5px;
+    }
+    .accommodation BUTTON{
+        margin-left: 0px;
+    }
+    .accomodation__thumbnail img{
+        height: 140px;
+        width: 200px;
+        padding-right: 30px;
+    }
+    .paginationBttns {
+        margin-left: 0;
+        padding-left: 0;
+        margin-top: 20px;
+        display: block;
+        justify-content: left;
+      }
+      .paginationBttns a {
+        padding: 5px;
+        margin-top: 20px;
+        border-radius: 5px;
+        border: 1px solid deepskyblue;
+        color: #2b2eff;
+        cursor: pointer;
+      }
+  
+  }
+
+  @media screen and (max-width: 912px) {
+    .accommodation BUTTON{
+        margin-left: 0px;
+    }
+    .paginationBttns {
+        margin-left: 0;
+      }
+  }
