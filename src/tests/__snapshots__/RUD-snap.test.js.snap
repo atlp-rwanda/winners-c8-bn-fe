@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Connected Accommodation Component to React-Redux should render with given state from Redux store 1`] = `
+exports[`<Accommodation /> matches snapshot 1`] = `
 <div
   className="home"
   data-testid="update-1"
@@ -453,7 +453,44 @@ exports[`Connected Accommodation Component to React-Redux should render with giv
       >
         <div
           className="accommodations"
-        />
+        >
+          <ul
+            className="paginationBttns"
+          >
+            <li
+              className="previous paginationDisabled"
+            >
+              <a
+                aria-disabled="true"
+                aria-label="Previous page"
+                className="previousBttn "
+                onClick={[Function]}
+                onKeyPress={[Function]}
+                rel="prev"
+                role="button"
+                tabIndex="-1"
+              >
+                Previous
+              </a>
+            </li>
+            <li
+              className="next"
+            >
+              <a
+                aria-disabled="false"
+                aria-label="Next page"
+                className="nextBttn"
+                onClick={[Function]}
+                onKeyPress={[Function]}
+                rel="next"
+                role="button"
+                tabIndex="0"
+              >
+                Next
+              </a>
+            </li>
+          </ul>
+        </div>
         <div />
         <div />
         <div />
