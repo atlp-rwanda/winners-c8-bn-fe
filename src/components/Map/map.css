@@ -3,33 +3,34 @@
   
 }
 .map-h2 {
+    display: none;
     text-transform: uppercase;
     font-size: 1rem;
-    padding: 20px;
+    padding: 5px;
     padding-left: 10px;
     text-align: center;
   }
   
   .google-map {
-    width: 100%;
-    height: 14px;
+    width: 70%;
+    /* height: 14px; */
   }
   
   .pin {
-    display: flex;
     align-items: center;
-    width: 180px;
+    /* width: 180px; */
     color: var(--main-blue);
   }
   
   .pin-icon {
-    font-size: 2rem;
+    /* font-size: 1.3rem; */
     color: red;
   }
   
   .pin-text {
     font-size: 1.3em;
-    /* color: red; */
+    color: red;
+    text-align: center;
   }
   
   @media screen and (min-width: 799px) {

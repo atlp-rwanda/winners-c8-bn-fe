@@ -6,12 +6,6 @@ align-content: center;
 top: 50%;
 left: 50%;
 margin-top:40px;
-/* background-image: url('/public/images/mountain-ice.jpg'); */
-background-size: cover;
-/* background-color: red; */
-}
-.accommodations{
-    /* background-image: url('/public/images/mountain-ice.jpg'); */
 }
 .accommodation{
     display: flex;
@@ -35,10 +29,6 @@ background-size: cover;
 }
 .accommodations .accomodation__desc{
     width: 250px;
-}
-.accommodation div.accomodation__desc p{
-    /* background-color: red; */
-    color: red;
 }
 .accommodations .accomodation__btn{
     background-color: deepskyblue;
@@ -148,4 +138,48 @@ background-color: #fff;
   }
 
 
-  /* singl with map */
+  @media screen and (max-width: 760px) {
+    .accommodations{
+        width: 75%;
+        overflow-y: auto;
+        height: 100vh;
+    }
+    .accommodation{
+        display: block;
+        width: 40%;
+        margin-bottom: 5px;
+    }
+    .accommodation BUTTON{
+        margin-left: 0px;
+    }
+    .accomodation__thumbnail img{
+        height: 140px;
+        width: 200px;
+        padding-right: 30px;
+    }
+    .paginationBttns {
+        margin-left: 0;
+        padding-left: 0;
+        margin-top: 20px;
+        display: block;
+        justify-content: left;
+      }
+      .paginationBttns a {
+        padding: 5px;
+        margin-top: 20px;
+        border-radius: 5px;
+        border: 1px solid deepskyblue;
+        color: #2b2eff;
+        cursor: pointer;
+      }
+  
+  }
+
+  @media screen and (max-width: 912px) {
+    .accommodation BUTTON{
+        margin-left: 0px;
+    }
+    .paginationBttns {
+        margin-left: 0;
+      }
+  }

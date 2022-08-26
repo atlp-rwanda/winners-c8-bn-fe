@@ -1,17 +1,28 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import GoogleMapReact from 'google-map-react'
 import './map.css'
 import { Icon } from '@iconify/react'
 import locationIcon from '@iconify/icons-mdi/map-marker'
+import axiosInstance from '../../helpers/http';
 
 const GOOGLEMAP = ({ accommodation, zoomLevel }) => {
+  
   // const location={
   //   address: accommodation.name,
   //   lat: accommodation.latitude, 
   //   lng: accommodation.longitude,
   // }
+  const [accommodationLocation, setAccommodationLocation] = useState('');
+  useEffect(()=>{
+    const fetchLocation = async () => {
+      const result = await axiosInstance.get(`/locations/${accommodation.location_id}`);
+      setAccommodationLocation(result.data.data.city);
+    };
+    fetchLocation();
+  },[])
+
   const location={
-    address: accommodation.name,
+    address: accommodationLocation,
     lat: -1.955648563380338, 
     lng: 30.062816427143513,
   }
@@ -24,7 +35,7 @@ const GOOGLEMAP = ({ accommodation, zoomLevel }) => {
             bootstrapURLKeys={{ key: '' }}
             defaultCenter={location}
             defaultZoom={zoomLevel}
-            center={location}
+            // center={location}
         >
             <LocationPin
             lat={location.lat}

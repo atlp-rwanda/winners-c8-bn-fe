@@ -127,7 +127,7 @@ describe('RUD accommodations Test', () => {
       };
 
       describe('updating accommodations', ()=>{
-        it('it update', async()=>{
+        it('it should update', async()=>{
           const store = mockStore({ 
             id: 23,
             name: "Sport view",
@@ -139,6 +139,15 @@ describe('RUD accommodations Test', () => {
               "http://res.cloudinary.com/atlp8winners/image/upload/v1661447268/winners-c8-bn-be/production/accommodations/facilities/opxayjemz7cruygl3apy.jpg"
             ],
            });
+      mockAxiosAdapter
+      .onPatch(
+        '/accommodations/23',
+        {},
+        expect.objectContaining({
+          Authorization: expect.stringMatching(/^Bearer/),
+        })
+      )
+      .reply(200);
           await store.dispatch(listAccommodations());
           const actions = store.getActions();
           expect(actions[1].type).toEqual(FETCH_ACCOMMODATIONS_FAILED);
@@ -203,6 +212,7 @@ describe('RUD accommodations Test', () => {
 
         it('dispatches FETCH_ACCOMMODATIONS_LOADING before', async () => {
           store.clearActions();
+
           await store.dispatch(listAccommodations(FETCH_ACCOMMODATIONS_LOADING));
         });
       
