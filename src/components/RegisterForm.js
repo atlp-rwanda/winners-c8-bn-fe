@@ -46,7 +46,7 @@ class UserRegisterForm extends React.Component {
 
     // this.setState({ submitted: true});
     const { user } = this.state;
-    // console.log(user);
+
     if (
       user.firstName &&
       user.lastName &&
@@ -199,9 +199,7 @@ class UserRegisterForm extends React.Component {
                     }}
                   >
                     <div style={{ paddingRight: '20px' }}>
-                      <a
-                        href={`${process.env.BASE_BACKEND_SERVER_URL}/oauth/google`}
-                      >
+                      <a href="https://winners-c8-bn-be-staging.herokuapp.com/api/oauth/google">
                         <FcGoogle
                           style={{
                             fontSize: '40px',
@@ -211,9 +209,7 @@ class UserRegisterForm extends React.Component {
                       </a>
                     </div>
                     <div style={{ paddingLeft: '20px' }}>
-                      <a
-                        href={`${process.env.BASE_BACKEND_SERVER_URL}/oauth/facebook`}
-                      >
+                      <a href="https://winners-c8-bn-be-staging.herokuapp.com/api/oauth/facebook">
                         <ImFacebook
                           style={{
                             fontSize: '35px',

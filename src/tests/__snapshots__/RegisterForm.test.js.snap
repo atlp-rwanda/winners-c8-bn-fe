@@ -150,7 +150,7 @@ exports[`Connected Register Form React-Redux Component should render with given 
                 }
               >
                 <a
-                  href="undefined/oauth/google"
+                  href="https://winners-c8-bn-be-staging.herokuapp.com/api/oauth/google"
                 >
                   <svg
                     enableBackground="new 0 0 48 48"
@@ -204,7 +204,7 @@ exports[`Connected Register Form React-Redux Component should render with given 
                 }
               >
                 <a
-                  href="undefined/oauth/facebook"
+                  href="https://winners-c8-bn-be-staging.herokuapp.com/api/oauth/facebook"
                 >
                   <svg
                     fill="currentColor"

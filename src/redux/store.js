@@ -13,11 +13,9 @@ const initialState = {
   navbar: { currentPage: "HOME" },
 };
 const store = createStore(
-    rootReducer,
-    initialState, // sets initial state
-    applyMiddleware(
-      thunk
-    )
-  );
+  rootReducer,
+  initialState, // sets initial state
+  applyMiddleware(thunk)
+);
 
 export default store;

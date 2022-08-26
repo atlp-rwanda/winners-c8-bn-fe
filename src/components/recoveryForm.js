@@ -6,6 +6,7 @@ import * as recoverActions from '../redux/actions/recoverFormActions';
 import '../../public/styles/recoverForm/index.scss';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import ErrorIcon from '@mui/icons-material/Error';
+import Loader from './Loader';
 
 class RecoverForm extends Component {
   constructor(props) {
@@ -47,7 +48,7 @@ class RecoverForm extends Component {
                 Recover Password
               </button>
             ) : (
-              <div className="loader"></div>
+              <Loader />
             )}
           </form>
         )}
