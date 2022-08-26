@@ -231,4 +231,44 @@ describe('RUD accommodations Test', () => {
   });
   axiosInstance;
 
+  describe('Connected Accommodation Component to React-Redux', () => {
+    let store;
+    let component;
   
+    beforeEach(() => {
+      store = mockStore({
+        accommodations: [],
+        updatingAccomodation:{
+            loading: true,
+            isUpdated: false
+        },
+        deletingAccommodation:{
+            loading: true,
+            isDeleted:false
+        },
+        error: ''
+
+      });
+      mockAxiosAdapter
+      .onGet(
+        '/accommodations/',
+        {},
+        expect.objectContaining({
+          Authorization: expect.stringMatching(/^Bearer/),
+        })
+      )
+      .reply(200);
+  
+      component = renderer.create(
+        <Provider store={store}>
+          <Router>
+            <Accommodation />
+          </Router>
+        </Provider>
+      );
+    });
+  
+    it('should render with given state from Redux store', () => {
+      expect(component.toJSON()).toMatchSnapshot();
+    });
+  });
