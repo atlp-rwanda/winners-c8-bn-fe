@@ -1,8 +1,8 @@
-import React, { Component } from "react";
-import { Bar, Line } from "react-chartjs-2";
-import { connect } from "react-redux";
-import * as statsAction from "../../redux/actions/tripStatsActions";
-import Loader from "../Loader";
+import React, { Component } from 'react';
+import { Bar, Line } from 'react-chartjs-2';
+import { connect } from 'react-redux';
+import * as statsAction from '../../redux/actions/tripStatsActions';
+import Loader from '../Loader';
 
 import {
   Chart as ChartJS,
@@ -13,7 +13,7 @@ import {
   PointElement,
   Tooltip,
   Legend,
-} from "chart.js";
+} from 'chart.js';
 
 ChartJS.register(
   CategoryScale,
@@ -37,11 +37,11 @@ class StatsChart extends Component {
     if (!isLoaded || !chartStats) return null;
 
     const dataSets = {
-      approved: [],
-      denied: [],
-      pending: [],
+      Approved: [],
+      Rejected: [],
+      Pending: [],
     };
-
+    console.log('fe', chartStats);
     chartStats.forEach((element) => {
       Object.keys(dataSets).forEach((key) => {
         if (element) {
@@ -53,43 +53,44 @@ class StatsChart extends Component {
         }
       });
     });
+    console.log('data', dataSets);
 
     const data = {
       labels: [
-        "January",
-        "February",
-        "March",
-        "April",
-        "May",
-        "June",
-        "July",
-        "August",
-        "September",
-        "October",
-        "November",
-        "December",
+        'January',
+        'February',
+        'March',
+        'April',
+        'May',
+        'June',
+        'July',
+        'August',
+        'September',
+        'October',
+        'November',
+        'December',
       ],
 
       datasets: [
         {
-          label: "Pending",
-          data: dataSets.pending,
+          label: 'Pending',
+          data: dataSets.Pending,
           borderRadius: 9,
-          backgroundColor: "#284046",
-          borderColor: "#284046",
+          backgroundColor: '#284046',
+          borderColor: '#284046',
         },
         {
-          label: "Approved",
-          data: dataSets.approved,
+          label: 'Approved',
+          data: dataSets.Approved,
           borderRadius: 9,
-          backgroundColor: "#7DCFBF",
-          borderColor: "#7DCFBF",
+          backgroundColor: '#7DCFBF',
+          borderColor: '#7DCFBF',
         },
         {
-          label: "Denied",
-          data: dataSets.denied,
-          backgroundColor: "#A5C9CA",
-          borderColor: "#A5C9CA",
+          label: 'Rejected',
+          data: dataSets.Rejected,
+          backgroundColor: '#A5C9CA',
+          borderColor: '#A5C9CA',
           borderRadius: 9,
         },
       ],

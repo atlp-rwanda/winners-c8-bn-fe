@@ -1,18 +1,17 @@
-import React from "react";
-import "./navbar.scss";
+import React from 'react';
+import './navbar.scss';
 import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
-import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
-import LanguageOutlinedIcon from "@mui/icons-material/LanguageOutlined";
-import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
-import NotificationsNoneOutlinedIcon from "@mui/icons-material/NotificationsNoneOutlined";
+import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
+import LanguageOutlinedIcon from '@mui/icons-material/LanguageOutlined';
+import DarkModeOutlinedIcon from '@mui/icons-material/DarkModeOutlined';
+import NotificationsNoneOutlinedIcon from '@mui/icons-material/NotificationsNoneOutlined';
 import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
-import ListOutlinedIcon from "@mui/icons-material/ListOutlined";
-import { useContext } from "react";
+import ListOutlinedIcon from '@mui/icons-material/ListOutlined';
+import { useContext } from 'react';
 
 const Navbar = () => {
-
   return (
-    <div className="navbar">
+    <div className="dashboard-navbar">
       <div className="wrapper">
         <div className="search">
           <input type="text" placeholder="Search..." />
@@ -24,8 +23,8 @@ const Navbar = () => {
           </div>
           <div className="item">
             <DarkModeOutlinedIcon
-              // className="icon"
-              // onClick={() => dispatch({ type: "TOGGLE" })}
+            // className="icon"
+            // onClick={() => dispatch({ type: "TOGGLE" })}
             />
           </div>
           <div className="item">

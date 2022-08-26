@@ -1,7 +1,7 @@
-import React from "react";
-import { connect } from "react-redux";
-import "../../public/styles/Home/index.scss";
-import PopularDestinations from "./popularDestinations";
+import React from 'react';
+import { connect } from 'react-redux';
+import '../../public/styles/Home/index.scss';
+import PopularDestinations from './popularDestinations';
 
 const Home = (props) => {
   return (
@@ -9,9 +9,9 @@ const Home = (props) => {
       <h2>Welcome to Barefoot Nomad App!</h2>
       <br></br>
       <h3>
-        {props.token == ""
-          ? "You are not logged in"
-          : "You are logged in with this token:"}
+        {props.token == ''
+          ? 'You are not logged in'
+          : 'You are logged in with this token:'}
       </h3>
       <pre>{props.token}</pre>
       <PopularDestinations />

@@ -1,8 +1,8 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import StatsCard from "./statsCard";
-import * as statsAction from "../../redux/actions/tripStatsActions";
-import Loader from "../Loader";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import StatsCard from './statsCard';
+import * as statsAction from '../../redux/actions/tripStatsActions';
+import Loader from '../Loader';
 
 class StatsGrid extends Component {
   componentDidMount() {
@@ -15,7 +15,7 @@ class StatsGrid extends Component {
     if (isLoading) return <Loader />;
     if (!isLoaded || !data) return null;
 
-    const keys = ["approved", "denied", "pending"];
+    const keys = ['Approved', 'Rejected', 'Pending'];
 
     keys.forEach((key) => {
       if (data[key] === undefined) {

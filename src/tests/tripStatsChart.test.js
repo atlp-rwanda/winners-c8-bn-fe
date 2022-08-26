@@ -1,17 +1,20 @@
-import React from "react";
+import React from 'react';
 import {
   fireEvent,
   screen,
   render,
   cleanup,
   waitFor,
-} from "@testing-library/react";
-import thunk from "redux-thunk";
-import { act } from "react-dom/test-utils";
-import { Provider } from "react-redux";
-import { BrowserRouter as Router } from "react-router-dom";
-import configureMockStore from "redux-mock-store";
-import StatsChart from "../components/Dashboard/StatsChart";
+} from '@testing-library/react';
+import thunk from 'redux-thunk';
+import { act } from 'react-dom/test-utils';
+import { Provider } from 'react-redux';
+import { BrowserRouter as Router } from 'react-router-dom';
+import StatsChart from '../components/dashboardElements/StatsChart';
+import configureMockStore from 'redux-mock-store';
+import axiosInstance from '../helpers/http';
+import AxiosMockAdapter from 'axios-mock-adapter';
+const mock = new AxiosMockAdapter(axiosInstance);
 
 const middleware = [thunk];
 const mockStore = configureMockStore(middleware);
@@ -19,22 +22,18 @@ const initialState = {
   chartTripStats: { chartStats: [], isLoading: false, isLoaded: false },
 };
 
-describe("Test trips stats chart", () => {
+describe('Test trips stats chart', () => {
   let store;
-  global.fetch = jest.fn(() =>
-    Promise.resolve({
-      json: () =>
-        Promise.resolve({
-          status: 200,
-          success: true,
-          Tripstatistics: {
-            pending: (Math.random() * 30).round(),
-            approved: (Math.random() * 30).round(),
-            denied: (Math.random() * 30).round(),
-          },
-        }),
-    })
-  );
+  mock.onPost(/tripstatistics/i).reply(200, {
+    status: 200,
+    success: true,
+    Tripstatistics: {
+      Pending: '20',
+      Approved: '10',
+      Rejected: '5',
+    },
+  });
+
   beforeEach(() => {
     store = mockStore(initialState);
   });
@@ -43,7 +42,7 @@ describe("Test trips stats chart", () => {
     cleanup();
   });
 
-  it("should render a trips stats grid", () => {
+  it('should render a trips stats grid', () => {
     store.clearActions();
 
     render(
@@ -54,7 +53,7 @@ describe("Test trips stats chart", () => {
       </Provider>
     );
 
-    const chartCanvas = screen.queryByTestId("stats-chart");
+    const chartCanvas = screen.queryByTestId('stats-chart');
 
     expect(chartCanvas).toBeInTheDocument;
   });

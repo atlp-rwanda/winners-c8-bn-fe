@@ -4,11 +4,6 @@ exports[`Connected Register Form React-Redux Component should render with given 
 <div
   className="register-section pt-100 pb-100 md-pt-80 md-pb-80"
 >
-  <div>
-    <div
-      className="Toastify"
-    />
-  </div>
   <div
     className="registration"
   >
