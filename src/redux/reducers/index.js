@@ -8,7 +8,7 @@ import authReducer from './authReducer';
 import navbarReducer from './navbarReducer';
 import { registration } from './userReducers';
 import { alert } from './alertReducers';
-import requestReducer from './requestReducer';
+import {requests, requestComments, postRequestCommentReducer, deleteRequestCommentReducer} from './requestReducer';
 import resetReducer from './resetReducer';
 import recoverReducer from './recoverReducer';
 import userReducer from './SocialReducers';
@@ -23,7 +23,10 @@ import {
 export default combineReducers({
   auth: authReducer,
   navbar: navbarReducer,
-  requests: requestReducer,
+  requests,
+  requestComments,
+  postComment: postRequestCommentReducer,
+  deleteComment: deleteRequestCommentReducer,
   userProfile: fetchUserProfileReducer,
   updateUserProfile: updateUserProfileReducer,
   registration,

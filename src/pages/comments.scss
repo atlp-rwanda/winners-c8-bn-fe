@@ -1,0 +1,101 @@
+.comment_{
+    display: flex;
+    align-items: center;
+
+
+    ._message_owner{
+        font-weight: bold;
+    }
+    ._manager{
+        width: 100%;
+        background-color: #dbdfe0e6;
+        border-radius: 5px;
+        padding: 2px 8px;
+        margin: 4px 0;
+
+
+        ._icon{
+            color: #395B64;
+            margin-right: 5px;
+        }
+        ._time{
+            margin-left: 10px;
+            color: #395B64;
+            font-size: 8px;
+        }
+        ._date{
+            color: #395B64;
+            font-size: 8px;
+
+        }
+
+    }
+
+    ._traveler{
+        width: 100%;
+        background-color: #c0f0e8;
+        border-radius: 10px;
+        margin: 4px 0;
+        text-align: right;
+        padding: 2px 8px;
+
+
+
+        ._message_owner{
+            color: #395B64;
+            font-weight: bold;
+
+
+
+            ._message_owner_icon{
+                font-size: 20px;
+
+            }
+        }
+
+        ._icon{
+            color: #395B64;
+            margin-right: 5px;
+        }
+        ._time{
+            margin-left: 10px;
+            color: #395B64;
+            font-size: 8px;
+        }
+        ._date{
+            color: #395B64;
+            font-size: 8px;
+
+        }
+
+    }
+    .delete_icon:hover{
+        color: rgb(234, 1, 1);
+    }
+    
+}
+
+
+
+._form_comments{
+    display: flex;
+    margin-top: 15px;
+
+    .comment_area{
+        width: 100%;
+    }
+
+    .publish_button{
+        background-color: #3BCAB3;
+        border: none;
+        border-radius: 2px;
+        padding: 2px 4px;
+
+        ._send_icon{
+            color: #FFF;
+        }
+    }
+    .publish_button:hover{
+        background-color: #2b9b88;
+    }
+}
