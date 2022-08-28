@@ -79,7 +79,7 @@ const UserRoleDash = () => {
 
           <div className="contentBlock">
             <div className="Content">
-              <Card sx={{ maxWidth: 345, margin: 'auto' }}>
+              <Card sx={{ maxWidth: 400, margin: 'auto' }}>
                 <CardHeader title="Assign role" />
                 <CardContent>
                   <form className="formClass">
@@ -89,7 +89,7 @@ const UserRoleDash = () => {
                         <Select
                           className="inputData"
                           data-testid="user-byEmail"
-                          defaultValue={users?.email}
+                          defaultValue=""
                           onChange={(event) =>
                             setSelectedEmail(event.target.value)
                           }
@@ -110,7 +110,7 @@ const UserRoleDash = () => {
                           placeholder={placeholder}
                           className="OptionSelect"
                           data-testid="role-name-byId"
-                          defaultValue={roles?.role}
+                          defaultValue=""
                           onChange={(event) => {
                             setSelectedRole(event.target.value);
                           }}

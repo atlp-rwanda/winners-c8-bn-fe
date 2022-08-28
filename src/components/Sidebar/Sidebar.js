@@ -47,10 +47,12 @@ const Sidebar = () => {
               <span>Assign Roles</span>
             </li>
           </Link>
+          <Link to="/dashboard/assignManager" style={{ textDecoration: "none" }}>
           <li>
             <CreditCardIcon className="icon" />
             <span>Assign Managers</span>
           </li>
+          </Link>
           <p className="title"></p>
           <Link to="/dashboard/trips" style={{ textDecoration: 'none' }}>
             <li>

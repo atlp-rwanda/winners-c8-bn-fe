@@ -14,6 +14,7 @@ import recoverReducer from './recoverReducer';
 import userReducer from './SocialReducers';
 import usersReducer from './UserReducer';
 import { rolesReducer, assignRoleReducer } from './RoleReducer';
+import {managers, assign_manager} from './assignManagerReducers'
 import {
   fetchUserProfileReducer,
   updateUserProfileReducer,
@@ -44,4 +45,6 @@ export default combineReducers({
   assignRole: assignRoleReducer,
   tripStats: statsReducer,
   chartTripStats: chartStatsReducer,
+  managers,
+  assignManager: assign_manager
 });
