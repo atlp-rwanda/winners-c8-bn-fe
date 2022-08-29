@@ -23,7 +23,7 @@ const Sidebar = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   return (
-    <div className="sidebar">
+    <div className="sidebar" data-testid="sidebar-test">
       <div className="top">
         <Link to="/" style={{ textDecoration: 'none' }}>
           <img src={logo} alt="logo barefoot" className="logo" width={100} />

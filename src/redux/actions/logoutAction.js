@@ -38,6 +38,6 @@ export const logout = () => async (dispatch, navigate) => {
           type: LOGOUT_FAILED,
           payload: err,
         });
-        errorToast(err.response.data.error);
+        // errorToast(err.response.data.error);
       });
   };

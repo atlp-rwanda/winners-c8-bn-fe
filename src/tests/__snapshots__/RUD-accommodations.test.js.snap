@@ -7,6 +7,7 @@ exports[`Connected Accommodation Component to React-Redux should render with giv
 >
   <div
     className="sidebar"
+    data-testid="sidebar-test"
   >
     <div
       className="top"
