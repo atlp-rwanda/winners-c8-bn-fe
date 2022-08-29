@@ -42,7 +42,6 @@ describe('Sidebar Dashboard' , () =>{
             </Router>
           </Provider>
         );
-<<<<<<< HEAD
   const SidebarElement = screen.getByTestId('sidebar-test');
   expect(SidebarElement).toBeInTheDocument()
   expect(SidebarElement).toHaveTextContent('Dashboard');
@@ -59,17 +58,7 @@ describe('Sidebar Dashboard' , () =>{
           </Provider>
         )
       );
-    
-      })
-=======
-  const SidebarElement = screen.queryByTestId('sidebar-test');
-  expect(SidebarElement).toBeInTheDocument()
-  expect(SidebarElement).toHaveTextContent('Dashboard');
-
-        
-
       });
->>>>>>> ft(logout): writting tests
       test("<Sidebar /> matches snapshot", ()=>{   
         const component = renderer
               .create(
