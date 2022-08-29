@@ -17,7 +17,6 @@ import { ToastContainer } from 'react-toastify';
 import DashboardLayout from './components/Layouts/Dashboard';
 import SocialAuth from './components/SocialOAuth';
 import HomePageLayout from './components/Layouts/Home';
-
 const App = () => {
   return (
     <div className="App">

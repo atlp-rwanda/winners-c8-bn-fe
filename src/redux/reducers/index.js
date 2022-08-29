@@ -22,6 +22,7 @@ import {
 } from './userProfileReducer';
 import { statsReducer, chartStatsReducer } from './tripstatsReducers';
 
+import { logoutReducer } from "./logoutReducer";
 
 export default combineReducers({
   auth: authReducer,
@@ -44,7 +45,10 @@ export default combineReducers({
   users: usersReducer,
   roles: rolesReducer,
   assignRole: assignRoleReducer,
+  logout: logoutReducer,
   tripStats: statsReducer,
   chartTripStats: chartStatsReducer,
   requests: requestsReducer,
 });
+
+
