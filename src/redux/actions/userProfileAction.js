@@ -6,11 +6,11 @@ import {
   UPDATE_USER_PROFILE_FAILED,
   UPDATE_USER_PROFILE_LOADING,
 } from '../types/userProfileTypes';
-import axios from 'axios';
 import { successToast, errorToast } from '../../helpers/generateToast';
 import axiosInstance from '../../helpers/http';
 
 export const fetchUserProfile = () => async (dispatch) => {
+  
   dispatch({
     type: FETCH_USER_PROFILE_LOADING,
   });
@@ -30,7 +30,7 @@ export const fetchUserProfile = () => async (dispatch) => {
       });
     });
 };
-
+/* istanbul ignore next */
 export const updateUserProfile = (body) => async (dispatch) => {
   dispatch({
     type: UPDATE_USER_PROFILE_LOADING,

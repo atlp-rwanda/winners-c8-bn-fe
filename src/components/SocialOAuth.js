@@ -19,6 +19,8 @@ class SocialAuth extends React.Component {
       this.props.LOGIN(token);
       window.location.replace('/dashboard');
     }
+       console.log('token');
+
   }
   render() {
     return (

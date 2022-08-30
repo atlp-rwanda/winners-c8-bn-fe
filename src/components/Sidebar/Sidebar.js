@@ -13,12 +13,17 @@ import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
 import SettingsSystemDaydreamOutlinedIcon from '@mui/icons-material/SettingsSystemDaydreamOutlined';
 import PsychologyOutlinedIcon from '@mui/icons-material/PsychologyOutlined';
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
-import { Link } from 'react-router-dom';
-import { useContext } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { logout } from '../../redux/actions/logoutAction';
+import { useDispatch } from 'react-redux';
+
+
 
 const Sidebar = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   return (
-    <div className="sidebar">
+    <div className="sidebar" data-testid="sidebar-test">
       <div className="top">
         <Link to="/" style={{ textDecoration: 'none' }}>
           <img src={logo} alt="logo barefoot" className="logo" width={100} />
@@ -90,7 +95,12 @@ const Sidebar = () => {
           </Link>
           <li>
             <ExitToAppIcon className="icon" />
-            <span>Logout</span>
+            <span
+            onClick={()=>{
+              logout()(dispatch, navigate)
+            }}
+            
+            >Logout</span>
           </li>
         </ul>
       </div>
