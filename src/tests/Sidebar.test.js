@@ -59,6 +59,20 @@ describe('Sidebar Dashboard' , () =>{
         )
       );
       });
+
+      it('The page should render  the page and logout', async () => {
+        window.localStorage.setItem('auth-token', 'testing');
+        await act(() =>
+        render(
+          <Provider store={store}>
+            <MemoryRouter initialEntries={['/auth/logout']}>
+              <App />
+            </MemoryRouter>
+          </Provider>
+        )
+      );
+    
+      })
       test("<Sidebar /> matches snapshot", ()=>{   
         const component = renderer
               .create(
