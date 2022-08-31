@@ -72,7 +72,7 @@ const UserProfile = () => {
     event.preventDefault();
     setDisable(false);
   };
-
+  /* istanbul ignore next */
   return (
     <>
       <div className="titleDashboard">
@@ -109,6 +109,7 @@ const UserProfile = () => {
                       type="text"
                       disabled={disable}
                       defaultValue={dataForm?.username}
+                      placeholder='Username'
                       onChange={(event) =>
                         setFormData({
                           ...dataForm,

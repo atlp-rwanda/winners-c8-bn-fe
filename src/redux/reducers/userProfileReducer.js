@@ -35,32 +35,32 @@ export function fetchUserProfileReducer(state = fetchUserInitialState, action) {
 }
 
 export function updateUserProfileReducer(state = updateUserProfileInitialState, action) {
+  /* istanbul ignore next */
   switch (action.type) {
-
-      case UPDATE_USER_PROFILE_LOADING:
-          return {
-              ...state,
-              loading: true
-          }
-      case UPDATE_USER_PROFILE_SUCCESS:
-          return {
-              loading: false,
-              profileLoading: false,
-              successMsg: "successfully update your profile",
-              error: null,
-              success: true,
-              snackbarOpen: true,
-          }
-      case UPDATE_USER_PROFILE_FAILED:
-          return {
-              loading: false,
-              profileLoading: false,
-              successMsg: null,
-              error: action.payload,
-              success: false,
-              snackbarOpen: true,
-          }
-      default:
-          return state
+    case UPDATE_USER_PROFILE_LOADING:
+      return {
+        ...state,
+        loading: true,
+      };
+    case UPDATE_USER_PROFILE_SUCCESS:
+      return {
+        loading: false,
+        profileLoading: false,
+        successMsg: 'successfully update your profile',
+        error: null,
+        success: true,
+        snackbarOpen: true,
+      };
+    case UPDATE_USER_PROFILE_FAILED:
+      return {
+        loading: false,
+        profileLoading: false,
+        successMsg: null,
+        error: action.payload,
+        success: false,
+        snackbarOpen: true,
+      };
+    default:
+      return state;
   }
 }

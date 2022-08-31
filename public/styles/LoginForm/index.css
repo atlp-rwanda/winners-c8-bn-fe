@@ -72,3 +72,10 @@
     text-align: left;
     padding-left: 3ex;
 }
+.alert_success{
+    font-size: 15px;
+    background-color: green;
+    color: #AEBCBF;
+    border-radius: 4px;
+    padding-left: 5px;
+}

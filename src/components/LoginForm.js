@@ -116,13 +116,9 @@ class LoginForm extends React.Component {
           {
             <div className="col-md-8 formWhite">
               <div>
-                {message_success ? (
-                  <p>{'Account created, Now verify email!'}</p>
-                ) : (
-                  ''
-                )}
-              </div>
-
+              {message_success ? <p className="alert_success">{'Account created, Now verify email!'}</p> : ''}
+              </div>  
+             
               <div className="row d-flex justify-content-center">
                 <div className="col-xs-12 col-md-8">
                   <h2 className="header1">Sign in </h2>
