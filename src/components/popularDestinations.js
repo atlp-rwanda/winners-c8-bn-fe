@@ -1,8 +1,9 @@
-import React from "react";
-import StatsCard from "./Dashboard/statsCard";
-import * as PopularDestinationsActions from "../redux/actions/popularDestinationsActions";
-import "../../public/styles/DashBoard/index.scss";
-import "../../public/styles/Home/PopularDestinations.scss";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import StatsCard from './dashboardElements/statsCard';
+import * as PopularDestinationsActions from '../redux/actions/popularDestinationsActions';
+import '../../public/styles/DashBoard/index.scss';
+import '../../public/styles/Home/PopularDestinations.scss';
 
 class PopularDestinations extends Component {
   componentDidMount() {
@@ -10,38 +11,32 @@ class PopularDestinations extends Component {
   }
 
   render() {
-    const { data, isSuccess } = this.props;
+    const { data, isSuccess } = this.props.state;
 
-    if (isSuccess && data) {
-      const cards = data.map((destination, index) => {
-        return (
-          <StatsCard
-            key={index}
-            data={{
-              title: destination.Locations[0].city,
-              content: destination.visitCount,
-            }}
-          />
-        );
-      });
-
+    const cards = data.map((destination, index) => {
       return (
-        <div
-          data-testid="popular-destinations"
-          className="popular-destinations"
-        >
-          <header>
-            <h1>Top Destionations for you</h1>
-            <span>
-              Much places sweets your mind. Explore some where interesting and
-              enjoy the vibe
-            </span>
-          </header>
-          <div className="stats-grid">{cards}</div>
-        </div>
+        <StatsCard
+          key={index}
+          data={{
+            title: destination.Locations[0].city,
+            content: destination.visitCount,
+          }}
+        />
       );
-    }
-    return null;
+    });
+
+    return (
+      <div data-testid="popular-destinations" className="popular-destinations">
+        <header>
+          <h1>Top Destionations for you</h1>
+          <span>
+            Much places sweets your mind. Explore some where interesting and
+            enjoy the vibe
+          </span>
+        </header>
+        <div className="stats-grid">{cards}</div>
+      </div>
+    );
   }
 }
 

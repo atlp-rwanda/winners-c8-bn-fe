@@ -1,20 +1,20 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import '../../public/styles/Home/index.scss';
+import PageHeader from './Home/PageHeader';
+import ServicesGrid from './Home/ServicesGrid';
+import QuickChat from './Home/QuickChat';
+import Partners from './Home/Partners';
 import PopularDestinations from './popularDestinations';
 
 const Home = (props) => {
   return (
     <div className="home-component">
-      <h2>Welcome to Barefoot Nomad App!</h2>
-      <br></br>
-      <h3>
-        {props.token == ''
-          ? 'You are not logged in'
-          : 'You are logged in with this token:'}
-      </h3>
-      <pre>{props.token}</pre>
+      <PageHeader />
+      <ServicesGrid />
       <PopularDestinations />
+      <QuickChat />
+      <Partners />
     </div>
   );
 };

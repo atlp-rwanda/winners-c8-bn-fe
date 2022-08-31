@@ -14,6 +14,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
 import DashboardLayout from './components/Layouts/Dashboard';
 import HomePageLayout from './components/Layouts/Home';
+import '../public/styles/App.scss';
 
 const App = () => {
   return (

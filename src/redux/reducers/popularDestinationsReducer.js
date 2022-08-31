@@ -5,7 +5,7 @@ const initialValues = {
 
 const PopularDestinationsReducer = (state = initialValues, action) => {
   switch (action.type) {
-    case "SET_POPULAR_DESTINATIONS":
+    case 'SET_POPULAR_DESTINATIONS':
       return { ...action.payload };
 
     default:
