@@ -34,11 +34,10 @@ class ErrorBoundary extends React.Component {
           }}
         >
           <Box>
-            <NotAccessible />
-            <Typography as="h2">Page you looking is not found</Typography>
-            <Button>
-              <Link to="/">Go back</Link>
-            </Button>
+            <NotAccessible fontSize="large" />
+            <Typography variant="h3">
+              Sorry, We currenly having the error
+            </Typography>
           </Box>
         </Box>
       );

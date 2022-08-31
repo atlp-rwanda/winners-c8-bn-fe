@@ -6,6 +6,7 @@ import {
   UPDATE_USER_PROFILE_FAILED,
   UPDATE_USER_PROFILE_LOADING,
 } from '../types/userProfileTypes';
+import { SET_USER_ONLINE_STATUS } from '../types/notificationTypes';
 import axios from 'axios';
 import { successToast, errorToast } from '../../helpers/generateToast';
 import axiosInstance from '../../helpers/http';
@@ -64,4 +65,7 @@ export const updateUserProfile = (body) => async (dispatch) => {
       });
       errorToast(err.response.data.error);
     });
+};
+export const updateOnlineStatus = (status) => async (dispatch) => {
+  dispatch({ type: SET_USER_ONLINE_STATUS, payload: status });
 };
