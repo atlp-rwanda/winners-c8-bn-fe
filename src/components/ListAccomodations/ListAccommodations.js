@@ -15,6 +15,9 @@ import { Alert, Button, Typography, Modal,Snackbar } from '@mui/material';
 import AccommodationUpdateModal from "./updateModal";
 import AccommodationDeleteModal from "./deleteModal";
 import { fetchUserProfile } from '../../redux/actions/userProfileAction';
+import { FaHeart } from 'react-icons/fa';
+import {AiOutlineHeart} from 'react-icons/ai';
+import { LikeDislikeAction } from "../../redux/actions/LikeDislikeAction";
 
 const ListAccommodations = ({accommodations, loading, error}) => {
     // state
@@ -23,17 +26,17 @@ const ListAccommodations = ({accommodations, loading, error}) => {
           user: state.userProfile?.user.user,
         };
     });
-
     const dispatch = useDispatch()
       useEffect(() => {
-        fetchUserProfile()(dispatch);
-    }, []);
-
+        dispatch(fetchUserProfile());
+    }, [dispatch]);
+console.log(accommodations)
     // modal
     const [open, setOpen] = React.useState('none');
     const handleClose= ()=> setOpen(false)
 
     let [accommodation, setAccommodation] = useState(0)
+    const LikeDislike = async (accommodationId) => {dispatch(LikeDislikeAction(accommodationId))}
 
     const style = {
         position: 'absolute',
@@ -66,28 +69,58 @@ const ListAccommodations = ({accommodations, loading, error}) => {
         .slice(visitedPage, visitedPage + accommodationsPerPage)
         .map((acc) => {
         return (
-            <div className="accommodation" key={acc.id}>
-                <div className="accomodation__thumbnail">
-                    <img src={acc.images_links[acc.images_links.length > 0 ? acc.images_links.length - 1 : 0]} alt="" />
-                </div>
-                <div className="accomodation__desc">
-                    <h2 id="accommodation__name">{acc.name}</h2>
-                    <p id="accommodation__description">{acc.description}</p>
-                </div>   
-                <div>
-                <Button
-                    variant="contained"
-                    color="primary"
-                    onClick={() => {
-                    setOpen('view')
-                    setAccommodation(acc);
-                    }}
-                    data-testid="accommodation_view_button"
-                >
-                    View
-                </Button>
-                </div>          
+          <div className="accommodation" key={acc.id}>
+            <div className="accomodation__thumbnail">
+              <img
+                src={
+                  acc.images_links[
+                    acc.images_links.length > 0
+                      ? acc.images_links.length - 1
+                      : 0
+                  ]
+                }
+                alt=""
+              />
             </div>
+            <div className="accomodation__desc">
+              <h2 id="accommodation__name">{acc.name}</h2>
+              <p id="accommodation__description">{acc.description}</p>
+              {acc.isLiked && (
+                <FaHeart
+                  style={{
+                    fontSize: '20px',
+                    color: '1D3C78',
+                    cursor: 'pointer',
+                  }}
+                  onClick={()=>LikeDislike(acc.id)}
+                />
+              )}
+              {!acc.isLiked && (
+                <AiOutlineHeart
+                  style={{
+                    fontSize: '25px',
+                    color: '1D3C78',
+                    cursor: 'pointer',
+                  }}
+                  onClick= { ()=>LikeDislike(acc.id)}
+                />
+              )}
+              <p>{acc.likes} Likes</p>
+            </div>
+            <div>
+              <Button
+                variant="contained"
+                color="primary"
+                onClick={() => {
+                  setOpen('view');
+                  setAccommodation(acc);
+                }}
+                data-testid="accommodation_view_button"
+              >
+                View
+              </Button>
+            </div>
+          </div>
         );
         }): 0
     }

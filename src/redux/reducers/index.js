@@ -20,6 +20,7 @@ import {
   fetchUserProfileReducer,
   updateUserProfileReducer,
 } from './userProfileReducer';
+import { LikeDislikeReducer } from "./accommodationReducers";
 import { statsReducer, chartStatsReducer } from './tripstatsReducers';
 
 
@@ -37,9 +38,9 @@ export default combineReducers({
   reset: resetReducer,
   recover: recoverReducer,
   user: userReducer,
-  accommodations:accommodationsReducer,
-  updatingAccomodation:AccommodationUpdateReducer,
-  deletingAccommodation:deleteAccommodationReducer,
+  accommodations: accommodationsReducer,
+  updatingAccomodation: AccommodationUpdateReducer,
+  deletingAccommodation: deleteAccommodationReducer,
   viewAccommodation: viewAccommodationReducer,
   users: usersReducer,
   roles: rolesReducer,
@@ -47,4 +48,5 @@ export default combineReducers({
   tripStats: statsReducer,
   chartTripStats: chartStatsReducer,
   requests: requestsReducer,
+  // LikeDislike: LikeDislikeReducer,
 });

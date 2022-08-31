@@ -8,12 +8,12 @@ import {detailsAccommodation, listAccommodations} from "../../redux/actions/acco
 
 const Accommodation = () => {
 const {accommodations, loading, error} = useSelector((state) => state.accommodations);
-
+console.log(accommodations)
 const dispatch = useDispatch();
 
 useEffect(() => {
     dispatch(listAccommodations())
-}, []);
+}, [dispatch]);
 
     return ( 
         <div className="home" data-testid='update-1'>
