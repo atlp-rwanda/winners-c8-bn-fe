@@ -21,6 +21,7 @@ import {
   updateUserProfileReducer,
 } from './userProfileReducer';
 import { statsReducer, chartStatsReducer } from './tripstatsReducers';
+import PopularDestinationsReducer from './popularDestinationsReducer';
 
 import { logoutReducer } from "./logoutReducer";
 
@@ -48,6 +49,7 @@ export default combineReducers({
   logout: logoutReducer,
   tripStats: statsReducer,
   chartTripStats: chartStatsReducer,
+  PopularDestinations: PopularDestinationsReducer,
   requests: requestsReducer,
 });
 

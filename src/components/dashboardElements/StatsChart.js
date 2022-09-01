@@ -41,7 +41,6 @@ class StatsChart extends Component {
       rejected: [],
       pending: [],
     };
-    console.log('fe', chartStats);
     chartStats.forEach((element) => {
       Object.keys(dataSets).forEach((key) => {
         if (element) {
@@ -53,7 +52,6 @@ class StatsChart extends Component {
         }
       });
     });
-    console.log('data', dataSets);
 
     const data = {
       labels: [

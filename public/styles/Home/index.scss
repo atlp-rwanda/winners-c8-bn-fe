@@ -1,0 +1,12 @@
+@use "colors";
+
+body {
+  background-color: colors.$light-color;
+}
+.navbar {
+  height: 10%;
+}
+
+.page-header {
+  height: 80%;
+}

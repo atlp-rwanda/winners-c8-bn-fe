@@ -11,10 +11,8 @@ const initialState = {
 };
 
 const requestsReducer = (state = initialState, action) => {
-  // console.log(`before ${action.type} action, this is the AUTH state: `,JSON.stringify(state));
   switch (action.type) {
     case FECTH_REQUESTS:
-      // console.log('State is moving', action.payload);
       return {
         ...state,
         requests: action.payload,
@@ -44,7 +42,6 @@ const requestsReducer = (state = initialState, action) => {
 export const requestComments = (state = [], action) => {
   switch (action.type) {
     case FECTH_REQUESTS_COMMENTS:
-      // console.log('State is moving', action.payload);
       return {
         ...state,
         requestComments: action.payload,

@@ -1,0 +1,106 @@
+@use 'colors';
+
+.page-header {
+  color: #fff;
+  font-size: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-left: 7rem;
+  margin-bottom: 2rem;
+  background-size: cover;
+
+  header {
+    max-width: 50vw;
+    margin: 2rem 0;
+    text-align: left;
+
+    h1 {
+      font-size: 5rem;
+      text-align: left;
+      font-weight: 500;
+      margin: 3rem 0;
+      color: #fff;
+    }
+    span {
+      color: #fff;
+    }
+  }
+
+  .quick-actions {
+    max-width: 70vw;
+    color: colors.$primary-color;
+
+    .actions-headers {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      max-width: 50vw;
+      border-radius: 40px 40px 0 0;
+      overflow: hidden;
+      font-size: 2.5rem;
+      font-weight: 600;
+
+      .header {
+        background-color: colors.$grey-color;
+        padding: 4rem;
+        display: flex;
+        align-items: center;
+
+        span {
+          margin-left: 3rem;
+        }
+      }
+
+      .header.active {
+        background-color: #fff;
+      }
+    }
+
+    .actions-body {
+      background-color: white;
+      padding: 3rem;
+      border-top-right-radius: 23px;
+
+      .actions-option {
+        display: none;
+      }
+      .actions-option.active {
+        display: block;
+      }
+
+      form {
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .form-group {
+        .label {
+          display: flex;
+          align-items: center;
+
+          span {
+            color: inherit;
+          }
+        }
+        input {
+          padding: 1rem 2rem;
+          background-color: colors.$grey-color;
+          border: 0;
+          outline: 0;
+          margin: 1rem 0;
+          color: colors.$primary-color;
+          border-radius: 10px;
+        }
+      }
+
+      .actions-btn {
+        padding: 0rem 3rem;
+        color: colors.$secondary-color;
+        background-color: colors.$primary-color;
+        border: 0;
+        border-radius: 5px;
+        font-size: 2rem;
+      }
+    }
+  }
+}
