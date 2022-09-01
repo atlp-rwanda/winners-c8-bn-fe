@@ -28,6 +28,7 @@ import {
   onlineStatusReducer,
 } from './userProfileReducer';
 import { statsReducer, chartStatsReducer } from './tripstatsReducers';
+import PopularDestinationsReducer from './popularDestinationsReducer';
 
 import { logoutReducer } from './logoutReducer';
 
@@ -56,5 +57,6 @@ export default combineReducers({
   chartTripStats: chartStatsReducer,
   notification: notificationReducer,
   onlineStatus: onlineStatusReducer,
+  PopularDestinations: PopularDestinationsReducer,
   requests: requestsReducer,
 });

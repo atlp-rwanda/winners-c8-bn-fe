@@ -111,7 +111,7 @@ class LoginForm extends React.Component {
     let { message_success } = this.props.alert;
     return (
       <div className="formBody">
-        {this.isFormSubmitted && <Navigate to="/dashboard" replace={true} />}
+        {this.isFormSubmitted && <Navigate to="/" replace={true} />}
         <div className="container d-flex justify-content-center">
           {
             <div className="col-md-8 formWhite">
