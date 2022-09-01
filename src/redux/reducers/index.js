@@ -12,7 +12,6 @@ import notificationReducer from './notificationReducer';
 import { registration } from './userReducers';
 import { alert } from './alertReducers';
 import {
-  requests,
   requestComments,
   postRequestCommentReducer,
   deleteRequestCommentReducer,
@@ -22,6 +21,7 @@ import recoverReducer from './recoverReducer';
 import userReducer from './SocialReducers';
 import usersReducer from './UserReducer';
 import { rolesReducer, assignRoleReducer } from './RoleReducer';
+import requestsReducer from './requestReducer';
 import {
   fetchUserProfileReducer,
   updateUserProfileReducer,
@@ -29,10 +29,11 @@ import {
 } from './userProfileReducer';
 import { statsReducer, chartStatsReducer } from './tripstatsReducers';
 
+import { logoutReducer } from './logoutReducer';
+
 export default combineReducers({
   auth: authReducer,
   navbar: navbarReducer,
-  requests,
   requestComments,
   postComment: postRequestCommentReducer,
   deleteComment: deleteRequestCommentReducer,
@@ -50,8 +51,10 @@ export default combineReducers({
   users: usersReducer,
   roles: rolesReducer,
   assignRole: assignRoleReducer,
+  logout: logoutReducer,
   tripStats: statsReducer,
   chartTripStats: chartStatsReducer,
   notification: notificationReducer,
   onlineStatus: onlineStatusReducer,
+  requests: requestsReducer,
 });

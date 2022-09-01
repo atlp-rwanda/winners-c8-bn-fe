@@ -7,7 +7,6 @@ import {
   UPDATE_USER_PROFILE_LOADING,
 } from '../types/userProfileTypes';
 import { SET_USER_ONLINE_STATUS } from '../types/notificationTypes';
-import axios from 'axios';
 import { successToast, errorToast } from '../../helpers/generateToast';
 import axiosInstance from '../../helpers/http';
 
@@ -31,7 +30,7 @@ export const fetchUserProfile = () => async (dispatch) => {
       });
     });
 };
-
+/* istanbul ignore next */
 export const updateUserProfile = (body) => async (dispatch) => {
   dispatch({
     type: UPDATE_USER_PROFILE_LOADING,

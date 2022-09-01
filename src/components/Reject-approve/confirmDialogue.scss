@@ -1,0 +1,54 @@
+.container-dialog{
+  
+  flex-direction: column;
+  position: absolute;
+  background-color:rgb(122, 163, 198);
+  width: 300px;
+  top: 16%;
+  left: 80%;
+  transform: translate(-50%, -75%);
+  border-radius: 0.3rem;
+  padding: 1rem;
+  z-index: 5; 
+}
+
+.container-dialog span {
+  display: flex;
+  color: white;
+  bottom: 55%;
+  margin: 1.5rem 0 3rem;
+  text-align: center;
+  line-height: 2rem;
+  font-size: 15px;
+}
+
+.button-container {
+  display: flex;
+  margin-top: auto;
+  justify-content: space-between;
+}
+
+.confirmation-button, yes-button {
+  display: inline-flex;
+  background-color:black;
+  color: white;
+  padding: 0.7rem 1.4rem;
+  border: none;
+  border-radius: 0.3rem;
+  font-size: 1rem;
+}
+
+.cancel-button {
+  background-color: #393636;
+  color:white;
+}
+
+.confirmation-button:hover {
+  background-color: rgb(187, 148, 148);
+  cursor: pointer;
+}
+
+.cancel-button:hover {
+  background-color:#cb9595 ;
+  cursor: pointer;
+}

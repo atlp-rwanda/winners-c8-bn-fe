@@ -4,6 +4,7 @@ import {
   ADD_NOTIFICATION,
   DELETE_NOTIFICATION,
   READ_NOTIFICATION,
+  READ_ALL_NOTIFICATIONS,
 } from '../types/notificationTypes';
 export const fetchNotifications = () => async (dispatch) => {
   const response = await axiosInstance.get('/user/notifications');
@@ -39,6 +40,14 @@ export const readNotification = (notification) => async (dispatch) => {
     dispatch({
       type: READ_NOTIFICATION,
       payload: notification,
+    });
+  }
+};
+export const readAllNotification = () => async (dispatch) => {
+  const response = await axiosInstance.patch(`/user/notifications/`);
+  if ((response.status = 200)) {
+    dispatch({
+      type: READ_ALL_NOTIFICATIONS,
     });
   }
 };

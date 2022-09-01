@@ -44,6 +44,7 @@ export function updateUserProfileReducer(
   state = updateUserProfileInitialState,
   action
 ) {
+  /* istanbul ignore next */
   switch (action.type) {
     case UPDATE_USER_PROFILE_LOADING:
       return {

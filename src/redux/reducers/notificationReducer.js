@@ -34,7 +34,7 @@ export default function notificationReducer(
       return {
         ...state,
         notifications: state.notifications.map((notification) => {
-          if (notification == action.payload.id)
+          if (notification.id == action.payload.id)
             return { ...notification, status: 'read' };
           return notification;
         }),
@@ -42,12 +42,12 @@ export default function notificationReducer(
       };
     case DELETE_NOTIFICATION:
       const notificationToDelete = state.notifications.find(
-        (notification) => notification === action.payload.id
+        (notification) => notification.id === action.payload.id
       );
       return {
         ...state,
         notifications: state.notifications.filter(
-          (notification) => notification !== action.payload.id
+          (notification) => notification.id !== action.payload.id
         ),
         unreadNotifications:
           notificationToDelete.status !== 'read'
@@ -58,9 +58,7 @@ export default function notificationReducer(
       return {
         ...state,
         notifications: state.notifications.map((notification) => {
-          if (notification === action.payload.id)
-            return { ...notification, status: 'read' };
-          return notification;
+          return { ...notification, status: 'read' };
         }),
         unreadNotifications: 0,
       };

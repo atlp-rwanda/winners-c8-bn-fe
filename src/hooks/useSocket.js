@@ -28,7 +28,12 @@ const useSocket = () => {
     socket.on('notification', (data) => {
       notificationSound.play();
       successToast(data?.message);
-      dispatch({ type: ADD_NOTIFICATION, payload: data });
+      dispatch({
+        type: ADD_NOTIFICATION,
+        payload: Object.assign({}, data?.notification, {
+          associatedUser: data?.associatedUser,
+        }),
+      });
     });
   }, []);
 

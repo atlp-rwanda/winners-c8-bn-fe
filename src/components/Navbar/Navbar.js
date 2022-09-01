@@ -19,8 +19,10 @@ import { Button, Card } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
 import {
   deleteNotification,
+  readAllNotification,
   readNotification,
 } from '../../redux/actions/notificationActions';
+import { Delete } from '@mui/icons-material';
 
 const Navbar = ({
   user,
@@ -45,6 +47,7 @@ const Navbar = ({
 
   const handleNotificationDelete = (notification) =>
     dispatch(deleteNotification(notification));
+  const handleReadAllNotification = () => dispatch(readAllNotification());
   const handleClose = () => {
     setAvatarAnch(null);
     setNotificationAnch(null);
@@ -68,7 +71,7 @@ const Navbar = ({
               anchorEl={notificationAnch}
               open={!!notificationAnch}
               onClose={handleClose}
-              sx={{ mt: '45px' }}
+              sx={{ mt: '45px', padding: '10px' }}
               anchorOrigin={{
                 vertical: 'top',
                 horizontal: 'right',
@@ -82,24 +85,26 @@ const Navbar = ({
               <Box>
                 <Typography>Notification</Typography>
                 <Box sx={{ flexGrow: 1 }}>
-                  <Button size="sm">Mark all as read</Button>
+                  <Button size="sm" onClick={handleReadAllNotification}>
+                    Mark all as read
+                  </Button>
                 </Box>
               </Box>
-              {notifications?.map?.((notification) => {
-                return (
-                  <MenuItem
-                    key={notification.id}
-                    onClick={() => {
-                      handleNotificationClick(notification);
-                    }}
-                  >
+              <Box sx={{ p: '10px' }}>
+                {notifications?.map?.((notification) => {
+                  return (
                     <Card
+                      key={notification.id}
+                      onClick={() => {
+                        handleNotificationClick(notification);
+                      }}
                       style={{
                         background:
                           notification.status !== 'read'
                             ? 'rgba(0,0,0,0.2)'
                             : undefined,
                         width: '100%',
+                        padding: '10px',
                       }}
                     >
                       <CardContent>
@@ -107,10 +112,17 @@ const Navbar = ({
                         <p>{notification.message}</p>
                         <small>{notification.createdAt}</small>
                       </CardContent>
+                      <Button
+                        onClick={() => handleNotificationDelete(notification)}
+                        variant="error"
+                        style={{ width: '100%' }}
+                      >
+                        <Delete />
+                      </Button>
                     </Card>
-                  </MenuItem>
-                );
-              })}
+                  );
+                })}
+              </Box>
             </Menu>
           </Box>
           <Box sx={{ flexGrow: 0 }}>

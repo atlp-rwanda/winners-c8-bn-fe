@@ -72,7 +72,7 @@ const UserProfile = () => {
     event.preventDefault();
     setDisable(false);
   };
-
+  /* istanbul ignore next */
   return (
     <>
       <div className="titleDashboard">
