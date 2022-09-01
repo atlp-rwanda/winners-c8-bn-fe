@@ -1,12 +1,16 @@
-@use "colors";
+@use 'colors';
 
 .partners {
-  margin: 3rem 10rem;
+  margin-top: 10rem;
+  padding: 3rem;
+  background-color: colors.$primary-color;
+
   header {
     font-weight: 700;
-    font-size: 3rem;
+    font-size: 3.5rem;
     text-align: center;
     margin-bottom: 3rem;
+    color: #fff;
   }
 
   .partner-logos {

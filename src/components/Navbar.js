@@ -26,19 +26,11 @@ const Navbar = (props) => {
             </a>
           </li>
           <li>
-            <a href="/" className="navbar-link">
+            <a href="/dashboard/userprofile" className="navbar-link">
               Profile
             </a>
           </li>
           <li>
-            {/* <a
-              href="/login"
-              className="navbar-link"
-              data-testid="login-btn-1"
-              onClick={(event) => props.SET_PAGE('LOGIN_FORM')}
-            >
-              {props.token == '' ? 'Login' : 'Logout'}
-            </a> */}
             <Link
               to="login"
               className="navbar-link"
