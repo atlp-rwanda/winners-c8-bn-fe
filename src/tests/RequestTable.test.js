@@ -15,10 +15,12 @@ import store from '../redux/store';
 import { userResponse, tripRequestResponse } from './mocks/data';
 import MockAxiosAdapter from 'axios-mock-adapter';
 const mock = new MockAxiosAdapter(axiosInstance);
+
 describe('Request table', () => {
   beforeEach(() => {
-    mock.onGet(/trips/gi).reply(200, tripRequestResponse);
-    mock.onGet(/user/gi).reply(200, userResponse);
+    mock.onGet('/trips').reply(200, tripRequestResponse);
+    mock.onGet('/user/user').reply(200, userResponse);
+    mock.onGet('/user/notifications').reply(200, { status: 200, data: [] });
   });
   afterEach(() => {
     cleanup();
