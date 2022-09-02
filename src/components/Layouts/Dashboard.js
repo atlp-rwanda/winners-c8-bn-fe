@@ -40,9 +40,10 @@ const Dashboard = () => {
         />
         <div
           style={{
-            padding: '50px 10px 50px',
-            overflowY: 'auto',
-            maxHeight: '100vh',
+            padding: '10px 10px 50px 10px',
+            overflowY: 'scroll',
+            maxHeight: '90vh',
+            margin: '0px',
           }}
           className="main"
         >

@@ -12,6 +12,7 @@ import {
   Card,
   Stack,
 } from '@mui/material';
+import moment from 'moment';
 import { Delete, DoneAll } from '@mui/icons-material';
 import { useDispatch } from 'react-redux';
 import {
@@ -34,7 +35,6 @@ function Notification({ unreadNotifications, notifications }) {
     dispatch(deleteNotification(notification));
   const handleReadAllNotification = () => dispatch(readAllNotification());
   const handleClose = () => {
-    setAvatarAnch(null);
     setNotificationAnch(null);
   };
   return (
@@ -49,7 +49,6 @@ function Notification({ unreadNotifications, notifications }) {
         open={!!notificationAnch}
         onClose={handleClose}
         sx={{ mt: '45px', padding: '10px' }}
-        style={{ minWidth: '250px' }}
         anchorOrigin={{
           vertical: 'top',
           horizontal: 'right',
@@ -65,8 +64,9 @@ function Notification({ unreadNotifications, notifications }) {
           justifyContent="space-between"
           alignItems="center"
           sx={{ p: '10px', borderBottom: '1px solid rgba(0,0,0,0.2)' }}
+          style={{ minWidth: '400px', maxWidth: '400px' }}
         >
-          <Box>
+          <Box style={{ maxWidth: '100%', width: '100%' }}>
             <Typography sx={{ display: 'inline' }} variant="h5">
               Notification
             </Typography>
@@ -78,51 +78,56 @@ function Notification({ unreadNotifications, notifications }) {
           </Box>
         </Stack>
         <Box sx={{ p: '10px' }}>
-          {notifications?.map?.((notification) => {
-            return (
-              <Card
-                key={notification.id}
-                sx={{ mt: '10px' }}
-                onClick={() => {
-                  handleNotificationClick(notification);
-                }}
-                style={{
-                  background:
-                    notification.status !== 'read'
-                      ? 'rgba(0,0,0,0.2)'
-                      : undefined,
-                  width: '100%',
-                  padding: '10px',
-                }}
-              >
-                <CardContent>
-                  <Stack
-                    direction="row"
-                    alignItems="center"
-                    justifyContent="center"
-                  >
-                    <Box sx={{ p: '5px' }}>
-                      <Avatar />
-                    </Box>
-                    <Box>
-                      <h5>{notification.title}</h5>
-                      <p>{notification.message}</p>
-                      <small>{notification.createdAt}</small>
-                    </Box>
-                    <Box sx={{ p: '5px' }}>
-                      <Button
-                        onClick={() => handleNotificationDelete(notification)}
-                        variant="error"
-                        style={{ width: '100%' }}
-                      >
-                        <Delete />
-                      </Button>
-                    </Box>
-                  </Stack>
-                </CardContent>
-              </Card>
-            );
-          })}
+          {(notifications?.length &&
+            notifications?.map?.((notification) => {
+              return (
+                <Card
+                  key={notification.id}
+                  sx={{ mt: '10px' }}
+                  onClick={() => {
+                    handleNotificationClick(notification);
+                  }}
+                  style={{
+                    background:
+                      notification.status !== 'read'
+                        ? 'rgba(0,0,0,0.2)'
+                        : undefined,
+                    width: '100%',
+                    padding: '10px',
+                    maxWidth: '400px',
+                  }}
+                >
+                  <CardContent>
+                    <Stack
+                      direction="row"
+                      alignItems="center"
+                      justifyContent="center"
+                    >
+                      <Box sx={{ p: '5px' }}>
+                        <Avatar />
+                      </Box>
+                      <Box>
+                        <h5>{notification.title}</h5>
+                        <p>{notification.message}</p>
+                        <small>
+                          {moment(notification.createdAt).fromNow()}
+                        </small>
+                      </Box>
+                      <Box sx={{ p: '5px' }}>
+                        <Button
+                          onClick={() => handleNotificationDelete(notification)}
+                          variant="error"
+                          style={{ width: '100%' }}
+                        >
+                          <Delete />
+                        </Button>
+                      </Box>
+                    </Stack>
+                  </CardContent>
+                </Card>
+              );
+            })) ||
+            "You don't have any notification"}
         </Box>
       </Menu>
     </Box>
