@@ -1,0 +1,44 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<UserUpdate /> matches snapshot 1`] = `
+Array [
+  <div
+    className="titleDashboard"
+  >
+    <div
+      className="text"
+    >
+      <h3>
+        Dashboard&gt;&gt;
+      </h3>
+      <h4>
+        Settings&gt;&gt;
+      </h4>
+      <h6
+        data-testid="update-1"
+      >
+        Personal information
+      </h6>
+    </div>
+    <h4>
+      Dashboard&gt;&gt;
+    </h4>
+  </div>,
+  <div
+    className="mainContent"
+  >
+    <p>
+      Personal information
+    </p>
+    <span
+      className="MuiSkeleton-root MuiSkeleton-rectangle MuiSkeleton-wave css-1kcnzpi-MuiSkeleton-root"
+      style={
+        Object {
+          "height": 800,
+          "width": 1100,
+        }
+      }
+    />
+  </div>,
+]
+`;

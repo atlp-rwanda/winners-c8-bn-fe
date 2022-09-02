@@ -60,15 +60,13 @@ const Sidebar = () => {
           </Link>
           <p className="title"></p>
           <Link to="/dashboard/trips" style={{ textDecoration: 'none' }}>
+          <p className="title">COMPONENTS</p>
+
             <li>
               <InsertChartIcon className="icon" />
               <span>Trips</span>
             </li>
           </Link>
-          <li>
-            <NotificationsNoneIcon className="icon" />
-            <span>Widgets</span>
-          </li>
           <li>
             <NotificationsNoneIcon className="icon" />
             <span>Maps</span>

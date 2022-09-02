@@ -1,0 +1,205 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`User role Dashboard  <UserRoleDash /> matches snapshot 1`] = `
+<div
+  className="Content"
+  data-testid="assign-role"
+>
+  <div
+    className="ContentContainer"
+  >
+    <div
+      className="titleDashboard"
+    >
+      <div
+        className="text"
+      >
+        <h4>
+          Dashboard&gt;&gt;
+        </h4>
+        <h6
+          data-testid="assign-roles"
+        >
+          Assign Role
+        </h6>
+      </div>
+    </div>
+    <div
+      className="contentBlock"
+    >
+      <div
+        className="Content"
+      >
+        <div
+          className="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root css-1ormwui-MuiPaper-root-MuiCard-root"
+        >
+          <div
+            className="MuiCardHeader-root css-185gdzj-MuiCardHeader-root"
+          >
+            <div
+              className="MuiCardHeader-content css-1qbkelo-MuiCardHeader-content"
+            >
+              <span
+                className="MuiTypography-root MuiTypography-h5 MuiCardHeader-title css-1qvr50w-MuiTypography-root"
+              >
+                Assign role
+              </span>
+            </div>
+          </div>
+          <div
+            className="MuiCardContent-root css-46bh2p-MuiCardContent-root"
+          >
+            <form
+              className="formClass"
+            >
+              <div
+                className="css-1lwbda4-MuiStack-root"
+              >
+                <div
+                  className="MuiFormControl-root MuiFormControl-fullWidth css-q8hpuo-MuiFormControl-root"
+                >
+                  <label
+                    className="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-outlined MuiFormLabel-colorPrimary css-14s5rfu-MuiFormLabel-root-MuiInputLabel-root"
+                    data-shrink={false}
+                  >
+                    Email
+                  </label>
+                  <div
+                    className="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-colorPrimary MuiInputBase-formControl inputData css-a3l6o-MuiInputBase-root-MuiInput-root-MuiSelect-root"
+                    data-testid="user-byEmail"
+                    onClick={[Function]}
+                  >
+                    <div
+                      aria-expanded="false"
+                      aria-haspopup="listbox"
+                      className="MuiSelect-select MuiSelect-standard MuiInputBase-input MuiInput-input css-1rxz5jq-MuiSelect-select-MuiInputBase-input-MuiInput-input"
+                      onBlur={[Function]}
+                      onFocus={[Function]}
+                      onKeyDown={[Function]}
+                      onMouseDown={[Function]}
+                      role="button"
+                      tabIndex={0}
+                    >
+                      <span
+                        className="notranslate"
+                      >
+                        ​
+                      </span>
+                    </div>
+                    <input
+                      aria-hidden={true}
+                      className="MuiSelect-nativeInput css-yf8vq0-MuiSelect-nativeInput"
+                      disabled={false}
+                      onAnimationStart={[Function]}
+                      onChange={[Function]}
+                      required={false}
+                      tabIndex={-1}
+                      value=""
+                    />
+                    <svg
+                      aria-hidden={true}
+                      className="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium MuiSelect-icon MuiSelect-iconStandard css-pqjvzy-MuiSvgIcon-root-MuiSelect-icon"
+                      data-testid="ArrowDropDownIcon"
+                      focusable="false"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M7 10l5 5 5-5z"
+                      />
+                    </svg>
+                  </div>
+                </div>
+                <div
+                  className="MuiFormControl-root MuiFormControl-fullWidth css-q8hpuo-MuiFormControl-root"
+                >
+                  <label
+                    className="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-outlined MuiFormLabel-colorPrimary css-14s5rfu-MuiFormLabel-root-MuiInputLabel-root"
+                    data-shrink={false}
+                  >
+                    Role
+                  </label>
+                  <div
+                    className="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-colorPrimary MuiInputBase-formControl OptionSelect css-a3l6o-MuiInputBase-root-MuiInput-root-MuiSelect-root"
+                    data-testid="role-name-byId"
+                    onClick={[Function]}
+                  >
+                    <div
+                      aria-expanded="false"
+                      aria-haspopup="listbox"
+                      className="MuiSelect-select MuiSelect-standard MuiInputBase-input MuiInput-input css-1rxz5jq-MuiSelect-select-MuiInputBase-input-MuiInput-input"
+                      onBlur={[Function]}
+                      onFocus={[Function]}
+                      onKeyDown={[Function]}
+                      onMouseDown={[Function]}
+                      role="button"
+                      tabIndex={0}
+                    >
+                      <span
+                        className="notranslate"
+                      >
+                        ​
+                      </span>
+                    </div>
+                    <input
+                      aria-hidden={true}
+                      className="MuiSelect-nativeInput css-yf8vq0-MuiSelect-nativeInput"
+                      disabled={false}
+                      onAnimationStart={[Function]}
+                      onChange={[Function]}
+                      placeholder={
+                        Array [
+                          "select an email",
+                        ]
+                      }
+                      required={false}
+                      tabIndex={-1}
+                      value=""
+                    />
+                    <svg
+                      aria-hidden={true}
+                      className="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium MuiSelect-icon MuiSelect-iconStandard css-pqjvzy-MuiSvgIcon-root-MuiSelect-icon"
+                      data-testid="ArrowDropDownIcon"
+                      focusable="false"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M7 10l5 5 5-5z"
+                      />
+                    </svg>
+                  </div>
+                </div>
+                <div
+                  className="MuiFormControl-root MuiFormControl-fullWidth css-q8hpuo-MuiFormControl-root"
+                >
+                  <button
+                    className="MuiButtonBase-root MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium css-1rwt2y5-MuiButtonBase-root-MuiButton-root"
+                    data-testid="assign-role-btn"
+                    disabled={false}
+                    onBlur={[Function]}
+                    onClick={[Function]}
+                    onContextMenu={[Function]}
+                    onDragLeave={[Function]}
+                    onFocus={[Function]}
+                    onKeyDown={[Function]}
+                    onKeyUp={[Function]}
+                    onMouseDown={[Function]}
+                    onMouseLeave={[Function]}
+                    onMouseUp={[Function]}
+                    onTouchEnd={[Function]}
+                    onTouchMove={[Function]}
+                    onTouchStart={[Function]}
+                    tabIndex={0}
+                    type="submit"
+                  >
+                    assignRole
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

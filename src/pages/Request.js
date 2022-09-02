@@ -9,15 +9,13 @@ import { fetchUserProfile } from '../redux/actions/userProfileAction';
 import { useDispatch, useSelector } from 'react-redux';
 import Table from '../components/Table';
 import { Alert, Button, Typography, Modal } from '@mui/material';
-// import { Box } from '@mui/system';
 import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 import SendIcon from '@mui/icons-material/Send';
-import CheckIcon from '@mui/icons-material/Check';
 import "./comments.scss"
 import PersonIcon from '@mui/icons-material/Person';
-import { ToastContainer, toast } from 'react-toastify';
-import { successToast, errorToast } from '../helpers/generateToast';
+import { ToastContainer } from 'react-toastify';
+import { successToast} from '../helpers/generateToast';
 
 import { Box } from '@mui/system'
 import ConfirmationDialog from '../components/Reject-approve/ConfirmationDialog';
@@ -26,7 +24,6 @@ function Request() {
   const [currentTrip, setCurrentTrip] = useState(null);
   const [open, setOpen] = React.useState(false);
   const requestData = useSelector(state => state.requests)
-  console.log(requestData , '===')
   const approveOrReject = async (reviewStatus) => {
    
     try {
@@ -47,13 +44,13 @@ function Request() {
 
 // My codes
 const [data, setData ] = useState("")
-const [tripid, setTripId] = useState(null)
 const comments= useSelector((state) => state.requestComments.requestComments?.comments);
 const handleCommentChange = event => {
   // 👇️ update textarea value
   setData(event.target.value);
 
 };
+
 
 let formData = new FormData();
 
@@ -197,9 +194,6 @@ const postComment = (e) => {
 
   }, []);
 
-  console.log("==========Current trip request==========")
-  console.log(currentTrip?.manager.id)
-
   return (
     <>
       <Box>
@@ -275,7 +269,6 @@ const postComment = (e) => {
             {comments?.map((value) => 
             <div className="comment_" key={value.id}>
               {value.userId == currentTrip?.manager.id ? 
-
               <div className='_manager'>
                 <p className='_message_owner'><PersonIcon/>Manager</p>
                 <p >
