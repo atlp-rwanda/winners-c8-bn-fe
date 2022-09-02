@@ -37,8 +37,8 @@ describe('Test trips stats chart', () => {
     success: true,
     Tripstatistics: {
       pending: '20',
-      approved: '10',
-      denied: '5',
+      Approved: '10',
+      Denied: '5',
     },
   });
 

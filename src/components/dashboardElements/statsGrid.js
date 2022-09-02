@@ -15,7 +15,7 @@ class StatsGrid extends Component {
     if (isLoading) return <Loader />;
     if (!isLoaded || !data) return null;
 
-    const keys = ['approved', 'rejected', 'pending'];
+    const keys = ['Approved', 'Rejected', 'pending'];
 
     keys.forEach((key) => {
       if (data[key] === undefined) {
@@ -23,7 +23,10 @@ class StatsGrid extends Component {
       }
     });
     const cards = Object.keys(data).map((key) => (
-      <StatsCard key={key} data={{ title: key, content: data[key] }} />
+      <StatsCard
+        key={key}
+        data={{ title: key.toLocaleLowerCase(), content: data[key] }}
+      />
     ));
 
     return <div className="stats-grid">{cards}</div>;

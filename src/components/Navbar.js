@@ -14,38 +14,35 @@ const Navbar = (props) => {
       </div>
 
       <div className="navbar-options">
-        <ul>
-          <li>
-            <a href="/" className="navbar-link">
-              Home
-            </a>
-          </li>
-          <li>
-            <a href="/dashboard" className="navbar-link">
-              Dashboard
-            </a>
-          </li>
-          <li>
-            <a href="/dashboard/userprofile" className="navbar-link">
-              Profile
-            </a>
-          </li>
-          <li>
-            <Link
-              to="login"
-              className="navbar-link"
-              data-testid="login-btn-1"
-              onClick={(event) => props.SET_PAGE('LOGIN_FORM')}
-            >
-              {props.token == '' ? 'Login' : 'Logout'}
-            </Link>
-          </li>
-        </ul>
-        {props.token == '' ? (
+        {props.token !== '' ? (
+          <ul>
+            <li>
+              <a href="/" className="navbar-link">
+                Home
+              </a>
+            </li>
+            <li>
+              <a href="/dashboard" className="navbar-link">
+                Dashboard
+              </a>
+            </li>
+
+            <li>
+              <Link
+                to="login"
+                className="navbar-link"
+                data-testid="login-btn-1"
+                onClick={(event) => props.SET_PAGE('LOGIN_FORM')}
+              >
+                {props.token == '' ? 'Login' : 'Logout'}
+              </Link>
+            </li>
+          </ul>
+        ) : (
           <a className="navbar-btn" href="/register">
             Sign Up
           </a>
-        ) : null}
+        )}
       </div>
     </nav>
   );

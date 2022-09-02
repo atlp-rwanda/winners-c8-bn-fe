@@ -11,13 +11,12 @@ import SettingsApplicationsIcon from '@mui/icons-material/SettingsApplications';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
 import SettingsSystemDaydreamOutlinedIcon from '@mui/icons-material/SettingsSystemDaydreamOutlined';
+import HomeIcon from '@mui/icons-material/Home';
 import PsychologyOutlinedIcon from '@mui/icons-material/PsychologyOutlined';
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 import { Link, useNavigate } from 'react-router-dom';
 import { logout } from '../../redux/actions/logoutAction';
 import { useDispatch } from 'react-redux';
-
-
 
 const Sidebar = () => {
   const navigate = useNavigate();
@@ -33,20 +32,35 @@ const Sidebar = () => {
       <div className="center">
         <ul>
           <p className="title">MAIN</p>
+          <Link to="/" style={{ textDecoration: 'none' }}>
+            <li>
+              <HomeIcon className="icon" />
+              <span>Home</span>
+            </li>
+          </Link>
           <Link to="/dashboard" style={{ textDecoration: 'none' }}>
             <li>
               <DashboardIcon className="icon" />
               <span>Dashboard</span>
             </li>
           </Link>
+          <Link to="/dashboard/trips" style={{ textDecoration: 'none' }}>
+            <li>
+              <InsertChartIcon className="icon" />
+              <span>Trips</span>
+            </li>
+          </Link>
           <p className="title">PAGES</p>
-          <Link to="/dashboard/accommodations" style={{ textDecoration: "none" }}>
+          <Link
+            to="/dashboard/accommodations"
+            style={{ textDecoration: 'none' }}
+          >
             <li>
               <PersonOutlineIcon className="icon" />
               <span>Create locat&accom</span>
             </li>
           </Link>
-          <Link to="/dashboard/assignRole" style={{ textDecoration: "none" }}>
+          <Link to="/dashboard/assignRole" style={{ textDecoration: 'none' }}>
             <li>
               <StoreIcon className="icon" />
               <span>Assign Roles</span>
@@ -56,21 +70,6 @@ const Sidebar = () => {
             <CreditCardIcon className="icon" />
             <span>Assign Managers</span>
           </li>
-          <p className="title"></p>
-          <Link to="/dashboard/trips" style={{ textDecoration: 'none' }}>
-            <li>
-              <InsertChartIcon className="icon" />
-              <span>Trips</span>
-            </li>
-          </Link>
-          <li>
-            <NotificationsNoneIcon className="icon" />
-            <span>Widgets</span>
-          </li>
-          <li>
-            <NotificationsNoneIcon className="icon" />
-            <span>Maps</span>
-          </li>
           <p className="title">SOCIAL</p>
           <li>
             <SettingsSystemDaydreamOutlinedIcon className="icon" />
@@ -79,10 +78,6 @@ const Sidebar = () => {
           <li>
             <PsychologyOutlinedIcon className="icon" />
             <span>Chatting</span>
-          </li>
-          <li>
-            <SettingsApplicationsIcon className="icon" />
-            <span>Settings</span>
           </li>
           <p className="title">GENERAL</p>
           <Link to="/dashboard/userprofile" style={{ textDecoration: 'none' }}>
@@ -94,11 +89,12 @@ const Sidebar = () => {
           <li>
             <ExitToAppIcon className="icon" />
             <span
-            onClick={()=>{
-              logout()(dispatch, navigate)
-            }}
-            
-            >Logout</span>
+              onClick={() => {
+                logout()(dispatch, navigate);
+              }}
+            >
+              Logout
+            </span>
           </li>
         </ul>
       </div>
