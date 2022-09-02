@@ -22,6 +22,7 @@ import userReducer from './SocialReducers';
 import usersReducer from './UserReducer';
 import { rolesReducer, assignRoleReducer } from './RoleReducer';
 import requestsReducer from './requestReducer';
+import {managers, assign_manager} from './assignManagerReducers'
 import {
   fetchUserProfileReducer,
   updateUserProfileReducer,
@@ -55,6 +56,8 @@ export default combineReducers({
   logout: logoutReducer,
   tripStats: statsReducer,
   chartTripStats: chartStatsReducer,
+  managers,
+  assignManager: assign_manager,
   notification: notificationReducer,
   onlineStatus: onlineStatusReducer,
   PopularDestinations: PopularDestinationsReducer,

@@ -13,9 +13,9 @@ import NotFound from './components/NotFound';
 import UserRoleDash from './components/AssignRole/UserRoleDash';
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
-// import 'react-toastify/dist/ReactToastify.css';
 import DashboardLayout from './components/Layouts/Dashboard';
 import HomePageLayout from './components/Layouts/Home';
+import AssignManager from './components/AssignManager/AssignManager'
 import '../public/styles/App.scss';
 
 const App = () => {
@@ -35,6 +35,7 @@ const App = () => {
             <Route exact index element={<Dashboard />} />
             <Route path="trips" element={<Request />} />
             <Route exact path="assignRole" element={<UserRoleDash />} />
+            <Route exact path='assignManager' element={<AssignManager/>} />
             <Route exact path="userprofile" element={<Userprofile />} />
             <Route path="*" element={<NotFound />} />
             <Route exact path="accommodations" element={<Accommodation />} />

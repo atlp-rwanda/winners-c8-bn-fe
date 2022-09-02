@@ -1,4 +1,3 @@
-import axios from 'axios';
 import { successToast, errorToast } from '../../helpers/generateToast';
 import axiosInstance from '../../helpers/http';
 import {

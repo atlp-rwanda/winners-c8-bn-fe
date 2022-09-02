@@ -83,7 +83,7 @@ export function deleteRequestCommentReducer(state = [], action) {
           return {
               loading: false,
               profileLoading: false,
-              successMsg: "successfully update your profile",
+              successMsg: "successfully deleted",
               error: null,
               success: true,
           }

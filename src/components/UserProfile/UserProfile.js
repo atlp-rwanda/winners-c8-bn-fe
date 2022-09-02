@@ -1,15 +1,13 @@
 import './userprofile.scss';
 import React, { useEffect, useState } from 'react';
-import Navbar from '../Navbar/Navbar';
-import Sidebar from '../Sidebar/Sidebar';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   fetchUserProfile,
   updateUserProfile,
 } from '../../redux/actions/userProfileAction';
 import { Skeleton } from '@mui/material';
-import { toast } from 'react-toastify';
-import { successToast, errorToast } from '../../helpers/generateToast';
+import { successToast} from '../../helpers/generateToast';
+import TextField from '@mui/material/TextField';
 const UserProfile = () => {
   const userData = useSelector((state) => state.userProfile?.user?.user);
   const [dataForm, setFormData] = useState();
@@ -105,19 +103,31 @@ const UserProfile = () => {
                   />
 
                   <div className="text_info">
-                    <input
+                  <TextField 
+                  id="standard-basic" 
+                  label="Username" 
+                  variant="standard" 
+                  disabled={disable}
+                  defaultValue={dataForm?.username}
+                  placeholder='Username'
+                  onChange={(event) =>
+                    setFormData({
+                      ...dataForm,
+                      username: event.target.value,
+                    })
+                  }
+                  className="Text_input"
+
+
+
+                  />
+                    {/* <input
                       type="text"
-                      disabled={disable}
                       defaultValue={dataForm?.username}
                       placeholder='Username'
-                      onChange={(event) =>
-                        setFormData({
-                          ...dataForm,
-                          username: event.target.value,
-                        })
-                      }
+                      
                       className="Text_input"
-                    />
+                    /> */}
                     <p>{dataForm?.email}</p>
                   </div>
                 </div>
