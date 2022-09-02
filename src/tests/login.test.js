@@ -9,7 +9,7 @@ import {
 import { act } from 'react-dom/test-utils';
 import store from '../redux/store';
 import { Provider } from 'react-redux';
-import App from '../App';
+import LoginForm from '../components/LoginForm';
 import { BrowserRouter as Router } from 'react-router-dom';
 import axiosInstance from '../helpers/http';
 import AxiosMockAdapter from 'axios-mock-adapter';
@@ -28,22 +28,20 @@ describe('Testing the Home and LoginForm components', () => {
   render(
     <Provider store={store}>
       <Router>
-        <App />
+        <LoginForm />
       </Router>
     </Provider>
   );
-  it('should navigate to login when login navbar btn is clicked', () => {
-    fireEvent.click(screen.getByTestId('login-btn-1'));
-  });
+
   it('should invalidate bad email', async () => {
     render(
       <Provider store={store}>
         <Router>
-          <App />
+          <LoginForm />
         </Router>
       </Provider>
     );
-    fireEvent.click(screen.getByTestId('login-btn-1'));
+
     fireEvent.change(screen.getByTestId('login-email'), {
       target: { value: 'pacome.bad_email.com' },
     });
@@ -56,11 +54,11 @@ describe('Testing the Home and LoginForm components', () => {
     render(
       <Provider store={store}>
         <Router>
-          <App />
+          <LoginForm />
         </Router>
       </Provider>
     );
-    fireEvent.click(screen.getByTestId('login-btn-1'));
+
     fireEvent.change(screen.getByTestId('login-email'), {
       target: { value: 'pacome@goodemail.com' },
     });
@@ -73,11 +71,11 @@ describe('Testing the Home and LoginForm components', () => {
     render(
       <Provider store={store}>
         <Router>
-          <App />
+          <LoginForm />
         </Router>
       </Provider>
     );
-    fireEvent.click(screen.getByTestId('login-btn-1'));
+
     fireEvent.change(screen.getByTestId('login-password'), {
       target: { value: '' },
     });
@@ -90,11 +88,11 @@ describe('Testing the Home and LoginForm components', () => {
     render(
       <Provider store={store}>
         <Router>
-          <App />
+          <LoginForm />
         </Router>
       </Provider>
     );
-    fireEvent.click(screen.getByTestId('login-btn-1'));
+
     fireEvent.change(screen.getByTestId('login-password'), {
       target: { value: 'pacome#password250' },
     });
@@ -108,15 +106,14 @@ describe('Testing the Home and LoginForm components', () => {
       render(
         <Provider store={store}>
           <Router>
-            <App />
+            <LoginForm />
           </Router>
         </Provider>
       );
     });
 
-    fireEvent.click(screen.getByTestId('login-btn-1'));
     await act(async () => {
-      await fireEvent.submit(screen.getByTestId('login-form'), {
+      fireEvent.submit(screen.getByTestId('login-form'), {
         target: {
           email: { value: 'spaziltonx@soccerfit.com.bees' },
           password: { value: 'Simon@2022' },

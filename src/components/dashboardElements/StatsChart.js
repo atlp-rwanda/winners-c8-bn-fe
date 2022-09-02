@@ -37,8 +37,8 @@ class StatsChart extends Component {
     if (!isLoaded || !chartStats) return null;
 
     const dataSets = {
-      approved: [],
-      rejected: [],
+      Approved: [],
+      Rejected: [],
       pending: [],
     };
     chartStats.forEach((element) => {
@@ -79,14 +79,14 @@ class StatsChart extends Component {
         },
         {
           label: 'Approved',
-          data: dataSets.approved,
+          data: dataSets.Approved,
           borderRadius: 9,
           backgroundColor: '#7DCFBF',
           borderColor: '#7DCFBF',
         },
         {
           label: 'Rejected',
-          data: dataSets.rejected,
+          data: dataSets.Rejected,
           backgroundColor: '#A5C9CA',
           borderColor: '#A5C9CA',
           borderRadius: 9,
