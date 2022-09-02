@@ -1,0 +1,111 @@
+//Colors
+@use "colors";
+
+.navbar {
+  font-size: 1.3rem;
+  color: #fff;
+  background-color: colors.$primary-color;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem 3rem;
+}
+
+.navbar-brand {
+  width: 8rem;
+  height: 6rem;
+  img {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.navbar-harmburger {
+  font-size: 4rem;
+}
+
+.navbar-options {
+  display: flex;
+
+  ul {
+    display: flex;
+    list-style: none;
+  }
+
+  .navbar-link {
+    text-decoration: none;
+    padding: 0.7rem;
+    margin: 0 1rem;
+    color: inherit;
+  }
+
+  .navbar-btn {
+    background-color: transparent;
+    border: 2px solid colors.$secondary-color;
+    padding: 0.3rem 1rem;
+    color: inherit;
+    font-size: inherit;
+    border-radius: 10px;
+  }
+}
+
+@media screen and (min-width: 525px) {
+  .navbar {
+    font-size: 1.3rem;
+    color: #fff;
+    background-color: colors.$primary-color;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem 3rem;
+  }
+
+  .navbar-brand {
+    width: 8rem;
+    height: 6rem;
+    img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  .navbar-options {
+    display: flex;
+
+    ul {
+      display: flex;
+    }
+
+    .navbar-link {
+      padding: 0.7rem;
+      margin: 0 1rem;
+    }
+
+    .navbar-btn {
+      padding: 0.5rem 1rem;
+    }
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .navbar {
+    font-size: 2rem;
+    padding: 2rem 5rem;
+  }
+
+  .navbar-brand {
+    width: 10rem;
+    height: 8rem;
+  }
+
+  .navbar-options {
+    .navbar-link {
+      padding: 1rem;
+      margin: 0 1rem;
+    }
+
+    .navbar-btn {
+      padding: 0.5rem 1rem;
+    }
+  }
+}

@@ -111,14 +111,20 @@ class LoginForm extends React.Component {
     let { message_success } = this.props.alert;
     return (
       <div className="formBody">
-        {this.isFormSubmitted && <Navigate to="/dashboard" replace={true} />}
+        {this.isFormSubmitted && <Navigate to="/" replace={true} />}
         <div className="container d-flex justify-content-center">
           {
             <div className="col-md-8 formWhite">
               <div>
-              {message_success ? <p className="alert_success">{'Account created, Now verify email!'}</p> : ''}
-              </div>  
-             
+                {message_success ? (
+                  <p className="alert_success">
+                    {'Account created, Now verify email!'}
+                  </p>
+                ) : (
+                  ''
+                )}
+              </div>
+
               <div className="row d-flex justify-content-center">
                 <div className="col-xs-12 col-md-8">
                   <h2 className="header1">Sign in </h2>
