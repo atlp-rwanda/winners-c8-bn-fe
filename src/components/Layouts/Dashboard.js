@@ -2,10 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Outlet, useNavigate } from 'react-router-dom';
 import authActions from '../../redux/actions/authActions';
-import {
-  addNotification,
-  fetchNotifications,
-} from '../../redux/actions/notificationActions';
+import { fetchNotifications } from '../../redux/actions/notificationActions';
 import { fetchUserProfile } from '../../redux/actions/userProfileAction';
 import Navbar from '../Navbar/Navbar';
 import Sidebar from '../Sidebar/Sidebar';
@@ -15,7 +12,6 @@ const Dashboard = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { socket, onlineStatus } = useSocket();
-  console.log(socket, onlineStatus);
   const { notifications, user, unreadNotifications } = useSelector(
     ({
       notification: { notifications, unreadNotifications },
@@ -32,9 +28,9 @@ const Dashboard = () => {
     dispatch(fetchNotifications());
   }, []);
   return (
-    <div className="home">
+    <div className="home" style={{ maxHeight: '100vh' }}>
       <Sidebar />
-      <div className="homeContainer">
+      <div className="homeContainer" style={{ height: '100%' }}>
         <Navbar
           notifications={notifications}
           unreadNotifications={unreadNotifications}
@@ -45,9 +41,10 @@ const Dashboard = () => {
         <div
           style={{
             padding: '50px 10px 50px',
-            overflow: 'scroll',
+            overflowY: 'auto',
             maxHeight: '100vh',
           }}
+          className="main"
         >
           <Outlet />
         </div>

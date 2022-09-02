@@ -5,9 +5,13 @@ import { MemoryRouter, BrowserRouter as Router } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import App from '../App';
 import store from '../redux/store';
+import AxiosMockAdapter from 'axios-mock-adapter';
+import axiosInstance from '../helpers/http';
+const mock = new AxiosMockAdapter(axiosInstance);
 afterEach(() => {
   cleanup();
 });
+mock.onGet('/user/notifications').reply(200, { status: 200, data: [] });
 it('Dashboard should display the test', () => {
   render(
     <Provider store={store}>

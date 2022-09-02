@@ -26,6 +26,7 @@ const useSocket = () => {
       dispatch({ type: SET_USER_ONLINE_STATUS, payload: true });
     });
     socket.on('notification', (data) => {
+      console.log(data);
       notificationSound.play();
       successToast(data?.message);
       dispatch({

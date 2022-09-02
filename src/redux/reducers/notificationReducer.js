@@ -50,9 +50,9 @@ export default function notificationReducer(
           (notification) => notification.id !== action.payload.id
         ),
         unreadNotifications:
-          notificationToDelete.status !== 'read'
-            ? state.unreadNotifications - 1
-            : state.unreadNotifications,
+          notificationToDelete.status === 'read'
+            ? state.unreadNotifications
+            : state.unreadNotifications - 1,
       };
     case READ_ALL_NOTIFICATIONS:
       return {
