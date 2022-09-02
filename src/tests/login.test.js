@@ -32,9 +32,7 @@ describe('Testing the Home and LoginForm components', () => {
       </Router>
     </Provider>
   );
-  it('should navigate to login when login navbar btn is clicked', () => {
-    fireEvent.click(screen.getByTestId('login-btn-1'));
-  });
+
   it('should invalidate bad email', async () => {
     render(
       <Provider store={store}>
@@ -43,7 +41,7 @@ describe('Testing the Home and LoginForm components', () => {
         </Router>
       </Provider>
     );
-    fireEvent.click(screen.getByTestId('login-btn-1'));
+
     fireEvent.change(screen.getByTestId('login-email'), {
       target: { value: 'pacome.bad_email.com' },
     });
@@ -60,7 +58,7 @@ describe('Testing the Home and LoginForm components', () => {
         </Router>
       </Provider>
     );
-    fireEvent.click(screen.getByTestId('login-btn-1'));
+
     fireEvent.change(screen.getByTestId('login-email'), {
       target: { value: 'pacome@goodemail.com' },
     });
@@ -77,7 +75,7 @@ describe('Testing the Home and LoginForm components', () => {
         </Router>
       </Provider>
     );
-    fireEvent.click(screen.getByTestId('login-btn-1'));
+
     fireEvent.change(screen.getByTestId('login-password'), {
       target: { value: '' },
     });
@@ -94,7 +92,7 @@ describe('Testing the Home and LoginForm components', () => {
         </Router>
       </Provider>
     );
-    fireEvent.click(screen.getByTestId('login-btn-1'));
+
     fireEvent.change(screen.getByTestId('login-password'), {
       target: { value: 'pacome#password250' },
     });
@@ -114,7 +112,6 @@ describe('Testing the Home and LoginForm components', () => {
       );
     });
 
-    fireEvent.click(screen.getByTestId('login-btn-1'));
     await act(async () => {
       await fireEvent.submit(screen.getByTestId('login-form'), {
         target: {
