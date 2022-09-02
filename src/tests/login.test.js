@@ -9,7 +9,7 @@ import {
 import { act } from 'react-dom/test-utils';
 import store from '../redux/store';
 import { Provider } from 'react-redux';
-import App from '../App';
+import LoginForm from '../components/LoginForm';
 import { BrowserRouter as Router } from 'react-router-dom';
 import axiosInstance from '../helpers/http';
 import AxiosMockAdapter from 'axios-mock-adapter';
@@ -28,7 +28,7 @@ describe('Testing the Home and LoginForm components', () => {
   render(
     <Provider store={store}>
       <Router>
-        <App />
+        <LoginForm />
       </Router>
     </Provider>
   );
@@ -37,7 +37,7 @@ describe('Testing the Home and LoginForm components', () => {
     render(
       <Provider store={store}>
         <Router>
-          <App />
+          <LoginForm />
         </Router>
       </Provider>
     );
@@ -54,7 +54,7 @@ describe('Testing the Home and LoginForm components', () => {
     render(
       <Provider store={store}>
         <Router>
-          <App />
+          <LoginForm />
         </Router>
       </Provider>
     );
@@ -71,7 +71,7 @@ describe('Testing the Home and LoginForm components', () => {
     render(
       <Provider store={store}>
         <Router>
-          <App />
+          <LoginForm />
         </Router>
       </Provider>
     );
@@ -88,7 +88,7 @@ describe('Testing the Home and LoginForm components', () => {
     render(
       <Provider store={store}>
         <Router>
-          <App />
+          <LoginForm />
         </Router>
       </Provider>
     );
@@ -106,14 +106,14 @@ describe('Testing the Home and LoginForm components', () => {
       render(
         <Provider store={store}>
           <Router>
-            <App />
+            <LoginForm />
           </Router>
         </Provider>
       );
     });
 
     await act(async () => {
-      await fireEvent.submit(screen.getByTestId('login-form'), {
+      fireEvent.submit(screen.getByTestId('login-form'), {
         target: {
           email: { value: 'spaziltonx@soccerfit.com.bees' },
           password: { value: 'Simon@2022' },
