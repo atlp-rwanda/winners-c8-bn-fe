@@ -9,7 +9,7 @@ import {
 } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import { act } from 'react-dom/test-utils';
-import popularDestinations from '../components/popularDestinations';
+import PopularDestinations from '../components/popularDestinations';
 import thunk from 'redux-thunk';
 import configureMockStore from 'redux-mock-store';
 import axiosInstance from '../helpers/http';
@@ -49,7 +49,7 @@ describe('Testing rendering popular destinations components', () => {
       render(
         <Provider store={store}>
           <Router>
-            <popularDestinations />
+            <PopularDestinations />
           </Router>
         </Provider>
       );

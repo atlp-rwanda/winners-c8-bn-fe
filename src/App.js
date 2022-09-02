@@ -38,13 +38,9 @@ const App = () => {
             <Route exact path='assignManager' element={<AssignManager/>} />
             <Route exact path="userprofile" element={<Userprofile />} />
             <Route path="*" element={<NotFound />} />
+            <Route exact path="accommodations" element={<Accommodation />} />
           </Route>
           <Route exact path="*" element={<NotFound />} />
-          <Route
-            exact
-            path="/dashboard/accommodations"
-            element={<Accommodation />}
-          />
         </Routes>
       </div>
     </div>

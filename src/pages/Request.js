@@ -1,40 +1,21 @@
 import React, { useEffect, useState } from 'react';
-import { fetchRequestComments, postRequestComment, deleteRequestComment } from '../redux/actions/requestActions';
-import {
-  fetchRequest,
-  approveRequestAction,
-} from '../redux/actions/requestActions';
-
+import { fetchRequest, fetchRequestComments, postRequestComment, deleteRequestComment } from '../redux/actions/requestActions';
 import { fetchUserProfile } from '../redux/actions/userProfileAction';
 import { useDispatch, useSelector } from 'react-redux';
 import Table from '../components/Table';
 import { Alert, Button, Typography, Modal } from '@mui/material';
+import { Box } from '@mui/system';
 import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 import SendIcon from '@mui/icons-material/Send';
+import CheckIcon from '@mui/icons-material/Check';
 import "./comments.scss"
 import PersonIcon from '@mui/icons-material/Person';
-import { ToastContainer } from 'react-toastify';
-import { successToast} from '../helpers/generateToast';
+import { ToastContainer, toast } from 'react-toastify';
+import { successToast, errorToast } from '../helpers/generateToast';
 
-import { Box } from '@mui/system'
-import ConfirmationDialog from '../components/Reject-approve/ConfirmationDialog';
 function Request() {
-  const dispatch = useDispatch()
-  const [currentTrip, setCurrentTrip] = useState(null);
   const [open, setOpen] = React.useState(false);
-  const requestData = useSelector(state => state.requests)
-  const approveOrReject = async (reviewStatus) => {
-   
-    try {
-      const tripId = currentTrip.id;
-   dispatch(approveRequestAction(tripId, reviewStatus))
-      setManagerConfirmation(false);
-    } catch (error) {}
-  };
-  const [managerConfirmation, setManagerConfirmation] = useState(false);
-  const [dialogueStatus, setDialogueStatus] = useState('');
-  
   const { requests, user } = useSelector((state) => {
     return {
       requests: state.requests.requests,
@@ -44,13 +25,13 @@ function Request() {
 
 // My codes
 const [data, setData ] = useState("")
+const [tripid, setTripId] = useState(null)
 const comments= useSelector((state) => state.requestComments.requestComments?.comments);
 const handleCommentChange = event => {
   // 👇️ update textarea value
   setData(event.target.value);
 
 };
-
 
 let formData = new FormData();
 
@@ -76,14 +57,9 @@ const postComment = (e) => {
 
 
 
-  const handleRequest = (reqStatus) => {
-    setDialogueStatus(reqStatus);
-    return setManagerConfirmation(true);
-  };
 
   const handleClose = () => setOpen(false);
-  //
-
+  const [currentTrip, setCurrentTrip] = useState(null);
   const style = {
     position: 'absolute',
     top: '50%',
@@ -98,7 +74,6 @@ const postComment = (e) => {
     overflowY: 'auto',
     p: 4,
   };
-  const [stat, setStat] = useState(status);
   const headers = [
     { field: 'id', headerName: 'Trip Id' },
     {
@@ -117,8 +92,6 @@ const postComment = (e) => {
     },
     { field: 'dateOfDeparture', headerName: 'Date of Departure', flex: 1 },
     {
-
-
       field: 'status',
       headerName: 'Status',
       flex: 1,
@@ -156,7 +129,6 @@ const postComment = (e) => {
           >
             view
           </Button>
-
           {user?.user_role == '6927442b-84fb-4fc3-b799-11449fa62f52' && (
             <>
               {' '}
@@ -165,8 +137,7 @@ const postComment = (e) => {
                 color="warning"
                 data-testid="request_approve_button"
                 onClick={() => {
-                  handleRequest('Approved');
-                  setCurrentTrip(row);
+                  //functionality to approve trip
                 }}
               >
                 Approve
@@ -176,8 +147,7 @@ const postComment = (e) => {
                 color="error"
                 data-testid="request_approve_button"
                 onClick={() => {
-                  handleRequest('Rejected');
-                  setCurrentTrip(row);
+                  //functionality to reject trip
                 }}
               >
                 Reject
@@ -188,11 +158,17 @@ const postComment = (e) => {
       ),
     },
   ];
+
+  const dispatch = useDispatch();
+
   useEffect(() => {
     fetchRequest(dispatch);
     fetchUserProfile()(dispatch);
 
   }, []);
+
+  console.log("==========Current trip request==========")
+  console.log(currentTrip?.manager.id)
 
   return (
     <>
@@ -269,6 +245,7 @@ const postComment = (e) => {
             {comments?.map((value) => 
             <div className="comment_" key={value.id}>
               {value.userId == currentTrip?.manager.id ? 
+
               <div className='_manager'>
                 <p className='_message_owner'><PersonIcon/>Manager</p>
                 <p >
@@ -342,15 +319,6 @@ const postComment = (e) => {
             )}
           </Box>
         </Modal>
-        {managerConfirmation ? (
-          <ConfirmationDialog
-            dialogueStatus={dialogueStatus}
-            handleConfirm={approveOrReject}
-            handleCancel={setManagerConfirmation}
-          />
-        ) : (
-          ''
-        )}
       </Box>
       <ToastContainer/>
     </>
