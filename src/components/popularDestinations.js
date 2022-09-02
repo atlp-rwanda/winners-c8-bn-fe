@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import StatsCard from './dashboardElements/statsCard';
 import * as PopularDestinationsActions from '../redux/actions/popularDestinationsActions';
 import '../../public/styles/DashBoard/index.scss';
-import '../../public/styles/Home/PopularDestinations.scss';
+import '../../public/styles/Home/popularDestinations.scss';
 
 class PopularDestinations extends Component {
   componentDidMount() {
