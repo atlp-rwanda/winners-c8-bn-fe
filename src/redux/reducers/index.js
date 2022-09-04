@@ -19,9 +19,10 @@ import {
 import resetReducer from './resetReducer';
 import recoverReducer from './recoverReducer';
 import userReducer from './SocialReducers';
-import usersReducer from './UserReducer';
+import usersReducer from "./UserReducer";
+import chatReducers from './chatReducers';
+import requestsReducer from './requestReducer'
 import { rolesReducer, assignRoleReducer } from './RoleReducer';
-import requestsReducer from './requestReducer';
 import {
   fetchUserProfileReducer,
   updateUserProfileReducer,
@@ -42,6 +43,7 @@ export default combineReducers({
   updateUserProfile: updateUserProfileReducer,
   registration,
   alert,
+  chat: chatReducers,
   reset: resetReducer,
   recover: recoverReducer,
   user: userReducer,

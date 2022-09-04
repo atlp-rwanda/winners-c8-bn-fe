@@ -17,6 +17,7 @@ import { ToastContainer } from 'react-toastify';
 import DashboardLayout from './components/Layouts/Dashboard';
 import HomePageLayout from './components/Layouts/Home';
 import '../public/styles/App.scss';
+import ChatPage from "./components/Chat/ChatPage";
 
 const App = () => {
   return (
@@ -36,6 +37,7 @@ const App = () => {
             <Route path="trips" element={<Request />} />
             <Route exact path="assignRole" element={<UserRoleDash />} />
             <Route exact path="userprofile" element={<Userprofile />} />
+            <Route exact path="chat" element={< ChatPage/>} />
             <Route path="*" element={<NotFound />} />
             <Route exact path="accommodations" element={<Accommodation />} />
           </Route>
