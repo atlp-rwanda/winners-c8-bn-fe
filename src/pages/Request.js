@@ -1,5 +1,10 @@
+/* istanbul ignore file */
 import React, { useEffect, useState } from 'react';
-import { fetchRequestComments, postRequestComment, deleteRequestComment } from '../redux/actions/requestActions';
+import {
+  fetchRequestComments,
+  postRequestComment,
+  deleteRequestComment,
+} from '../redux/actions/requestActions';
 import {
   fetchRequest,
   approveRequestAction,
@@ -14,30 +19,29 @@ import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 import SendIcon from '@mui/icons-material/Send';
 import CheckIcon from '@mui/icons-material/Check';
-import "./comments.scss"
+import './comments.scss';
 import PersonIcon from '@mui/icons-material/Person';
 import { ToastContainer, toast } from 'react-toastify';
 import { successToast, errorToast } from '../helpers/generateToast';
 
-import { Box } from '@mui/system'
+import { Box } from '@mui/system';
 import ConfirmationDialog from '../components/Reject-approve/ConfirmationDialog';
 function Request() {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const [currentTrip, setCurrentTrip] = useState(null);
   const [open, setOpen] = React.useState(false);
-  const requestData = useSelector(state => state.requests)
-  console.log(requestData , '===')
+  const requestData = useSelector((state) => state.requests);
+  console.log(requestData, '===');
   const approveOrReject = async (reviewStatus) => {
-   
     try {
       const tripId = currentTrip.id;
-   dispatch(approveRequestAction(tripId, reviewStatus))
+      dispatch(approveRequestAction(tripId, reviewStatus));
       setManagerConfirmation(false);
     } catch (error) {}
   };
   const [managerConfirmation, setManagerConfirmation] = useState(false);
   const [dialogueStatus, setDialogueStatus] = useState('');
-  
+
   const { requests, user } = useSelector((state) => {
     return {
       requests: state.requests.requests,
@@ -45,39 +49,29 @@ function Request() {
     };
   });
 
-// My codes
-const [data, setData ] = useState("")
-const [tripid, setTripId] = useState(null)
-const comments= useSelector((state) => state.requestComments.requestComments?.comments);
-const handleCommentChange = event => {
-  // 👇️ update textarea value
-  setData(event.target.value);
+  // My codes
+  const [data, setData] = useState('');
+  const [tripid, setTripId] = useState(null);
+  const comments = useSelector(
+    (state) => state.requestComments.requestComments?.comments
+  );
+  const handleCommentChange = (event) => {
+    // 👇️ update textarea value
+    setData(event.target.value);
+  };
 
-};
+  let formData = new FormData();
 
-let formData = new FormData();
+  const postComment = (e) => {
+    e.preventDefault();
+    successToast('Posting Comment');
+    formData.append('comment', data);
+    postRequestComment({ formData, tripid: currentTrip?.id })(dispatch);
+  };
 
-const postComment = (e) => {
-  e.preventDefault();
-  successToast('Posting Comment');
-  formData.append('comment', data);
-  postRequestComment({formData, tripid: currentTrip?.id})(dispatch);
-};
+  // const coments = (
 
-
-// const coments = (
-
-// )
-
-  
-
-
-
-
-
-
-
-
+  // )
 
   const handleRequest = (reqStatus) => {
     setDialogueStatus(reqStatus);
@@ -120,8 +114,6 @@ const postComment = (e) => {
     },
     { field: 'dateOfDeparture', headerName: 'Date of Departure', flex: 1 },
     {
-
-
       field: 'status',
       headerName: 'Status',
       flex: 1,
@@ -194,11 +186,10 @@ const postComment = (e) => {
   useEffect(() => {
     fetchRequest(dispatch);
     fetchUserProfile()(dispatch);
-
   }, []);
 
-  console.log("==========Current trip request==========")
-  console.log(currentTrip?.manager.id)
+  console.log('==========Current trip request==========');
+  console.log(currentTrip?.manager.id);
 
   return (
     <>
@@ -218,7 +209,7 @@ const postComment = (e) => {
               Trip request
             </Typography>
             <hr />
-            {currentTrip && ( 
+            {currentTrip && (
               <>
                 <Typography variant="h6">Trip Id</Typography>
                 <Typography>{currentTrip.id}</Typography>
@@ -267,76 +258,80 @@ const postComment = (e) => {
                   </>
                 ))}
                 <hr />
-            <h4>Comments</h4>
+                <h4>Comments</h4>
 
-            {/* Comments */}
+                {/* Comments */}
 
-            <div>
-            {comments?.map((value) => 
-            <div className="comment_" key={value.id}>
-              {value.userId == currentTrip?.manager.id ? 
+                <div>
+                  {comments?.map((value) => (
+                    <div className="comment_" key={value.id}>
+                      {value.userId == currentTrip?.manager.id ? (
+                        <div className="_manager">
+                          <p className="_message_owner">
+                            <PersonIcon />
+                            Manager
+                          </p>
+                          <p>
+                            {value.message} <br />
+                            <span className="_date">
+                              {value.createdAt.substr(0, 10)}
+                            </span>
+                            <span className="_time">
+                              {value.createdAt.substr(11, 5)}
+                            </span>
+                          </p>
+                        </div>
+                      ) : (
+                        <div className="_traveler">
+                          <p className="_message_owner">
+                            <PersonIcon className="_message_owner_icon" />
+                            Requester
+                          </p>
+                          <p>
+                            {/* <CheckIcon className='_icon'/> */}
+                            {value.message} <br />
+                            <span className="_date">
+                              {value.createdAt.substr(0, 10)}
+                            </span>
+                            <span className="_time">
+                              {value.createdAt.substr(11, 5)}
+                            </span>
+                          </p>
+                        </div>
+                      )}
+                      {user.id == value.userId ? (
+                        <IconButton aria-label="delete">
+                          <DeleteIcon
+                            className="delete_icon"
+                            onClick={() => {
+                              deleteRequestComment({
+                                commentId: value.id,
+                                tripid: currentTrip?.id,
+                              })(dispatch);
+                            }}
+                          />
+                        </IconButton>
+                      ) : (
+                        ''
+                      )}
+                    </div>
+                  ))}
+                </div>
 
-              <div className='_manager'>
-                <p className='_message_owner'><PersonIcon/>Manager</p>
-                <p >
-                  {value.message} <br />
-                  <span className='_date'>{value.createdAt.substr(0, 10)}</span>
-                  <span className='_time'>{value.createdAt.substr(11, 5)}</span>
-                </p>
-              </div> 
-              
-              : 
-              <div className='_traveler'>
-                <p className='_message_owner'>
-                  <PersonIcon className='_message_owner_icon'/>Requester</p>
-                <p >
-                  {/* <CheckIcon className='_icon'/> */}
-                  {value.message} <br />
-                  <span className='_date'>{value.createdAt.substr(0, 10)}</span>
-                  <span className='_time'>{value.createdAt.substr(11, 5)}</span>
-                </p>
-              </div>
-              }  
-              {user.id == value.userId ? 
-            <IconButton aria-label="delete">
-            <DeleteIcon 
-            className="delete_icon"
-            onClick={()=>{
+                {/* Comments end */}
 
-              deleteRequestComment({commentId: value.id, tripid: currentTrip?.id})(dispatch);
-            }}
-            />
-          </IconButton> 
-          : "" 
-            }
-            
-            </div>  
-              )}
-      </div>
+                <form action="" className="_form_comments">
+                  <textarea
+                    className="comment_area"
+                    required
+                    onChange={handleCommentChange}
+                  ></textarea>
+                  <button className="publish_button" onClick={postComment}>
+                    <SendIcon className="_send_icon" />
+                  </button>
+                </form>
 
-
-
-
-            {/* Comments end */}
-            
-            
-            <form action="" className='_form_comments'>
-            <textarea 
-            className='comment_area'
-            required
-            onChange={handleCommentChange}
-            >
-
-
-            </textarea>
-            <button className='publish_button'
-            onClick={postComment}
-            >
-              <SendIcon className='_send_icon'/>
-            </button>
-          </form>
-
-                  <hr/>
+                <hr />
                 {user.user_role != '6927442b-84fb-4fc3-b799-11449fa62f52' && (
                   <>
                     <Button variant="outlined">Edit</Button>
@@ -359,7 +354,7 @@ const postComment = (e) => {
           ''
         )}
       </Box>
-      <ToastContainer/>
+      <ToastContainer />
     </>
   );
 }

@@ -74,8 +74,7 @@ useEffect(()=>{
                   <>
                     <p className= {message.postedBy === user.id  ? "sender__name" : "recipient__name"}>{message.sender}</p>
                     <div className={message.postedBy === user.id  ? "message__sender" : "message__recipient" }>
-                          <p>{message.message}</p>
-                          <p>posted:{message.postedBy}</p>
+                          <p style={{fontWeight:'bold'}}>{message.message}</p>
                           <p>{message.createdAt}</p>
                         
                     </div>
